@@ -1,0 +1,46 @@
+# Runtime / ephemeral Claude Code data
+plugins/
+cache/
+sessions/
+state/
+projects/
+debug/
+shell-snapshots/
+file-history/
+backups/
+downloads/
+statsig/
+ide/
+plans/
+security/
+Agents/
+
+# macOS / editor noise
+.DS_Store
+*.log
+*.lock
+
+# Claude runtime state files
+.last-cleanup
+.last-update-result.json
+mcp-needs-auth-cache.json
+
+# OpenWolf runtime state (keep knowledge files, exclude metrics/state)
+.wolf/token-ledger.json
+.wolf/cron-state.json
+.wolf/daemon.log
+.wolf/hooks/_session.json
+.wolf/designqc-report.json
+.wolf/suggestions.json
+
+# understand-anything intermediates and scratch (keep graph outputs)
+.understand-anything/intermediate/assembled-graph.json
+.understand-anything/intermediate/batch-*.json
+.understand-anything/intermediate/batches.json
+.understand-anything/intermediate/assemble-review.json
+.understand-anything/intermediate/review.json
+.understand-anything/intermediate/tour.json
+.understand-anything/intermediate/layers.json
+.understand-anything/intermediate/fingerprint-input.json
+.understand-anything/tmp/
+.understand-anything/.trash-*/

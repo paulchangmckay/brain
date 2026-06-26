@@ -1,0 +1,272 @@
+{
+  "env": {
+    "TRACE_TO_LANGSMITH": "true"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(cat:*)",
+      "Bash(pwd)",
+      "Bash(git status)",
+      "Bash(git log:*)",
+      "Bash(git diff:*)",
+      "Bash(git branch:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(openwolf status)",
+      "Bash(openwolf scan:*)",
+      "Bash(openwolf:*)",
+      "Bash(pm2 list)",
+      "Bash(npm test:*)",
+      "Bash(npm run:*)",
+      "Bash(node:*)",
+      "Bash(wc:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(diff:*)",
+      "Bash(echo:*)",
+      "Bash(mkdir:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(pnpm:*)",
+      "Write(/Users/paulmckay/.claude/.understand-anything/**)",
+      "Edit(/Users/paulmckay/.claude/.understand-anything/**)"
+    ]
+  },
+  "model": "sonnet",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /Users/paulmckay/.claude/hooks/session-start.sh"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"/Users/paulmckay/.claude/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/sg-python.sh\" \"/Users/paulmckay/.claude/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/ensure_agent_sdk.py\"",
+            "timeout": 180
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/Users/paulmckay/.claude/langsmith-plugin/bundle/user-prompt-submit.js\"",
+            "timeout": 30
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"/Users/paulmckay/.claude/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/sg-python.sh\" \"/Users/paulmckay/.claude/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/security_reminder_hook.py\""
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node /Users/paulmckay/.claude/hooks/pre-read-check.js \"${TOOL_INPUT_PATH:-}\" \"${CLAUDE_CWD:-.}\""
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/Users/paulmckay/.claude/langsmith-plugin/bundle/pre-tool-use.js\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"/Users/paulmckay/.claude/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/sg-python.sh\" \"/Users/paulmckay/.claude/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/security_reminder_hook.py\""
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node /Users/paulmckay/.claude/hooks/post-bash-truncate.js"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"/Users/paulmckay/.claude/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/sg-python.sh\" \"/Users/paulmckay/.claude/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/security_reminder_hook.py\"",
+            "if": "Bash(git commit:*)",
+            "asyncRewake": true,
+            "rewakeMessage": "Background security review of commit — address or acknowledge the findings below, then continue with the user's original request or continue waiting for their reply:",
+            "rewakeSummary": "Commit security review found issues"
+          },
+          {
+            "type": "command",
+            "command": "bash \"/Users/paulmckay/.claude/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/sg-python.sh\" \"/Users/paulmckay/.claude/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/security_reminder_hook.py\"",
+            "if": "Bash(git push:*)",
+            "asyncRewake": true,
+            "rewakeMessage": "Background security review of pushed commits not yet reviewed — address or acknowledge the findings below, then continue with the user's original request or continue waiting for their reply:",
+            "rewakeSummary": "Push security review found issues"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"${CLAUDE_CWD:-.}\" && [ -f .wolf/anatomy.md ] && openwolf scan --check 2>/dev/null || true"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/Users/paulmckay/.claude/langsmith-plugin/bundle/post-tool-use.js\"",
+            "timeout": 30,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/Users/paulmckay/.claude/langsmith-plugin/bundle/stop.js\"",
+            "timeout": 120
+          },
+          {
+            "type": "command",
+            "command": "osascript -e 'display notification \"Task complete\" with title \"Claude Code\" sound name \"Glass\"'",
+            "async": true
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"/Users/paulmckay/.claude/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/sg-python.sh\" \"/Users/paulmckay/.claude/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/security_reminder_hook.py\"",
+            "asyncRewake": true,
+            "rewakeMessage": "Background security review feedback — address or acknowledge the findings below, then continue with the user's original request or continue waiting for their reply. This is supplementary, not a replacement for your previous response:",
+            "rewakeSummary": "Background security review found issues"
+          }
+        ]
+      }
+    ],
+    "StopFailure": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/Users/paulmckay/.claude/langsmith-plugin/bundle/stop-failure.js\"",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/Users/paulmckay/.claude/langsmith-plugin/bundle/subagent-stop.js\"",
+            "timeout": 60,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /Users/paulmckay/.claude/hooks/pre-compact-snapshot.sh"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/Users/paulmckay/.claude/langsmith-plugin/bundle/pre-compact.js\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /Users/paulmckay/.claude/hooks/post-compact-anatomy.sh"
+          },
+          {
+            "type": "command",
+            "command": "node \"/Users/paulmckay/.claude/langsmith-plugin/bundle/post-compact.js\"",
+            "timeout": 30,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/Users/paulmckay/.claude/langsmith-plugin/bundle/session-end.js\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+  "extraKnownMarketplaces": {
+    "understand-anything": {
+      "source": {
+        "source": "github",
+        "repo": "Egonex-AI/Understand-Anything"
+      }
+    }
+  },
+  "autoUpdatesChannel": "latest",
+  "theme": "dark-daltonized",
+  "enabledPlugins": {
+    "understand-anything@understand-anything": true,
+    "claude-plugins-official@security-guidance": true,
+    "claude-plugins-official@skill-creator": true,
+    "claude-plugins-official@feature-dev": true,
+    "claude-plugins-official@plugin-dev": true
+  }
+}

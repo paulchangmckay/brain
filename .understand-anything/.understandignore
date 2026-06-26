@@ -1,0 +1,49 @@
+# .understandignore — patterns for files/dirs to exclude from analysis
+# Syntax: same as .gitignore (globs, # comments, ! negation, trailing / for dirs)
+# Lines below are suggestions — uncomment to activate.
+# Use ! prefix to force-include something excluded by defaults.
+#
+# Built-in defaults (always excluded unless negated):
+#   node_modules/, .git/, dist/, build/, obj/, *.lock, *.min.js, etc.
+#
+
+# --- Claude config directory noise (recommended exclusions) ---
+plugins/
+projects/
+sessions/
+debug/
+shell-snapshots/
+file-history/
+backups/
+cache/
+downloads/
+statsig/
+ide/
+state/
+plans/
+*.lock
+*.log
+*.backup.*
+.DS_Store
+mcp-needs-auth-cache.json
+.last-cleanup
+.last-update-result.json
+
+# --- Test file patterns (uncomment to exclude) ---
+
+# JS / TS
+# *.test.*
+# *.spec.*
+# *.snap
+# C# / .NET
+# **/*Tests.cs
+# **/*Test.cs
+# **/*Fixture.cs
+# **/*.Tests.csproj
+# Java / Kotlin
+# **/src/test/**
+# **/*Test.java
+# **/*IT.java
+# **/*Spec.kt
+# Go
+# **/*_test.go

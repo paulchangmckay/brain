@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "bugs": [
+    {
+      "id": "bug-001",
+      "timestamp": "2026-06-24T05:58:45.245Z",
+      "error_message": "Missing error handling in unknown",
+      "file": "hooks/pre-read-check.js",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "js"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-24T05:58:45.245Z"
+    },
+    {
+      "id": "bug-002",
+      "timestamp": "2026-06-25T03:00:55.899Z",
+      "error_message": "Significant refactor of ",
+      "file": "plans/why-don-t-i-have-logical-gem.md",
+      "root_cause": "3 lines replaced/restructured",
+      "fix": "Rewrote 7→31 lines (3 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-25T03:00:55.899Z"
+    },
+    {
+      "id": "bug-003",
+      "timestamp": "2026-06-25T03:07:12.708Z",
+      "error_message": "Incorrect value in code",
+      "file": "superpowers/skills/brainstorming/SKILL.md",
+      "root_cause": "Had \"Explore project context\"",
+      "fix": "Changed to \"Explore project context\\n(code-explorer agents)\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 3,
+      "last_seen": "2026-06-25T03:08:12.314Z"
+    },
+    {
+      "id": "bug-004",
+      "timestamp": "2026-06-25T03:13:39.945Z",
+      "error_message": "Incorrect value in code",
+      "file": "../.gbrain/config.json",
+      "root_cause": "Had \"notify\"",
+      "fix": "Changed to \"off\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "json"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-25T03:13:39.945Z"
+    },
+    {
+      "id": "bug-005",
+      "timestamp": "2026-06-26T02:57:54.900Z",
+      "error_message": "Incorrect value in code",
+      "file": "hooks/pre-compact-snapshot.sh",
+      "root_cause": "Had \"$BA_LOG_DIR/${TIMESTAMP%-*}-${SLUG}.md\"",
+      "fix": "Changed to \"$BA_LOG_DIR/$(echo \"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "sh"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-26T02:57:54.900Z"
+    }
+  ]
+}

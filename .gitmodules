@@ -1,0 +1,6 @@
+[submodule "langsmith-plugin"]
+	path = langsmith-plugin
+	url = https://github.com/langchain-ai/langsmith-claude-code-plugins
+[submodule "superpowers"]
+	path = superpowers
+	url = https://github.com/obra/Superpowers

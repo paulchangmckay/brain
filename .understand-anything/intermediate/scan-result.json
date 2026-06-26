@@ -1,0 +1,2157 @@
+{
+  "name": "claude-config",
+  "description": "Personal Claude Code configuration directory implementing a thin-harness fat-skills environment, featuring LangSmith tracing integration, OpenWolf AI memory system, lifecycle hooks, and a curated library of process skills for TDD, debugging, code review, and git workflow automation. Note: this project has over 100 source files; consider scoping analysis to a subdirectory for faster results.",
+  "languages": [
+    "batch",
+    "html",
+    "javascript",
+    "json",
+    "markdown",
+    "python",
+    "shell",
+    "txt",
+    "typescript",
+    "yaml"
+  ],
+  "frameworks": [
+    "LangSmith",
+    "TypeScript",
+    "Vitest"
+  ],
+  "files": [
+    {
+      "path": ".claude/rules/openwolf.md",
+      "language": "markdown",
+      "sizeLines": 15,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".claude/settings.json",
+      "language": "json",
+      "sizeLines": 71,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".understand-anything/.understandignore",
+      "language": "unknown",
+      "sizeLines": 49,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".understand-anything/intermediate/scan-result.json",
+      "language": "json",
+      "sizeLines": 8295,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".understand-anything/tmp/ua-import-map-input.json",
+      "language": "json",
+      "sizeLines": 5359,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".understand-anything/tmp/ua-import-map-output.json",
+      "language": "json",
+      "sizeLines": 1845,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".understand-anything/tmp/ua-scan-files.json",
+      "language": "json",
+      "sizeLines": 6463,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".wolf/anatomy.md",
+      "language": "markdown",
+      "sizeLines": 826,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".wolf/buglog.json",
+      "language": "json",
+      "sizeLines": 36,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".wolf/cerebrum.md",
+      "language": "markdown",
+      "sizeLines": 30,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".wolf/config.json",
+      "language": "json",
+      "sizeLines": 73,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".wolf/cron-manifest.json",
+      "language": "json",
+      "sizeLines": 97,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".wolf/cron-state.json",
+      "language": "json",
+      "sizeLines": 25,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".wolf/designqc-report.json",
+      "language": "json",
+      "sizeLines": 5,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".wolf/hooks/_session.json",
+      "language": "json",
+      "sizeLines": 92,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".wolf/hooks/package.json",
+      "language": "json",
+      "sizeLines": 3,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".wolf/hooks/post-read.js",
+      "language": "javascript",
+      "sizeLines": 68,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".wolf/hooks/post-write.js",
+      "language": "javascript",
+      "sizeLines": 502,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".wolf/hooks/pre-read.js",
+      "language": "javascript",
+      "sizeLines": 79,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".wolf/hooks/pre-write.js",
+      "language": "javascript",
+      "sizeLines": 120,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".wolf/hooks/session-start.js",
+      "language": "javascript",
+      "sizeLines": 76,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".wolf/hooks/shared.js",
+      "language": "javascript",
+      "sizeLines": 613,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".wolf/hooks/stop.js",
+      "language": "javascript",
+      "sizeLines": 146,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".wolf/identity.md",
+      "language": "markdown",
+      "sizeLines": 9,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".wolf/memory.md",
+      "language": "markdown",
+      "sizeLines": 80,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".wolf/OPENWOLF.md",
+      "language": "markdown",
+      "sizeLines": 135,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".wolf/reframe-frameworks.md",
+      "language": "markdown",
+      "sizeLines": 597,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".wolf/suggestions.json",
+      "language": "json",
+      "sizeLines": 3,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".wolf/token-ledger.json",
+      "language": "json",
+      "sizeLines": 509,
+      "fileCategory": "config"
+    },
+    {
+      "path": "CLAUDE.md",
+      "language": "markdown",
+      "sizeLines": 42,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "hooks/post-compact-anatomy.sh",
+      "language": "shell",
+      "sizeLines": 43,
+      "fileCategory": "script"
+    },
+    {
+      "path": "hooks/pre-read-check.js",
+      "language": "javascript",
+      "sizeLines": 73,
+      "fileCategory": "code"
+    },
+    {
+      "path": "hooks/session-start.sh",
+      "language": "shell",
+      "sizeLines": 55,
+      "fileCategory": "script"
+    },
+    {
+      "path": "langsmith-plugin/.claude-plugin/marketplace.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "langsmith-plugin/.claude-plugin/plugin.json",
+      "language": "json",
+      "sizeLines": 10,
+      "fileCategory": "config"
+    },
+    {
+      "path": "langsmith-plugin/.claude/CLAUDE.md",
+      "language": "markdown",
+      "sizeLines": 34,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "langsmith-plugin/.claude/rules/openwolf.md",
+      "language": "markdown",
+      "sizeLines": 15,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "langsmith-plugin/.claude/settings.json",
+      "language": "json",
+      "sizeLines": 71,
+      "fileCategory": "config"
+    },
+    {
+      "path": "langsmith-plugin/.gitattributes",
+      "language": "unknown",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/.github/workflows/ci.yml",
+      "language": "yaml",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "langsmith-plugin/.github/workflows/claude-code-review.yml",
+      "language": "yaml",
+      "sizeLines": 55,
+      "fileCategory": "config"
+    },
+    {
+      "path": "langsmith-plugin/.oxfmtrc.json",
+      "language": "json",
+      "sizeLines": 4,
+      "fileCategory": "config"
+    },
+    {
+      "path": "langsmith-plugin/.oxlintrc.json",
+      "language": "json",
+      "sizeLines": 3,
+      "fileCategory": "config"
+    },
+    {
+      "path": "langsmith-plugin/.wolf/anatomy.md",
+      "language": "markdown",
+      "sizeLines": 85,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "langsmith-plugin/.wolf/buglog.json",
+      "language": "json",
+      "sizeLines": 4,
+      "fileCategory": "config"
+    },
+    {
+      "path": "langsmith-plugin/.wolf/cerebrum.md",
+      "language": "markdown",
+      "sizeLines": 23,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "langsmith-plugin/.wolf/config.json",
+      "language": "json",
+      "sizeLines": 74,
+      "fileCategory": "config"
+    },
+    {
+      "path": "langsmith-plugin/.wolf/cron-manifest.json",
+      "language": "json",
+      "sizeLines": 97,
+      "fileCategory": "config"
+    },
+    {
+      "path": "langsmith-plugin/.wolf/cron-state.json",
+      "language": "json",
+      "sizeLines": 31,
+      "fileCategory": "config"
+    },
+    {
+      "path": "langsmith-plugin/.wolf/designqc-report.json",
+      "language": "json",
+      "sizeLines": 5,
+      "fileCategory": "config"
+    },
+    {
+      "path": "langsmith-plugin/.wolf/hooks/package.json",
+      "language": "json",
+      "sizeLines": 3,
+      "fileCategory": "config"
+    },
+    {
+      "path": "langsmith-plugin/.wolf/hooks/post-read.js",
+      "language": "javascript",
+      "sizeLines": 68,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/.wolf/hooks/post-write.js",
+      "language": "javascript",
+      "sizeLines": 502,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/.wolf/hooks/pre-read.js",
+      "language": "javascript",
+      "sizeLines": 79,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/.wolf/hooks/pre-write.js",
+      "language": "javascript",
+      "sizeLines": 120,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/.wolf/hooks/session-start.js",
+      "language": "javascript",
+      "sizeLines": 76,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/.wolf/hooks/shared.js",
+      "language": "javascript",
+      "sizeLines": 613,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/.wolf/hooks/stop.js",
+      "language": "javascript",
+      "sizeLines": 146,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/.wolf/identity.md",
+      "language": "markdown",
+      "sizeLines": 9,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "langsmith-plugin/.wolf/memory.md",
+      "language": "markdown",
+      "sizeLines": 4,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "langsmith-plugin/.wolf/OPENWOLF.md",
+      "language": "markdown",
+      "sizeLines": 135,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "langsmith-plugin/.wolf/reframe-frameworks.md",
+      "language": "markdown",
+      "sizeLines": 597,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "langsmith-plugin/.wolf/suggestions.json",
+      "language": "json",
+      "sizeLines": 3,
+      "fileCategory": "config"
+    },
+    {
+      "path": "langsmith-plugin/.wolf/token-ledger.json",
+      "language": "json",
+      "sizeLines": 20,
+      "fileCategory": "config"
+    },
+    {
+      "path": "langsmith-plugin/bundle/post-compact.js",
+      "language": "javascript",
+      "sizeLines": 8330,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/bundle/post-tool-use.js",
+      "language": "javascript",
+      "sizeLines": 8378,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/bundle/pre-compact.js",
+      "language": "javascript",
+      "sizeLines": 326,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/bundle/pre-tool-use.js",
+      "language": "javascript",
+      "sizeLines": 329,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/bundle/session-end.js",
+      "language": "javascript",
+      "sizeLines": 9038,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/bundle/stop-failure.js",
+      "language": "javascript",
+      "sizeLines": 8336,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/bundle/stop.js",
+      "language": "javascript",
+      "sizeLines": 9100,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/bundle/subagent-stop.js",
+      "language": "javascript",
+      "sizeLines": 342,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/bundle/user-prompt-submit.js",
+      "language": "javascript",
+      "sizeLines": 9156,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/CLAUDE.md",
+      "language": "markdown",
+      "sizeLines": 5,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "langsmith-plugin/esbuild.config.mjs",
+      "language": "javascript",
+      "sizeLines": 43,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/hooks/hooks.json",
+      "language": "json",
+      "sizeLines": 107,
+      "fileCategory": "config"
+    },
+    {
+      "path": "langsmith-plugin/package.json",
+      "language": "json",
+      "sizeLines": 35,
+      "fileCategory": "config"
+    },
+    {
+      "path": "langsmith-plugin/README.md",
+      "language": "markdown",
+      "sizeLines": 288,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "langsmith-plugin/src/config.test.ts",
+      "language": "typescript",
+      "sizeLines": 347,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/src/config.ts",
+      "language": "typescript",
+      "sizeLines": 247,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/src/constants.ts",
+      "language": "typescript",
+      "sizeLines": 4,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/src/fixtures/coding-agent-v1/validator.json",
+      "language": "json",
+      "sizeLines": 241,
+      "fileCategory": "config"
+    },
+    {
+      "path": "langsmith-plugin/src/fixtures/coding-agent-v1/worked-examples.json",
+      "language": "json",
+      "sizeLines": 138,
+      "fileCategory": "config"
+    },
+    {
+      "path": "langsmith-plugin/src/hook-init.test.ts",
+      "language": "typescript",
+      "sizeLines": 69,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/src/hooks/post-compact.ts",
+      "language": "typescript",
+      "sizeLines": 103,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/src/hooks/post-tool-use.ts",
+      "language": "typescript",
+      "sizeLines": 160,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/src/hooks/pre-compact.ts",
+      "language": "typescript",
+      "sizeLines": 52,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/src/hooks/pre-tool-use.ts",
+      "language": "typescript",
+      "sizeLines": 54,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/src/hooks/session-end.ts",
+      "language": "typescript",
+      "sizeLines": 98,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/src/hooks/stop-failure.ts",
+      "language": "typescript",
+      "sizeLines": 106,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/src/hooks/stop.ts",
+      "language": "typescript",
+      "sizeLines": 276,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/src/hooks/subagent-stop.ts",
+      "language": "typescript",
+      "sizeLines": 69,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/src/hooks/user-prompt-submit.ts",
+      "language": "typescript",
+      "sizeLines": 195,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/src/index.ts",
+      "language": "typescript",
+      "sizeLines": 27,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/src/langsmith.test.ts",
+      "language": "typescript",
+      "sizeLines": 1232,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/src/langsmith.ts",
+      "language": "typescript",
+      "sizeLines": 771,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/src/logger.ts",
+      "language": "typescript",
+      "sizeLines": 57,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/src/metadata.test.ts",
+      "language": "typescript",
+      "sizeLines": 240,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/src/metadata.ts",
+      "language": "typescript",
+      "sizeLines": 115,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/src/state.test.ts",
+      "language": "typescript",
+      "sizeLines": 232,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/src/state.ts",
+      "language": "typescript",
+      "sizeLines": 146,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/src/transcript.test.ts",
+      "language": "typescript",
+      "sizeLines": 524,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/src/transcript.ts",
+      "language": "typescript",
+      "sizeLines": 433,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/src/types.ts",
+      "language": "typescript",
+      "sizeLines": 214,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/src/utils/hook-init.ts",
+      "language": "typescript",
+      "sizeLines": 34,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/src/utils/stdin.ts",
+      "language": "typescript",
+      "sizeLines": 16,
+      "fileCategory": "code"
+    },
+    {
+      "path": "langsmith-plugin/tsconfig.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "mcp_servers.json",
+      "language": "json",
+      "sizeLines": 6,
+      "fileCategory": "config"
+    },
+    {
+      "path": "settings.json",
+      "language": "json",
+      "sizeLines": 193,
+      "fileCategory": "config"
+    },
+    {
+      "path": "skills/session-reflect/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 68,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "skills/wolf-init/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 59,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/.claude-plugin/marketplace.json",
+      "language": "json",
+      "sizeLines": 20,
+      "fileCategory": "config"
+    },
+    {
+      "path": "superpowers/.claude-plugin/plugin.json",
+      "language": "json",
+      "sizeLines": 20,
+      "fileCategory": "config"
+    },
+    {
+      "path": "superpowers/.claude/rules/openwolf.md",
+      "language": "markdown",
+      "sizeLines": 15,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/.claude/settings.json",
+      "language": "json",
+      "sizeLines": 71,
+      "fileCategory": "config"
+    },
+    {
+      "path": "superpowers/.codex-plugin/plugin.json",
+      "language": "json",
+      "sizeLines": 48,
+      "fileCategory": "config"
+    },
+    {
+      "path": "superpowers/.cursor-plugin/plugin.json",
+      "language": "json",
+      "sizeLines": 23,
+      "fileCategory": "config"
+    },
+    {
+      "path": "superpowers/.gitattributes",
+      "language": "unknown",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "superpowers/.github/FUNDING.yml",
+      "language": "yaml",
+      "sizeLines": 3,
+      "fileCategory": "config"
+    },
+    {
+      "path": "superpowers/.github/ISSUE_TEMPLATE/bug_report.md",
+      "language": "markdown",
+      "sizeLines": 55,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/.github/ISSUE_TEMPLATE/config.yml",
+      "language": "yaml",
+      "sizeLines": 5,
+      "fileCategory": "config"
+    },
+    {
+      "path": "superpowers/.github/ISSUE_TEMPLATE/feature_request.md",
+      "language": "markdown",
+      "sizeLines": 47,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/.github/ISSUE_TEMPLATE/platform_support.md",
+      "language": "markdown",
+      "sizeLines": 34,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/.github/PULL_REQUEST_TEMPLATE.md",
+      "language": "markdown",
+      "sizeLines": 143,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/.kimi-plugin/plugin.json",
+      "language": "json",
+      "sizeLines": 38,
+      "fileCategory": "config"
+    },
+    {
+      "path": "superpowers/.opencode/INSTALL.md",
+      "language": "markdown",
+      "sizeLines": 115,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/.pi/extensions/superpowers.ts",
+      "language": "typescript",
+      "sizeLines": 121,
+      "fileCategory": "code"
+    },
+    {
+      "path": "superpowers/.pre-commit-config.yaml",
+      "language": "yaml",
+      "sizeLines": 21,
+      "fileCategory": "config"
+    },
+    {
+      "path": "superpowers/.version-bump.json",
+      "language": "json",
+      "sizeLines": 21,
+      "fileCategory": "config"
+    },
+    {
+      "path": "superpowers/.wolf/anatomy.md",
+      "language": "markdown",
+      "sizeLines": 321,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/.wolf/buglog.json",
+      "language": "json",
+      "sizeLines": 4,
+      "fileCategory": "config"
+    },
+    {
+      "path": "superpowers/.wolf/cerebrum.md",
+      "language": "markdown",
+      "sizeLines": 23,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/.wolf/config.json",
+      "language": "json",
+      "sizeLines": 73,
+      "fileCategory": "config"
+    },
+    {
+      "path": "superpowers/.wolf/cron-manifest.json",
+      "language": "json",
+      "sizeLines": 97,
+      "fileCategory": "config"
+    },
+    {
+      "path": "superpowers/.wolf/cron-state.json",
+      "language": "json",
+      "sizeLines": 31,
+      "fileCategory": "config"
+    },
+    {
+      "path": "superpowers/.wolf/designqc-report.json",
+      "language": "json",
+      "sizeLines": 5,
+      "fileCategory": "config"
+    },
+    {
+      "path": "superpowers/.wolf/hooks/package.json",
+      "language": "json",
+      "sizeLines": 3,
+      "fileCategory": "config"
+    },
+    {
+      "path": "superpowers/.wolf/hooks/post-read.js",
+      "language": "javascript",
+      "sizeLines": 68,
+      "fileCategory": "code"
+    },
+    {
+      "path": "superpowers/.wolf/hooks/post-write.js",
+      "language": "javascript",
+      "sizeLines": 502,
+      "fileCategory": "code"
+    },
+    {
+      "path": "superpowers/.wolf/hooks/pre-read.js",
+      "language": "javascript",
+      "sizeLines": 79,
+      "fileCategory": "code"
+    },
+    {
+      "path": "superpowers/.wolf/hooks/pre-write.js",
+      "language": "javascript",
+      "sizeLines": 120,
+      "fileCategory": "code"
+    },
+    {
+      "path": "superpowers/.wolf/hooks/session-start.js",
+      "language": "javascript",
+      "sizeLines": 76,
+      "fileCategory": "code"
+    },
+    {
+      "path": "superpowers/.wolf/hooks/shared.js",
+      "language": "javascript",
+      "sizeLines": 613,
+      "fileCategory": "code"
+    },
+    {
+      "path": "superpowers/.wolf/hooks/stop.js",
+      "language": "javascript",
+      "sizeLines": 146,
+      "fileCategory": "code"
+    },
+    {
+      "path": "superpowers/.wolf/identity.md",
+      "language": "markdown",
+      "sizeLines": 9,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/.wolf/memory.md",
+      "language": "markdown",
+      "sizeLines": 4,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/.wolf/OPENWOLF.md",
+      "language": "markdown",
+      "sizeLines": 135,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/.wolf/reframe-frameworks.md",
+      "language": "markdown",
+      "sizeLines": 597,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/.wolf/suggestions.json",
+      "language": "json",
+      "sizeLines": 3,
+      "fileCategory": "config"
+    },
+    {
+      "path": "superpowers/.wolf/token-ledger.json",
+      "language": "json",
+      "sizeLines": 20,
+      "fileCategory": "config"
+    },
+    {
+      "path": "superpowers/CLAUDE.md",
+      "language": "markdown",
+      "sizeLines": 122,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/CODE_OF_CONDUCT.md",
+      "language": "markdown",
+      "sizeLines": 128,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/docs/porting-to-a-new-harness.md",
+      "language": "markdown",
+      "sizeLines": 826,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/docs/README.kimi.md",
+      "language": "markdown",
+      "sizeLines": 88,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/docs/README.opencode.md",
+      "language": "markdown",
+      "sizeLines": 163,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/docs/superpowers/specs/2026-01-22-document-review-system-design.md",
+      "language": "markdown",
+      "sizeLines": 136,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/docs/superpowers/specs/2026-02-19-visual-brainstorming-refactor-design.md",
+      "language": "markdown",
+      "sizeLines": 162,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/docs/superpowers/specs/2026-03-11-zero-dep-brainstorm-server-design.md",
+      "language": "markdown",
+      "sizeLines": 118,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/docs/superpowers/specs/2026-03-23-codex-app-compatibility-design.md",
+      "language": "markdown",
+      "sizeLines": 244,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/docs/superpowers/specs/2026-04-06-worktree-rototill-design.md",
+      "language": "markdown",
+      "sizeLines": 341,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/docs/superpowers/specs/2026-05-05-platform-neutral-config-refs-design.md",
+      "language": "markdown",
+      "sizeLines": 77,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/docs/superpowers/specs/2026-05-05-platform-neutral-prose-design.md",
+      "language": "markdown",
+      "sizeLines": 94,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/docs/superpowers/specs/2026-05-05-platform-neutral-readme-design.md",
+      "language": "markdown",
+      "sizeLines": 47,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/docs/superpowers/specs/2026-05-06-lift-drill-into-evals-design.md",
+      "language": "markdown",
+      "sizeLines": 247,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/docs/superpowers/specs/2026-06-09-sdd-task-scoped-review-dispatch-design.md",
+      "language": "markdown",
+      "sizeLines": 160,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/docs/superpowers/specs/2026-06-10-positive-instruction-redesign-design.md",
+      "language": "markdown",
+      "sizeLines": 178,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/docs/superpowers/specs/2026-06-10-strict-cost-sdd-design.md",
+      "language": "markdown",
+      "sizeLines": 265,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/docs/superpowers/specs/2026-06-10-visual-companion-auth-hardening-design.md",
+      "language": "markdown",
+      "sizeLines": 225,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/docs/superpowers/specs/2026-06-11-visual-companion-final-hardening-fixup-design.md",
+      "language": "markdown",
+      "sizeLines": 254,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/docs/testing.md",
+      "language": "markdown",
+      "sizeLines": 35,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/docs/windows/polyglot-hooks.md",
+      "language": "markdown",
+      "sizeLines": 148,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/gemini-extension.json",
+      "language": "json",
+      "sizeLines": 6,
+      "fileCategory": "config"
+    },
+    {
+      "path": "superpowers/GEMINI.md",
+      "language": "markdown",
+      "sizeLines": 2,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/hooks/hooks-codex.json",
+      "language": "json",
+      "sizeLines": 16,
+      "fileCategory": "config"
+    },
+    {
+      "path": "superpowers/hooks/hooks-cursor.json",
+      "language": "json",
+      "sizeLines": 10,
+      "fileCategory": "config"
+    },
+    {
+      "path": "superpowers/hooks/hooks.json",
+      "language": "json",
+      "sizeLines": 16,
+      "fileCategory": "config"
+    },
+    {
+      "path": "superpowers/hooks/run-hook.cmd",
+      "language": "batch",
+      "sizeLines": 46,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/hooks/session-start",
+      "language": "unknown",
+      "sizeLines": 49,
+      "fileCategory": "code"
+    },
+    {
+      "path": "superpowers/hooks/session-start-codex",
+      "language": "unknown",
+      "sizeLines": 26,
+      "fileCategory": "code"
+    },
+    {
+      "path": "superpowers/package.json",
+      "language": "json",
+      "sizeLines": 23,
+      "fileCategory": "config"
+    },
+    {
+      "path": "superpowers/README.md",
+      "language": "markdown",
+      "sizeLines": 287,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/RELEASE-NOTES.md",
+      "language": "markdown",
+      "sizeLines": 1299,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/scripts/bump-version.sh",
+      "language": "shell",
+      "sizeLines": 220,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/scripts/lint-shell.sh",
+      "language": "shell",
+      "sizeLines": 211,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/scripts/sync-to-codex-plugin.sh",
+      "language": "shell",
+      "sizeLines": 466,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/skills/brainstorming/scripts/frame-template.html",
+      "language": "html",
+      "sizeLines": 213,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "superpowers/skills/brainstorming/scripts/helper.js",
+      "language": "javascript",
+      "sizeLines": 167,
+      "fileCategory": "code"
+    },
+    {
+      "path": "superpowers/skills/brainstorming/scripts/server.cjs",
+      "language": "javascript",
+      "sizeLines": 723,
+      "fileCategory": "code"
+    },
+    {
+      "path": "superpowers/skills/brainstorming/scripts/start-server.sh",
+      "language": "shell",
+      "sizeLines": 209,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/skills/brainstorming/scripts/stop-server.sh",
+      "language": "shell",
+      "sizeLines": 120,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/skills/brainstorming/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 159,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/brainstorming/spec-document-reviewer-prompt.md",
+      "language": "markdown",
+      "sizeLines": 49,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/brainstorming/visual-companion.md",
+      "language": "markdown",
+      "sizeLines": 298,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/dispatching-parallel-agents/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 185,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/executing-plans/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 70,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/finishing-a-development-branch/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 241,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/receiving-code-review/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 213,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/requesting-code-review/code-reviewer.md",
+      "language": "markdown",
+      "sizeLines": 172,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/requesting-code-review/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 103,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/subagent-driven-development/implementer-prompt.md",
+      "language": "markdown",
+      "sizeLines": 139,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/subagent-driven-development/scripts/review-package",
+      "language": "unknown",
+      "sizeLines": 44,
+      "fileCategory": "code"
+    },
+    {
+      "path": "superpowers/skills/subagent-driven-development/scripts/sdd-workspace",
+      "language": "unknown",
+      "sizeLines": 22,
+      "fileCategory": "code"
+    },
+    {
+      "path": "superpowers/skills/subagent-driven-development/scripts/task-brief",
+      "language": "unknown",
+      "sizeLines": 40,
+      "fileCategory": "code"
+    },
+    {
+      "path": "superpowers/skills/subagent-driven-development/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 418,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/subagent-driven-development/task-reviewer-prompt.md",
+      "language": "markdown",
+      "sizeLines": 188,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/systematic-debugging/condition-based-waiting-example.ts",
+      "language": "typescript",
+      "sizeLines": 158,
+      "fileCategory": "code"
+    },
+    {
+      "path": "superpowers/skills/systematic-debugging/condition-based-waiting.md",
+      "language": "markdown",
+      "sizeLines": 115,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/systematic-debugging/CREATION-LOG.md",
+      "language": "markdown",
+      "sizeLines": 119,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/systematic-debugging/defense-in-depth.md",
+      "language": "markdown",
+      "sizeLines": 122,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/systematic-debugging/find-polluter.sh",
+      "language": "shell",
+      "sizeLines": 63,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/skills/systematic-debugging/root-cause-tracing.md",
+      "language": "markdown",
+      "sizeLines": 169,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/systematic-debugging/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 296,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/systematic-debugging/test-academic.md",
+      "language": "markdown",
+      "sizeLines": 14,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/systematic-debugging/test-pressure-1.md",
+      "language": "markdown",
+      "sizeLines": 58,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/systematic-debugging/test-pressure-2.md",
+      "language": "markdown",
+      "sizeLines": 68,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/systematic-debugging/test-pressure-3.md",
+      "language": "markdown",
+      "sizeLines": 69,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/test-driven-development/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 371,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/test-driven-development/testing-anti-patterns.md",
+      "language": "markdown",
+      "sizeLines": 299,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/using-git-worktrees/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 202,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/using-superpowers/references/antigravity-tools.md",
+      "language": "markdown",
+      "sizeLines": 96,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/using-superpowers/references/claude-code-tools.md",
+      "language": "markdown",
+      "sizeLines": 50,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/using-superpowers/references/codex-tools.md",
+      "language": "markdown",
+      "sizeLines": 72,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/using-superpowers/references/copilot-tools.md",
+      "language": "markdown",
+      "sizeLines": 49,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/using-superpowers/references/gemini-tools.md",
+      "language": "markdown",
+      "sizeLines": 63,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/using-superpowers/references/pi-tools.md",
+      "language": "markdown",
+      "sizeLines": 28,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/using-superpowers/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 121,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/verification-before-completion/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 139,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/writing-plans/plan-document-reviewer-prompt.md",
+      "language": "markdown",
+      "sizeLines": 49,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/writing-plans/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 174,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/writing-skills/anthropic-best-practices.md",
+      "language": "markdown",
+      "sizeLines": 1150,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/writing-skills/examples/CLAUDE_MD_TESTING.md",
+      "language": "markdown",
+      "sizeLines": 189,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/writing-skills/graphviz-conventions.dot",
+      "language": "dot",
+      "sizeLines": 171,
+      "fileCategory": "code"
+    },
+    {
+      "path": "superpowers/skills/writing-skills/persuasion-principles.md",
+      "language": "markdown",
+      "sizeLines": 187,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/writing-skills/render-graphs.js",
+      "language": "javascript",
+      "sizeLines": 168,
+      "fileCategory": "code"
+    },
+    {
+      "path": "superpowers/skills/writing-skills/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 689,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/skills/writing-skills/testing-skills-with-subagents.md",
+      "language": "markdown",
+      "sizeLines": 384,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/tests/antigravity/run-tests.sh",
+      "language": "shell",
+      "sizeLines": 16,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/tests/antigravity/test-antigravity-tools.sh",
+      "language": "shell",
+      "sizeLines": 53,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/tests/brainstorm-server/auth.test.js",
+      "language": "javascript",
+      "sizeLines": 312,
+      "fileCategory": "code"
+    },
+    {
+      "path": "superpowers/tests/brainstorm-server/branding.test.js",
+      "language": "javascript",
+      "sizeLines": 344,
+      "fileCategory": "code"
+    },
+    {
+      "path": "superpowers/tests/brainstorm-server/browser-launcher.test.js",
+      "language": "javascript",
+      "sizeLines": 66,
+      "fileCategory": "code"
+    },
+    {
+      "path": "superpowers/tests/brainstorm-server/helper.test.js",
+      "language": "javascript",
+      "sizeLines": 197,
+      "fileCategory": "code"
+    },
+    {
+      "path": "superpowers/tests/brainstorm-server/lifecycle.test.js",
+      "language": "javascript",
+      "sizeLines": 515,
+      "fileCategory": "code"
+    },
+    {
+      "path": "superpowers/tests/brainstorm-server/package.json",
+      "language": "json",
+      "sizeLines": 10,
+      "fileCategory": "config"
+    },
+    {
+      "path": "superpowers/tests/brainstorm-server/server.test.js",
+      "language": "javascript",
+      "sizeLines": 592,
+      "fileCategory": "code"
+    },
+    {
+      "path": "superpowers/tests/brainstorm-server/start-server.test.sh",
+      "language": "shell",
+      "sizeLines": 115,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/tests/brainstorm-server/stop-server.test.sh",
+      "language": "shell",
+      "sizeLines": 182,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/tests/brainstorm-server/windows-lifecycle.test.sh",
+      "language": "shell",
+      "sizeLines": 394,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/tests/brainstorm-server/ws-protocol.test.js",
+      "language": "javascript",
+      "sizeLines": 407,
+      "fileCategory": "code"
+    },
+    {
+      "path": "superpowers/tests/claude-code/analyze-token-usage.py",
+      "language": "python",
+      "sizeLines": 168,
+      "fileCategory": "code"
+    },
+    {
+      "path": "superpowers/tests/claude-code/README.md",
+      "language": "markdown",
+      "sizeLines": 165,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/tests/claude-code/run-skill-tests.sh",
+      "language": "shell",
+      "sizeLines": 189,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/tests/claude-code/test-helpers.sh",
+      "language": "shell",
+      "sizeLines": 202,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/tests/claude-code/test-sdd-workspace.sh",
+      "language": "shell",
+      "sizeLines": 142,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/tests/claude-code/test-subagent-driven-development-integration.sh",
+      "language": "shell",
+      "sizeLines": 333,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/tests/claude-code/test-subagent-driven-development.sh",
+      "language": "shell",
+      "sizeLines": 179,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/tests/claude-code/test-worktree-native-preference.sh",
+      "language": "shell",
+      "sizeLines": 181,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/tests/claude-code/test-worktree-path-policy.sh",
+      "language": "shell",
+      "sizeLines": 69,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/tests/codex-plugin-sync/test-sync-to-codex-plugin.sh",
+      "language": "shell",
+      "sizeLines": 738,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/tests/explicit-skill-requests/prompts/action-oriented.txt",
+      "language": "txt",
+      "sizeLines": 3,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/tests/explicit-skill-requests/prompts/after-planning-flow.txt",
+      "language": "txt",
+      "sizeLines": 17,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/tests/explicit-skill-requests/prompts/claude-suggested-it.txt",
+      "language": "txt",
+      "sizeLines": 11,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/tests/explicit-skill-requests/prompts/i-know-what-sdd-means.txt",
+      "language": "txt",
+      "sizeLines": 8,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/tests/explicit-skill-requests/prompts/mid-conversation-execute-plan.txt",
+      "language": "txt",
+      "sizeLines": 3,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/tests/explicit-skill-requests/prompts/please-use-brainstorming.txt",
+      "language": "txt",
+      "sizeLines": 1,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/tests/explicit-skill-requests/prompts/skip-formalities.txt",
+      "language": "txt",
+      "sizeLines": 3,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/tests/explicit-skill-requests/prompts/subagent-driven-development-please.txt",
+      "language": "txt",
+      "sizeLines": 1,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/tests/explicit-skill-requests/prompts/use-systematic-debugging.txt",
+      "language": "txt",
+      "sizeLines": 1,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "superpowers/tests/explicit-skill-requests/run-all.sh",
+      "language": "shell",
+      "sizeLines": 70,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/tests/explicit-skill-requests/run-extended-multiturn-test.sh",
+      "language": "shell",
+      "sizeLines": 113,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/tests/explicit-skill-requests/run-haiku-test.sh",
+      "language": "shell",
+      "sizeLines": 144,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/tests/explicit-skill-requests/run-multiturn-test.sh",
+      "language": "shell",
+      "sizeLines": 143,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/tests/explicit-skill-requests/run-test.sh",
+      "language": "shell",
+      "sizeLines": 136,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/tests/hooks/test-session-start.sh",
+      "language": "shell",
+      "sizeLines": 240,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/tests/kimi/run-tests.sh",
+      "language": "shell",
+      "sizeLines": 6,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/tests/kimi/test-plugin-manifest.sh",
+      "language": "shell",
+      "sizeLines": 86,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/tests/opencode/run-tests.sh",
+      "language": "shell",
+      "sizeLines": 165,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/tests/opencode/setup.sh",
+      "language": "shell",
+      "sizeLines": 88,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/tests/opencode/test-bootstrap-caching.mjs",
+      "language": "javascript",
+      "sizeLines": 146,
+      "fileCategory": "code"
+    },
+    {
+      "path": "superpowers/tests/opencode/test-bootstrap-caching.sh",
+      "language": "shell",
+      "sizeLines": 32,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/tests/opencode/test-plugin-loading.sh",
+      "language": "shell",
+      "sizeLines": 82,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/tests/opencode/test-priority.sh",
+      "language": "shell",
+      "sizeLines": 217,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/tests/opencode/test-tools.sh",
+      "language": "shell",
+      "sizeLines": 95,
+      "fileCategory": "script"
+    },
+    {
+      "path": "superpowers/tests/pi/test-pi-extension.mjs",
+      "language": "javascript",
+      "sizeLines": 128,
+      "fileCategory": "code"
+    },
+    {
+      "path": "superpowers/tests/shell-lint/test-lint-shell.sh",
+      "language": "shell",
+      "sizeLines": 179,
+      "fileCategory": "script"
+    }
+  ],
+  "totalFiles": 285,
+  "filteredByIgnore": 1246,
+  "estimatedComplexity": "large",
+  "importMap": {
+    ".claude/rules/openwolf.md": [],
+    ".claude/settings.json": [],
+    ".understand-anything/.understandignore": [],
+    ".understand-anything/intermediate/scan-result.json": [],
+    ".understand-anything/tmp/ua-import-map-input.json": [],
+    ".understand-anything/tmp/ua-import-map-output.json": [],
+    ".understand-anything/tmp/ua-scan-files.json": [],
+    ".wolf/anatomy.md": [],
+    ".wolf/buglog.json": [],
+    ".wolf/cerebrum.md": [],
+    ".wolf/config.json": [],
+    ".wolf/cron-manifest.json": [],
+    ".wolf/cron-state.json": [],
+    ".wolf/designqc-report.json": [],
+    ".wolf/hooks/_session.json": [],
+    ".wolf/hooks/package.json": [],
+    ".wolf/hooks/post-read.js": [
+      ".wolf/hooks/shared.js"
+    ],
+    ".wolf/hooks/post-write.js": [
+      ".wolf/hooks/shared.js"
+    ],
+    ".wolf/hooks/pre-read.js": [
+      ".wolf/hooks/shared.js"
+    ],
+    ".wolf/hooks/pre-write.js": [
+      ".wolf/hooks/shared.js"
+    ],
+    ".wolf/hooks/session-start.js": [
+      ".wolf/hooks/shared.js"
+    ],
+    ".wolf/hooks/shared.js": [],
+    ".wolf/hooks/stop.js": [
+      ".wolf/hooks/shared.js"
+    ],
+    ".wolf/identity.md": [],
+    ".wolf/memory.md": [],
+    ".wolf/OPENWOLF.md": [],
+    ".wolf/reframe-frameworks.md": [],
+    ".wolf/suggestions.json": [],
+    ".wolf/token-ledger.json": [],
+    "CLAUDE.md": [],
+    "hooks/post-compact-anatomy.sh": [],
+    "hooks/pre-read-check.js": [],
+    "hooks/session-start.sh": [],
+    "langsmith-plugin/.claude-plugin/marketplace.json": [],
+    "langsmith-plugin/.claude-plugin/plugin.json": [],
+    "langsmith-plugin/.claude/CLAUDE.md": [],
+    "langsmith-plugin/.claude/rules/openwolf.md": [],
+    "langsmith-plugin/.claude/settings.json": [],
+    "langsmith-plugin/.gitattributes": [],
+    "langsmith-plugin/.github/workflows/ci.yml": [],
+    "langsmith-plugin/.github/workflows/claude-code-review.yml": [],
+    "langsmith-plugin/.oxfmtrc.json": [],
+    "langsmith-plugin/.oxlintrc.json": [],
+    "langsmith-plugin/.wolf/anatomy.md": [],
+    "langsmith-plugin/.wolf/buglog.json": [],
+    "langsmith-plugin/.wolf/cerebrum.md": [],
+    "langsmith-plugin/.wolf/config.json": [],
+    "langsmith-plugin/.wolf/cron-manifest.json": [],
+    "langsmith-plugin/.wolf/cron-state.json": [],
+    "langsmith-plugin/.wolf/designqc-report.json": [],
+    "langsmith-plugin/.wolf/hooks/package.json": [],
+    "langsmith-plugin/.wolf/hooks/post-read.js": [
+      "langsmith-plugin/.wolf/hooks/shared.js"
+    ],
+    "langsmith-plugin/.wolf/hooks/post-write.js": [
+      "langsmith-plugin/.wolf/hooks/shared.js"
+    ],
+    "langsmith-plugin/.wolf/hooks/pre-read.js": [
+      "langsmith-plugin/.wolf/hooks/shared.js"
+    ],
+    "langsmith-plugin/.wolf/hooks/pre-write.js": [
+      "langsmith-plugin/.wolf/hooks/shared.js"
+    ],
+    "langsmith-plugin/.wolf/hooks/session-start.js": [
+      "langsmith-plugin/.wolf/hooks/shared.js"
+    ],
+    "langsmith-plugin/.wolf/hooks/shared.js": [],
+    "langsmith-plugin/.wolf/hooks/stop.js": [
+      "langsmith-plugin/.wolf/hooks/shared.js"
+    ],
+    "langsmith-plugin/.wolf/identity.md": [],
+    "langsmith-plugin/.wolf/memory.md": [],
+    "langsmith-plugin/.wolf/OPENWOLF.md": [],
+    "langsmith-plugin/.wolf/reframe-frameworks.md": [],
+    "langsmith-plugin/.wolf/suggestions.json": [],
+    "langsmith-plugin/.wolf/token-ledger.json": [],
+    "langsmith-plugin/bundle/post-compact.js": [],
+    "langsmith-plugin/bundle/post-tool-use.js": [],
+    "langsmith-plugin/bundle/pre-compact.js": [],
+    "langsmith-plugin/bundle/pre-tool-use.js": [],
+    "langsmith-plugin/bundle/session-end.js": [],
+    "langsmith-plugin/bundle/stop-failure.js": [],
+    "langsmith-plugin/bundle/stop.js": [],
+    "langsmith-plugin/bundle/subagent-stop.js": [],
+    "langsmith-plugin/bundle/user-prompt-submit.js": [],
+    "langsmith-plugin/CLAUDE.md": [],
+    "langsmith-plugin/esbuild.config.mjs": [],
+    "langsmith-plugin/hooks/hooks.json": [],
+    "langsmith-plugin/package.json": [],
+    "langsmith-plugin/README.md": [],
+    "langsmith-plugin/src/config.test.ts": [
+      "langsmith-plugin/src/config.ts"
+    ],
+    "langsmith-plugin/src/config.ts": [
+      "langsmith-plugin/src/logger.ts"
+    ],
+    "langsmith-plugin/src/constants.ts": [],
+    "langsmith-plugin/src/fixtures/coding-agent-v1/validator.json": [],
+    "langsmith-plugin/src/fixtures/coding-agent-v1/worked-examples.json": [],
+    "langsmith-plugin/src/hook-init.test.ts": [
+      "langsmith-plugin/src/utils/hook-init.ts"
+    ],
+    "langsmith-plugin/src/hooks/post-compact.ts": [
+      "langsmith-plugin/src/langsmith.ts",
+      "langsmith-plugin/src/logger.ts",
+      "langsmith-plugin/src/metadata.ts",
+      "langsmith-plugin/src/state.ts",
+      "langsmith-plugin/src/utils/hook-init.ts",
+      "langsmith-plugin/src/utils/stdin.ts"
+    ],
+    "langsmith-plugin/src/hooks/post-tool-use.ts": [
+      "langsmith-plugin/src/langsmith.ts",
+      "langsmith-plugin/src/logger.ts",
+      "langsmith-plugin/src/metadata.ts",
+      "langsmith-plugin/src/state.ts",
+      "langsmith-plugin/src/utils/hook-init.ts",
+      "langsmith-plugin/src/utils/stdin.ts"
+    ],
+    "langsmith-plugin/src/hooks/pre-compact.ts": [
+      "langsmith-plugin/src/logger.ts",
+      "langsmith-plugin/src/state.ts",
+      "langsmith-plugin/src/utils/hook-init.ts",
+      "langsmith-plugin/src/utils/stdin.ts"
+    ],
+    "langsmith-plugin/src/hooks/pre-tool-use.ts": [
+      "langsmith-plugin/src/logger.ts",
+      "langsmith-plugin/src/state.ts",
+      "langsmith-plugin/src/utils/hook-init.ts",
+      "langsmith-plugin/src/utils/stdin.ts"
+    ],
+    "langsmith-plugin/src/hooks/session-end.ts": [
+      "langsmith-plugin/src/langsmith.ts",
+      "langsmith-plugin/src/logger.ts",
+      "langsmith-plugin/src/state.ts",
+      "langsmith-plugin/src/transcript.ts",
+      "langsmith-plugin/src/utils/hook-init.ts",
+      "langsmith-plugin/src/utils/stdin.ts"
+    ],
+    "langsmith-plugin/src/hooks/stop-failure.ts": [
+      "langsmith-plugin/src/constants.ts",
+      "langsmith-plugin/src/langsmith.ts",
+      "langsmith-plugin/src/logger.ts",
+      "langsmith-plugin/src/metadata.ts",
+      "langsmith-plugin/src/state.ts",
+      "langsmith-plugin/src/utils/hook-init.ts",
+      "langsmith-plugin/src/utils/stdin.ts"
+    ],
+    "langsmith-plugin/src/hooks/stop.ts": [
+      "langsmith-plugin/src/constants.ts",
+      "langsmith-plugin/src/langsmith.ts",
+      "langsmith-plugin/src/logger.ts",
+      "langsmith-plugin/src/metadata.ts",
+      "langsmith-plugin/src/state.ts",
+      "langsmith-plugin/src/transcript.ts",
+      "langsmith-plugin/src/types.ts",
+      "langsmith-plugin/src/utils/hook-init.ts",
+      "langsmith-plugin/src/utils/stdin.ts"
+    ],
+    "langsmith-plugin/src/hooks/subagent-stop.ts": [
+      "langsmith-plugin/src/logger.ts",
+      "langsmith-plugin/src/state.ts",
+      "langsmith-plugin/src/types.ts",
+      "langsmith-plugin/src/utils/hook-init.ts",
+      "langsmith-plugin/src/utils/stdin.ts"
+    ],
+    "langsmith-plugin/src/hooks/user-prompt-submit.ts": [
+      "langsmith-plugin/src/constants.ts",
+      "langsmith-plugin/src/langsmith.ts",
+      "langsmith-plugin/src/logger.ts",
+      "langsmith-plugin/src/metadata.ts",
+      "langsmith-plugin/src/state.ts",
+      "langsmith-plugin/src/transcript.ts",
+      "langsmith-plugin/src/utils/hook-init.ts",
+      "langsmith-plugin/src/utils/stdin.ts"
+    ],
+    "langsmith-plugin/src/index.ts": [],
+    "langsmith-plugin/src/langsmith.test.ts": [
+      "langsmith-plugin/src/constants.ts",
+      "langsmith-plugin/src/langsmith.ts",
+      "langsmith-plugin/src/types.ts"
+    ],
+    "langsmith-plugin/src/langsmith.ts": [
+      "langsmith-plugin/src/constants.ts",
+      "langsmith-plugin/src/logger.ts",
+      "langsmith-plugin/src/metadata.ts",
+      "langsmith-plugin/src/state.ts",
+      "langsmith-plugin/src/transcript.ts",
+      "langsmith-plugin/src/types.ts"
+    ],
+    "langsmith-plugin/src/logger.ts": [],
+    "langsmith-plugin/src/metadata.test.ts": [
+      "langsmith-plugin/src/fixtures/coding-agent-v1/validator.json",
+      "langsmith-plugin/src/metadata.ts"
+    ],
+    "langsmith-plugin/src/metadata.ts": [],
+    "langsmith-plugin/src/state.test.ts": [
+      "langsmith-plugin/src/state.ts"
+    ],
+    "langsmith-plugin/src/state.ts": [
+      "langsmith-plugin/src/types.ts"
+    ],
+    "langsmith-plugin/src/transcript.test.ts": [
+      "langsmith-plugin/src/transcript.ts",
+      "langsmith-plugin/src/types.ts"
+    ],
+    "langsmith-plugin/src/transcript.ts": [
+      "langsmith-plugin/src/types.ts"
+    ],
+    "langsmith-plugin/src/types.ts": [],
+    "langsmith-plugin/src/utils/hook-init.ts": [
+      "langsmith-plugin/src/config.ts",
+      "langsmith-plugin/src/logger.ts"
+    ],
+    "langsmith-plugin/src/utils/stdin.ts": [],
+    "langsmith-plugin/tsconfig.json": [],
+    "mcp_servers.json": [],
+    "settings.json": [],
+    "skills/session-reflect/SKILL.md": [],
+    "skills/wolf-init/SKILL.md": [],
+    "superpowers/.claude-plugin/marketplace.json": [],
+    "superpowers/.claude-plugin/plugin.json": [],
+    "superpowers/.claude/rules/openwolf.md": [],
+    "superpowers/.claude/settings.json": [],
+    "superpowers/.codex-plugin/plugin.json": [],
+    "superpowers/.cursor-plugin/plugin.json": [],
+    "superpowers/.gitattributes": [],
+    "superpowers/.github/FUNDING.yml": [],
+    "superpowers/.github/ISSUE_TEMPLATE/bug_report.md": [],
+    "superpowers/.github/ISSUE_TEMPLATE/config.yml": [],
+    "superpowers/.github/ISSUE_TEMPLATE/feature_request.md": [],
+    "superpowers/.github/ISSUE_TEMPLATE/platform_support.md": [],
+    "superpowers/.github/PULL_REQUEST_TEMPLATE.md": [],
+    "superpowers/.kimi-plugin/plugin.json": [],
+    "superpowers/.opencode/INSTALL.md": [],
+    "superpowers/.pi/extensions/superpowers.ts": [],
+    "superpowers/.pre-commit-config.yaml": [],
+    "superpowers/.version-bump.json": [],
+    "superpowers/.wolf/anatomy.md": [],
+    "superpowers/.wolf/buglog.json": [],
+    "superpowers/.wolf/cerebrum.md": [],
+    "superpowers/.wolf/config.json": [],
+    "superpowers/.wolf/cron-manifest.json": [],
+    "superpowers/.wolf/cron-state.json": [],
+    "superpowers/.wolf/designqc-report.json": [],
+    "superpowers/.wolf/hooks/package.json": [],
+    "superpowers/.wolf/hooks/post-read.js": [
+      "superpowers/.wolf/hooks/shared.js"
+    ],
+    "superpowers/.wolf/hooks/post-write.js": [
+      "superpowers/.wolf/hooks/shared.js"
+    ],
+    "superpowers/.wolf/hooks/pre-read.js": [
+      "superpowers/.wolf/hooks/shared.js"
+    ],
+    "superpowers/.wolf/hooks/pre-write.js": [
+      "superpowers/.wolf/hooks/shared.js"
+    ],
+    "superpowers/.wolf/hooks/session-start.js": [
+      "superpowers/.wolf/hooks/shared.js"
+    ],
+    "superpowers/.wolf/hooks/shared.js": [],
+    "superpowers/.wolf/hooks/stop.js": [
+      "superpowers/.wolf/hooks/shared.js"
+    ],
+    "superpowers/.wolf/identity.md": [],
+    "superpowers/.wolf/memory.md": [],
+    "superpowers/.wolf/OPENWOLF.md": [],
+    "superpowers/.wolf/reframe-frameworks.md": [],
+    "superpowers/.wolf/suggestions.json": [],
+    "superpowers/.wolf/token-ledger.json": [],
+    "superpowers/CLAUDE.md": [],
+    "superpowers/CODE_OF_CONDUCT.md": [],
+    "superpowers/docs/porting-to-a-new-harness.md": [],
+    "superpowers/docs/README.kimi.md": [],
+    "superpowers/docs/README.opencode.md": [],
+    "superpowers/docs/superpowers/specs/2026-01-22-document-review-system-design.md": [],
+    "superpowers/docs/superpowers/specs/2026-02-19-visual-brainstorming-refactor-design.md": [],
+    "superpowers/docs/superpowers/specs/2026-03-11-zero-dep-brainstorm-server-design.md": [],
+    "superpowers/docs/superpowers/specs/2026-03-23-codex-app-compatibility-design.md": [],
+    "superpowers/docs/superpowers/specs/2026-04-06-worktree-rototill-design.md": [],
+    "superpowers/docs/superpowers/specs/2026-05-05-platform-neutral-config-refs-design.md": [],
+    "superpowers/docs/superpowers/specs/2026-05-05-platform-neutral-prose-design.md": [],
+    "superpowers/docs/superpowers/specs/2026-05-05-platform-neutral-readme-design.md": [],
+    "superpowers/docs/superpowers/specs/2026-05-06-lift-drill-into-evals-design.md": [],
+    "superpowers/docs/superpowers/specs/2026-06-09-sdd-task-scoped-review-dispatch-design.md": [],
+    "superpowers/docs/superpowers/specs/2026-06-10-positive-instruction-redesign-design.md": [],
+    "superpowers/docs/superpowers/specs/2026-06-10-strict-cost-sdd-design.md": [],
+    "superpowers/docs/superpowers/specs/2026-06-10-visual-companion-auth-hardening-design.md": [],
+    "superpowers/docs/superpowers/specs/2026-06-11-visual-companion-final-hardening-fixup-design.md": [],
+    "superpowers/docs/testing.md": [],
+    "superpowers/docs/windows/polyglot-hooks.md": [],
+    "superpowers/gemini-extension.json": [],
+    "superpowers/GEMINI.md": [],
+    "superpowers/hooks/hooks-codex.json": [],
+    "superpowers/hooks/hooks-cursor.json": [],
+    "superpowers/hooks/hooks.json": [],
+    "superpowers/hooks/run-hook.cmd": [],
+    "superpowers/hooks/session-start": [],
+    "superpowers/hooks/session-start-codex": [],
+    "superpowers/package.json": [],
+    "superpowers/README.md": [],
+    "superpowers/RELEASE-NOTES.md": [],
+    "superpowers/scripts/bump-version.sh": [],
+    "superpowers/scripts/lint-shell.sh": [],
+    "superpowers/scripts/sync-to-codex-plugin.sh": [],
+    "superpowers/skills/brainstorming/scripts/frame-template.html": [],
+    "superpowers/skills/brainstorming/scripts/helper.js": [],
+    "superpowers/skills/brainstorming/scripts/server.cjs": [],
+    "superpowers/skills/brainstorming/scripts/start-server.sh": [],
+    "superpowers/skills/brainstorming/scripts/stop-server.sh": [],
+    "superpowers/skills/brainstorming/SKILL.md": [],
+    "superpowers/skills/brainstorming/spec-document-reviewer-prompt.md": [],
+    "superpowers/skills/brainstorming/visual-companion.md": [],
+    "superpowers/skills/dispatching-parallel-agents/SKILL.md": [],
+    "superpowers/skills/executing-plans/SKILL.md": [],
+    "superpowers/skills/finishing-a-development-branch/SKILL.md": [],
+    "superpowers/skills/receiving-code-review/SKILL.md": [],
+    "superpowers/skills/requesting-code-review/code-reviewer.md": [],
+    "superpowers/skills/requesting-code-review/SKILL.md": [],
+    "superpowers/skills/subagent-driven-development/implementer-prompt.md": [],
+    "superpowers/skills/subagent-driven-development/scripts/review-package": [],
+    "superpowers/skills/subagent-driven-development/scripts/sdd-workspace": [],
+    "superpowers/skills/subagent-driven-development/scripts/task-brief": [],
+    "superpowers/skills/subagent-driven-development/SKILL.md": [],
+    "superpowers/skills/subagent-driven-development/task-reviewer-prompt.md": [],
+    "superpowers/skills/systematic-debugging/condition-based-waiting-example.ts": [],
+    "superpowers/skills/systematic-debugging/condition-based-waiting.md": [],
+    "superpowers/skills/systematic-debugging/CREATION-LOG.md": [],
+    "superpowers/skills/systematic-debugging/defense-in-depth.md": [],
+    "superpowers/skills/systematic-debugging/find-polluter.sh": [],
+    "superpowers/skills/systematic-debugging/root-cause-tracing.md": [],
+    "superpowers/skills/systematic-debugging/SKILL.md": [],
+    "superpowers/skills/systematic-debugging/test-academic.md": [],
+    "superpowers/skills/systematic-debugging/test-pressure-1.md": [],
+    "superpowers/skills/systematic-debugging/test-pressure-2.md": [],
+    "superpowers/skills/systematic-debugging/test-pressure-3.md": [],
+    "superpowers/skills/test-driven-development/SKILL.md": [],
+    "superpowers/skills/test-driven-development/testing-anti-patterns.md": [],
+    "superpowers/skills/using-git-worktrees/SKILL.md": [],
+    "superpowers/skills/using-superpowers/references/antigravity-tools.md": [],
+    "superpowers/skills/using-superpowers/references/claude-code-tools.md": [],
+    "superpowers/skills/using-superpowers/references/codex-tools.md": [],
+    "superpowers/skills/using-superpowers/references/copilot-tools.md": [],
+    "superpowers/skills/using-superpowers/references/gemini-tools.md": [],
+    "superpowers/skills/using-superpowers/references/pi-tools.md": [],
+    "superpowers/skills/using-superpowers/SKILL.md": [],
+    "superpowers/skills/verification-before-completion/SKILL.md": [],
+    "superpowers/skills/writing-plans/plan-document-reviewer-prompt.md": [],
+    "superpowers/skills/writing-plans/SKILL.md": [],
+    "superpowers/skills/writing-skills/anthropic-best-practices.md": [],
+    "superpowers/skills/writing-skills/examples/CLAUDE_MD_TESTING.md": [],
+    "superpowers/skills/writing-skills/graphviz-conventions.dot": [],
+    "superpowers/skills/writing-skills/persuasion-principles.md": [],
+    "superpowers/skills/writing-skills/render-graphs.js": [],
+    "superpowers/skills/writing-skills/SKILL.md": [],
+    "superpowers/skills/writing-skills/testing-skills-with-subagents.md": [],
+    "superpowers/tests/antigravity/run-tests.sh": [],
+    "superpowers/tests/antigravity/test-antigravity-tools.sh": [],
+    "superpowers/tests/brainstorm-server/auth.test.js": [],
+    "superpowers/tests/brainstorm-server/branding.test.js": [],
+    "superpowers/tests/brainstorm-server/browser-launcher.test.js": [
+      "superpowers/skills/brainstorming/scripts/server.cjs"
+    ],
+    "superpowers/tests/brainstorm-server/helper.test.js": [],
+    "superpowers/tests/brainstorm-server/lifecycle.test.js": [],
+    "superpowers/tests/brainstorm-server/package.json": [],
+    "superpowers/tests/brainstorm-server/server.test.js": [],
+    "superpowers/tests/brainstorm-server/start-server.test.sh": [],
+    "superpowers/tests/brainstorm-server/stop-server.test.sh": [],
+    "superpowers/tests/brainstorm-server/windows-lifecycle.test.sh": [],
+    "superpowers/tests/brainstorm-server/ws-protocol.test.js": [],
+    "superpowers/tests/claude-code/analyze-token-usage.py": [],
+    "superpowers/tests/claude-code/README.md": [],
+    "superpowers/tests/claude-code/run-skill-tests.sh": [],
+    "superpowers/tests/claude-code/test-helpers.sh": [],
+    "superpowers/tests/claude-code/test-sdd-workspace.sh": [],
+    "superpowers/tests/claude-code/test-subagent-driven-development-integration.sh": [],
+    "superpowers/tests/claude-code/test-subagent-driven-development.sh": [],
+    "superpowers/tests/claude-code/test-worktree-native-preference.sh": [],
+    "superpowers/tests/claude-code/test-worktree-path-policy.sh": [],
+    "superpowers/tests/codex-plugin-sync/test-sync-to-codex-plugin.sh": [],
+    "superpowers/tests/explicit-skill-requests/prompts/action-oriented.txt": [],
+    "superpowers/tests/explicit-skill-requests/prompts/after-planning-flow.txt": [],
+    "superpowers/tests/explicit-skill-requests/prompts/claude-suggested-it.txt": [],
+    "superpowers/tests/explicit-skill-requests/prompts/i-know-what-sdd-means.txt": [],
+    "superpowers/tests/explicit-skill-requests/prompts/mid-conversation-execute-plan.txt": [],
+    "superpowers/tests/explicit-skill-requests/prompts/please-use-brainstorming.txt": [],
+    "superpowers/tests/explicit-skill-requests/prompts/skip-formalities.txt": [],
+    "superpowers/tests/explicit-skill-requests/prompts/subagent-driven-development-please.txt": [],
+    "superpowers/tests/explicit-skill-requests/prompts/use-systematic-debugging.txt": [],
+    "superpowers/tests/explicit-skill-requests/run-all.sh": [],
+    "superpowers/tests/explicit-skill-requests/run-extended-multiturn-test.sh": [],
+    "superpowers/tests/explicit-skill-requests/run-haiku-test.sh": [],
+    "superpowers/tests/explicit-skill-requests/run-multiturn-test.sh": [],
+    "superpowers/tests/explicit-skill-requests/run-test.sh": [],
+    "superpowers/tests/hooks/test-session-start.sh": [],
+    "superpowers/tests/kimi/run-tests.sh": [],
+    "superpowers/tests/kimi/test-plugin-manifest.sh": [],
+    "superpowers/tests/opencode/run-tests.sh": [],
+    "superpowers/tests/opencode/setup.sh": [],
+    "superpowers/tests/opencode/test-bootstrap-caching.mjs": [],
+    "superpowers/tests/opencode/test-bootstrap-caching.sh": [],
+    "superpowers/tests/opencode/test-plugin-loading.sh": [],
+    "superpowers/tests/opencode/test-priority.sh": [],
+    "superpowers/tests/opencode/test-tools.sh": [],
+    "superpowers/tests/pi/test-pi-extension.mjs": [],
+    "superpowers/tests/shell-lint/test-lint-shell.sh": []
+  }
+}
