@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-27T16:05:39.194Z
-> Files: 506 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-06-27T16:57:26.399Z
+> Files: 518 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -196,7 +196,7 @@
 ## Agents/ba-agent/
 
 - `.DS_Store` (~1640 tok)
-- `CLAUDE.md` — BA Agent — Output Workspace (~396 tok)
+- `CLAUDE.md` — BA Agent — Output Workspace (~544 tok)
 
 ## Agents/ba-agent/.claude/
 
@@ -206,9 +206,26 @@
 
 - `openwolf.md` (~313 tok)
 
+## Agents/ba-agent/.wolf/
+
+- `cerebrum.md` — Cerebrum (~649 tok)
+
 ## Agents/ba-agent/outputs/
 
 - `.gitkeep` (~0 tok)
+
+## Agents/ba-agent/outputs/ba-package-generation/
+
+- `context.json` (~1612 tok)
+- `data-map.md` — Data Mapping: BA Package Generation (~1419 tok)
+- `integration.mmd` (~272 tok)
+- `process.mmd` (~567 tok)
+- `sop.md` — SOP: BA Package Generation (~3219 tok)
+
+## Agents/ba-agent/outputs/ba-package-generation/comms/
+
+- `3p-update.md` — 3P Update: ba-package-generation (~324 tok)
+- `faq.md` — FAQ: ba-package-generation (~845 tok)
 
 ## Agents/ba-agent/outputs/inbound-lead-routing/
 
@@ -223,20 +240,20 @@
 
 ## Agents/ba-agent/scripts/
 
-- `validate-mermaid.sh` — Usage: bash scripts/validate-mermaid.sh outputs/process.mmd (~277 tok)
+- `validate-mermaid.sh` — Usage: bash scripts/validate-mermaid.sh outputs/process.mmd (~469 tok)
 
 ## Agents/ba-agent/skills/
 
-- `ba-package.md` — Skill: BA Package Assembly (~813 tok)
+- `ba-package.md` — Skill: BA Package Assembly (~947 tok)
 - `comms-3p.md` — Skill: 3P Update Co-Authoring (~971 tok)
-- `comms-faq.md` — Skill: FAQ Sheet Co-Authoring (~1038 tok)
-- `data-mapping.md` — Skill: Data Mapping (~769 tok)
-- `intake.md` — Skill: Brief Normaliser (~942 tok)
-- `planner.md` — Skill: Planner + Observe (~1222 tok)
-- `png-render.md` — Skill: PNG Rendering + Docs Manifest (~747 tok)
-- `process-viz.md` — Skill: Process Visualisation (~554 tok)
-- `sop-writer.md` — Skill: SOP Writer (~1136 tok)
-- `system-integration-viz.md` — Skill: System Integration Visualisation (~487 tok)
+- `comms-faq.md` — Skill: FAQ Sheet Co-Authoring (~1294 tok)
+- `data-mapping.md` — Skill: Data Mapping (~985 tok)
+- `intake.md` — Skill: Brief Normaliser (~1207 tok)
+- `planner.md` — Skill: Planner + Observe (~1240 tok)
+- `png-render.md` — Skill: PNG Rendering + Docs Manifest (~1004 tok)
+- `process-viz.md` — Skill: Process Visualisation (~606 tok)
+- `sop-writer.md` — Skill: SOP Writer (~1286 tok)
+- `system-integration-viz.md` — Skill: System Integration Visualisation (~639 tok)
 
 ## Agents/ba-agent/templates/
 
@@ -620,12 +637,14 @@
 - `help-me-build-a-prancy-journal.md` — Plan: Install & Run Understand-Anything on ~/.claude (~954 tok)
 - `here-is-more-icon-harmonic-lollipop.md` — Plan: Update Brand Guide Icon Taxonomy (~1371 tok)
 - `how-do-i-make-cosmic-mochi.md` — OpenWolf: Global + Project Token Optimization (~1048 tok)
+- `how-would-i-make-shimmering-waffle.md` — Plan: BA Agent — Efficiency & Quality Improvements (~2962 tok)
 - `i-cant-see-my-parallel-wind.md` — Fix: understand-anything Dashboard "Invalid knowledge graph" Error (~504 tok)
 - `i-dont-see-my-proud-hejlsberg.md` — Plan: Expose BA Agent as a Reachable Command (~521 tok)
 - `i-dont-want-any-stateful-flame.md` — Plan: Disable Auto-Updates for Superpowers, OpenWolf, and gbrain (~723 tok)
 - `i-ve-been-spending-the-rosy-cray.md` — Advisory: session-reflect is manual — no auto-equivalent for cerebrum.md (~44 tok)
 - `i-ve-made-a-lot-twinkly-lightning.md` — Plan: CLAUDE.md Audit & Optimization (~747 tok)
 - `i-want-to-build-humble-tarjan.md` — Plan: Session Reflect — BA Agent Enhancement Session (2026-06-27) (~773 tok)
+- `i-want-to-use-floofy-wave.md` — Plan: Re-render process.png for Image Quality Check (~392 tok)
 - `i-was-trying-to-peaceful-avalanche.md` — Plan: LangSmith Tracing for Claude Code (~1298 tok)
 - `if-i-ask-you-tingly-whistle.md` — Install Anthropic Document Skills (~638 tok)
 - `if-i-execute-the-parsed-rabbit.md` — Plan: Register ba-agent as a True Sub-Agent (~1135 tok)
@@ -775,6 +794,14 @@
 - `anthropic-cli.md` — Anthropic CLI (`ant`) (~4035 tok)
 - `claude-platform-on-aws.md` — Claude Platform on AWS (~981 tok)
 
+## skills/ba-agent/agents/
+
+- `ba.md` — Invocation (~1249 tok)
+
 ## skills/ba/
 
-- `SKILL.md` — ba (~1900 tok)
+- `SKILL.md` — ba (~2330 tok)
+
+## skills/brand/
+
+- `SKILL.md` — Brand Skill — Paul McKay Personal Brand (~1167 tok)

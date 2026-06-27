@@ -59,10 +59,45 @@ MARK
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
-5. **Confirm brand gate is satisfied** with this line:
+5. **Emit a machine-readable Brand Spec JSON block** immediately after the text Brand Spec Card. This allows document-skills to consume brand values programmatically without parsing the text card.
+
+```json
+{
+  "brand_spec_version": "1",
+  "output_type": "[output type from step 1]",
+  "colors": {
+    "background":    "#fafaf8",
+    "section_fill":  "#f5f2ed",
+    "text_dark":     "#2a2a28",
+    "accent":        "#6b5b54",
+    "secondary":     "#5a7a8a",
+    "supporting":    "#a89980"
+  },
+  "accent_choice": "[taupe|slate — one per document, not both]",
+  "typography": {
+    "heading_font":   "Poppins",
+    "heading_weight": "700",
+    "body_font":      "Lora",
+    "body_weight":    "400"
+  },
+  "mark": {
+    "min_size_px": 24,
+    "placement":   "top-right",
+    "color":       "#6b5b54"
+  },
+  "voice": {
+    "tone":  "formal-authoritative",
+    "avoid": ["hedging", "hype", "casual", "filler"]
+  }
+}
+```
+
+Label this block with a header line: `### Brand Spec JSON` so downstream skills can locate it by heading.
+
+6. **Confirm brand gate is satisfied** with this line:
    > ✓ Brand gate cleared. Proceeding to create [output type].
 
-6. **Then proceed** to create the output using the specs from the Brand Spec Card.
+7. **Then proceed** to create the output using the specs from the Brand Spec Card.
 
 ## Hard Rules — Never Violate
 

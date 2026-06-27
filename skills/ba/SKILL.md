@@ -6,7 +6,7 @@ argument-hint: [brief]
 
 # ba
 
-## Phases 1–5: Sub-agent execution
+## Phase 1: Sub-agent execution
 
 Spawn the `ba-agent:ba` sub-agent with the user's brief as the prompt. Wait for it to complete.
 
@@ -15,11 +15,10 @@ The sub-agent handles:
 - Artifact generation with observe checks: process diagram, integration diagram, data map, SOP
 - BA package assembly: executive summary (SCR) + artifact manifest
 - Mermaid PNG rendering and `docs-manifest.json` creation
-- Optional communication document co-authoring (3P update, FAQ sheet)
 
 ---
 
-## Phase 4 (parent level): Professional document creation
+## Phase 2 (parent level): Professional document creation
 
 After the sub-agent returns, read `docs-manifest.json` from the output directory.
 
@@ -39,7 +38,7 @@ Pass this context:
 > Preparing a Business Analysis package. Outputs may include: PPTX executive deck, DOCX report, XLSX data map, PDF.
 > Produce a Brand Spec Card covering: color palette, typography (headings and body), layout/margins, and voice/tone rules.
 
-Wait for the Brand Spec Card output. It will be referenced in all document briefs below.
+Wait for the Brand Spec Card output. Then locate the `### Brand Spec JSON` block in the brand skill's output and copy it as the `brandSpec` variable for all document-skill briefs below. Every brief references `brandSpec` for exact hex codes, font names, and weights — never describe brand values in freeform prose.
 
 ---
 
@@ -75,7 +74,11 @@ Pass this brief to the skill:
 > 6. **Key Decisions & Pain Points** — Two-column layout: left column lists `decision_points` from `context.json`; right column lists `pain_points`. If either is empty, use a single-column layout with a note.
 > 7. **Next Steps** — Bulleted list from the Resolution section of `summary.md`, plus any open items from the Open Items section.
 >
-> **Design rules:** Apply the Brand Spec Card from the brand gate above exactly — colors, typography, spacing, mark placement.
+> **Design rules:** Apply `brandSpec` exactly:
+> - Background: `brandSpec.colors.background`, accent: `brandSpec.colors.accent`
+> - Headings: `brandSpec.typography.heading_font` weight `brandSpec.typography.heading_weight`
+> - Body text: `brandSpec.typography.body_font` weight `brandSpec.typography.body_weight`
+> - Mark: minimum `brandSpec.mark.min_size_px`px, placed `brandSpec.mark.placement`, color `brandSpec.mark.color`
 > - Every slide must have a visual element — diagram slides use images; others use shapes, icons, or table highlights.
 > - No text-only slides. No centered body text. No accent lines under slide titles. No 3D effects or drop shadows.
 >
@@ -100,7 +103,12 @@ Pass this brief to the skill:
 > - **Data Mapping** — Full `data-map.md` table with header row styling and alternating row shading
 > - **Open Items** — Reproduce the Open Items section from `summary.md`, formatted as a checklist
 >
-> **Formatting rules:** Apply the Brand Spec Card from the brand gate above exactly — colors, typography, table header/body styling, callout box fills.
+> **Formatting rules:** Apply `brandSpec` exactly:
+> - Heading font: `brandSpec.typography.heading_font` (never Arial or system default)
+> - Body font: `brandSpec.typography.body_font` (never Arial or system default)
+> - Table header fill: `brandSpec.colors.accent` with white text
+> - Alternating body rows: `brandSpec.colors.background` / `brandSpec.colors.section_fill`
+> - Callout box fill: `brandSpec.colors.section_fill`
 > - Page: US Letter (12240 × 15840 DXA). Margins: 1440 DXA (1 inch) all sides.
 > - Header: Process name. Footer: page numbers.
 > - Smart quotes. Table widths using DXA (never PERCENTAGE). No \n in paragraphs — use separate Paragraph elements.
@@ -137,8 +145,9 @@ Pass this brief to the skill:
 > - Freeze the header row and first column
 > - Auto-filter on all columns
 > - Column widths: auto-fit based on content (minimum 15 characters wide)
-> - Conditional formatting: highlight rows where Transformation contains "[inferred]" in yellow
-> - Color palette: Apply Brand Spec Card colors — header fill = accent color, alternating body rows = background + section fill. Highlighted [inferred] rows: yellow (per rule above).
+> - Conditional formatting: highlight rows where Transformation contains "[inferred]" in `brandSpec.colors.supporting` (#a89980)
+> - Header fill: `brandSpec.colors.accent` (#6b5b54) with white text
+> - Alternating body rows: `brandSpec.colors.background` (#fafaf8) / `brandSpec.colors.section_fill` (#f5f2ed)
 > - No hardcoded totals — if any aggregate rows are needed, use SUM() or COUNTA() formulas
 > - Financial color conventions: blue fill for any manually-entered override cells, black text for formula cells
 >
@@ -148,9 +157,35 @@ Pass this brief to the skill:
 
 ---
 
-### Completion
+---
 
-After all requested document skills complete, report:
+## Phase 3 (parent level): Communication documents
+
+After professional documents complete (or are skipped), prompt:
+
+> **Phase 3: Communication assets**
+>
+> Would you like stakeholder communication documents?
+>
+> - **3P** — A Progress/Plans/Problems executive update (30–60 seconds to read)
+> - **FAQ** — A stakeholder FAQ sheet with sourced answers
+> - **Both** — Both documents
+> - **Skip** — No communication documents
+>
+> Reply: `3P` / `FAQ` / `both` / `skip`
+
+Route based on response:
+- `3P` or `both` → read `~/.claude/Agents/ba-agent/skills/comms-3p.md` and execute the full 3-stage co-authoring workflow inline in this conversation
+- `FAQ` or `both` → read `~/.claude/Agents/ba-agent/skills/comms-faq.md` and execute the full 3-stage co-authoring workflow inline in this conversation
+- `skip` → proceed to completion
+
+If `both`: run 3P first, then FAQ. Each runs its full three-stage workflow independently.
+
+---
+
+## Phase 4: Completion
+
+After all requested document skills and communication workflows complete, report:
 
 > **BA Package complete.** Outputs at `~/.claude/Agents/ba-agent/outputs/<process_name>/`:
 >

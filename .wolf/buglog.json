@@ -112,6 +112,119 @@
       "related_bugs": [],
       "occurrences": 5,
       "last_seen": "2026-06-27T04:25:05.959Z"
+    },
+    {
+      "id": "bug-008",
+      "timestamp": "2026-06-27T16:26:46.893Z",
+      "error_message": "Significant refactor of ",
+      "file": "skills/brand/SKILL.md",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 4→39 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-27T16:26:46.893Z"
+    },
+    {
+      "id": "bug-009",
+      "timestamp": "2026-06-27T16:35:19.510Z",
+      "error_message": "Significant refactor of ",
+      "file": "Agents/ba-agent/skills/data-mapping.md",
+      "root_cause": "3 lines replaced/restructured",
+      "fix": "Rewrote 11→15 lines (3 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-27T16:35:19.510Z"
+    },
+    {
+      "id": "bug-010",
+      "timestamp": "2026-06-27T16:37:27.797Z",
+      "error_message": "Incorrect value in code",
+      "file": "Agents/ba-agent/skills/ba-package.md",
+      "root_cause": "Had \"None.\"",
+      "fix": "Changed to \"None\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-27T16:37:27.797Z"
+    },
+    {
+      "id": "bug-011",
+      "timestamp": "2026-06-27T16:37:59.548Z",
+      "error_message": "Significant refactor of ",
+      "file": "Agents/ba-agent/skills/comms-faq.md",
+      "root_cause": "14 lines replaced/restructured",
+      "fix": "Rewrote 21→27 lines (14 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-27T16:37:59.548Z"
+    },
+    {
+      "id": "bug-012",
+      "timestamp": "2026-06-27T16:38:05.100Z",
+      "error_message": "Incorrect value in code",
+      "file": "Agents/ba-agent/CLAUDE.md",
+      "root_cause": "Had `~/.claude/plugins/marketplaces/claude-plugins-off",
+      "fix": "Changed to `~/.claude/skills/ba-agent/agents/ba.md`",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-27T16:38:05.100Z"
+    },
+    {
+      "id": "bug-013",
+      "timestamp": "2026-06-27T17:00:00.000Z",
+      "error_message": "validate-mermaid.sh: Chromium path macOS-only; scratch file cleanup swallows diagnostics on failure",
+      "file": "Agents/ba-agent/scripts/validate-mermaid.sh",
+      "root_cause": "Script only searched ~/Library/Caches/ms-playwright (macOS). On Linux the path is ~/.cache/ms-playwright. Also, rm -f $SCRATCH ran unconditionally before the exit code check, destroying diagnostic output on failure.",
+      "fix": "Added Linux fallback path. Added npx playwright install chromium auto-install if both paths empty. Moved rm -f $SCRATCH to after diagnostic output is printed on failure; rm immediately on success.",
+      "tags": [
+        "shell",
+        "mermaid",
+        "cross-platform",
+        "ba-agent"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-27T17:00:00.000Z"
+    },
+    {
+      "id": "bug-014",
+      "timestamp": "2026-06-27T16:48:22.868Z",
+      "error_message": "Significant refactor of ",
+      "file": "skills/ba/SKILL.md",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 3→29 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-27T16:48:22.868Z"
     }
   ]
 }

@@ -140,3 +140,70 @@ Context window was compacted here. Review the session and capture any key findin
 
 - 2026-06-27: Wired brand into ba-agent at the **parent SKILL.md level** (not inside the sub-agent). Rationale: sub-agents can't invoke the Skill tool — they're limited to Bash/Read/Write/WebFetch/TodoWrite. Brand visual specs belong at the parent level; brand voice belongs in the agent's CLAUDE.md.
 - 2026-06-27: Removed hardcoded brand values from ba-agent/SKILL.md immediately after adding them (same session). Recognised the drift risk: "Apply Brand Spec Card" + brand bullet points = two sources of truth. Fix: keep only the "Apply Brand Spec Card" instruction + format-structural rules that are not brand values.
+
+## Key Learnings (2026-06-27, session 4 — CLAUDE.md audit)
+
+- 2026-06-27: CLAUDE.md bloat is not just line count — structural drift matters more. This session's audit found sections numbered 1,2,3,5,6,7,8,9,4 (Section 4 appended to the bottom months later without renumbering), and 2 bullets duplicating content already enforced in `.claude/rules/openwolf.md`. The file was 64 lines and NOT bloated by volume; the problem was out-of-order sections and cross-file duplication.
+- 2026-06-27: Two-category test for CLAUDE.md content: (1) Architecture/routing — belongs in CLAUDE.md; (2) Protocol enforcement rules — belongs in `.claude/rules/openwolf.md`. When a new bullet is added to Section 3 (Infrastructure), check openwolf.md first. If it's already enforced there, don't add it to CLAUDE.md — add a pointer instead.
+
+## Do-Not-Repeat (2026-06-27, session 4)
+
+- 2026-06-27: Do NOT add protocol enforcement bullets to CLAUDE.md Section 3 if they are already in `.claude/rules/openwolf.md`. The rules file is the enforcement layer; CLAUDE.md is the architecture index. Duplicating between them creates drift — fix pattern: single pointer line in CLAUDE.md, full rule in openwolf.md.
+- 2026-06-27: When adding a new section to CLAUDE.md, check that the section number is in order relative to the physical position in the file. Historical additions have landed out of sequence (Section 4 appeared after Section 9). Renumber before appending.
+
+## Decision Log (2026-06-27, session 4)
+
+- 2026-06-27: Resolved Section 3 duplication by replacing 2 inline bullets with a single pointer: "Protocol enforcement rules: See `.claude/rules/openwolf.md`". Rationale: the rules file is already injected at session start; repeating them in CLAUDE.md adds token cost with no behavioral benefit since the harness reads both files anyway.
+
+## Decision Log (2026-06-27, session 5 — ba skill consolidation)
+
+- 2026-06-27: Consolidated `/ba-agent` skill into `/ba` — replaced the thin wrapper in `skills/ba/SKILL.md` with the full orchestration content, then deleted `skills/ba-agent/SKILL.md`. When one skill is a strict subset of another with the same underlying sub-agent, the right fix is to replace the wrapper with the full implementation under the simpler name.
+- 2026-06-27: Markdown intermediate artifacts (process.mmd, sop.md, data-map.md, etc.) are required intermediates in the BA pipeline — document skills read from them — even when the user's goal is only professional formatted documents. Cannot be eliminated from the pipeline; can only be hidden from the user's view.
+
+## User Preferences (2026-06-27, session 5)
+
+- 2026-06-27: Prefers to keep the document type prompt (`all / pptx / docx+pdf / skip`) in the `/ba` flow — values flexibility to skip to markdown-only even though professional docs are the primary goal.
+
+## Key Learnings (2026-06-27, session 6 — ba-agent meta-test)
+
+- 2026-06-27: `ba-agent:ba` comms skill gates (comms-3p.md Stage 1, comms-faq.md Stage 1) explicitly reject coordinator relay messages — they only accept messages the sub-agent classifies as coming directly from the user. After a sub-agent is resumed via SendMessage, all further messages arrive as coordinator relay and cannot satisfy these gates. The sub-agent loops indefinitely.
+- 2026-06-27: Meta-test (using ba-agent:ba to document its own pipeline as input brief) confirmed the pipeline is robust: self-referential brief → 10 artifacts, 0 observe revisions, all quality gates passed. Self-referential briefs are a valid and clean way to validate the BA pipeline end-to-end.
+
+## Do-Not-Repeat (2026-06-27, session 6)
+
+- 2026-06-27: Do NOT attempt to satisfy ba-agent comms Stage 1 gates via SendMessage relay after the sub-agent has returned. Either (a) include all comms context in the initial ba-agent:ba prompt so it completes in one run, or (b) execute comms workflows directly in the parent conversation by reading comms-3p.md and comms-faq.md and following the 3-stage workflows inline.
+
+## Decision Log (2026-06-27, session 6)
+
+- 2026-06-27: When ba-agent comms gates blocked on coordinator relay (3 attempts), generated 3P and FAQ directly in main conversation by reading comms skill files and executing the workflows inline. Rationale: main conversation has live user interaction; a resumed background sub-agent does not and the skill explicitly rejects relay messages.
+
+## Key Learnings (2026-06-27, session 7 — ba-agent quality audit)
+
+- 2026-06-27: **Brand Spec Card must be machine-readable JSON, not just human text.** The brand skill previously emitted only a formatted text card. Document-skills acknowledged it in briefs but couldn't parse it programmatically — PPTX used its own color guidance, DOCX defaulted to Arial, XLSX ignored the brand palette entirely. Fix: emit a `### Brand Spec JSON` block alongside the text card. Downstream skills reference `brandSpec.colors.accent`, `brandSpec.typography.heading_font`, etc. directly.
+- 2026-06-27: **actor_step_map belongs in context.json at intake time, not as a downstream inference.** Extracting steps and actors as separate flat arrays forces process-viz and sop-writer to guess actor assignments from step label wording — fragile and inconsistent. Correct pattern: intake extracts a structured `actor_step_map` object (step label → actor name); all downstream skills treat it as authoritative and never infer.
+- 2026-06-27: **Cross-artifact consistency is a distinct quality layer from per-artifact observe.** Two artifacts can each pass their individual observe checks while contradicting each other (e.g., "Lead enriched by Explorium" in SOP vs "Explorium enriches lead" in process.mmd; or actor name typos that pass SOP observe but mismatch the process diagram). Cross-artifact checks (node label alignment, actor name canonicalisation) must run as a separate phase after all individual observes pass.
+- 2026-06-27: **understand-anything knowledge graph goes stale fast for actively edited directories.** The BA agent had been substantially modified after the last graph analysis. Keyword searches returned no results; direct file reads were required. For directories under active development, the graph should be re-analyzed after any significant batch of changes — don't rely on it for queries about recently added files.
+- 2026-06-27: **Data maps without data types and flow direction force implementation rework.** Stakeholders treating a data map as an implementation spec need Type (string/integer/date/etc.) and Direction (→/↔/←) as first-class columns, not notes. Marking unknown values as `[inferred]` surfaces them explicitly as open items rather than leaving implementers to guess.
+- 2026-06-27: **Integration diagrams without timing semantics are incomplete for technical audiences.** Whether a data flow is synchronous, asynchronous, or batch is an architectural fact that affects latency, reliability, and error-handling design. Every edge label in an integration diagram should carry a `[sync]`, `[async]`, `[batch]`, or `[inferred]` timing suffix.
+
+## Do-Not-Repeat (2026-06-27, session 7)
+
+- 2026-06-27: Do NOT generate FAQ questions from templates alone — mine actual artifacts first for `[inferred]` fields, non-obvious decision outcomes, and handoff steps before applying templates. Template-only questions are generic; content-informed questions are the ones stakeholders will actually ask.
+
+## Decision Log (2026-06-27, session 7)
+
+- 2026-06-27: Structured ba-agent quality improvements across three tiers: (1) fix broken things first (validate-mermaid.sh bug, brand spec not machine-readable), (2) close structural gaps (actor_step_map, cross-artifact checks, data types, timing semantics), (3) polish (Open Items table, content-informed FAQs, pixel-dimension PNG validation). Tier ordering was driven by impact on observe check reliability vs. output quality vs. nice-to-have.
+- 2026-06-27: Added a `### Brand Spec JSON` block to brand/SKILL.md rather than creating a separate brand JSON file. Rationale: keeps the text card and JSON in the same skill output so downstream skills can consume either form; no extra file to track or version.
+
+## Key Learnings (2026-06-27, session 8 — ba-agent architecture fix + PNG quality)
+
+- 2026-06-27: `--scale 3` on mermaid-cli raises output from 784×853px (1x) to 2352×2559px — adequate for print at full-page width in PPTX and DOCX. Default 1x is too soft for document embedding; 3x is the minimum for stakeholder-quality output.
+- 2026-06-27: The comms-to-parent architectural fix required 3 coordinated edits: (1) ba.md Assembly step 5 → "write session log and return"; (2) planner.md Phase 5 section removed entirely; (3) SKILL.md phases renumbered (1=sub-agent, 2=professional docs, 3=comms, 4=completion) with comms block added at parent level. The invariant: sub-agents do only deterministic non-interactive work; user-gated co-authoring belongs at parent level where live interaction is available.
+
+## User Preferences (2026-06-27, session 8)
+
+- 2026-06-27: Wants print-quality PNGs (≥2300px wide) as the default for all BA diagram renders — outputs are shared with stakeholders in professional documents, not just viewed on screen.
+
+## Decision Log (2026-06-27, session 8)
+
+- 2026-06-27: Set `--scale 3` as the permanent default in `png-render.md` rather than a one-time flag. Rationale: every BA run produces stakeholder-facing docs; default should be print-ready. Scaling down is trivial; upscaling after doc embedding produces softness.
