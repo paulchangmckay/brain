@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-27T04:54:54.498Z
-> Files: 513 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-06-27T16:05:39.194Z
+> Files: 506 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -10,7 +10,8 @@
 - `.gitmodules` (~58 tok)
 - `.last-cleanup` (~7 tok)
 - `.last-update-result.json` (~46 tok)
-- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~1148 tok)
+- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~1287 tok)
+- `history.jsonl` (~40 tok)
 - `mcp_servers.json` (~38 tok)
 - `mcp-needs-auth-cache.json` (~28 tok)
 - `settings.json` (~2542 tok)
@@ -22,6 +23,61 @@
 ## .claude/rules/
 
 - `openwolf.md` (~313 tok)
+
+## .claude/worktrees/enhance-ba-agent/
+
+- `.gitignore` — Git ignore rules (~282 tok)
+- `.gitmodules` (~58 tok)
+- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~1088 tok)
+- `mcp_servers.json` (~38 tok)
+- `settings.json` (~2542 tok)
+
+## .claude/worktrees/enhance-ba-agent/.claude/
+
+- `settings.json` (~441 tok)
+
+## .claude/worktrees/enhance-ba-agent/.claude/rules/
+
+- `openwolf.md` (~313 tok)
+
+## .claude/worktrees/enhance-ba-agent/.understand-anything/
+
+- `.understandignore` — # **/*Test.java (~256 tok)
+- `fingerprints.json` (~116279 tok)
+- `knowledge-graph.json` (~127512 tok)
+- `meta.json` (~45 tok)
+
+## .claude/worktrees/enhance-ba-agent/.understand-anything/intermediate/
+
+- `scan-result.json` (~18834 tok)
+
+## .claude/worktrees/enhance-ba-agent/hooks/
+
+- `post-bash-truncate.js` — PostToolUse hook (Bash): warns when command output exceeds 15KB. (~294 tok)
+- `post-compact-anatomy.sh` — PostCompact hook: re-injects OpenWolf anatomy after context compaction. (~483 tok)
+- `pre-compact-snapshot.sh` — PreCompact hook: stamps a compaction event in .wolf/cerebrum.md and reminds (~512 tok)
+- `pre-read-check.js` — PreToolUse hook: guards context window before file reads. (~1251 tok)
+- `session-start.sh` — Unified SessionStart hook: Superpowers bootstrap + OpenWolf anatomy injection (~860 tok)
+
+## .claude/worktrees/enhance-ba-agent/skills/ba-agent/
+
+- `SKILL.md` — ba-agent (~85 tok)
+
+## .claude/worktrees/enhance-ba-agent/skills/ba-agent/.claude-plugin/
+
+- `plugin.json` (~109 tok)
+
+## .claude/worktrees/enhance-ba-agent/skills/ba/
+
+- `SKILL.md` (~130 tok)
+
+## .claude/worktrees/enhance-ba-agent/skills/session-reflect/
+
+- `SKILL.md` — Session Reflect Skill (~834 tok)
+
+## .claude/worktrees/enhance-ba-agent/skills/wolf-init/
+
+- `SKILL.md` — Wolf Init Skill (~504 tok)
 
 ## .understand-anything/
 
@@ -140,7 +196,7 @@
 ## Agents/ba-agent/
 
 - `.DS_Store` (~1640 tok)
-- `CLAUDE.md` — BA Agent — Output Workspace (~216 tok)
+- `CLAUDE.md` — BA Agent — Output Workspace (~396 tok)
 
 ## Agents/ba-agent/.claude/
 
@@ -190,15 +246,23 @@
 
 ## backups/
 
-- `.claude.json.backup.1782531841455` — Declares breakdown (~9196 tok)
-- `.claude.json.backup.1782531906774` (~9230 tok)
-- `.claude.json.backup.1782532647167` (~9230 tok)
-- `.claude.json.backup.1782532717476` (~9290 tok)
-- `.claude.json.backup.1782532777735` (~9290 tok)
+- `.claude.json.backup.1782575532371` (~9750 tok)
+- `.claude.json.backup.1782575605008` (~9767 tok)
+- `.claude.json.backup.1782575676017` — Declares breakdown (~9767 tok)
+- `.claude.json.backup.1782575751350` — Declares breakdown (~9767 tok)
+- `.claude.json.backup.1782575853090` — Declares breakdown (~9767 tok)
+
+## brand/
+
+- `brand-guide.md` — Paul McKay — Personal Brand Guide (~3689 tok)
 
 ## cache/
 
-- `changelog.md` — Changelog (~97983 tok)
+- `changelog.md` — Changelog (~100107 tok)
+
+## chrome/
+
+- `chrome-native-host` — Chrome native host wrapper script (~48 tok)
 
 ## file-history/
 
@@ -258,6 +322,28 @@
 - `dad9aa259a03aa1c@v1` — PreToolUse hook: checks anatomy.md before Claude opens a file. (~659 tok)
 - `fc86e65d9507e552@v1` (~424 tok)
 
+## file-history/3bbd8a02-9fd6-40d3-866d-00f91e4619a8/
+
+- `31ccfafb5247a916@v1` (~1797 tok)
+- `31ccfafb5247a916@v2` (~2208 tok)
+- `31ccfafb5247a916@v3` (~2010 tok)
+- `3cd8353c2c9425ee@v1` — Cerebrum (~3699 tok)
+- `3cd8353c2c9425ee@v2` — Cerebrum (~4195 tok)
+- `3cd8353c2c9425ee@v3` — Cerebrum (~4781 tok)
+- `7251b5fcb44ea790@v2` (~428 tok)
+- `928596402335cdbb@v1` — Memory Index (~81 tok)
+- `928596402335cdbb@v2` — Memory Index (~119 tok)
+- `957dcfb080f1315b@v2` — Paul McKay — Personal Brand Guide (~2876 tok)
+- `ab0ef73e6d105444@v1` — BA Agent — Output Workspace (~231 tok)
+- `ab0ef73e6d105444@v2` — BA Agent — Output Workspace (~422 tok)
+- `b97263653feeca91@v2` (~100 tok)
+- `c47760ed6c9ee802@v1` — System Instructions: Thin Harness, Fat Skills Environment (~1225 tok)
+- `c47760ed6c9ee802@v2` — System Instructions: Thin Harness, Fat Skills Environment (~1259 tok)
+- `e3b3b4b0ecb389a6@v2` — Plan: Personal Brand Integration into ~/.claude (~1727 tok)
+- `e3b3b4b0ecb389a6@v3` — Plan: Wire Brand Skill into ba-agent Output Pipeline (~1530 tok)
+- `e3b3b4b0ecb389a6@v4` — Plan: Eliminate Brand Drift Risk in ba-agent (~1702 tok)
+- `f3c5ee297a6e8452@v2` — Declares identified (~972 tok)
+
 ## file-history/408b78c6-fb3a-4dfe-a186-1826cdc6f15f/
 
 - `3cd8353c2c9425ee@v1` — Cerebrum (~1862 tok)
@@ -274,16 +360,19 @@
 
 - `12d818ec9eb9e1d6@v2` — SOP: Inbound Lead Routing (~805 tok)
 - `328ad490b06fa4d4@v1` (~9 tok)
+- `328ad490b06fa4d4@v2` — Declares f (~433 tok)
 - `5165755be57136f6@v2` — BA Package: Inbound Lead Routing (~186 tok)
 - `8ade2365d0ae338a@v2` — Data Mapping: Inbound Lead Routing (~482 tok)
 - `9614ce7b71896603@v2` (~282 tok)
 - `9d0dc81043b58bf7@v2` — # BA Agent session — 2026-06-26 (~126 tok)
+- `ab0ef73e6d105444@v1` — BA Agent — Output Workspace (~116 tok)
 - `acdbe33f6caf465a@v1` — Usage: bash scripts/validate-mermaid.sh outputs/process.mmd (~168 tok)
 - `acdbe33f6caf465a@v2` — Usage: bash scripts/validate-mermaid.sh outputs/process.mmd (~258 tok)
 - `adae898aa06d995a@v2` — BA Package: Inbound Lead Routing (~716 tok)
 - `cd3231dbf842b4dc@v2` (~158 tok)
 - `ddb8a19d787053b3@v2` — Observe Log (~247 tok)
 - `e0d6f2a63a3ac4d3@v1` — Cerebrum (~165 tok)
+- `e0d6f2a63a3ac4d3@v2` — Cerebrum (~419 tok)
 - `fa46906b0cd23150@v2` (~219 tok)
 
 ## file-history/53534f20-6dc4-4b37-857d-b89bf059febb/
@@ -304,6 +393,15 @@
 
 - `ab0ef73e6d105444@v1` — OpenWolf (~992 tok)
 - `ab0ef73e6d105444@v2` — BA Agent — Output Workspace (~116 tok)
+
+## file-history/763d8108-136f-46f4-a9b2-49d6d85f75f6/
+
+- `7251b5fcb44ea790@v1` (~428 tok)
+- `928596402335cdbb@v1` — Memory Index (~119 tok)
+- `957dcfb080f1315b@v1` — Paul McKay — Personal Brand Guide (~2876 tok)
+- `957dcfb080f1315b@v2` — Paul McKay — Personal Brand Guide (~2967 tok)
+- `957dcfb080f1315b@v3` — Paul McKay — Personal Brand Guide (~3234 tok)
+- `d48c6c56d44bf1ac@v2` — Declares SvgFlowable (~1925 tok)
 
 ## file-history/7f63e15c-a09e-4052-9528-32f7ec804712/
 
@@ -337,6 +435,10 @@
 
 - `c15c82adf8165050@v1` (~1199 tok)
 
+## file-history/ae43e70e-0bdd-4666-8325-f654e3b51577/
+
+- `957dcfb080f1315b@v1` — Paul McKay — Personal Brand Guide (~3234 tok)
+
 ## file-history/afe2552a-4fbe-4c08-be3f-a3618977793b/
 
 - `3cd8353c2c9425ee@v1` — Cerebrum (~1346 tok)
@@ -361,6 +463,23 @@
 - `d9d264dcbb7e53bf@v2` (~1204 tok)
 - `e109108c6327bfaa@v1` (~37041 tok)
 - `e109108c6327bfaa@v2` (~37114 tok)
+
+## file-history/c851ab8a-14e6-4770-9ec4-b00503f78b97/
+
+- `2acd6d65f2c82913@v1` (~1208 tok)
+- `2acd6d65f2c82913@v2` (~1365 tok)
+- `31ccfafb5247a916@v1` (~91 tok)
+- `31ccfafb5247a916@v2` (~1797 tok)
+- `3cd8353c2c9425ee@v1` — Cerebrum (~3340 tok)
+- `3cd8353c2c9425ee@v2` — Cerebrum (~3699 tok)
+- `5e03ff684878a9f9@v1` — Plan: Enhance BA Sub-Agent with Professional Outputs & Communication Documents (~3046 tok)
+- `5e03ff684878a9f9@v2` — Plan: Session Reflect — BA Agent Enhancement Session (2026-06-27) (~824 tok)
+- `6cbfe9b7a117b79e@v2` — Skill: PNG Rendering + Docs Manifest (~797 tok)
+- `724586e847d4008c@v2` — Skill: FAQ Sheet Co-Authoring (~1107 tok)
+- `938ba3acf42f2380@v2` — Skill: 3P Update Co-Authoring (~1036 tok)
+- `c47760ed6c9ee802@v1` — System Instructions: Thin Harness, Fat Skills Environment (~1161 tok)
+- `db3a81fe58469d8d@v1` — Skill: Planner + Observe (~927 tok)
+- `db3a81fe58469d8d@v2` — Skill: Planner + Observe (~1304 tok)
 
 ## file-history/d6f2ff3b-88a0-4112-adc9-f62be7cb49de/
 
@@ -496,13 +615,16 @@
 ## plans/
 
 - `do-i-have-any-synthetic-aho.md` — Context Window Guardrails — Recommendations (~931 tok)
+- `does-it-make-sense-toasty-prism.md` — Plan: Eliminate Brand Drift Risk in ba-agent (~1596 tok)
 - `fluffy-discovering-jellyfish.md` — Plan: Initialize ~/.claude as a Git Repository (~1218 tok)
 - `help-me-build-a-prancy-journal.md` — Plan: Install & Run Understand-Anything on ~/.claude (~954 tok)
+- `here-is-more-icon-harmonic-lollipop.md` — Plan: Update Brand Guide Icon Taxonomy (~1371 tok)
 - `how-do-i-make-cosmic-mochi.md` — OpenWolf: Global + Project Token Optimization (~1048 tok)
 - `i-cant-see-my-parallel-wind.md` — Fix: understand-anything Dashboard "Invalid knowledge graph" Error (~504 tok)
 - `i-dont-see-my-proud-hejlsberg.md` — Plan: Expose BA Agent as a Reachable Command (~521 tok)
 - `i-dont-want-any-stateful-flame.md` — Plan: Disable Auto-Updates for Superpowers, OpenWolf, and gbrain (~723 tok)
 - `i-ve-been-spending-the-rosy-cray.md` — Advisory: session-reflect is manual — no auto-equivalent for cerebrum.md (~44 tok)
+- `i-ve-made-a-lot-twinkly-lightning.md` — Plan: CLAUDE.md Audit & Optimization (~747 tok)
 - `i-want-to-build-humble-tarjan.md` — Plan: Session Reflect — BA Agent Enhancement Session (2026-06-27) (~773 tok)
 - `i-was-trying-to-peaceful-avalanche.md` — Plan: LangSmith Tracing for Claude Code (~1298 tok)
 - `if-i-ask-you-tingly-whistle.md` — Install Anthropic Document Skills (~638 tok)
@@ -510,6 +632,7 @@
 - `should-i-just-delete-radiant-hammock.md` — Context (~252 tok)
 - `there-is-a-md-vivid-hedgehog.md` — BA Agent Build Plan (~1949 tok)
 - `to-verify-restart-claude-functional-boot.md` — Verify: ba-agent:ba Appears After Restart (~584 tok)
+- `what-is-the-difference-encapsulated-muffin.md` — Plan: Consolidate /ba and /ba-agent into a single /ba skill (~531 tok)
 - `what-sub-agents-do-golden-orbit.md` — Plan: Convert ba-agent to a Registered Sub-Agent (~905 tok)
 - `why-don-t-i-have-logical-gem.md` — Skills & Agents Consolidation Plan (~3440 tok)
 - `why-isnt-the-golden-elegant-turtle.md` — Plan: Fix gbrain MCP Server Connection (~550 tok)
@@ -535,7 +658,8 @@
 ## plugins/cache/anthropic-agent-skills/document-skills/575462609294/.in_use/
 
 - `50239.tmp.25a94d08` (~14 tok)
-- `63976` (~14 tok)
+- `84334` (~14 tok)
+- `84781` (~14 tok)
 
 ## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/algorithmic-art/
 
@@ -650,123 +774,7 @@
 - `agent-design.md` — Agent Design Patterns (~2131 tok)
 - `anthropic-cli.md` — Anthropic CLI (`ant`) (~4035 tok)
 - `claude-platform-on-aws.md` — Claude Platform on AWS (~981 tok)
-- `error-codes.md` — HTTP Error Codes Reference (~2413 tok)
-- `live-sources.md` — Live Documentation Sources (~4704 tok)
-- `managed-agents-api-reference.md` — Managed Agents — Endpoint Reference (~7018 tok)
-- `managed-agents-client-patterns.md` — Managed Agents — Common Client Patterns (~2410 tok)
-- `managed-agents-core.md` — Managed Agents — Core Concepts (~3804 tok)
-- `managed-agents-environments.md` — Managed Agents — Environments & Resources (~2862 tok)
-- `managed-agents-events.md` — Managed Agents — Events & Steering (~2699 tok)
-- `managed-agents-memory.md` — Managed Agents — Memory Stores (~2382 tok)
-- `managed-agents-multiagent.md` — Managed Agents — Multiagent Sessions (~1631 tok)
-- `managed-agents-onboarding.md` — Managed Agents — Onboarding Flow (~3319 tok)
-- `managed-agents-outcomes.md` — Managed Agents — Outcomes (~1526 tok)
-- `managed-agents-overview.md` — Managed Agents — Overview (~2735 tok)
-- `managed-agents-scheduled-deployments.md` — Managed Agents — Scheduled Deployments (~1613 tok)
-- `managed-agents-self-hosted-sandboxes.md` — Managed Agents — Self-Hosted Sandboxes (~2533 tok)
-- `managed-agents-tools.md` — Managed Agents — Tools & Skills (~4434 tok)
-- `managed-agents-webhooks.md` — Managed Agents — Webhooks (~1256 tok)
-- `model-migration.md` — Model Migration Guide (~29545 tok)
-- `models.md` — Claude Model Catalog (~2510 tok)
-- `prompt-caching.md` — Prompt Caching — Design & Optimization (~3582 tok)
-- `token-counting.md` — Token Counting (~401 tok)
-- `tool-use-concepts.md` — Tool Use Concepts (~4461 tok)
 
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/typescript/claude-api/
+## skills/ba/
 
-- `batches.md` — Message Batches API — TypeScript (~649 tok)
-- `files-api.md` — Files API — TypeScript (~565 tok)
-- `README.md` — Project documentation (~2965 tok)
-- `streaming.md` — Streaming — TypeScript (~1400 tok)
-- `tool-use.md` — Tool Use — TypeScript (~3832 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/typescript/managed-agents/
-
-- `README.md` — Project documentation (~2362 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/doc-coauthoring/
-
-- `SKILL.md` — Doc Co-Authoring Workflow (~3954 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/docx/
-
-- `LICENSE.txt` (~367 tok)
-- `SKILL.md` — DOCX creation, editing, and analysis (~5014 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/docx/scripts/
-
-- `__init__.py` (~1 tok)
-- `accept_changes.py` — Accept all tracked changes in a DOCX file using LibreOffice. (~1158 tok)
-- `comment.py` — Add comments to DOCX documents. (~3056 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/docx/scripts/office/
-
-- `pack.py` — Pack a directory into a DOCX, PPTX, or XLSX file. (~1426 tok)
-- `soffice.py` — get_soffice_env, run_soffice (~1513 tok)
-- `unpack.py` — Unpack Office files (DOCX, PPTX, XLSX) for editing. (~1158 tok)
-- `validate.py` — main (~1048 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/docx/scripts/office/helpers/
-
-- `__init__.py` (~0 tok)
-- `merge_runs.py` — Merge adjacent runs with identical formatting in DOCX. (~1591 tok)
-- `simplify_redlines.py` — Simplify tracked changes by merging adjacent w:ins or w:del elements. (~1644 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/docx/scripts/office/schemas/ISO-IEC29500-4_2016/
-
-- `dml-chart.xsd` (~19996 tok)
-- `dml-chartDrawing.xsd` (~1855 tok)
-- `dml-diagram.xsd` (~13681 tok)
-- `dml-lockedCanvas.xsd` (~167 tok)
-- `dml-main.xsd` (~40544 tok)
-- `dml-picture.xsd` (~329 tok)
-- `dml-spreadsheetDrawing.xsd` (~2364 tok)
-- `dml-wordprocessingDrawing.xsd` (~3946 tok)
-- `pml.xsd` (~22297 tok)
-- `shared-additionalCharacteristics.xsd` (~339 tok)
-- `shared-bibliography.xsd` (~1955 tok)
-- `shared-commonSimpleTypes.xsd` (~1702 tok)
-- `shared-customXmlDataProperties.xsd` (~333 tok)
-- `shared-customXmlSchemaProperties.xsd` (~235 tok)
-- `shared-documentPropertiesCustom.xsd` (~696 tok)
-- `shared-documentPropertiesExtended.xsd` (~936 tok)
-- `shared-documentPropertiesVariantTypes.xsd` (~2002 tok)
-- `shared-math.xsd` (~6217 tok)
-- `shared-relationshipReference.xsd` (~365 tok)
-- `sml.xsd` (~64608 tok)
-- `vml-main.xsd` (~6973 tok)
-- `vml-officeDrawing.xsd` (~6742 tok)
-- `vml-presentationDrawing.xsd` (~143 tok)
-- `vml-spreadsheetDrawing.xsd` (~1524 tok)
-- `vml-wordprocessingDrawing.xsd` (~1070 tok)
-- `wml.xsd` (~45698 tok)
-- `xml.xsd` — Declares which (~1239 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/docx/scripts/office/schemas/ecma/fouth-edition/
-
-- `opc-contentTypes.xsd` (~523 tok)
-- `opc-coreProperties.xsd` (~671 tok)
-- `opc-digSig.xsd` (~762 tok)
-- `opc-relationships.xsd` (~358 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/docx/scripts/office/schemas/mce/
-
-- `mc.xsd` (~834 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/docx/scripts/office/schemas/microsoft/
-
-- `wml-2010.xsd` (~7080 tok)
-- `wml-2012.xsd` (~999 tok)
-- `wml-2018.xsd` (~241 tok)
-- `wml-cex-2018.xsd` (~475 tok)
-- `wml-cid-2016.xsd` (~268 tok)
-- `wml-sdtdatahash-2020.xsd` (~160 tok)
-- `wml-symex-2015.xsd` (~199 tok)
-
-## skills/ba-agent/
-
-- `SKILL.md` — ba-agent (~1685 tok)
-
-## skills/ba-agent/agents/
-
-- `ba.md` — Invocation (~1279 tok)
+- `SKILL.md` — ba (~1900 tok)
