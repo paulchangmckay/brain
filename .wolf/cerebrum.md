@@ -80,3 +80,20 @@ Context window was compacted here. Review the session and capture any key findin
 ## Do-Not-Repeat (2026-06-26 continued)
 
 - 2026-06-26: Do NOT create skills as standalone `.md` files in `~/.claude/skills/` — the skill registry silently ignores them. Correct structure: `~/.claude/skills/<name>/SKILL.md` (a directory, not a file).
+
+## Key Learnings (2026-06-26, session 2)
+
+- 2026-06-26: `installed_plugins.json` key format is `plugin@marketplace` (e.g. `ba-agent@claude-plugins-official`). This is the OPPOSITE of the `settings.json` `enabledPlugins` format which is `marketplace@plugin` (e.g. `claude-plugins-official@ba-agent`). The two systems use reversed key conventions.
+- 2026-06-26: Claude Code 2.1.186 supports only `git-subdir` and `"./"` source types in marketplace.json. The `local` source type is rejected with "source type not supported". Missing source is also rejected. Plugin loader validates the source type BEFORE checking installPath — valid files at installPath do not bypass a bad source.
+- 2026-06-26: `claude plugins init <name> --with agents` scaffolds a plugin into `~/.claude/skills/<name>/` that auto-loads as `<name>@skills-dir` without any marketplace registration or install step. This is the correct path for custom local plugins that aren't in an upstream git repo.
+- 2026-06-26: YAML frontmatter `description:` values containing `: ` (colon-space, e.g. `"full BA package: Mermaid..."`) must be double-quoted. Unquoted colon-space is parsed as a nested key-value and causes a YAML parse error that silently drops all frontmatter at runtime.
+
+## Do-Not-Repeat (2026-06-26, session 2)
+
+- 2026-06-26: Do NOT manually add entries to `installed_plugins.json` for a plugin that lacks a valid supported source type in its marketplace.json entry. The loader checks source type before using installPath. Use `plugins init` → skills-dir for local plugins instead.
+- 2026-06-26: Do NOT write unquoted colon-space sequences in YAML agent frontmatter `description:` fields. Always quote the entire value when it contains `: `.
+
+## Decision Log (2026-06-26, session 2)
+
+- 2026-06-26: Moved ba-agent from `ba-agent@claude-plugins-official` (broken marketplace entry) to `ba-agent@skills-dir` (via `claude plugins init --with agents`). Rationale: skills-dir bypasses the entire marketplace/install/cache/source-type chain; simpler and more robust for a local plugin with no upstream git repo.
+- 2026-06-26: Removed `ba-agent@claude-plugins-official` entry from `installed_plugins.json` and disabled the marketplace enabledPlugins key. Rationale: naming conflict with the working skills-dir version would have suppressed it at load time.

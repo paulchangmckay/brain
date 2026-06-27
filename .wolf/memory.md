@@ -285,3 +285,83 @@
 
 | Time | Action | File(s) | Outcome | ~Tokens |
 |------|--------|---------|---------|--------|
+
+## Session: 2026-06-26 00:28
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 00:29 | Created Agents/ba-agent/outputs/context.json | — | ~302 |
+| 00:30 | Created Agents/ba-agent/outputs/process.mmd | — | ~219 |
+| 00:33 | Created Agents/ba-agent/outputs/observe-log.md | — | ~247 |
+| 00:33 | Created Agents/ba-agent/outputs/integration.mmd | — | ~158 |
+| 00:33 | Created Agents/ba-agent/outputs/data-map.md | — | ~482 |
+| 00:34 | Created Agents/ba-agent/outputs/sop.md | — | ~805 |
+| 00:34 | Created Agents/ba-agent/outputs/summary.md | — | ~716 |
+| 00:34 | Created Agents/ba-agent/outputs/index.md | — | ~186 |
+| 00:35 | Created ../brain/ba-sessions/2026-06-26-inbound-lead-routing.md | — | ~126 |
+| 00:35 | Session end: 9 writes across 9 files (context.json, process.mmd, observe-log.md, integration.mmd, data-map.md) | 11 reads | ~10232 tok |
+| 00:38 | Created Agents/ba-agent/scripts/validate-mermaid.sh | — | ~258 |
+| 00:38 | Session end: 10 writes across 10 files (context.json, process.mmd, observe-log.md, integration.mmd, data-map.md) | 11 reads | ~10509 tok |
+| 00:38 | Session end: 10 writes across 10 files (context.json, process.mmd, observe-log.md, integration.mmd, data-map.md) | 12 reads | ~10728 tok |
+| 00:39 | Session end: 10 writes across 10 files (context.json, process.mmd, observe-log.md, integration.mmd, data-map.md) | 12 reads | ~10728 tok |
+| 00:40 | Session end: 10 writes across 10 files (context.json, process.mmd, observe-log.md, integration.mmd, data-map.md) | 12 reads | ~10728 tok |
+
+## Session: 2026-06-26 00:42
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-06-26 00:42
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-06-26 01:41
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-06-26 01:41
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-06-26 01:45
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 01:48 | Created plans/if-i-execute-the-parsed-rabbit.md | — | ~1211 |
+| 01:51 | Created plugins/marketplaces/claude-plugins-official/plugins/ba-agent/.claude-plugin/plugin.json | — | ~63 |
+| 01:52 | Created plugins/marketplaces/claude-plugins-official/plugins/ba-agent/agents/ba.md | — | ~1204 |
+
+## Session: 2026-06-26 01:52
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 01:53 | Edited settings.json | 2→3 lines | ~28 |
+| 01:53 | Created skills/ba/SKILL.md | — | ~138 |
+| 01:53 | Session end: 2 writes across 2 files (settings.json, SKILL.md) | 0 reads | ~176 tok |
+
+## Session: 2026-06-27 23:58
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-06-27 23:58
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 23:59 | Edited Agents/ba-agent/.wolf/cerebrum.md | 16→18 lines | ~371 |
+| 23:59 | Created Agents/ba-agent/.wolf/buglog.json | — | ~464 |
+| 23:59 | Session end: 2 writes across 2 files (cerebrum.md, buglog.json) | 2 reads | ~861 tok |
+
+## Session: 2026-06-27 00:00
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 00:00 | Edited Agents/ba-agent/CLAUDE.md | expanded (+8 lines) | ~171 |
+| 00:00 | Session end: 1 writes across 1 files (CLAUDE.md) | 0 reads | ~183 tok |
+| 00:00 | Session end: 1 writes across 1 files (CLAUDE.md) | 0 reads | ~183 tok |
+| 00:02 | Session end: 1 writes across 1 files (CLAUDE.md) | 0 reads | ~183 tok |
+| 00:04 | Session end: 1 writes across 1 files (CLAUDE.md) | 0 reads | ~183 tok |
+| 00:05 | Session end: 1 writes across 1 files (CLAUDE.md) | 0 reads | ~183 tok |

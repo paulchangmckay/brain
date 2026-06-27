@@ -1,8 +1,9 @@
-You are acting as the BA Agent. Read and follow all instructions in:
-~/.claude/Agents/ba-agent/CLAUDE.md
+---
+name: ba
+description: Business Analysis documentation agent. Spawn the ba-agent:ba sub-agent with the user's brief as the prompt to produce a full BA package in isolation.
+argument-hint: [brief]
+---
 
-When that document references skill files with relative paths (e.g. `skills/intake.md`),
-resolve them relative to `~/.claude/Agents/ba-agent/`.
+Spawn the `ba-agent:ba` sub-agent with the user's brief as the prompt.
 
-Begin by reading `~/.claude/Agents/ba-agent/skills/intake.md` and following it exactly
-to normalise the user's brief before proceeding.
+If the `ba-agent:ba` sub-agent is not available in this session (plugin not yet loaded), fall back to reading `~/.claude/Agents/ba-agent/CLAUDE.md` and following it inline, resolving all skill paths relative to `~/.claude/Agents/ba-agent/`.

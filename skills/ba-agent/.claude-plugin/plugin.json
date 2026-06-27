@@ -1,0 +1,13 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "ba-agent",
+  "version": "0.1.0",
+  "description": "Business Analysis documentation agent — normalises briefs and generates process diagrams, SOPs, data maps, and executive summaries",
+  "author": {
+    "name": "paulmckay",
+    "email": "paulchangmckay@gmail.com"
+  },
+  "skills": [
+    "./"
+  ]
+}

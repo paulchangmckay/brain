@@ -42,6 +42,11 @@
 - Re-analyze after changes: `/understand-anything:understand ~.claude`
 - `langsmith-plugin` and `superpowers` are git submodules — do NOT `git add` their contents directly; use `git submodule update` to sync them.
 
+## 8. Custom Plugin Registration
+- **Local plugins** (no upstream git repo): `claude plugins init <name> --with agents` → scaffolds at `~/.claude/skills/<name>/`, auto-loads as `<name>@skills-dir` — no marketplace or install step needed
+- **YAML agent frontmatter:** quote any `description:` value that contains `: ` (colon-space) or the parser silently drops all frontmatter
+- **Do NOT** manually edit `installed_plugins.json` — source type validation blocks loading even with a valid `installPath`; use `claude plugins validate <path>` to check before wiring
+
 ## 4. New Project Bootstrap
 When starting work in a project that has no `.wolf/` directory, invoke the `wolf-init` skill or run manually:
 ```bash

@@ -1,11 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-26T04:23:13.886Z
-> Files: 519 tracked | Anatomy hits: 0 | Misses: 0
-
-## ../
-
-- `.zshrc` (~334 tok)
+> Auto-maintained by OpenWolf. Last scanned: 2026-06-27T04:00:52.503Z
+> Files: 507 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -14,10 +10,10 @@
 - `.gitmodules` (~58 tok)
 - `.last-cleanup` (~7 tok)
 - `.last-update-result.json` (~46 tok)
-- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~948 tok)
+- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~1088 tok)
 - `mcp_servers.json` (~38 tok)
 - `mcp-needs-auth-cache.json` (~28 tok)
-- `settings.json` (~2477 tok)
+- `settings.json` (~2542 tok)
 
 ## .claude/
 
@@ -31,7 +27,7 @@
 
 - `.understandignore` — # **/*Test.java (~256 tok)
 - `fingerprints.json` (~116279 tok)
-- `knowledge-graph.json` (~127502 tok)
+- `knowledge-graph.json` (~127512 tok)
 - `meta.json` (~45 tok)
 
 ## .understand-anything/.trash-1782444828/
@@ -144,7 +140,7 @@
 ## Agents/ba-agent/
 
 - `.DS_Store` (~1640 tok)
-- `CLAUDE.md` — OpenWolf (~930 tok)
+- `CLAUDE.md` — BA Agent — Output Workspace (~216 tok)
 
 ## Agents/ba-agent/.claude/
 
@@ -158,9 +154,20 @@
 
 - `.gitkeep` (~0 tok)
 
+## Agents/ba-agent/outputs/inbound-lead-routing/
+
+- `context.json` (~302 tok)
+- `data-map.md` — Data Mapping: Inbound Lead Routing (~452 tok)
+- `index.md` — BA Package: Inbound Lead Routing (~174 tok)
+- `integration.mmd` (~158 tok)
+- `observe-log.md` — Observe Log (~231 tok)
+- `process.mmd` (~219 tok)
+- `sop.md` — SOP: Inbound Lead Routing (~755 tok)
+- `summary.md` — BA Package: Inbound Lead Routing (~671 tok)
+
 ## Agents/ba-agent/scripts/
 
-- `validate-mermaid.sh` — Usage: bash scripts/validate-mermaid.sh outputs/process.mmd (~180 tok)
+- `validate-mermaid.sh` — Usage: bash scripts/validate-mermaid.sh outputs/process.mmd (~277 tok)
 
 ## Agents/ba-agent/skills/
 
@@ -180,11 +187,11 @@
 
 ## backups/
 
-- `.claude.json.backup.1782445350889` — Declares breakdown (~8891 tok)
-- `.claude.json.backup.1782446105543` — Declares breakdown (~8891 tok)
-- `.claude.json.backup.1782446178973` (~8891 tok)
-- `.claude.json.backup.1782446253289` (~8891 tok)
-- `.claude.json.backup.1782446317089` (~8891 tok)
+- `.claude.json.backup.1782531841455` — Declares breakdown (~9196 tok)
+- `.claude.json.backup.1782531906774` (~9230 tok)
+- `.claude.json.backup.1782532647167` (~9230 tok)
+- `.claude.json.backup.1782532717476` (~9290 tok)
+- `.claude.json.backup.1782532777735` (~9290 tok)
 
 ## cache/
 
@@ -250,11 +257,31 @@
 
 ## file-history/408b78c6-fb3a-4dfe-a186-1826cdc6f15f/
 
+- `3cd8353c2c9425ee@v1` — Cerebrum (~1862 tok)
+- `3cd8353c2c9425ee@v2` — Cerebrum (~2512 tok)
 - `41428afe2173d7f7@v1` — # **/*Test.java (~179 tok)
 - `41428afe2173d7f7@v2` — # **/*Test.java (~251 tok)
 - `41428afe2173d7f7@v3` — # **/*Test.java (~256 tok)
 - `4b7bb86291ffbad9@v2` — Plan: Initialize ~/.claude as a Git Repository (~1299 tok)
 - `c0f499d9fd74f710@v2` — Runtime / ephemeral Claude Code data (~282 tok)
+- `c47760ed6c9ee802@v1` — System Instructions: Thin Harness, Fat Skills Environment (~893 tok)
+- `c47760ed6c9ee802@v2` — System Instructions: Thin Harness, Fat Skills Environment (~1011 tok)
+
+## file-history/52aeb251-6000-4916-8faa-64f152450b22/
+
+- `12d818ec9eb9e1d6@v2` — SOP: Inbound Lead Routing (~805 tok)
+- `328ad490b06fa4d4@v1` (~9 tok)
+- `5165755be57136f6@v2` — BA Package: Inbound Lead Routing (~186 tok)
+- `8ade2365d0ae338a@v2` — Data Mapping: Inbound Lead Routing (~482 tok)
+- `9614ce7b71896603@v2` (~282 tok)
+- `9d0dc81043b58bf7@v2` — # BA Agent session — 2026-06-26 (~126 tok)
+- `acdbe33f6caf465a@v1` — Usage: bash scripts/validate-mermaid.sh outputs/process.mmd (~168 tok)
+- `acdbe33f6caf465a@v2` — Usage: bash scripts/validate-mermaid.sh outputs/process.mmd (~258 tok)
+- `adae898aa06d995a@v2` — BA Package: Inbound Lead Routing (~716 tok)
+- `cd3231dbf842b4dc@v2` (~158 tok)
+- `ddb8a19d787053b3@v2` — Observe Log (~247 tok)
+- `e0d6f2a63a3ac4d3@v1` — Cerebrum (~165 tok)
+- `fa46906b0cd23150@v2` (~219 tok)
 
 ## file-history/53534f20-6dc4-4b37-857d-b89bf059febb/
 
@@ -269,6 +296,11 @@
 - `cfa72bc9a8bdc140@v1` (~424 tok)
 - `dad9aa259a03aa1c@v1` — PreToolUse hook: checks anatomy.md before Claude opens a file. (~535 tok)
 - `e5c8bc511ee2bf09@v1` (~424 tok)
+
+## file-history/60900757-643b-4980-842b-d7faa8c4a7b4/
+
+- `ab0ef73e6d105444@v1` — OpenWolf (~992 tok)
+- `ab0ef73e6d105444@v2` — BA Agent — Output Workspace (~116 tok)
 
 ## file-history/7f63e15c-a09e-4052-9528-32f7ec804712/
 
@@ -290,6 +322,14 @@
 - `f8a5c4c6a0f3b8f6@v1` (~754 tok)
 - `f8a5c4c6a0f3b8f6@v2` (~779 tok)
 
+## file-history/8fe38856-bc47-438e-a67d-38835c3eb7c4/
+
+- `1b61678ae50da3a6@v1` (~303 tok)
+- `1b61678ae50da3a6@v2` (~334 tok)
+- `3cd8353c2c9425ee@v1` — Cerebrum (~2512 tok)
+- `8752592b1922cfd9@v2` — Plan: Expose BA Agent as a Reachable Command (~556 tok)
+- `cf30335cec38bdb8@v2` (~104 tok)
+
 ## file-history/a397ba63-c079-4077-8278-68505464e61b/
 
 - `c15c82adf8165050@v1` (~1199 tok)
@@ -301,6 +341,23 @@
 - `e379b8ba1f2307c6@v3` — Plan: Disable Auto-Updates for Superpowers, OpenWolf, and gbrain (~772 tok)
 - `fc0b648a381fa7c1@v1` (~104 tok)
 - `fc0b648a381fa7c1@v2` (~103 tok)
+
+## file-history/c49f9bae-b19d-4fcf-9efe-d1eca6ca5093/
+
+- `2acd6d65f2c82913@v2` (~1208 tok)
+- `31ccfafb5247a916@v1` (~83 tok)
+- `31ccfafb5247a916@v2` (~91 tok)
+- `3cd8353c2c9425ee@v1` — Cerebrum (~2720 tok)
+- `3cd8353c2c9425ee@v2` — Cerebrum (~3340 tok)
+- `aa4954cd50ef5b14@v1` (~118 tok)
+- `aa4954cd50ef5b14@v2` (~230 tok)
+- `c47760ed6c9ee802@v1` — System Instructions: Thin Harness, Fat Skills Environment (~1011 tok)
+- `cfa4c5558a3ec354@v1` (~59 tok)
+- `cfa4c5558a3ec354@v2` (~65 tok)
+- `d9d264dcbb7e53bf@v1` (~1204 tok)
+- `d9d264dcbb7e53bf@v2` (~1204 tok)
+- `e109108c6327bfaa@v1` (~37041 tok)
+- `e109108c6327bfaa@v2` (~37114 tok)
 
 ## file-history/d6f2ff3b-88a0-4112-adc9-f62be7cb49de/
 
@@ -322,6 +379,15 @@
 - `dad9aa259a03aa1c@v2` — PreToolUse hook: checks anatomy.md before Claude opens a file. (~659 tok)
 - `dbb80f17757574a5@v2` (~551 tok)
 - `e4fd4ba21fab6ca8@v2` (~35 tok)
+
+## file-history/f5bfc5ff-e84c-411b-8b48-d059dbcdb3b3/
+
+- `31a2a3eee90333eb@v1` (~104 tok)
+- `c15c82adf8165050@v1` (~2312 tok)
+
+## file-history/fb94f48e-a473-4a19-830e-27d6be4d7eed/
+
+- `07bef9dce235dd8b@v2` — Install Anthropic Document Skills (~680 tok)
 
 ## hooks/
 
@@ -435,296 +501,260 @@
 - `i-dont-want-any-stateful-flame.md` — Plan: Disable Auto-Updates for Superpowers, OpenWolf, and gbrain (~723 tok)
 - `i-ve-been-spending-the-rosy-cray.md` — Advisory: session-reflect is manual — no auto-equivalent for cerebrum.md (~44 tok)
 - `i-was-trying-to-peaceful-avalanche.md` — Plan: LangSmith Tracing for Claude Code (~1298 tok)
+- `if-i-ask-you-tingly-whistle.md` — Install Anthropic Document Skills (~638 tok)
+- `if-i-execute-the-parsed-rabbit.md` — Plan: Register ba-agent as a True Sub-Agent (~1135 tok)
+- `should-i-just-delete-radiant-hammock.md` — Context (~252 tok)
 - `there-is-a-md-vivid-hedgehog.md` — BA Agent Build Plan (~1949 tok)
+- `to-verify-restart-claude-functional-boot.md` — Verify: ba-agent:ba Appears After Restart (~584 tok)
+- `what-sub-agents-do-golden-orbit.md` — Plan: Convert ba-agent to a Registered Sub-Agent (~905 tok)
 - `why-don-t-i-have-logical-gem.md` — Skills & Agents Consolidation Plan (~3440 tok)
+- `why-isnt-the-golden-elegant-turtle.md` — Plan: Fix gbrain MCP Server Connection (~550 tok)
 
 ## plugins/
 
+- `.DS_Store` (~1640 tok)
 - `.last_inuse_sweep` (~7 tok)
 - `blocklist.json` (~119 tok)
-- `installed_plugins.json` (~127 tok)
-- `known_marketplaces.json` (~156 tok)
+- `installed_plugins.json` (~246 tok)
+- `known_marketplaces.json` (~230 tok)
 
-## plugins/cache/understand-anything/understand-anything/2.8.1/
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/
 
-- `package.json` — Node.js package manifest (~159 tok)
-- `pnpm-lock.yaml` — pnpm lock file (~34792 tok)
-- `pnpm-workspace.yaml` (~112 tok)
-- `tsconfig.json` — TypeScript configuration (~123 tok)
-- `vitest.config.ts` — Vitest test configuration (~155 tok)
+- `.gitignore` — Git ignore rules (~11 tok)
+- `README.md` — Project documentation (~1388 tok)
+- `THIRD_PARTY_NOTICES.md` — **Third-Party Notices** (~11540 tok)
 
-## plugins/cache/understand-anything/understand-anything/2.8.1/.claude-plugin/
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/.claude-plugin/
 
-- `plugin.json` (~136 tok)
+- `marketplace.json` (~459 tok)
 
-## plugins/cache/understand-anything/understand-anything/2.8.1/.in_use/
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/.in_use/
 
-- `61489` (~14 tok)
+- `50239.tmp.25a94d08` (~14 tok)
+- `63976` (~14 tok)
 
-## plugins/cache/understand-anything/understand-anything/2.8.1/agents/
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/algorithmic-art/
 
-- `architecture-analyzer.md` — Architecture Analyzer (~5545 tok)
-- `article-analyzer.md` — Article Analyzer Agent (~1005 tok)
-- `assemble-reviewer.md` — Assemble Reviewer (~1252 tok)
-- `domain-analyzer.md` — Domain Analyzer Agent (~1414 tok)
-- `file-analyzer.md` — File Analyzer (~8322 tok)
-- `graph-reviewer.md` — Graph Reviewer (~2922 tok)
-- `knowledge-graph-guide.md` — What You Know (~1229 tok)
-- `project-scanner.md` — Project Scanner (~4101 tok)
-- `tour-builder.md` — Tour Builder (~5235 tok)
+- `LICENSE.txt` — Declares name (~2837 tok)
+- `SKILL.md` — ALGORITHMIC PHILOSOPHY CREATION (~4934 tok)
 
-## plugins/cache/understand-anything/understand-anything/2.8.1/hooks/
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/algorithmic-art/templates/
 
-- `auto-update-prompt.md` — Auto-Update Knowledge Graph (Internal — Hook-Triggered) (~3841 tok)
-- `hooks.json` (~435 tok)
+- `generator_template.js` — ═══════════════════════════════════════════════════════════════════════════ (~2108 tok)
+- `viewer.html` — Generative Art Viewer (~5174 tok)
 
-## plugins/cache/understand-anything/understand-anything/2.8.1/packages/core/
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/brand-guidelines/
 
-- `package.json` — Node.js package manifest (~430 tok)
-- `tsconfig.json` — TypeScript configuration (~123 tok)
-- `vitest.config.ts` — Vitest test configuration (~41 tok)
+- `LICENSE.txt` — Declares name (~2837 tok)
+- `SKILL.md` — Anthropic Brand Styling (~559 tok)
 
-## plugins/cache/understand-anything/understand-anything/2.8.1/packages/core/src/
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/canvas-design/
 
-- `change-classifier.ts` — Classify the type of graph update needed based on structural change analysis. (~1340 tok)
-- `embedding-search.ts` — Compute cosine similarity between two vectors. (~609 tok)
-- `fingerprint.ts` — Compute SHA-256 content hash for a file's content. (~3101 tok)
-- `ignore-filter.ts` — Hardcoded default ignore patterns matching the project-scanner agent's (~679 tok)
-- `ignore-generator.ts` — Exports generateStarterIgnoreFile (~1491 tok)
-- `index.ts` — Declares ValidationResult (~911 tok)
-- `schema.ts` — Edge types (35 values across 8 categories) (~5972 tok)
-- `search.ts` — Exports SearchResult, SearchOptions, SearchEngine (~490 tok)
-- `staleness.ts` — Get the list of files that changed between a given commit and HEAD. (~730 tok)
-- `types.test.ts` — Declares graph (~2018 tok)
-- `types.ts` — Parser-reported definition kind. Known values: "table", "view", "index", "message", "enum", "type", "input", "interface", "union", "scalar", "varia... (~1654 tok)
+- `LICENSE.txt` — Declares name (~2837 tok)
+- `SKILL.md` — DESIGN PHILOSOPHY CREATION (~2985 tok)
 
-## plugins/cache/understand-anything/understand-anything/2.8.1/packages/core/src/__tests__/
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/canvas-design/canvas-fonts/
 
-- `change-classifier.test.ts` — Declares makeAnalysis (~1799 tok)
-- `domain-normalize.test.ts` — Declares result (~398 tok)
-- `domain-persistence.test.ts` — Declares testRoot (~544 tok)
-- `domain-types.test.ts` — Declares domainGraph (~1192 tok)
-- `embedding-search.test.ts` — Declares nodes (~986 tok)
-- `fingerprint.test.ts` — Declares FileFingerprint (~3966 tok)
-- `framework-registry.test.ts` — Declares registry (~1371 tok)
-- `ignore-filter.test.ts` — Declares filter (~1641 tok)
-- `ignore-generator.test.ts` — Declares content (~3207 tok)
-- `language-lesson.test.ts` — Declares sampleNode (~1354 tok)
-- `language-registry.test.ts` — Declares registry (~2285 tok)
-- `layer-detector.test.ts` — Declares makeNode (~1922 tok)
-- `normalize-graph.test.ts` — Declares ID (~4214 tok)
-- `parsers.test.ts` — Declares parser (~7270 tok)
-- `plugin-discovery.test.ts` — Declares PluginConfig (~1066 tok)
-- `plugin-registry.test.ts` — emptyAnalysis: createMockPlugin (~2422 tok)
-- `schema.test.ts` — Declares validGraph (~7193 tok)
-- `search.test.ts` — Declares makeNode (~1478 tok)
-- `staleness.test.ts` — mockedExecFileSync: makeGraph (~1875 tok)
-- `tour-generator.test.ts` — Declares sampleGraph (~2896 tok)
+- `ArsenalSC-OFL.txt` — Declares of (~1094 tok)
+- `BigShoulders-OFL.txt` — Declares of (~1100 tok)
+- `Boldonse-OFL.txt` — Declares of (~1098 tok)
+- `BricolageGrotesque-OFL.txt` — Declares of (~1101 tok)
+- `CrimsonPro-OFL.txt` — Declares of (~1099 tok)
+- `DMMono-OFL.txt` — Declares of (~1098 tok)
+- `EricaOne-OFL.txt` — Declares of (~1103 tok)
+- `GeistMono-OFL.txt` — Declares of (~1097 tok)
+- `Gloock-OFL.txt` — Declares of (~1096 tok)
+- `IBMPlexMono-OFL.txt` — Declares of (~1091 tok)
+- `InstrumentSans-OFL.txt` — Declares of (~1101 tok)
+- `Italiana-OFL.txt` — Declares of (~1099 tok)
+- `JetBrainsMono-OFL.txt` — Declares of (~1100 tok)
+- `Jura-OFL.txt` — Declares of (~1095 tok)
+- `LibreBaskerville-OFL.txt` — Declares of (~1113 tok)
+- `Lora-OFL.txt` — Declares of (~1106 tok)
+- `NationalPark-OFL.txt` — Declares of (~1100 tok)
+- `NothingYouCouldDo-OFL.txt` — Declares of (~1091 tok)
+- `Outfit-OFL.txt` — Declares of (~1098 tok)
+- `PixelifySans-OFL.txt` — Declares of (~1099 tok)
+- `PoiretOne-OFL.txt` — Declares of (~1092 tok)
+- `RedHatMono-OFL.txt` — Declares of (~1099 tok)
+- `Silkscreen-OFL.txt` — Declares of (~1099 tok)
+- `SmoochSans-OFL.txt` — Declares of (~1099 tok)
+- `Tektur-OFL.txt` — Declares of (~1097 tok)
+- `WorkSans-OFL.txt` — Declares of (~1100 tok)
+- `YoungSerif-OFL.txt` — Declares of (~1100 tok)
 
-## plugins/cache/understand-anything/understand-anything/2.8.1/packages/core/src/analyzer/
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/
 
-- `graph-builder.test.ts` — Declares builder (~4136 tok)
-- `graph-builder.ts` — Exports GraphBuilder (~2603 tok)
-- `language-lesson.ts` — Base concept patterns that apply across all languages. (~1797 tok)
-- `layer-detector.ts` — LLM layer response structure — what the LLM returns for each layer. (~2442 tok)
-- `llm-analyzer.test.ts` — Exports add, add (~2254 tok)
-- `llm-analyzer.ts` — Generates a prompt for analyzing a single source file with an LLM. (~1673 tok)
-- `normalize-graph.ts` — Strips all non-valid prefixes from an ID, returning the bare path (~3134 tok)
-- `tour-generator.ts` — Builds an LLM prompt asking for a guided tour of the project. (~2526 tok)
+- `LICENSE.txt` — Declares name (~2837 tok)
+- `SKILL.md` — Building LLM-Powered Applications with Claude (~10410 tok)
 
-## plugins/cache/understand-anything/understand-anything/2.8.1/packages/core/src/languages/
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/csharp/
 
-- `framework-registry.ts` — Registry for framework configurations. Provides detection of frameworks (~735 tok)
-- `index.ts` (~154 tok)
-- `language-registry.ts` — Registry for language configurations. Maps language ids and file extensions (~629 tok)
-- `types.ts` — Strict schema with refinement: ensures at least one extension or filename (~685 tok)
+- `claude-api.md` — Claude API — C# (~3907 tok)
 
-## plugins/cache/understand-anything/understand-anything/2.8.1/packages/core/src/languages/configs/
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/curl/
 
-- `batch.ts` — Exports batchConfig (~112 tok)
-- `c.ts` — Exports cConfig (~183 tok)
-- `cpp.ts` — Exports cppConfig (~206 tok)
-- `csharp.ts` — Exports csharpConfig (~190 tok)
-- `css.ts` — Exports cssConfig (~113 tok)
-- `csv.ts` — Exports csvConfig (~96 tok)
-- `dart.ts` — /*_test.dart"], (~200 tok)
-- `docker-compose.ts` — Exports dockerComposeConfig (~152 tok)
-- `dockerfile.ts` — Exports dockerfileConfig (~140 tok)
-- `env.ts` — Exports envConfig (~143 tok)
-- `github-actions.ts` — Exports githubActionsConfig (~120 tok)
-- `go.ts` — Exports goConfig (~176 tok)
-- `graphql.ts` — Exports graphqlConfig (~118 tok)
-- `html.ts` — Exports htmlConfig (~116 tok)
-- `index.ts` — Exports builtinLanguageConfigs (~985 tok)
-- `java.ts` — /App.java", (~216 tok)
-- `javascript.ts` — Exports javascriptConfig (~206 tok)
-- `jenkinsfile.ts` — Exports jenkinsfileConfig (~128 tok)
-- `json-config.ts` — Exports jsonConfigConfig (~123 tok)
-- `json-schema.ts` — TODO: JSON Schema files have no unique extension — *.schema.json files will match (~207 tok)
-- `kotlin.ts` — Exports kotlinConfig (~204 tok)
-- `kubernetes.ts` — TODO: Kubernetes manifests are YAML files with no unique extension or filename. (~239 tok)
-- `lua.ts` — Exports luaConfig (~148 tok)
-- `makefile.ts` — Exports makefileConfig (~128 tok)
-- `markdown.ts` — Exports markdownConfig (~111 tok)
-- `openapi.ts` — Exports openapiConfig (~140 tok)
-- `php.ts` — /*.php"], (~187 tok)
-- `plaintext.ts` — Exports plaintextConfig (~96 tok)
-- `powershell.ts` — Exports powershellConfig (~116 tok)
-- `protobuf.ts` — Exports protobufConfig (~112 tok)
-- `python.ts` — Exports pythonConfig (~258 tok)
-- `restructuredtext.ts` — Exports restructuredtextConfig (~120 tok)
-- `ruby.ts` — Exports rubyConfig (~184 tok)
-- `rust.ts` — Exports rustConfig (~195 tok)
-- `shell.ts` — Exports shellConfig (~124 tok)
-- `sql.ts` — Exports sqlConfig (~108 tok)
-- `swift.ts` — /*.swift"], (~173 tok)
-- `terraform.ts` — Exports terraformConfig (~127 tok)
-- `toml.ts` — Exports tomlConfig (~116 tok)
-- `typescript.ts` — Exports typescriptConfig (~218 tok)
-- `xml.ts` — Exports xmlConfig (~122 tok)
-- `yaml.ts` — Exports yamlConfig (~107 tok)
+- `examples.md` — Claude API — cURL / Raw HTTP (~1629 tok)
+- `managed-agents.md` — Managed Agents — cURL / Raw HTTP (~1855 tok)
 
-## plugins/cache/understand-anything/understand-anything/2.8.1/packages/core/src/languages/frameworks/
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/go/
 
-- `django.ts` — Exports djangoConfig (~230 tok)
-- `express.ts` — Exports expressConfig (~186 tok)
-- `fastapi.ts` — Exports fastapiConfig (~170 tok)
-- `flask.ts` — Exports flaskConfig (~189 tok)
-- `gin.ts` — Exports ginConfig (~143 tok)
-- `index.ts` — Exports builtinFrameworkConfigs (~247 tok)
-- `nextjs.ts` — Exports nextjsConfig (~166 tok)
-- `rails.ts` — Exports railsConfig (~183 tok)
-- `react.ts` — Exports reactConfig (~162 tok)
-- `spring.ts` — Exports springConfig (~199 tok)
-- `vue.ts` — Exports vueConfig (~160 tok)
+- `claude-api.md` — Claude API — Go (~3676 tok)
 
-## plugins/cache/understand-anything/understand-anything/2.8.1/packages/core/src/persistence/
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/go/managed-agents/
 
-- `index.ts` — Sanitise every node's filePath before writing to disk. (~1639 tok)
-- `persistence.test.ts` — Declares sampleGraph (~1734 tok)
+- `README.md` — Project documentation (~4613 tok)
 
-## plugins/cache/understand-anything/understand-anything/2.8.1/packages/core/src/plugins/
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/java/
 
-- `discovery.ts` — Parse a plugin config JSON string. (~529 tok)
-- `registry.ts` — Registry for analyzer plugins. Maps languages to plugins and provides (~763 tok)
-- `tree-sitter-plugin.test.ts` — Exports greet, add, Logger, Options + 3 more (~2632 tok)
-- `tree-sitter-plugin.ts` — Config-driven tree-sitter plugin. (~2689 tok)
+- `claude-api.md` — Claude API — Java (~3956 tok)
 
-## plugins/cache/understand-anything/understand-anything/2.8.1/packages/core/src/plugins/extractors/
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/java/managed-agents/
 
-- `base-extractor.ts` — Recursively traverse an AST tree, calling the visitor for each node. (~473 tok)
-- `cpp-extractor.ts` — Recursively unwrap nested declarators (pointer_declarator, reference_declarator, (~4653 tok)
-- `csharp-extractor.ts` — Extract parameter names from a C# `parameter_list` node. (~4459 tok)
-- `dart-extractor.ts` — Whether a Dart name is exported. (~7958 tok)
-- `go-extractor.ts` — Extract parameter names from a Go `parameter_list` node. (~3430 tok)
-- `index.ts` — Exports builtinExtractors (~500 tok)
-- `java-extractor.ts` — Extract parameter names from a Java `formal_parameters` node. (~3669 tok)
-- `kotlin-extractor.ts` — Extract the visibility keyword text (e.g., "public", "private") from a (~4083 tok)
-- `php-extractor.ts` — Extract parameter names from a PHP `formal_parameters` node. (~4285 tok)
-- `python-extractor.ts` — Extract parameter names from a Python `parameters` node. (~2961 tok)
-- `ruby-extractor.ts` — Set of method names that Ruby uses for imports. (~3539 tok)
-- `rust-extractor.ts` — Extract parameter names from a Rust `parameters` node. (~4228 tok)
-- `types.ts` — Language-specific extractor that maps a tree-sitter AST (~212 tok)
-- `typescript-extractor.ts` — Extract parameter names from a formal_parameters node. (~4079 tok)
+- `README.md` — Project documentation (~4139 tok)
 
-## plugins/cache/understand-anything/understand-anything/2.8.1/packages/core/src/plugins/extractors/__tests__/
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/php/
 
-- `cpp-extractor.test.ts` — require: parse (~5461 tok)
-- `csharp-extractor.test.ts` — require: parse (~5327 tok)
-- `dart-extractor.test.ts` — require: parse, value, width (~6144 tok)
-- `go-extractor.test.ts` — require: parse (~4415 tok)
-- `java-extractor.test.ts` — require: parse (~4692 tok)
-- `kotlin-extractor.test.ts` — require: parse (~3184 tok)
-- `php-extractor.test.ts` — require: parse, helper, greet + 20 more (~5550 tok)
-- `python-extractor.test.ts` — require: parse (~5155 tok)
-- `ruby-extractor.test.ts` — require: parse (~5139 tok)
-- `rust-extractor.test.ts` — require: parse (~5904 tok)
+- `claude-api.md` — Claude API — PHP (~2951 tok)
 
-## plugins/cache/understand-anything/understand-anything/2.8.1/packages/core/src/plugins/parsers/
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/php/managed-agents/
 
-- `dockerfile-parser.ts` — Parses Dockerfiles to extract multi-stage build stages, EXPOSE ports, and instruction steps. (~801 tok)
-- `env-parser.ts` — Parses .env files to extract environment variable definitions. (~346 tok)
-- `graphql-parser.ts` — Parses GraphQL schema files to extract type, input, enum, interface, union, and scalar definitions. (~1106 tok)
-- `index.ts` — Register all built-in non-code parsers with a PluginRegistry. (~560 tok)
-- `json-parser.ts` — Strip JSONC syntax (line comments, block comments, trailing commas) so the (~1227 tok)
-- `makefile-parser.ts` — Parses Makefiles to extract build targets and their line ranges. (~488 tok)
-- `markdown-parser.ts` — Parses Markdown files to extract heading sections and local file/image references. (~740 tok)
-- `protobuf-parser.ts` — Parses Protocol Buffer (.proto) files to extract message, enum, and service definitions. (~1340 tok)
-- `shell-parser.ts` — Parses shell scripts (.sh, .bash) to extract function definitions and source references. (~881 tok)
-- `sql-parser.ts` — Parses SQL files to extract table, view, and index definitions. (~958 tok)
-- `terraform-parser.ts` — Parses Terraform (.tf) files to extract resource, data, module, variable, and output blocks. (~1280 tok)
-- `toml-parser.ts` — Parses TOML files to extract section headers ([section] and [[array-of-tables]]). (~422 tok)
-- `yaml-parser.ts` — Parses YAML configuration files to extract top-level key sections. (~1088 tok)
+- `README.md` — Project documentation (~3287 tok)
 
-## plugins/cache/understand-anything/understand-anything/2.8.1/packages/dashboard/
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/python/claude-api/
 
-- `index.html` — Understand Anything (~188 tok)
-- `package.json` — Node.js package manifest (~340 tok)
-- `tsconfig.app.json` (~180 tok)
-- `tsconfig.json` — TypeScript configuration (~21 tok)
-- `vite.config.demo.ts` (~478 tok)
-- `vite.config.ts` — Vite build configuration (~3628 tok)
+- `batches.md` — Message Batches API — Python (~1397 tok)
+- `files-api.md` — Files API — Python (~1094 tok)
+- `README.md` — Project documentation (~4151 tok)
+- `streaming.md` — Streaming — Python (~1514 tok)
+- `tool-use.md` — Tool Use — Python (~4231 tok)
 
-## plugins/cache/understand-anything/understand-anything/2.8.1/packages/dashboard/public/
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/python/managed-agents/
 
-- `knowledge-graph.json` — Declares contract (~29042 tok)
+- `README.md` — Project documentation (~2495 tok)
 
-## plugins/cache/understand-anything/understand-anything/2.8.1/packages/dashboard/scripts/
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/ruby/
 
-- `benchmark-aggregations.mjs` — Per-layer aggregation perf benchmark. (~912 tok)
-- `benchmark-layout.mjs` — Default missing width/height on every node (mirrors repairElkInput's (~720 tok)
+- `claude-api.md` — Claude API — Ruby (~875 tok)
 
-## plugins/cache/understand-anything/understand-anything/2.8.1/packages/dashboard/src/
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/ruby/managed-agents/
 
-- `App.tsx` — Resolve data file URL — in demo mode, use env var URLs; otherwise use local paths with token. (~7887 tok)
-- `index.css` — /*.{ts,tsx,js,jsx,html}"; (~1766 tok)
-- `main.tsx` (~66 tok)
-- `store.ts` — Categories used for node type filter toggles. Single source of truth for NodeCategory. (~7739 tok)
-- `vite-env.d.ts` — / <reference types="vite/client" /> (~11 tok)
+- `README.md` — Project documentation (~2535 tok)
 
-## plugins/cache/understand-anything/understand-anything/2.8.1/packages/dashboard/src/components/
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/shared/
 
-- `Breadcrumb.tsx` — Breadcrumb (~468 tok)
-- `CodeViewer.tsx` — fileContentUrl — uses useEffect, useMemo (~2772 tok)
-- `ContainerNode.tsx` — ContainerNodeComponent (~913 tok)
-- `CustomNode.tsx` — Color maps keyed by NodeType — must be kept in sync with core NodeType union. (~1782 tok)
-- `DiffToggle.tsx` — DiffToggle (~657 tok)
-- `DomainClusterNode.tsx` — DomainClusterNode (~699 tok)
-- `DomainGraphView.tsx` — nodeTypes — uses useEffect (~2443 tok)
-- `ExportMenu.tsx` — escapeXml — uses useEffect (~3104 tok)
-- `FileExplorer.tsx` — normalizeFilePath — uses useMemo (~1875 tok)
-- `FilterPanel.tsx` — FilterPanel — uses useEffect (~2495 tok)
-- `FlowNode.tsx` — FlowNode (~494 tok)
-- `GraphView.tsx` — Maps each NodeType to a filter category. Must be kept in sync with core NodeType. (~16842 tok)
-- `KeyboardShortcutsHelp.tsx` — KeyboardShortcutsHelp (~1009 tok)
-- `KnowledgeGraphView.tsx` — Edge style presets by knowledge edge type. (~2839 tok)
-- `LayerClusterNode.tsx` — complexityColors (~943 tok)
-- `LayerLegend.tsx` — Shared layer color palette — used by LayerLegend, LayerClusterNode, PortalNode, and GraphView (~859 tok)
-- `LearnPanel.tsx` — LearnPanel — uses useMemo (~2432 tok)
-- `MobileBottomNav.tsx` — tabIcons (~680 tok)
-- `MobileDrawer.tsx` — SectionLabel — uses useEffect (~2846 tok)
-- `MobileLayout.tsx` — CodeViewer — uses useState, useEffect (~2281 tok)
-- `NodeInfo.tsx` — Badge color classes keyed by NodeType — must be kept in sync with core NodeType union. (~6450 tok)
-- `NodeTooltip.tsx` — NodeTooltip — uses useState, useEffect (~1324 tok)
-- `OnboardingOverlay.tsx` — First-visit onboarding overlay (controlled). (~1937 tok)
-- `PathFinderModal.tsx` — PathFinderModal — uses useState, useEffect (~3304 tok)
-- `PersonaSelector.tsx` — PersonaSelector (~384 tok)
-- `PortalNode.tsx` — PortalNode (~555 tok)
-- `ProjectOverview.tsx` — ProjectOverview (~3068 tok)
-- `SearchBar.tsx` — typeBadgeColors — uses useState, useMemo, useCallback, useEffect (~2168 tok)
-- `StepNode.tsx` — StepNode (~505 tok)
-- `ThemePicker.tsx` — ThemePicker — uses useState, useEffect, useCallback (~1954 tok)
-- `TokenGate.tsx` — TokenGate — renders form — uses useState (~779 tok)
-- `WarningBanner.tsx` — buildCopyText — uses useState, useCallback (~2907 tok)
+- `agent-design.md` — Agent Design Patterns (~2131 tok)
+- `anthropic-cli.md` — Anthropic CLI (`ant`) (~4035 tok)
+- `claude-platform-on-aws.md` — Claude Platform on AWS (~981 tok)
+- `error-codes.md` — HTTP Error Codes Reference (~2413 tok)
+- `live-sources.md` — Live Documentation Sources (~4704 tok)
+- `managed-agents-api-reference.md` — Managed Agents — Endpoint Reference (~7018 tok)
+- `managed-agents-client-patterns.md` — Managed Agents — Common Client Patterns (~2410 tok)
+- `managed-agents-core.md` — Managed Agents — Core Concepts (~3804 tok)
+- `managed-agents-environments.md` — Managed Agents — Environments & Resources (~2862 tok)
+- `managed-agents-events.md` — Managed Agents — Events & Steering (~2699 tok)
+- `managed-agents-memory.md` — Managed Agents — Memory Stores (~2382 tok)
+- `managed-agents-multiagent.md` — Managed Agents — Multiagent Sessions (~1631 tok)
+- `managed-agents-onboarding.md` — Managed Agents — Onboarding Flow (~3319 tok)
+- `managed-agents-outcomes.md` — Managed Agents — Outcomes (~1526 tok)
+- `managed-agents-overview.md` — Managed Agents — Overview (~2735 tok)
+- `managed-agents-scheduled-deployments.md` — Managed Agents — Scheduled Deployments (~1613 tok)
+- `managed-agents-self-hosted-sandboxes.md` — Managed Agents — Self-Hosted Sandboxes (~2533 tok)
+- `managed-agents-tools.md` — Managed Agents — Tools & Skills (~4434 tok)
+- `managed-agents-webhooks.md` — Managed Agents — Webhooks (~1256 tok)
+- `model-migration.md` — Model Migration Guide (~29545 tok)
+- `models.md` — Claude Model Catalog (~2510 tok)
+- `prompt-caching.md` — Prompt Caching — Design & Optimization (~3582 tok)
+- `token-counting.md` — Token Counting (~401 tok)
+- `tool-use-concepts.md` — Tool Use Concepts (~4461 tok)
 
-## plugins/cache/understand-anything/understand-anything/2.8.1/packages/dashboard/src/contexts/
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/typescript/claude-api/
 
-- `I18nContext.tsx` — I18nContext — uses useContext, useMemo (~282 tok)
+- `batches.md` — Message Batches API — TypeScript (~649 tok)
+- `files-api.md` — Files API — TypeScript (~565 tok)
+- `README.md` — Project documentation (~2965 tok)
+- `streaming.md` — Streaming — TypeScript (~1400 tok)
+- `tool-use.md` — Tool Use — TypeScript (~3832 tok)
 
-## plugins/cache/understand-anything/understand-anything/2.8.1/packages/dashboard/src/hooks/
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/typescript/managed-agents/
 
-- `useIsMobile.ts` — Exports useIsMobile (~198 tok)
+- `README.md` — Project documentation (~2362 tok)
 
-## skills/
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/doc-coauthoring/
 
-- `ba.md` (~97 tok)
+- `SKILL.md` — Doc Co-Authoring Workflow (~3954 tok)
+
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/docx/
+
+- `LICENSE.txt` (~367 tok)
+- `SKILL.md` — DOCX creation, editing, and analysis (~5014 tok)
+
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/docx/scripts/
+
+- `__init__.py` (~1 tok)
+- `accept_changes.py` — Accept all tracked changes in a DOCX file using LibreOffice. (~1158 tok)
+- `comment.py` — Add comments to DOCX documents. (~3056 tok)
+
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/docx/scripts/office/
+
+- `pack.py` — Pack a directory into a DOCX, PPTX, or XLSX file. (~1426 tok)
+- `soffice.py` — get_soffice_env, run_soffice (~1513 tok)
+- `unpack.py` — Unpack Office files (DOCX, PPTX, XLSX) for editing. (~1158 tok)
+- `validate.py` — main (~1048 tok)
+
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/docx/scripts/office/helpers/
+
+- `__init__.py` (~0 tok)
+- `merge_runs.py` — Merge adjacent runs with identical formatting in DOCX. (~1591 tok)
+- `simplify_redlines.py` — Simplify tracked changes by merging adjacent w:ins or w:del elements. (~1644 tok)
+
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/docx/scripts/office/schemas/ISO-IEC29500-4_2016/
+
+- `dml-chart.xsd` (~19996 tok)
+- `dml-chartDrawing.xsd` (~1855 tok)
+- `dml-diagram.xsd` (~13681 tok)
+- `dml-lockedCanvas.xsd` (~167 tok)
+- `dml-main.xsd` (~40544 tok)
+- `dml-picture.xsd` (~329 tok)
+- `dml-spreadsheetDrawing.xsd` (~2364 tok)
+- `dml-wordprocessingDrawing.xsd` (~3946 tok)
+- `pml.xsd` (~22297 tok)
+- `shared-additionalCharacteristics.xsd` (~339 tok)
+- `shared-bibliography.xsd` (~1955 tok)
+- `shared-commonSimpleTypes.xsd` (~1702 tok)
+- `shared-customXmlDataProperties.xsd` (~333 tok)
+- `shared-customXmlSchemaProperties.xsd` (~235 tok)
+- `shared-documentPropertiesCustom.xsd` (~696 tok)
+- `shared-documentPropertiesExtended.xsd` (~936 tok)
+- `shared-documentPropertiesVariantTypes.xsd` (~2002 tok)
+- `shared-math.xsd` (~6217 tok)
+- `shared-relationshipReference.xsd` (~365 tok)
+- `sml.xsd` (~64608 tok)
+- `vml-main.xsd` (~6973 tok)
+- `vml-officeDrawing.xsd` (~6742 tok)
+- `vml-presentationDrawing.xsd` (~143 tok)
+- `vml-spreadsheetDrawing.xsd` (~1524 tok)
+- `vml-wordprocessingDrawing.xsd` (~1070 tok)
+- `wml.xsd` (~45698 tok)
+- `xml.xsd` — Declares which (~1239 tok)
+
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/docx/scripts/office/schemas/ecma/fouth-edition/
+
+- `opc-contentTypes.xsd` (~523 tok)
+- `opc-coreProperties.xsd` (~671 tok)
+- `opc-digSig.xsd` (~762 tok)
+- `opc-relationships.xsd` (~358 tok)
+
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/docx/scripts/office/schemas/mce/
+
+- `mc.xsd` (~834 tok)
+
+## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/docx/scripts/office/schemas/microsoft/
+
+- `wml-2010.xsd` (~7080 tok)
+- `wml-2012.xsd` (~999 tok)
+- `wml-2018.xsd` (~241 tok)
+- `wml-cex-2018.xsd` (~475 tok)
+- `wml-cid-2016.xsd` (~268 tok)
+- `wml-sdtdatahash-2020.xsd` (~160 tok)
+- `wml-symex-2015.xsd` (~199 tok)

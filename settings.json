@@ -252,21 +252,29 @@
       }
     ]
   },
+  "enabledPlugins": {
+    "understand-anything@understand-anything": true,
+    "claude-plugins-official@security-guidance": true,
+    "claude-plugins-official@skill-creator": true,
+    "claude-plugins-official@feature-dev": true,
+    "claude-plugins-official@plugin-dev": true,
+    "claude-plugins-official@ba-agent": true,
+    "document-skills@anthropic-agent-skills": true
+  },
   "extraKnownMarketplaces": {
     "understand-anything": {
       "source": {
         "source": "github",
         "repo": "Egonex-AI/Understand-Anything"
       }
+    },
+    "anthropic-agent-skills": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/skills"
+      }
     }
   },
   "autoUpdatesChannel": "latest",
-  "theme": "dark-daltonized",
-  "enabledPlugins": {
-    "understand-anything@understand-anything": true,
-    "claude-plugins-official@security-guidance": true,
-    "claude-plugins-official@skill-creator": true,
-    "claude-plugins-official@feature-dev": true,
-    "claude-plugins-official@plugin-dev": true
-  }
+  "theme": "dark-daltonized"
 }
