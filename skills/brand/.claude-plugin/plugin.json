@@ -1,0 +1,11 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "brand",
+  "version": "1.0.0",
+  "description": "Paul McKay personal brand enforcement skill. Reads brand-guide.md and outputs a Brand Spec Card before any document or output is created.",
+  "author": {
+    "name": "paulmckay",
+    "email": "paulchangmckay@gmail.com"
+  },
+  "skills": ["./"]
+}

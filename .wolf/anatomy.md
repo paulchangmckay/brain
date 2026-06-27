@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-27T04:00:52.503Z
-> Files: 507 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-06-27T04:54:54.498Z
+> Files: 513 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -10,7 +10,7 @@
 - `.gitmodules` (~58 tok)
 - `.last-cleanup` (~7 tok)
 - `.last-update-result.json` (~46 tok)
-- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~1088 tok)
+- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~1148 tok)
 - `mcp_servers.json` (~38 tok)
 - `mcp-needs-auth-cache.json` (~28 tok)
 - `settings.json` (~2542 tok)
@@ -172,9 +172,12 @@
 ## Agents/ba-agent/skills/
 
 - `ba-package.md` — Skill: BA Package Assembly (~813 tok)
+- `comms-3p.md` — Skill: 3P Update Co-Authoring (~971 tok)
+- `comms-faq.md` — Skill: FAQ Sheet Co-Authoring (~1038 tok)
 - `data-mapping.md` — Skill: Data Mapping (~769 tok)
 - `intake.md` — Skill: Brief Normaliser (~942 tok)
-- `planner.md` — Skill: Planner + Observe (~869 tok)
+- `planner.md` — Skill: Planner + Observe (~1222 tok)
+- `png-render.md` — Skill: PNG Rendering + Docs Manifest (~747 tok)
 - `process-viz.md` — Skill: Process Visualisation (~554 tok)
 - `sop-writer.md` — Skill: SOP Writer (~1136 tok)
 - `system-integration-viz.md` — Skill: System Integration Visualisation (~487 tok)
@@ -500,6 +503,7 @@
 - `i-dont-see-my-proud-hejlsberg.md` — Plan: Expose BA Agent as a Reachable Command (~521 tok)
 - `i-dont-want-any-stateful-flame.md` — Plan: Disable Auto-Updates for Superpowers, OpenWolf, and gbrain (~723 tok)
 - `i-ve-been-spending-the-rosy-cray.md` — Advisory: session-reflect is manual — no auto-equivalent for cerebrum.md (~44 tok)
+- `i-want-to-build-humble-tarjan.md` — Plan: Session Reflect — BA Agent Enhancement Session (2026-06-27) (~773 tok)
 - `i-was-trying-to-peaceful-avalanche.md` — Plan: LangSmith Tracing for Claude Code (~1298 tok)
 - `if-i-ask-you-tingly-whistle.md` — Install Anthropic Document Skills (~638 tok)
 - `if-i-execute-the-parsed-rabbit.md` — Plan: Register ba-agent as a True Sub-Agent (~1135 tok)
@@ -758,3 +762,11 @@
 - `wml-cid-2016.xsd` (~268 tok)
 - `wml-sdtdatahash-2020.xsd` (~160 tok)
 - `wml-symex-2015.xsd` (~199 tok)
+
+## skills/ba-agent/
+
+- `SKILL.md` — ba-agent (~1685 tok)
+
+## skills/ba-agent/agents/
+
+- `ba.md` — Invocation (~1279 tok)

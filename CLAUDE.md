@@ -9,6 +9,7 @@
 
 | When | Invoke |
 |------|--------|
+| Before creating any output (PDF, slides, doc, PRD, image, email, diagram) | `brand` (HARD-GATE: brand specs before creating) |
 | Before any feature work or new task | `brainstorming` (HARD-GATE: no code until design approved) |
 | After brainstorm approval | `writing-plans` |
 | Before touching code | `test-driven-development` (IRON LAW: failing test first) |
@@ -25,6 +26,7 @@
 - **Subagent routing:** For any exploration spanning more than 3 files, spawn an Explore subagent — this protects the main context window from search noise.
 - **Before fixing bugs:** Cross-reference `.wolf/buglog.json` and `.wolf/cerebrum.md` to avoid known anti-patterns.
 - **End of session:** invoke `session-reflect` skill — Phase 1 updates `.wolf/cerebrum.md` (always); Phase 2 conditionally audits CLAUDE.md files for team-worthy learnings (requires approval).
+- **Worktree path isolation:** `EnterWorktree` creates an isolated branch, but absolute-path edits write to the MAIN working tree. Use relative paths or `cd <worktree-path>` before editing to actually isolate changes on the feature branch.
 
 ## 5. Personal Knowledge Layer (brain MCP)
 - **MCP server:** `brain` — filesystem server rooted at `~/brain/` (people/, companies/, concepts/, decisions/)
@@ -46,6 +48,10 @@
 - **Local plugins** (no upstream git repo): `claude plugins init <name> --with agents` → scaffolds at `~/.claude/skills/<name>/`, auto-loads as `<name>@skills-dir` — no marketplace or install step needed
 - **YAML agent frontmatter:** quote any `description:` value that contains `: ` (colon-space) or the parser silently drops all frontmatter
 - **Do NOT** manually edit `installed_plugins.json` — source type validation blocks loading even with a valid `installPath`; use `claude plugins validate <path>` to check before wiring
+
+## 9. Brand / Document Skill Convention
+- **Brand/structure separation:** In document skill briefs, never hardcode brand values (hex codes, font names, sizes) — say "Apply Brand Spec Card" and let `~/.claude/brand/brand-guide.md` be the only source. Only format-structural constraints (DXA widths, slide count, `No \n in paragraphs`) belong in the skill file itself.
+- **Brand source of truth:** `~/.claude/brand/brand-guide.md` → read at runtime by `~/.claude/skills/brand/SKILL.md` → outputs Brand Spec Card → referenced by all document briefs. Updating brand-guide.md propagates everywhere automatically.
 
 ## 4. New Project Bootstrap
 When starting work in a project that has no `.wolf/` directory, invoke the `wolf-init` skill or run manually:
