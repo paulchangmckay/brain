@@ -37,6 +37,11 @@
 - **Location:** `~/.claude/Agents/<agent-name>/` — each has its own CLAUDE.md, skills/, templates/, outputs/, scripts/
 - **Open with:** `claude ~/.claude/Agents/<agent-name>/`
 
+## 7. Knowledge Graph (`understand-anything`)
+- `~/.claude` is tracked in git (baseline `b354ad3`). Commit changes regularly so understand-anything uses incremental updates (1-5 batches) instead of full rebuilds (32 batches).
+- Re-analyze after changes: `/understand-anything:understand ~.claude`
+- `langsmith-plugin` and `superpowers` are git submodules — do NOT `git add` their contents directly; use `git submodule update` to sync them.
+
 ## 4. New Project Bootstrap
 When starting work in a project that has no `.wolf/` directory, invoke the `wolf-init` skill or run manually:
 ```bash

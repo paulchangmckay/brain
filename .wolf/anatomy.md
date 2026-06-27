@@ -1,20 +1,20 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-26T03:56:42.551Z
-> Files: 524 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-06-26T04:23:13.886Z
+> Files: 519 tracked | Anatomy hits: 0 | Misses: 0
 
-## ../../../private/tmp/claude-501/-Users-paulmckay--claude/408b78c6-fb3a-4dfe-a186-1826cdc6f15f/scratchpad/
+## ../
 
-- `ua-arch-analyze.js` — fs: commonPrefix, getGroupKey (~3253 tok)
-- `ua-arch-input.json` (~21061 tok)
+- `.zshrc` (~334 tok)
 
 ## ./
 
 - `.DS_Store` (~3275 tok)
 - `.gitignore` — Git ignore rules (~282 tok)
+- `.gitmodules` (~58 tok)
 - `.last-cleanup` (~7 tok)
 - `.last-update-result.json` (~46 tok)
-- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~837 tok)
+- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~948 tok)
 - `mcp_servers.json` (~38 tok)
 - `mcp-needs-auth-cache.json` (~28 tok)
 - `settings.json` (~2477 tok)
@@ -30,11 +30,14 @@
 ## .understand-anything/
 
 - `.understandignore` — # **/*Test.java (~256 tok)
+- `fingerprints.json` (~116279 tok)
+- `knowledge-graph.json` (~127502 tok)
+- `meta.json` (~45 tok)
 
-## .understand-anything/intermediate/
+## .understand-anything/.trash-1782444828/
 
 - `assemble-review.json` — Declares prefixes (~540 tok)
-- `assembled-graph.json` (~118299 tok)
+- `assembled-graph.json` (~127299 tok)
 - `batch-1.json` (~7711 tok)
 - `batch-10.json` (~2411 tok)
 - `batch-11.json` (~852 tok)
@@ -68,12 +71,15 @@
 - `batch-8.json` (~771 tok)
 - `batch-9.json` (~1213 tok)
 - `batches.json` (~27525 tok)
+- `fingerprint-input.json` (~4292 tok)
 - `layers.json` (~5860 tok)
-- `scan-result.json` (~18834 tok)
+- `review.json` (~1471 tok)
 - `tour.json` — Declares where (~3674 tok)
 
-## .understand-anything/tmp/
+## .understand-anything/.trash-1782444828/tmp/
 
+- `arch-compact.json` (~54522 tok)
+- `arch-input.json` (~61611 tok)
 - `batch-dispatch-1.json` (~2004 tok)
 - `batch-dispatch-10.json` (~613 tok)
 - `batch-dispatch-11.json` (~233 tok)
@@ -106,6 +112,7 @@
 - `batch-dispatch-7.json` (~487 tok)
 - `batch-dispatch-8.json` (~115 tok)
 - `batch-dispatch-9.json` (~264 tok)
+- `ua-assemble-final.cjs` — Declares fs (~226 tok)
 - `ua-file-analyzer-input-1.json` (~518 tok)
 - `ua-file-analyzer-input-12.json` (~309 tok)
 - `ua-file-analyzer-input-16.json` (~157 tok)
@@ -120,11 +127,23 @@
 - `ua-file-extract-results-8.json` (~789 tok)
 - `ua-import-map-input.json` (~10068 tok)
 - `ua-import-map-output.json` (~5827 tok)
+- `ua-inline-validate.cjs` — Declares fs (~833 tok)
 - `ua-scan-files.json` (~12978 tok)
 - `ua-tour-analyze.js` — Tour graph topology analyzer (~2115 tok)
+- `ua-tour-input.json` (~99272 tok)
+- `ua-tour-results.json` (~66205 tok)
+
+## .understand-anything/intermediate/
+
+- `scan-result.json` (~18834 tok)
+
+## Agents/
+
+- `.DS_Store` (~1640 tok)
 
 ## Agents/ba-agent/
 
+- `.DS_Store` (~1640 tok)
 - `CLAUDE.md` — OpenWolf (~930 tok)
 
 ## Agents/ba-agent/.claude/
@@ -161,11 +180,11 @@
 
 ## backups/
 
-- `.claude.json.backup.1782442199212` — Declares breakdown (~8861 tok)
-- `.claude.json.backup.1782442489084` — Declares breakdown (~8861 tok)
-- `.claude.json.backup.1782442553704` — Declares breakdown (~8861 tok)
-- `.claude.json.backup.1782442674633` — Declares breakdown (~8861 tok)
-- `.claude.json.backup.1782442744184` — Declares breakdown (~8861 tok)
+- `.claude.json.backup.1782445350889` — Declares breakdown (~8891 tok)
+- `.claude.json.backup.1782446105543` — Declares breakdown (~8891 tok)
+- `.claude.json.backup.1782446178973` (~8891 tok)
+- `.claude.json.backup.1782446253289` (~8891 tok)
+- `.claude.json.backup.1782446317089` (~8891 tok)
 
 ## cache/
 
@@ -202,17 +221,22 @@
 - `14bb42d203801437@v2` — Skill: Data Mapping (~820 tok)
 - `1dafc84f9231002a@v2` — BA Brief Template (~434 tok)
 - `1fb35865f428440f@v2` — Skill: Process Visualisation (~591 tok)
+- `3cd8353c2c9425ee@v1` — Cerebrum (~1587 tok)
+- `3cd8353c2c9425ee@v2` — Cerebrum (~1815 tok)
 - `3e9ba89c002e0d2b@v2` — Skill: SOP Writer (~1211 tok)
 - `6b289f827235b989@v2` — Skill: BA Package Assembly (~867 tok)
 - `776dbb6c4a25eb53@v1` — PreCompact hook: stamps a compaction event in .wolf/cerebrum.md and reminds (~214 tok)
 - `776dbb6c4a25eb53@v2` — PreCompact hook: stamps a compaction event in .wolf/cerebrum.md and reminds (~465 tok)
 - `776dbb6c4a25eb53@v3` — PreCompact hook: stamps a compaction event in .wolf/cerebrum.md and reminds (~474 tok)
+- `776dbb6c4a25eb53@v4` — PreCompact hook: stamps a compaction event in .wolf/cerebrum.md and reminds (~478 tok)
 - `7aefb1b4f2246103@v2` — Usage: bash scripts/validate-mermaid.sh outputs/process.mmd (~168 tok)
 - `adcd88859da31108@v2` — OpenWolf (~992 tok)
 - `c162e0663ab9729d@v2` (~79 tok)
+- `c47760ed6c9ee802@v1` — System Instructions: Thin Harness, Fat Skills Environment (~841 tok)
 - `d70d904fcd3903c5@v2` — Skill: Planner + Observe (~927 tok)
 - `db2471be5ce51f6e@v2` — Skill: Brief Normaliser (~1004 tok)
 - `de789bce15c0aa2e@v2` — Skill: System Integration Visualisation (~519 tok)
+- `e9b3909abd9dae7d@v2` — Test Brief — Inbound Lead Routing (~232 tok)
 - `f73f2b22655be76a@v2` — BA Agent Build Plan (~2079 tok)
 
 ## file-history/397a1167-70ad-4ee7-b2e6-c0a9cc198259/
@@ -229,6 +253,8 @@
 - `41428afe2173d7f7@v1` — # **/*Test.java (~179 tok)
 - `41428afe2173d7f7@v2` — # **/*Test.java (~251 tok)
 - `41428afe2173d7f7@v3` — # **/*Test.java (~256 tok)
+- `4b7bb86291ffbad9@v2` — Plan: Initialize ~/.claude as a Git Repository (~1299 tok)
+- `c0f499d9fd74f710@v2` — Runtime / ephemeral Claude Code data (~282 tok)
 
 ## file-history/53534f20-6dc4-4b37-857d-b89bf059febb/
 
@@ -404,6 +430,8 @@
 - `fluffy-discovering-jellyfish.md` — Plan: Initialize ~/.claude as a Git Repository (~1218 tok)
 - `help-me-build-a-prancy-journal.md` — Plan: Install & Run Understand-Anything on ~/.claude (~954 tok)
 - `how-do-i-make-cosmic-mochi.md` — OpenWolf: Global + Project Token Optimization (~1048 tok)
+- `i-cant-see-my-parallel-wind.md` — Fix: understand-anything Dashboard "Invalid knowledge graph" Error (~504 tok)
+- `i-dont-see-my-proud-hejlsberg.md` — Plan: Expose BA Agent as a Reachable Command (~521 tok)
 - `i-dont-want-any-stateful-flame.md` — Plan: Disable Auto-Updates for Superpowers, OpenWolf, and gbrain (~723 tok)
 - `i-ve-been-spending-the-rosy-cray.md` — Advisory: session-reflect is manual — no auto-equivalent for cerebrum.md (~44 tok)
 - `i-was-trying-to-peaceful-avalanche.md` — Plan: LangSmith Tracing for Claude Code (~1298 tok)
@@ -432,7 +460,6 @@
 ## plugins/cache/understand-anything/understand-anything/2.8.1/.in_use/
 
 - `61489` (~14 tok)
-- `99029` (~14 tok)
 
 ## plugins/cache/understand-anything/understand-anything/2.8.1/agents/
 
@@ -697,42 +724,7 @@
 ## plugins/cache/understand-anything/understand-anything/2.8.1/packages/dashboard/src/hooks/
 
 - `useIsMobile.ts` — Exports useIsMobile (~198 tok)
-- `useKeyboardShortcuts.ts` — Exports KeyboardShortcut, useKeyboardShortcuts, formatShortcutKey (~742 tok)
 
-## plugins/cache/understand-anything/understand-anything/2.8.1/packages/dashboard/src/locales/
+## skills/
 
-- `en.ts` — Exports en (~2913 tok)
-- `index.ts` — Exports LocaleKey, Locale, locales, getLocale, resolveLocaleKey (~308 tok)
-- `ja.ts` — Exports ja (~2370 tok)
-- `ko.ts` — Exports ko (~2296 tok)
-- `ru.ts` — Exports ru (~3064 tok)
-- `zh-TW.ts` — Exports zhTW (~2139 tok)
-- `zh.ts` — Exports zh (~2133 tok)
-
-## plugins/cache/understand-anything/understand-anything/2.8.1/packages/dashboard/src/themes/
-
-- `index.ts` (~92 tok)
-- `presets.ts` — Exports PRESETS, getPreset, getAccent (~1755 tok)
-- `theme-engine.ts` — Exports hexToRgb, applyTheme (~734 tok)
-- `ThemeContext.tsx` — STORAGE_KEY — uses useRef, useEffect, useCallback, useContext (~838 tok)
-- `types.ts` — Exports PresetId, AccentSwatch, ThemePreset, HeadingFont + 2 more (~194 tok)
-
-## plugins/cache/understand-anything/understand-anything/2.8.1/packages/dashboard/src/utils/
-
-- `containers.ts` — Longest common prefix of the *directory* portion of paths, trimmed to a (~1300 tok)
-- `edgeAggregation.ts` — Aggregate edges between layers. Counts how many graph edges cross (~1666 tok)
-- `elk-layout.ts` — Set by ELK after layout; absent on input. Downstream consumers must default. (~1826 tok)
-- `filters.ts` — Filter nodes based on active filters. (~762 tok)
-- `layerStats.ts` — Number of layer.nodeIds that resolve to a node in the graph. (~383 tok)
-- `layout.ts` — Synchronous dagre layout — used for small graphs. (~2316 tok)
-- `layout.worker.ts` — Exports LayoutMessage, LayoutResult (~336 tok)
-- `louvain.ts` — Run Louvain community detection over the provided node set and the (~523 tok)
-
-## plugins/cache/understand-anything/understand-anything/2.8.1/packages/dashboard/src/utils/__tests__/
-
-- `containers.test.ts` — Declares node (~1358 tok)
-- `edgeAggregation.test.ts` — Declares ce (~773 tok)
-- `elk-layout.test.ts` — Declares ElkInput (~1062 tok)
-- `filters.test.ts` — node: edge, defaultFilters, indexLayers (~1972 tok)
-- `layerStats.test.ts` — node: layer, indexById (~1136 tok)
-- `smoke.test.ts` — Declares g (~151 tok)
+- `ba.md` (~97 tok)

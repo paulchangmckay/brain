@@ -55,3 +55,28 @@
 ---
 ## Compaction event: 2026-06-26T03:22:37Z
 Context window was compacted here. Review the session and capture any key findings, decisions, or patterns that should persist.
+
+---
+
+## Key Learnings (2026-06-26)
+
+- 2026-06-26: understand-anything incremental updates require PROJECT_ROOT to be a git repo with a HEAD commit. Without one, every run is a full 32-batch rebuild. Once `git init` + baseline commit + `meta.json` patched with real hash, future runs use `git diff <hash>..HEAD` and re-analyze only changed files (1-5 batches typical).
+- 2026-06-26: `meta.json` must be explicitly patched with the real commit hash after `git init` — the hash written during analysis is `null` (no repo existed). Run `node -e "const fs=require('fs');const m=JSON.parse(fs.readFileSync('.understand-anything/meta.json','utf8'));m.gitCommitHash=$(git rev-parse HEAD);fs.writeFileSync(...)"` immediately after first commit.
+- 2026-06-26: `~/.claude` default scan picked up 1,071 files (725 in `plugins/` alone — 3rd-party cache). Must add `plugins/`, `projects/`, `sessions/`, `cache/`, `state/` etc. to `.understandignore` before first scan or results are dominated by ephemeral content.
+- 2026-06-26: Large esbuild bundles (8,000–9,100 line JS files in `langsmith-plugin/bundle/`) must be treated as opaque `file` nodes by file-analyzer agents — no tree-sitter extraction. Attempting to extract caused batches 29/30 to hit context limits and fail.
+- 2026-06-26: Architecture-analyzer and file-analyzer can disagree on node type prefixes. CI workflow files may be assigned `config:` by the architecture layer but `pipeline:` by file-analyzer. Always run inline validation (ua-inline-validate.cjs) after assembling layers and patch mismatches before saving.
+
+## Do-Not-Repeat (2026-06-26)
+
+- 2026-06-26: Do NOT run understand-anything on `~/.claude` without first auditing `.understandignore` — plugins/ alone contains 725 cached 3rd-party files. Scope exclusions first or the scan is 4× larger than necessary.
+- 2026-06-26: Do NOT leave `meta.json` with a null `gitCommitHash` after setting up git — understand-anything will fall back to a full rebuild prompt instead of incrementally diffing. Patch the hash immediately after the first commit.
+
+## Decision Log (2026-06-26)
+
+- 2026-06-26: Registered `langsmith-plugin` and `superpowers` as git submodules (pointing to `langchain-ai/langsmith-claude-code-plugins` and `obra/Superpowers`) rather than gitignoring them. Rationale: submodule pointer commits appear in parent `git diff`, so understand-anything detects when those dirs change and re-analyzes them incrementally.
+- 2026-06-26: Custom skills must be directories (`~/.claude/skills/<name>/SKILL.md`), not flat `.md` files. Symlinks to superpowers follow this same pattern — they point to directories, not files. Standalone `.md` files in `skills/` are silently ignored by the skill registry.
+- 2026-06-26: To expose an agent-scoped skillset globally without duplicating routing logic, create a thin orchestrator skill (`~/.claude/skills/ba/SKILL.md`) that reads the agent's CLAUDE.md and resolves relative skill paths from the agent directory.
+
+## Do-Not-Repeat (2026-06-26 continued)
+
+- 2026-06-26: Do NOT create skills as standalone `.md` files in `~/.claude/skills/` — the skill registry silently ignores them. Correct structure: `~/.claude/skills/<name>/SKILL.md` (a directory, not a file).

@@ -21,7 +21,7 @@
     ],
     "description": "Personal Claude Code configuration directory implementing a thin-harness fat-skills environment, featuring LangSmith tracing integration, OpenWolf AI memory system, lifecycle hooks, and a curated library of process skills for TDD, debugging, code review, and git workflow automation.",
     "analyzedAt": "2026-06-26T03:32:30Z",
-    "gitCommitHash": null
+    "gitCommitHash": "b354ad37ccc934b8c44dcb21164f2584ef64e201"
   },
   "nodes": [
     {
