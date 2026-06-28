@@ -300,6 +300,175 @@ node ~/.claude/skills/html-export/scripts/html-export.js bundle.html
 
 ---
 
+---
+
+## Variant B — Process Complexity Scorecard
+
+Use this template when the brief is process-focused (no quantitative business metrics). Replaces the Variant A App.tsx in Step 4.
+
+**When to use:** `context.json` has `has_metrics: false`, OR the brief describes a workflow/SOP rather than business performance data.
+
+**KPI cards** come from context.json counts (steps, systems, fields, open items) — not from business data.
+
+**Chart** is a horizontal bar showing step distribution across actors — not a time-series.
+
+**Breakdown table** shows actors and their system involvement — not business segments.
+
+### Variant B App.tsx Template
+
+```tsx
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+
+const COLORS = {
+  primary: '#6b5b54', secondary: '#5a7a8a', tertiary: '#a89980',
+  charcoal: '#2a2a28', linen: '#f5f2ed', offWhite: '#fafaf8',
+};
+
+function KPICard({ label, value, delta, positive }: { label: string; value: string; delta: string; positive: boolean }) {
+  return (
+    <div style={{ flex: 1, background: COLORS.offWhite, border: `1px solid ${COLORS.linen}`, padding: '20px 24px', minWidth: 0 }}>
+      <div style={{ fontFamily: 'Poppins, sans-serif', fontSize: 11, fontWeight: 600, color: COLORS.primary, textTransform: 'uppercase', letterSpacing: '0.06em' }}>{label}</div>
+      <div style={{ fontFamily: 'Poppins, sans-serif', fontSize: 36, fontWeight: 800, color: COLORS.charcoal, margin: '6px 0 4px' }}>{value}</div>
+      <div style={{ fontFamily: 'Lora, Georgia, serif', fontSize: 13, color: positive ? COLORS.secondary : COLORS.tertiary }}>{delta}</div>
+    </div>
+  );
+}
+
+function InsightBox({ title, finding, recommendation }: { title: string; finding: string; recommendation: string }) {
+  return (
+    <div style={{ background: COLORS.linen, padding: '32px 28px', display: 'flex', flexDirection: 'column', gap: 16, width: '38%', flexShrink: 0 }}>
+      <div style={{ fontFamily: 'Poppins, sans-serif', fontSize: 13, fontWeight: 700, color: COLORS.primary, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{title}</div>
+      <div style={{ fontFamily: 'Lora, Georgia, serif', fontSize: 15, lineHeight: 1.7, color: COLORS.charcoal }}>{finding}</div>
+      <div style={{ fontFamily: 'Poppins, sans-serif', fontSize: 13, fontWeight: 600, color: COLORS.secondary, borderLeft: `3px solid ${COLORS.secondary}`, paddingLeft: 12 }}>{recommendation}</div>
+    </div>
+  );
+}
+
+export default function App() {
+  // Replace all placeholder values with real data from context.json and summary.md
+  const kpis = [
+    { label: 'Process Steps',      value: '12', delta: '3 decision points', positive: true },
+    { label: 'Systems Integrated', value: '5',  delta: '2 bidirectional flows', positive: true },
+    { label: 'Data Fields Mapped', value: '28', delta: '4 [inferred]', positive: false },
+    { label: 'Open Items',         value: '3',  delta: '1 High priority', positive: false },
+  ];
+
+  // Y-axis = actors, X-axis = step count (derive from actor_step_map in context.json)
+  const actorData = [
+    { actor: 'Sales Rep',  steps: 4 },  // REPLACE
+    { actor: 'Sales Ops',  steps: 3 },
+    { actor: 'CRM System', steps: 3 },
+    { actor: 'Finance',    steps: 2 },
+  ];
+
+  // Derive from context.json actors + systems
+  const actorBreakdown = [
+    { actor: 'Sales Rep',  role: 'Process owner', systems: 'Salesforce, Outreach', steps: 4 },  // REPLACE
+    { actor: 'Sales Ops',  role: 'Coordinator',   systems: 'Salesforce, Tableau',  steps: 3 },
+    { actor: 'CRM System', role: 'System',        systems: 'Salesforce',           steps: 3 },
+    { actor: 'Finance',    role: 'Approver',      systems: 'NetSuite',             steps: 2 },
+  ];
+
+  return (
+    <div style={{ background: COLORS.offWhite, minHeight: '100vh', fontFamily: 'Poppins, sans-serif', color: COLORS.charcoal }}>
+
+      {/* Header */}
+      <div style={{ background: COLORS.charcoal, padding: '16px 40px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <span style={{ color: COLORS.primary, fontSize: 20, fontWeight: 800 }}>◆</span>
+          <span style={{ color: '#fafaf8', fontSize: 15, fontWeight: 700, letterSpacing: '0.02em' }}>
+            [Process Name] — Process Complexity Scorecard  {/* REPLACE */}
+          </span>
+        </div>
+        <span style={{ color: COLORS.tertiary, fontSize: 12 }}>
+          [Date] · Confidential  {/* REPLACE */}
+        </span>
+      </div>
+
+      {/* KPI Row */}
+      <div style={{ display: 'flex', gap: 1, background: COLORS.linen, padding: '1px 0' }}>
+        {kpis.map(k => <KPICard key={k.label} {...k} />)}
+      </div>
+
+      {/* Main Row: Chart + Insight */}
+      <div style={{ display: 'flex', gap: 0, minHeight: 360 }}>
+        <div style={{ flex: 1, padding: '32px 40px', background: COLORS.offWhite }}>
+          <div style={{ fontFamily: 'Poppins, sans-serif', fontSize: 13, fontWeight: 700, color: COLORS.charcoal, marginBottom: 4 }}>
+            Step Distribution by Actor
+          </div>
+          <div style={{ fontFamily: 'Lora, Georgia, serif', fontSize: 12, color: COLORS.tertiary, marginBottom: 20 }}>
+            Steps owned per actor in the end-to-end process
+          </div>
+          <ResponsiveContainer width="100%" height={260}>
+            <BarChart data={actorData} layout="vertical" margin={{ top: 4, right: 24, bottom: 4, left: 80 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke={COLORS.linen} horizontal={false} />
+              <XAxis type="number"
+                tick={{ fontFamily: 'Poppins, sans-serif', fontSize: 11, fill: COLORS.charcoal }}
+                axisLine={false} tickLine={false} />
+              <YAxis type="category" dataKey="actor"
+                tick={{ fontFamily: 'Poppins, sans-serif', fontSize: 12, fill: COLORS.charcoal }}
+                axisLine={false} tickLine={false} />
+              <Tooltip contentStyle={{ fontFamily: 'Lora, Georgia, serif', fontSize: 13,
+                background: COLORS.offWhite, border: `1px solid ${COLORS.linen}`, color: COLORS.charcoal }} />
+              <Bar dataKey="steps" fill={COLORS.secondary} radius={[0, 3, 3, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+
+        <InsightBox
+          title="Key Finding"
+          finding="Replace with the Resolution paragraph from summary.md — 1–2 sentences on what this BA package reveals."
+          recommendation="Replace with the first Open Item from summary.md — one action sentence."
+        />
+      </div>
+
+      {/* Actor Breakdown Table */}
+      <div style={{ padding: '32px 40px', background: COLORS.linen }}>
+        <div style={{ fontFamily: 'Poppins, sans-serif', fontSize: 13, fontWeight: 700, color: COLORS.charcoal, marginBottom: 16 }}>
+          Actor Breakdown
+        </div>
+        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <thead>
+            <tr style={{ background: COLORS.secondary }}>
+              {['Actor', 'Role', 'Systems Involved', 'Steps'].map(h => (
+                <th key={h} style={{ padding: '10px 16px', textAlign: 'left', fontFamily: 'Poppins, sans-serif',
+                  fontSize: 11, fontWeight: 700, color: '#fafaf8', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+                  {h}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {actorBreakdown.map((row, i) => (
+              <tr key={row.actor} style={{ background: i % 2 === 0 ? COLORS.offWhite : '#f0ede8' }}>
+                <td style={{ padding: '12px 16px', fontFamily: 'Poppins, sans-serif', fontSize: 13, fontWeight: 600, color: COLORS.charcoal }}>{row.actor}</td>
+                <td style={{ padding: '12px 16px', fontFamily: 'Lora, Georgia, serif', fontSize: 13, color: COLORS.charcoal }}>{row.role}</td>
+                <td style={{ padding: '12px 16px', fontFamily: 'Lora, Georgia, serif', fontSize: 13, color: COLORS.charcoal }}>{row.systems}</td>
+                <td style={{ padding: '12px 16px', fontFamily: 'Poppins, sans-serif', fontSize: 13, fontWeight: 700, color: COLORS.secondary, textAlign: 'center' }}>{row.steps}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Footer */}
+      <div style={{ padding: '12px 40px', background: COLORS.charcoal, display: 'flex', justifyContent: 'space-between' }}>
+        <span style={{ color: COLORS.tertiary, fontSize: 11 }}>◆ Confidential — Internal Use Only</span>
+        <span style={{ color: COLORS.tertiary, fontSize: 11 }}>Prepared by Paul McKay</span>
+      </div>
+    </div>
+  );
+}
+```
+
+**Key differences from Variant A:**
+- Header uses `COLORS.secondary` (Slate) for the table header instead of `COLORS.primary` (Taupe) — visually distinguishes the two dashboard types
+- Chart is horizontal bar (`layout="vertical"`) with `horizontal={false}` gridlines
+- No `tickFormatter` on X-axis (steps are whole numbers, no currency prefix)
+- Breakdown table shows actor/role/systems instead of business segments
+
+---
+
 ## Checklist Before Delivering
 
 - [ ] `brand` skill was invoked and Brand Spec Card confirmed
