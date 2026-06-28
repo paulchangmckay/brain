@@ -157,6 +157,108 @@ Pass this brief to the skill:
 
 ---
 
+## Phase 2.5 (parent level): Executive Dashboard
+
+After professional documents complete (or are skipped), read the BA artifacts to offer a branded HTML dashboard.
+
+**Read from the output directory:**
+- `context.json` — process name, actors, systems, steps, data_fields, `has_metrics` flag
+- `summary.md` — Resolution paragraph (insight) and first Open Item (recommendation)
+- `data-map.md` — field rows for the breakdown table
+
+**Determine dashboard variant:**
+- If `context.json` contains `"has_metrics": true` → default to **KPI Dashboard**
+- Otherwise → default to **Process Complexity Scorecard**
+
+**Prompt the user:**
+
+> **Phase 2.5: Executive Dashboard**
+>
+> Would you like a branded HTML dashboard with PNG + PDF export?
+>
+> - **KPI** — Data dashboard with KPI cards, metric chart, and data breakdown table *(recommended when brief contains quantitative data)*
+> - **Scorecard** — Process complexity view: step count, integration count, field coverage, and actor distribution chart
+> - **Skip** — No dashboard
+>
+> Reply: `kpi` / `scorecard` / `skip`
+
+---
+
+### If response is `kpi`
+
+Invoke Skill: `exec-dashboard`
+
+Pass this brief:
+
+> Build a **KPI Dashboard** (Variant A) for process "[process_name]" using these BA artifacts:
+>
+> **Source files** (read all before writing App.tsx):
+> - `[output_dir]/context.json` — actors, systems, data_fields
+> - `[output_dir]/summary.md` — Resolution paragraph → `finding`; first Open Item → `recommendation`
+> - `[output_dir]/data-map.md` — field rows → breakdown table (columns: Field | Source | Target | Type | Direction)
+>
+> **KPI cards** (4 max): extract the most significant quantitative fields from `data_fields`. Use field names as card labels and their volume/count/value as the metric. If fewer than 4 quantitative fields exist, supplement with: total fields mapped, total actors, total systems.
+>
+> **Chart**: Horizontal bar chart — Source System on Y-axis, count of fields from that system on X-axis. Title: "Data Coverage by Source System". Use data from `data-map.md`.
+>
+> **Insight box**: `finding` = first 1–2 sentences of the Resolution section from `summary.md`. `recommendation` = description of the first row in the Open Items table.
+>
+> **Dashboard title**: "[process_name] — Data Overview" with today's date.
+>
+> Output: `[output_dir]/docs/exec-dashboard/` (full project) and `[output_dir]/docs/exec-dashboard.html` (bundled single file).
+
+After `exec-dashboard` completes, run:
+```bash
+node ~/.claude/skills/html-export/scripts/html-export.js [output_dir]/docs/exec-dashboard.html [output_dir]/docs/
+```
+Outputs: `[output_dir]/docs/exec-dashboard.png` and `[output_dir]/docs/exec-dashboard.pdf`.
+
+---
+
+### If response is `scorecard`
+
+Invoke Skill: `exec-dashboard`
+
+Pass this brief:
+
+> Build a **Process Complexity Scorecard** (Variant B) for process "[process_name]" using these BA artifacts:
+>
+> **Source files** (read all before writing App.tsx):
+> - `[output_dir]/context.json` — actors (list), systems (list), steps (list), data_fields, actor_step_map (if present)
+> - `[output_dir]/summary.md` — Resolution paragraph → `finding`; first Open Item → `recommendation`
+>
+> **KPI cards** (exactly 4, computed from context.json and summary.md):
+> 1. "Process Steps" = `steps.length`
+> 2. "Systems Integrated" = `systems.length`
+> 3. "Data Fields Mapped" = `data_fields.length`
+> 4. "Open Items" = count of non-None rows in the Open Items table in `summary.md`
+>
+> **Chart**: Horizontal bar chart — actors on Y-axis, step count on X-axis. Title: "Step Distribution by Actor". Derive step count per actor from `actor_step_map` in context.json (if present), or count step labels containing each actor's name.
+>
+> **Breakdown table**: One row per actor. Columns: Actor | Role | Systems Involved | Steps. Derive from context.json actors and systems.
+>
+> **Insight box**: `finding` = Resolution paragraph from `summary.md`. `recommendation` = first Open Item.
+>
+> **Dashboard title**: "[process_name] — Process Complexity Scorecard" with today's date.
+>
+> Use the **Variant B App.tsx template** from the exec-dashboard skill (horizontal bar + actor table).
+>
+> Output: `[output_dir]/docs/exec-dashboard/` and `[output_dir]/docs/exec-dashboard.html`.
+
+After `exec-dashboard` completes, run:
+```bash
+node ~/.claude/skills/html-export/scripts/html-export.js [output_dir]/docs/exec-dashboard.html [output_dir]/docs/
+```
+
+---
+
+### After dashboard export completes
+
+If a PPTX was generated in Phase 2, offer:
+> Dashboard PNG is at `[output_dir]/docs/exec-dashboard.png`. Add it as a final slide to the PPTX executive deck? (y / skip)
+
+If `y`: invoke `document-skills:pptx` with a brief to insert `exec-dashboard.png` as a new full-width slide titled "Executive Dashboard" at the end of `[output_dir]/docs/executive-deck.pptx`.
+
 ---
 
 ## Phase 3 (parent level): Communication documents
