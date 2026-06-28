@@ -28,9 +28,9 @@ Read the user's input and score it against these 7 dimensions (1 point each):
 | **Pain points explicit** | At least one specific symptom or gap called out |
 | **Data / systems context** | At least one system, data source, or integration mentioned |
 
-**Score ≥ 5 points:** Brief is complete. State briefly what you understood (2–3 sentences) and proceed directly to Phase 1.
+**Score ≥ 5 points:** Brief is complete. State briefly what you understood (2–3 sentences) and proceed to Step 0c (Engagement Type).
 
-**Score < 5 points:** Brief is thin. Proceed to Step 0b (Discovery Conversation).
+**Score < 5 points:** Brief is thin. Proceed to Step 0b (Discovery Conversation), then Step 0c.
 
 > Examples: "Document our sales process" scores 0–1. A multi-paragraph brief with named actors, systems, pain points, and a deadline scores 5–7.
 
@@ -113,7 +113,51 @@ Synthesize everything into a structured brief and present it back:
 >
 > Does this capture it accurately? Any corrections or additions before I proceed?
 
-Wait for confirmation. Apply any corrections. Then proceed to Phase 1, passing this enriched brief to the sub-agent instead of the original thin input.
+Wait for confirmation. Apply any corrections. Then proceed to Step 0c (Engagement Type).
+
+---
+
+### Step 0c: Engagement Type
+
+Ask this question after brief quality is confirmed (whether via Step 0a or Step 0b):
+
+> **One more question before we begin:** Is this engagement about documenting the current state, or are you also defining a target future state?
+>
+> - **As-Is only** — Document the current process as it exists today
+> - **Transformation** — Document both current state and where you want to get to
+
+Wait for response. Set `engagement_type` accordingly:
+- "As-Is only" → `engagement_type: "as-is"`
+- "Transformation" → `engagement_type: "transformation"` → proceed to Step 0d
+
+---
+
+### Step 0d: Target State Questions (Transformation only)
+
+If `engagement_type === "transformation"`, ask these three questions and wait for a single combined response:
+
+> Now let's define where you want to get to:
+>
+> **7. Walk me through the target state process.** What are the key steps — and how do they differ from today?
+>
+> **8. Which systems change?** Additions, replacements, or retirements?
+>
+> **9. Which actors or roles change?** New responsibilities, team ownership shifts, or roles being eliminated?
+
+Wait for response. Extract:
+- `to_be_steps` — list of steps in the future state (in order)
+- `to_be_systems` — systems added, replaced, or retired
+- `to_be_actors` — roles that change
+- `transformation_notes` — any additional context about the transformation goals
+
+Include the transformation scope in the synthesis presented to the user:
+```
+**Engagement type:** Transformation
+**Target state:** [summary of to-be steps, systems, actors]
+**Key changes:** [what's being added / removed / modified]
+```
+
+Then pass `engagement_type`, `to_be_steps`, `to_be_systems`, `to_be_actors`, and `transformation_notes` to the sub-agent in the enriched brief.
 
 ---
 
@@ -133,12 +177,41 @@ Act as an experienced business analyst, not a form processor. Specific behaviors
 
 ## Phase 1: Sub-agent execution
 
+### Version Delta Check
+
+Before spawning the sub-agent, determine the `process_name` from the brief or enriched context. Then check whether a prior run exists:
+
+```bash
+ls ~/.claude/Agents/ba-agent/outputs/<process_name>/context.json 2>/dev/null && echo "EXISTS" || echo "FRESH"
+```
+
+**If FRESH:** Proceed to spawn the sub-agent normally.
+
+**If EXISTS:** Read the prior `context.json` and compare it with the new brief's context fields. Identify changes:
+- New or removed actors
+- Steps added, removed, or reworded
+- Systems added or removed
+- Purpose/problem statement changed
+
+Present a compact delta summary, then ask:
+
+> A prior analysis of **[process_name]** exists. Here's what changed since last run:
+>
+> [bullet list of changes, or "No changes detected in brief content"]
+>
+> - **Continue from existing** — regenerate only affected artifacts, preserve unchanged ones
+> - **Regenerate from scratch** — start fresh, overwrite all prior outputs
+
+Wait for response. If "Continue from existing": note which artifacts are likely affected (e.g., if steps changed → process.mmd, sop.md, raci-matrix.md, user-stories.md need regeneration; if data_fields changed → data-map.md). Pass this context to the sub-agent. After regeneration, write `changelog.md` to the output directory summarizing what changed.
+
+### Spawn sub-agent
+
 Spawn the `ba-agent:ba` sub-agent with the user's brief as the prompt. Wait for it to complete.
 
 The sub-agent handles:
 - Brief normalisation and context object creation (intake)
-- Artifact generation with observe checks: process diagram, integration diagram, data map, SOP
-- BA package assembly: executive summary (SCR) + artifact manifest
+- Artifact generation with observe checks: process diagram, integration diagram, data map, SOP, RACI matrix, user stories, risk register, assumption log (+ transformation artifacts if engagement_type = transformation)
+- BA package assembly: executive summary (SCR + process metrics) + artifact manifest
 - Mermaid PNG rendering and `docs-manifest.json` creation
 
 ---
@@ -417,12 +490,20 @@ After all requested document skills and communication workflows complete, report
 > **BA Package complete.** Outputs at `~/.claude/Agents/ba-agent/outputs/<process_name>/`:
 >
 > **Core artifacts (markdown):**
-> - `process.mmd` / `process.png` — Process flow diagram
-> - `integration.mmd` / `integration.png` — System integration diagram
+> - `process.mmd` / `process.png` — Process flow diagram (brand-styled)
+> - `integration.mmd` / `integration.png` — System integration diagram (brand-styled)
 > - `data-map.md` — Field-level data mapping
 > - `sop.md` — Standard Operating Procedure
-> - `summary.md` — Executive summary (SCR)
+> - `raci-matrix.md` — Responsibility assignment matrix
+> - `user-stories.md` — Agile user stories with acceptance criteria
+> - `risk-register.md` — Risk register (likelihood × impact scoring)
+> - `assumption-log.md` — Centralized assumption register
+> - `summary.md` — Executive summary (SCR + process metrics)
 > - `index.md` — Artifact manifest
+>
+> **Transformation artifacts** (if engagement_type = transformation):
+> - `to-be-process.mmd` / `to-be-process.png` — Target state process diagram
+> - `transformation-plan.md` — As-is vs. to-be comparison and implementation sequence
 >
 > **Professional documents** (if created):
 > - `docs/executive-deck.pptx`
@@ -433,3 +514,41 @@ After all requested document skills and communication workflows complete, report
 > **Communication assets** (if created):
 > - `comms/3p-update.md`
 > - `comms/faq.md`
+
+---
+
+### Stakeholder Bundle (optional)
+
+After reporting, offer:
+
+> Would you like to package outputs for distribution?
+>
+> - **Technical** — Context, diagrams, data map, SOP, RACI, user stories, assumption log, risk register
+> - **Executive** — Summary, PPTX deck, dashboard PDF, 3P update
+> - **Full** — Everything
+> - **Skip**
+
+If Technical:
+```bash
+cd ~/.claude/Agents/ba-agent/outputs/<process_name>
+zip -j <process_name>-technical.zip \
+  context.json process.mmd integration.mmd data-map.md sop.md \
+  raci-matrix.md user-stories.md assumption-log.md risk-register.md \
+  docs/data-map.xlsx
+```
+
+If Executive:
+```bash
+cd ~/.claude/Agents/ba-agent/outputs/<process_name>
+zip -j <process_name>-executive.zip \
+  summary.md docs/executive-deck.pptx docs/exec-dashboard.pdf comms/3p-update.md
+# Skip any files that don't exist (professional docs or comms may have been skipped)
+```
+
+If Full:
+```bash
+cd ~/.claude/Agents/ba-agent/outputs/<process_name>
+zip -r <process_name>-full.zip . --exclude "*.mmd" --exclude "context.json"
+```
+
+Report the path of the created zip(s).
