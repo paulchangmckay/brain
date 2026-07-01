@@ -1,6 +1,6 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-07-01T03:39:38.413Z
+> Auto-maintained by OpenWolf. Last scanned: 2026-07-01T03:47:46.571Z
 > Files: 515 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
@@ -725,7 +725,7 @@
 
 ## plans/
 
-- `how-would-something-like-quirky-squirrel.md` — Git & Worktree Optimization Plan (~1007 tok)
+- `how-would-something-like-quirky-squirrel.md` — Session Reflect (session 15 — git/worktree optimization) (~1049 tok)
 
 ## skills/senior-engineering-partner/references/
 
