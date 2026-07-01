@@ -4,6 +4,6 @@
 [submodule "superpowers"]
 	path = superpowers
 	url = https://github.com/obra/Superpowers
-[submodule "/Users/paulmckay/.claude/skills/senior-engineering-partner"]
-	path = /Users/paulmckay/.claude/skills/senior-engineering-partner
+[submodule "skills/senior-engineering-partner"]
+	path = skills/senior-engineering-partner
 	url = https://github.com/bjgreenberg/senior-engineering-partner
