@@ -225,6 +225,134 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-06-27T16:48:22.868Z"
+    },
+    {
+      "id": "bug-015",
+      "timestamp": "2026-06-28T19:49:30.545Z",
+      "error_message": "Significant refactor of ",
+      "file": "Agents/ba-agent/skills/intake.md",
+      "root_cause": "5 lines replaced/restructured",
+      "fix": "Rewrote 11→16 lines (5 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-28T19:49:30.545Z"
+    },
+    {
+      "id": "bug-016",
+      "timestamp": "2026-06-28T20:14:18.925Z",
+      "error_message": "Significant refactor of ",
+      "file": "Agents/ba-agent/skills/intake.md",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 14→16 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-28T20:14:18.925Z"
+    },
+    {
+      "id": "bug-017",
+      "timestamp": "2026-06-28T20:15:29.894Z",
+      "error_message": "Significant refactor of ",
+      "file": "Agents/ba-agent/skills/process-viz.md",
+      "root_cause": "5 lines replaced/restructured",
+      "fix": "Rewrote 22→34 lines (5 removed) | Also: A([Start: Lead submits form]) --> B[Explorium enri; B --> C[Snowflake runs ICP match]",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-06-28T20:15:43.943Z"
+    },
+    {
+      "id": "bug-018",
+      "timestamp": "2026-06-28T20:15:57.002Z",
+      "error_message": "Significant refactor of ",
+      "file": "Agents/ba-agent/skills/system-integration-viz.md",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 15→27 lines (2 removed) | Also: WEB([Website Form]); EXP[Explorium]",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-06-28T20:16:08.609Z"
+    },
+    {
+      "id": "bug-019",
+      "timestamp": "2026-06-28T20:18:45.859Z",
+      "error_message": "Significant refactor of ",
+      "file": "Agents/ba-agent/skills/planner.md",
+      "root_cause": "8 lines replaced/restructured",
+      "fix": "Rewrote 15→17 lines (8 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-28T20:18:45.859Z"
+    },
+    {
+      "id": "bug-020",
+      "timestamp": "2026-06-28T20:20:24.511Z",
+      "error_message": "Significant refactor of ",
+      "file": ".claude/worktrees/ba-enhancements/skills/ba/SKILL.md",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 9→38 lines (2 removed) | Also: > - `process.mmd` / `process.png` — Process flow d; > - `integration.mmd` / `integration.png` — System",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-06-28T20:20:50.655Z"
+    },
+    {
+      "id": "bug-021",
+      "timestamp": "2026-06-29T01:27:27.269Z",
+      "error_message": "Significant refactor of ",
+      "file": "plans/i-have-two-laptops-moonlit-beaver.md",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 7→34 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-29T01:27:27.269Z"
+    },
+    {
+      "id": "bug-022",
+      "timestamp": "2026-07-01T03:08:25.668Z",
+      "error_message": "Incorrect value in code",
+      "file": ".gitmodules",
+      "root_cause": "Had \"/Users/paulmckay/.claude/skills/senior-engineerin",
+      "fix": "Changed to \"skills/senior-engineering-partner\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "unknown"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-01T03:08:25.668Z"
     }
   ]
 }

@@ -167,6 +167,11 @@
             "type": "command",
             "command": "osascript -e 'display notification \"Task complete\" with title \"Claude Code\" sound name \"Glass\"'",
             "async": true
+          },
+          {
+            "type": "command",
+            "command": "REPO=$(git -C \"${CLAUDE_CWD:-$HOME/.claude}\" rev-parse --show-toplevel 2>/dev/null); if [ -n \"$REPO\" ]; then STALE=$(git -C \"$REPO\" worktree list 2>/dev/null | tail -n +2); if [ -n \"$STALE\" ]; then echo \"⚠️  Active worktrees — run cleanup if merged:\\n$STALE\\n  Fix: git -C $REPO worktree remove <path> && git -C $REPO branch -d <branch>\"; fi; fi",
+            "async": true
           }
         ]
       },

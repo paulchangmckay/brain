@@ -207,3 +207,95 @@ Context window was compacted here. Review the session and capture any key findin
 ## Decision Log (2026-06-27, session 8)
 
 - 2026-06-27: Set `--scale 3` as the permanent default in `png-render.md` rather than a one-time flag. Rationale: every BA run produces stakeholder-facing docs; default should be print-ready. Scaling down is trivial; upscaling after doc embedding produces softness.
+
+## Key Learnings (2026-06-27, session 9 — exec viz stack)
+
+- 2026-06-27: **Worktree merge pattern**: After committing in an `EnterWorktree` branch, `git checkout main` fails from inside the worktree (main is already checked out in the parent tree). Correct sequence: `ExitWorktree` (action: keep) → `git -C /Users/paulmckay/.claude merge <branch>` from the parent directory → `git -C ... worktree remove <path>` → `git -C ... branch -d <branch>`. Running merge from inside the worktree will always fail with "already used by worktree."
+- 2026-06-27: **Cached plugins are read-only**: `~/.claude/plugins/cache/` contains third-party plugin files that can be overwritten on package update. Never modify files in this directory directly. The correct pattern: create a local wrapper or extension skill in `~/.claude/skills/<name>/SKILL.md` that references or wraps the cached plugin's scripts.
+- 2026-06-27: **Gap analysis via Explore agents**: For "what am I missing?" questions about a toolchain, launch 2 parallel Explore agents — one to inventory existing skills/stack, one to check installed runtimes/packages — then synthesize gaps by use case and priority-rank by effort vs. impact. This produces a grounded gap analysis rather than a generic "here's what exists" survey.
+
+## Do-Not-Repeat (2026-06-27, session 9)
+
+- 2026-06-27: Do NOT attempt `git checkout main` from inside a worktree session — it will fail because main is checked out in the parent working tree. Always exit the worktree first, then merge from outside.
+- 2026-06-27: Do NOT modify files under `~/.claude/plugins/cache/` — they are third-party cached downloads that will be overwritten on plugin updates. Create local wrapper skills in `~/.claude/skills/` instead.
+
+## Decision Log (2026-06-27, session 9)
+
+- 2026-06-27: Created `dataviz`, `html-export`, and `exec-dashboard` skills to fill three critical gaps for exec stakeholder presentation work: (1) recharts + brand-palette defaults for charts, (2) Playwright HTML→PNG/PDF export pipeline, (3) KPI+chart+insight full-page dashboard template. All three are wired together as a workflow: brand → dataviz → build → html-export → embed in PPTX.
+
+## Key Learnings (2026-06-28, session 10 — ba Phase 2.5 wiring)
+
+- 2026-06-28: **`Agents/` is gitignored in `~/.claude`** — changes to ba-agent skill files (e.g. `ba-package.md`, `intake.md`, `planner.md`) go directly to `~/.claude/Agents/ba-agent/skills/` in the main tree and are never tracked by git. A worktree branch cannot carry these changes. The correct workflow: edit Agents/ files directly, commit only the tracked `skills/` and `hooks/` changes via worktree.
+- 2026-06-28: **`has_metrics` flag pattern**: The cleanest way to pass brief-type context from a sub-agent to the parent skill is to write a computed flag into `context.json` during sub-agent assembly. The sub-agent has full artifact context at that point (data-map.md scanned, types identified). The parent reads the flag without re-analyzing the artifacts. This avoids duplicating scan logic and keeps the parent skill brief-agnostic.
+- 2026-06-28: **Two-variant skill pattern**: When a skill needs to produce the same artifact type (dashboard HTML) from two different data shapes (business metrics vs. process counts), the right structure is one skill with two clearly-labelled App.tsx templates (Variant A / Variant B), not two separate skills. The caller passes the variant name in the brief; the skill executes the matching template.
+
+## Do-Not-Repeat (2026-06-28, session 10)
+
+- 2026-06-28: Do NOT try to edit `~/.claude/Agents/` files via a worktree — the directory is gitignored and won't appear in the worktree at all. Check `git check-ignore -v <path>` before assuming a directory is tracked; edit gitignored files directly.
+
+## Decision Log (2026-06-28, session 10)
+
+- 2026-06-28: Placed Phase 2.5 (exec dashboard) between Phase 2 (professional docs) and Phase 3 (comms) in ba/SKILL.md. Rationale: the dashboard is a document-type output that belongs with docs, but runs after them so PPTX can optionally absorb the dashboard PNG as a final slide without requiring a second PPTX invocation.
+- 2026-06-28: Used `has_metrics` in context.json rather than having Phase 2.5 scan data-map.md itself. Rationale: the sub-agent already has full artifact context at assembly time and can make a more accurate determination. Post-hoc parent-level scanning of BA artifacts duplicates work the sub-agent already did.
+
+
+## Key Learnings (2026-06-28, session 11 — BA Discovery Gateway)
+
+- 2026-06-28: **Discovery Gateway pattern**: The cleanest way to transform a passive processing skill into an active practitioner is to insert a Phase 0 that (1) scores input quality on named dimensions, (2) runs a structured 2-round Q&A if the score is below threshold, and (3) synthesizes findings back to the user for confirmation before proceeding. This pattern is reusable in any skill that must distinguish thin vs. complete input.
+- 2026-06-28: **7-dimension scoring as routing gate**: A named-dimension rubric (e.g., "problem statement present, actors identified, scope bounded…") is more reliable than heuristic length checks. It gives a clear threshold, makes skips explainable, and can be tuned independently per dimension without changing overall flow logic.
+- 2026-06-28: **BA practitioner voice via embedded principles**: Embedding behavioral principles directly in a skill file (e.g., "never take a solution at face value", "distinguish symptom from root cause") gives the AI a domain-expert persona without adding code. The principles act as inline behavioral guardrails during Phase 0 conversation.
+
+## Decision Log (2026-06-28, session 11)
+
+- 2026-06-28: Placed Discovery Gateway (Phase 0) at the parent SKILL.md level, not in the sub-agent intake. Rationale: multi-turn interactive dialogue cannot succeed in the sub-agent (relay messages fail stage gates — same constraint as comms). The sub-agent's intake.md was updated only to treat discovery-enriched fields as authoritative and skip re-asking for already-answered questions.
+- 2026-06-28: Synthesis template in Phase 0 Round 3 mirrors the 7-dimension rubric intentionally — the user can verify at a glance that every scored dimension got a real answer before confirming. This prevents the "looks complete, isn't" failure mode where a confirmation step accepts a thin synthesis.
+
+## Key Learnings (2026-06-28, session 12 — BA agent Tier 1/2/4 enhancements)
+
+- 2026-06-28: **Post-processing meta-artifact pattern**: `assumption-log.md` uses `grep -rn "\[inferred\]"` across all generated artifacts to produce a centralized assumption register. This pattern — one skill post-processes the entire output set to produce an audit artifact — is reusable for any skill suite that needs cross-artifact inspection (e.g., gap analysis, completeness checker, consistency report). The skill must run LAST in the dispatch loop so all prior artifacts are finalized.
+- 2026-06-28: **Mermaid brand theming via classDef**: Apply brand colors to Mermaid diagrams with `%%{init: {'theme': 'base', 'themeVariables': {...}}}%%` at the top of the .mmd file PLUS explicit `classDef` declarations PLUS `:::className` inline on every node. The theme variables alone only affect line/text colors — they do NOT override node fill colors. Every node must have `:::className` explicitly applied or it renders in Mermaid defaults.
+- 2026-06-28: **`:::newStep` visual diff in transformation diagrams**: Applied a distinct slate fill (#5a7a8a) via `:::newStep` classDef to steps that appear in `to_be_steps[]` but not in `steps[]`. This gives visual differentiation of new vs. carried-over steps without requiring a separate diff artifact. The pattern generalizes: use a color-coded class to mark state changes within a diagram rather than creating a second diagram.
+- 2026-06-28: **Conditional artifact dispatch guard pattern**: For transformation-only artifacts (to-be-process.mmd, transformation-plan.md), the planner dispatches them only when `context.json["engagement_type"] === "transformation"`. Each skill also has its own guard at the top (a bash node -e check that exits non-zero if condition not met). Double-guarding at both planner and skill level prevents accidental generation and makes each skill self-describing about its preconditions.
+
+## Decision Log (2026-06-28, session 12)
+
+- 2026-06-28: Risk register always produces ≥1 risk, even with sparse input (no pain_points, no tool_gaps). Rationale: empty register tables in stakeholder deliverables look like oversights, not genuine clean bills of health. Minimum sources are decision points and cross-actor handoffs — every process has at least one of these.
+- 2026-06-28: Stakeholder bundles use `zip -j` (flat, junk paths) for Technical and Executive bundles, `zip -r` (recursive) for Full. Rationale: Technical and Executive audiences open files directly from the zip — nested directory structure adds friction. Full bundle preserves directory structure because it includes `docs/` and `comms/` subdirs that the recipient needs to navigate.
+- 2026-06-28: Version delta check placed at Phase 1 start (before sub-agent spawn), not inside the sub-agent. Rationale: the check requires reading two context.json files and presenting a diff to the user — this is interactive and must run at parent level. Placing it at the sub-agent level would require relay messaging, which fails stage gates.
+
+---
+## Compaction event: 2026-06-28T19:50:42Z
+Context window was compacted here. Review the session and capture any key findings, decisions, or patterns that should persist.
+
+## Key Learnings (2026-06-30, session 13 — two-laptop transfer bundle)
+
+- 2026-06-30: **Self-optimization spec > file dump for Claude Code transfer**: The most reliable way to migrate a Claude Code setup to another machine is a self-optimization document that instructs the receiving Claude Code to audit its own state, gap-close, and remove bloat — not a zip of ~/.claude. The receiving instance preserves unique content, handles path differences, and installs plugins fresh. A file dump risks overwriting things that work and transferring stale runtime state.
+- 2026-06-30: **Standalone files beat embedded spec content**: In transfer bundles, include actual skill files (SKILL.md) alongside the spec doc. The receiving Claude Code can copy files directly rather than extract content from markdown fences — more reliable and less error-prone.
+- 2026-06-30: **Gap analysis against philosophy > file inventory**: When auditing what's missing from a transfer, map each philosophical requirement to the files that enable it (e.g., "self-learning" → cron-manifest.json, "memory layer" → reframe-frameworks.md). A generic file-listing approach misses non-obvious dependencies that only reveal themselves when a feature breaks on first use.
+- 2026-06-30: **Raw `find` is useless for directory structure references when submodules are present**: Submodule internals (langsmith-plugin/src, superpowers/tests, etc.) flood the output. Write annotated directory trees manually — curate what matters, label each entry ([FILE], [SUBMOD], [SYMLINK], [RUNTIME], [SKIP]).
+
+## Do-Not-Repeat (2026-06-30, session 13)
+
+- 2026-06-30: Do NOT use `find ~/.claude | sort` as a target-structure reference when the directory contains large submodules. The output becomes 300+ lines of irrelevant internal files. Write the tree manually and annotate it.
+- 2026-06-30: `ExitPlanMode`'s `allowedPrompts` parameter only accepts `"Bash"` as the tool value — passing `"Edit"` causes `InputValidationError`. Only list Bash operations in allowedPrompts; mention file editing in the prompt description instead.
+
+## Decision Log (2026-06-30, session 13)
+
+- 2026-06-30: Chose self-optimization spec approach over zip-file transfer for cross-machine Claude Code migration. Rationale: zip requires knowing exactly what to include/exclude and can't handle username path differences gracefully. A spec gives the receiving Claude Code the judgment to do its own audit, gap-close intelligently, and skip what it already has.
+- 2026-06-30: Philosophy alignment doc (philosophy.md) is the first read on the target machine — before the spec. Rationale: the spec handles file/config setup; philosophy sets behavioral alignment. Without reading philosophy first, the receiving instance might treat HARD-GATE and IRON LAW instructions as optional suggestions and skip gates on "small" tasks.
+
+## Key Learnings (2026-06-30, session 14 — senior-engineering-partner integration)
+
+- 2026-06-30: **`git submodule add <abs-path>` writes absolute path to .gitmodules**: The index entry normalizes correctly to a relative path, but the `.gitmodules` entry captures the absolute path literally. This causes `git submodule status` to fail with "no submodule mapping found". Always use a path relative to the repo root as the destination argument: `git submodule add <url> skills/<name>`, not `/Users/paulmckay/.claude/skills/<name>`.
+- 2026-06-30: **Stale worktree index entry (mode 160000) blocks git submodule operations**: A removed worktree that was never cleaned from the index causes `git submodule sync` to error. To fix: stage .gitmodules changes first (`git add .gitmodules`), then remove the stale entry (`git rm --cached <stale-path>`). Attempting `git rm --cached` without staging .gitmodules first throws "please stage your changes to .gitmodules or stash them".
+- 2026-06-30: **Reference library install pattern**: When a third-party skill has a workflow enforcement layer that duplicates existing gates, install it as a git submodule for its reference modules only — bypass SKILL.md's workflow loop. Wire the reference module paths into the relevant existing skill rows (e.g., CLAUDE.md Process Layer) rather than invoking the whole skill.
+
+## Do-Not-Repeat (2026-06-30, session 14)
+
+- 2026-06-30: Do NOT call `git submodule add` with an absolute destination path. Use a repo-relative path (e.g., `skills/senior-engineering-partner`). Absolute paths land in the index correctly but corrupt `.gitmodules` with a non-portable absolute path.
+- 2026-06-30: Do NOT run `git rm --cached <stale-path>` while `.gitmodules` has unstaged modifications — git will error. Always `git add .gitmodules` first.
+
+## Decision Log (2026-06-30, session 14)
+
+- 2026-06-30: Installed senior-engineering-partner as a **reference library only** — not as workflow enforcement. The SKILL.md gate sequence duplicates existing process gates (brainstorming→TDD→verification chain). Unique value: 21+ domain reference modules (testing, security, GCP, observability) and the tiered rigor ladder (Tier 0/1/2). Wired both into CLAUDE.md Process Layer rather than adding a new competing gate.
+- 2026-06-30: Added **Project Tier table** (0/1/2 with promotion triggers) to CLAUDE.md. Rationale: existing config had no concept of maturity-scaled rigor — same gates fired on throwaway scripts and production services. The tier concept lets rigor scale to context without removing gates for high-stakes work.

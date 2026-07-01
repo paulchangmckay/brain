@@ -1,20 +1,20 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-27T16:57:26.399Z
-> Files: 518 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-07-01T03:39:38.413Z
+> Files: 515 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
 - `.DS_Store` (~3275 tok)
 - `.gitignore` — Git ignore rules (~282 tok)
-- `.gitmodules` (~58 tok)
+- `.gitmodules` (~99 tok)
 - `.last-cleanup` (~7 tok)
 - `.last-update-result.json` (~46 tok)
-- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~1287 tok)
+- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~1642 tok)
 - `history.jsonl` (~40 tok)
 - `mcp_servers.json` (~38 tok)
 - `mcp-needs-auth-cache.json` (~28 tok)
-- `settings.json` (~2542 tok)
+- `settings.json` (~2675 tok)
 
 ## .claude/
 
@@ -206,68 +206,47 @@
 
 - `openwolf.md` (~313 tok)
 
-## Agents/ba-agent/.wolf/
-
-- `cerebrum.md` — Cerebrum (~649 tok)
-
 ## Agents/ba-agent/outputs/
 
+- `.DS_Store` (~1640 tok)
 - `.gitkeep` (~0 tok)
-
-## Agents/ba-agent/outputs/ba-package-generation/
-
-- `context.json` (~1612 tok)
-- `data-map.md` — Data Mapping: BA Package Generation (~1419 tok)
-- `integration.mmd` (~272 tok)
-- `process.mmd` (~567 tok)
-- `sop.md` — SOP: BA Package Generation (~3219 tok)
-
-## Agents/ba-agent/outputs/ba-package-generation/comms/
-
-- `3p-update.md` — 3P Update: ba-package-generation (~324 tok)
-- `faq.md` — FAQ: ba-package-generation (~845 tok)
-
-## Agents/ba-agent/outputs/inbound-lead-routing/
-
-- `context.json` (~302 tok)
-- `data-map.md` — Data Mapping: Inbound Lead Routing (~452 tok)
-- `index.md` — BA Package: Inbound Lead Routing (~174 tok)
-- `integration.mmd` (~158 tok)
-- `observe-log.md` — Observe Log (~231 tok)
-- `process.mmd` (~219 tok)
-- `sop.md` — SOP: Inbound Lead Routing (~755 tok)
-- `summary.md` — BA Package: Inbound Lead Routing (~671 tok)
 
 ## Agents/ba-agent/scripts/
 
-- `validate-mermaid.sh` — Usage: bash scripts/validate-mermaid.sh outputs/process.mmd (~469 tok)
+- `validate-mermaid.sh` — Usage: bash scripts/validate-mermaid.sh outputs/process.mmd (~502 tok)
 
 ## Agents/ba-agent/skills/
 
-- `ba-package.md` — Skill: BA Package Assembly (~947 tok)
+- `assumption-log.md` — Skill: Assumption Log (~978 tok)
+- `ba-package.md` — Skill: BA Package Assembly (~1670 tok)
 - `comms-3p.md` — Skill: 3P Update Co-Authoring (~971 tok)
 - `comms-faq.md` — Skill: FAQ Sheet Co-Authoring (~1294 tok)
 - `data-mapping.md` — Skill: Data Mapping (~985 tok)
-- `intake.md` — Skill: Brief Normaliser (~1207 tok)
-- `planner.md` — Skill: Planner + Observe (~1240 tok)
-- `png-render.md` — Skill: PNG Rendering + Docs Manifest (~1004 tok)
-- `process-viz.md` — Skill: Process Visualisation (~606 tok)
+- `intake.md` — Skill: Brief Normaliser (~1672 tok)
+- `planner.md` — Skill: Planner + Observe (~2038 tok)
+- `png-render.md` — Skill: PNG Rendering + Docs Manifest (~1127 tok)
+- `process-viz.md` — Skill: Process Visualisation (~968 tok)
+- `raci-matrix.md` — Skill: RACI Matrix (~823 tok)
+- `risk-register.md` — Skill: Risk Register (~1233 tok)
 - `sop-writer.md` — Skill: SOP Writer (~1286 tok)
-- `system-integration-viz.md` — Skill: System Integration Visualisation (~639 tok)
+- `system-integration-viz.md` — Skill: System Integration Visualisation (~935 tok)
+- `to-be-process.md` — Skill: To-Be Process Visualisation (~846 tok)
+- `transformation-plan.md` — Skill: Transformation Plan (~1168 tok)
+- `user-stories.md` — Skill: User Stories (~1053 tok)
 
 ## Agents/ba-agent/templates/
 
+- `.DS_Store` (~1640 tok)
 - `brief-template.md` — BA Brief Template (~407 tok)
 - `context-object.json` (~84 tok)
-- `test-brief.md` — Test Brief — Inbound Lead Routing (~217 tok)
 
 ## backups/
 
-- `.claude.json.backup.1782575532371` (~9750 tok)
-- `.claude.json.backup.1782575605008` (~9767 tok)
-- `.claude.json.backup.1782575676017` — Declares breakdown (~9767 tok)
-- `.claude.json.backup.1782575751350` — Declares breakdown (~9767 tok)
-- `.claude.json.backup.1782575853090` — Declares breakdown (~9767 tok)
+- `.claude.json.backup.1782763883081` (~9698 tok)
+- `.claude.json.backup.1782785562455` (~9733 tok)
+- `.claude.json.backup.1782808005888` — Declares breakdown (~9787 tok)
+- `.claude.json.backup.1782830450587` — Declares breakdown (~9800 tok)
+- `.claude.json.backup.1782852056552` — Declares breakdown (~9800 tok)
 
 ## brand/
 
@@ -306,6 +285,13 @@
 - `c47760ed6c9ee802@v4` — System Instructions: Thin Harness, Fat Skills Environment (~796 tok)
 - `c47871093baa7d78@v2` — Unified SessionStart hook: Superpowers bootstrap + OpenWolf anatomy injection (~562 tok)
 - `dad9aa259a03aa1c@v2` — PreToolUse hook: checks anatomy.md before Claude opens a file. (~535 tok)
+
+## file-history/21639edb-2d3b-4c98-8cf5-8254e54045f7/
+
+- `3cd8353c2c9425ee@v1` — Cerebrum (~4781 tok)
+- `bbf1c9c196e3b05b@v2` — Plan: CLAUDE.md Audit & Optimization (~797 tok)
+- `c47760ed6c9ee802@v1` — System Instructions: Thin Harness, Fat Skills Environment (~1422 tok)
+- `c47760ed6c9ee802@v2` — System Instructions: Thin Harness, Fat Skills Environment (~1373 tok)
 
 ## file-history/313d95d2-fd19-4b81-a264-51764cbf2e54/
 
@@ -361,6 +347,18 @@
 - `e3b3b4b0ecb389a6@v4` — Plan: Eliminate Brand Drift Risk in ba-agent (~1702 tok)
 - `f3c5ee297a6e8452@v2` — Declares identified (~972 tok)
 
+## file-history/3be5a588-bae6-4972-b0de-d5c57a13a44b/
+
+- `3ad63b0d8ec00de8@v2` — Philosophy — Read This First (~981 tok)
+- `5639455d7b004b8c@v2` — Target ~/.claude structure — Paul McKay's optimized implementation (~2818 tok)
+- `596ca8cc7e05db98@v2` — Plan: Migrate Optimized Claude Code Setup to Other Laptop (~1740 tok)
+- `596ca8cc7e05db98@v3` — )` pattern using `<USERNAME>` (~1437 tok)
+- `596ca8cc7e05db98@v4` — )` pattern using `<USERNAME>` (~1850 tok)
+- `596ca8cc7e05db98@v5` — )` pattern using `<USERNAME>` (~2171 tok)
+- `596ca8cc7e05db98@v6` — Plan: Write Philosophy Alignment Document for Transfer Bundle (~856 tok)
+- `7f22d1fc51db17e9@v2` — OpenWolf Orientation — How anatomy.md and memory.md Work (~1080 tok)
+- `e0165af5893adb49@v2` — Claude Code Self-Optimization Spec (~14015 tok)
+
 ## file-history/408b78c6-fb3a-4dfe-a186-1826cdc6f15f/
 
 - `3cd8353c2c9425ee@v1` — Cerebrum (~1862 tok)
@@ -372,6 +370,49 @@
 - `c0f499d9fd74f710@v2` — Runtime / ephemeral Claude Code data (~282 tok)
 - `c47760ed6c9ee802@v1` — System Instructions: Thin Harness, Fat Skills Environment (~893 tok)
 - `c47760ed6c9ee802@v2` — System Instructions: Thin Harness, Fat Skills Environment (~1011 tok)
+
+## file-history/4f278f88-b54a-4a04-a39f-2b0d2544498b/
+
+- `094596fcf6c93f38@v2` — Gap Analysis: Web Visualization & Executive Presentation Stack (~1713 tok)
+- `094596fcf6c93f38@v3` — BA Agent Enhancement: Wire dataviz / html-export / exec-dashboard (~1723 tok)
+- `094596fcf6c93f38@v4` — BA Agent: Discovery Mode & Active BA Intelligence (~2654 tok)
+- `094596fcf6c93f38@v5` — BA Agent Enhancement Plan — Tiers 1, 2, and 4 (~4315 tok)
+- `1139bd2dd98f75dc@v2` — BRAND_COLORS: KPICard (~2130 tok)
+- `1185533a49c9b38c@v2` — Skill: To-Be Process Visualisation (~903 tok)
+- `1a6f662cb8176cdd@v2` — Skill: RACI Matrix (~878 tok)
+- `1c860a2ce3b8fea4@v2` — Skill: User Stories (~1124 tok)
+- `31a2a3eee90333eb@v2` (~3761 tok)
+- `31a2a3eee90333eb@v3` (~5368 tok)
+- `31a2a3eee90333eb@v4` (~6648 tok)
+- `36e0c7aeb2f8bd8a@v2` — Usage: node html-export.js <input.html|url> [output-dir] [--wait <ms>] (~609 tok)
+- `3cd8353c2c9425ee@v1` — Cerebrum (~7307 tok)
+- `3cd8353c2c9425ee@v2` — Cerebrum (~7886 tok)
+- `3cd8353c2c9425ee@v3` — Cerebrum (~8496 tok)
+- `3cd8353c2c9425ee@v4` — Cerebrum (~9055 tok)
+- `53233320e4c86e86@v2` (~773 tok)
+- `5ae2b520802d8605@v1` — Skill: Process Visualisation (~646 tok)
+- `5ae2b520802d8605@v2` — Skill: Process Visualisation (~1032 tok)
+- `6cbfe9b7a117b79e@v1` — Skill: PNG Rendering + Docs Manifest (~1071 tok)
+- `6cbfe9b7a117b79e@v2` — Skill: PNG Rendering + Docs Manifest (~1202 tok)
+- `78b1d082a922114a@v2` — Skill: Risk Register (~1316 tok)
+- `87ede538cbe63069@v2` — Skill: Assumption Log (~1043 tok)
+- `97d5da55a93bc18e@v2` — Skill: Transformation Plan (~1246 tok)
+- `ad63495c918b7775@v1` — Skill: BA Package Assembly (~1291 tok)
+- `ad63495c918b7775@v2` — Skill: BA Package Assembly (~1782 tok)
+- `ad63495c918b7775@v3` — Skill: BA Package Assembly (~1782 tok)
+- `b81a39a996be463e@v2` — Exports App (~3423 tok)
+- `b81a39a996be463e@v3` — Exports App (~5855 tok)
+- `c47760ed6c9ee802@v1` — System Instructions: Thin Harness, Fat Skills Environment (~1373 tok)
+- `c47760ed6c9ee802@v2` — System Instructions: Thin Harness, Fat Skills Environment (~1456 tok)
+- `c47760ed6c9ee802@v3` — System Instructions: Thin Harness, Fat Skills Environment (~1499 tok)
+- `c9a05f8ac3aac240@v1` — Skill: System Integration Visualisation (~682 tok)
+- `c9a05f8ac3aac240@v2` — Skill: System Integration Visualisation (~998 tok)
+- `d2b79c9d8d29b1e5@v1` (~2485 tok)
+- `db3a81fe58469d8d@v1` — Skill: Planner + Observe (~1323 tok)
+- `db3a81fe58469d8d@v2` — Skill: Planner + Observe (~2174 tok)
+- `ee221a11d5bc534d@v1` — Skill: Brief Normaliser (~1605 tok)
+- `ee221a11d5bc534d@v2` — Skill: Brief Normaliser (~1784 tok)
+- `ee221a11d5bc534d@v3` — Skill: Brief Normaliser (~1784 tok)
 
 ## file-history/52aeb251-6000-4916-8faa-64f152450b22/
 
@@ -452,6 +493,30 @@
 
 - `c15c82adf8165050@v1` (~1199 tok)
 
+## file-history/add637d5-044d-4888-99c1-d47ef7c46a95/
+
+- `280bc48e35214432@v2` — Plan: Map the BA Agent Process Using Itself (~1282 tok)
+- `280bc48e35214432@v3` — Plan: Fix BA Agent Professional Document & Comms Flow (~1433 tok)
+- `280bc48e35214432@v4` — Plan: Re-render process.png for Image Quality Check (~418 tok)
+- `2acd6d65f2c82913@v1` (~1365 tok)
+- `2acd6d65f2c82913@v2` (~1333 tok)
+- `31a2a3eee90333eb@v1` (~2248 tok)
+- `31a2a3eee90333eb@v2` (~2485 tok)
+- `3cd8353c2c9425ee@v1` — Cerebrum (~5532 tok)
+- `3cd8353c2c9425ee@v2` — Cerebrum (~5945 tok)
+- `3cd8353c2c9425ee@v3` — Cerebrum (~6948 tok)
+- `3cd8353c2c9425ee@v4` — Cerebrum (~7307 tok)
+- `3e952abe308ab27e@v2` — FAQ: ba-package-generation (~902 tok)
+- `5131c1712f382ed8@v2` — 3P Update: ba-package-generation (~345 tok)
+- `6cbfe9b7a117b79e@v1` — Skill: PNG Rendering + Docs Manifest (~1066 tok)
+- `6cbfe9b7a117b79e@v2` — Skill: PNG Rendering + Docs Manifest (~1071 tok)
+- `ab0ef73e6d105444@v1` — BA Agent — Output Workspace (~422 tok)
+- `ab0ef73e6d105444@v2` — BA Agent — Output Workspace (~510 tok)
+- `db3a81fe58469d8d@v1` — Skill: Planner + Observe (~1567 tok)
+- `db3a81fe58469d8d@v2` — Skill: Planner + Observe (~1323 tok)
+- `e0d6f2a63a3ac4d3@v1` — Cerebrum (~419 tok)
+- `e0d6f2a63a3ac4d3@v2` — Cerebrum (~692 tok)
+
 ## file-history/ae43e70e-0bdd-4666-8325-f654e3b51577/
 
 - `957dcfb080f1315b@v1` — Paul McKay — Personal Brand Guide (~3234 tok)
@@ -480,6 +545,37 @@
 - `d9d264dcbb7e53bf@v2` (~1204 tok)
 - `e109108c6327bfaa@v1` (~37041 tok)
 - `e109108c6327bfaa@v2` (~37114 tok)
+
+## file-history/c5eec794-a8f9-4671-a472-b6daf14ce33a/
+
+- `31a2a3eee90333eb@v1` (~2026 tok)
+- `31a2a3eee90333eb@v2` (~2248 tok)
+- `3cd8353c2c9425ee@v1` — Cerebrum (~5945 tok)
+- `5ae2b520802d8605@v1` — Skill: Process Visualisation (~591 tok)
+- `5ae2b520802d8605@v2` — Skill: Process Visualisation (~646 tok)
+- `6cbfe9b7a117b79e@v1` — Skill: PNG Rendering + Docs Manifest (~797 tok)
+- `6cbfe9b7a117b79e@v2` — Skill: PNG Rendering + Docs Manifest (~1066 tok)
+- `724586e847d4008c@v1` — Skill: FAQ Sheet Co-Authoring (~1107 tok)
+- `724586e847d4008c@v2` — Skill: FAQ Sheet Co-Authoring (~1380 tok)
+- `8d580e42f744c8d4@v1` — Skill: Data Mapping (~820 tok)
+- `8d580e42f744c8d4@v2` — Skill: Data Mapping (~1051 tok)
+- `acdbe33f6caf465a@v1` — Usage: bash scripts/validate-mermaid.sh outputs/process.mmd (~258 tok)
+- `acdbe33f6caf465a@v2` — Usage: bash scripts/validate-mermaid.sh outputs/process.mmd (~469 tok)
+- `ad63495c918b7775@v1` — Skill: BA Package Assembly (~867 tok)
+- `ad63495c918b7775@v2` — Skill: BA Package Assembly (~1010 tok)
+- `b45c8bd906e21647@v1` (~1623 tok)
+- `c4dcb2c4f7a81fa9@v2` — Plan: BA Agent — Efficiency & Quality Improvements (~3160 tok)
+- `c9a05f8ac3aac240@v1` — Skill: System Integration Visualisation (~519 tok)
+- `c9a05f8ac3aac240@v2` — Skill: System Integration Visualisation (~682 tok)
+- `d954585803c8c617@v1` — Skill: SOP Writer (~1211 tok)
+- `d954585803c8c617@v2` — Skill: SOP Writer (~1272 tok)
+- `d954585803c8c617@v3` — Skill: SOP Writer (~1372 tok)
+- `db3a81fe58469d8d@v1` — Skill: Planner + Observe (~1304 tok)
+- `db3a81fe58469d8d@v2` — Skill: Planner + Observe (~1567 tok)
+- `ee221a11d5bc534d@v1` — Skill: Brief Normaliser (~1004 tok)
+- `ee221a11d5bc534d@v2` — Skill: Brief Normaliser (~1287 tok)
+- `f3c5ee297a6e8452@v1` — Declares identified (~972 tok)
+- `f3c5ee297a6e8452@v2` — Declares identified (~1245 tok)
 
 ## file-history/c851ab8a-14e6-4770-9ec4-b00503f78b97/
 
@@ -523,6 +619,13 @@
 
 - `31a2a3eee90333eb@v1` (~104 tok)
 - `c15c82adf8165050@v1` (~2312 tok)
+
+## file-history/f875251b-1b93-4abb-b5ef-01fbc75b4467/
+
+- `07a6245c8b57fcc7@v2` — Plan: Consolidate /ba and /ba-agent into a single /ba skill (~567 tok)
+- `31a2a3eee90333eb@v1` (~138 tok)
+- `31a2a3eee90333eb@v2` (~2026 tok)
+- `3cd8353c2c9425ee@v1` — Cerebrum (~5267 tok)
 
 ## file-history/fb94f48e-a473-4a19-830e-27d6be4d7eed/
 
@@ -604,8 +707,6 @@
 - `state.test.ts` — Declares path (~2148 tok)
 - `state.ts` — Persistent state management — tracks how far we've read in each session's (~1194 tok)
 - `transcript.test.ts` — writeJsonl: makeUser, makeAssistant, makeToolResult (~5137 tok)
-- `transcript.ts` — Transcript parsing — reads Claude Code JSONL transcripts and groups (~4085 tok)
-- `types.ts` — Types for Claude Code hook inputs and JSONL transcript messages. (~1828 tok)
 
 ## langsmith-plugin/src/fixtures/coding-agent-v1/
 
@@ -621,187 +722,11 @@
 - `session-end.ts` — SessionEnd hook entry point. (~866 tok)
 - `stop-failure.ts` — StopFailure hook entry point. (~951 tok)
 - `stop.ts` — Stop hook entry point. (~3072 tok)
-- `subagent-stop.ts` — SubagentStop hook entry point. (~616 tok)
-- `user-prompt-submit.ts` — UserPromptSubmit hook entry point. (~1963 tok)
-
-## langsmith-plugin/src/utils/
-
-- `hook-init.ts` — Shared hook startup utilities. (~312 tok)
-- `stdin.ts` — Read all of stdin and parse it as JSON. (~139 tok)
 
 ## plans/
 
-- `do-i-have-any-synthetic-aho.md` — Context Window Guardrails — Recommendations (~931 tok)
-- `does-it-make-sense-toasty-prism.md` — Plan: Eliminate Brand Drift Risk in ba-agent (~1596 tok)
-- `fluffy-discovering-jellyfish.md` — Plan: Initialize ~/.claude as a Git Repository (~1218 tok)
-- `help-me-build-a-prancy-journal.md` — Plan: Install & Run Understand-Anything on ~/.claude (~954 tok)
-- `here-is-more-icon-harmonic-lollipop.md` — Plan: Update Brand Guide Icon Taxonomy (~1371 tok)
-- `how-do-i-make-cosmic-mochi.md` — OpenWolf: Global + Project Token Optimization (~1048 tok)
-- `how-would-i-make-shimmering-waffle.md` — Plan: BA Agent — Efficiency & Quality Improvements (~2962 tok)
-- `i-cant-see-my-parallel-wind.md` — Fix: understand-anything Dashboard "Invalid knowledge graph" Error (~504 tok)
-- `i-dont-see-my-proud-hejlsberg.md` — Plan: Expose BA Agent as a Reachable Command (~521 tok)
-- `i-dont-want-any-stateful-flame.md` — Plan: Disable Auto-Updates for Superpowers, OpenWolf, and gbrain (~723 tok)
-- `i-ve-been-spending-the-rosy-cray.md` — Advisory: session-reflect is manual — no auto-equivalent for cerebrum.md (~44 tok)
-- `i-ve-made-a-lot-twinkly-lightning.md` — Plan: CLAUDE.md Audit & Optimization (~747 tok)
-- `i-want-to-build-humble-tarjan.md` — Plan: Session Reflect — BA Agent Enhancement Session (2026-06-27) (~773 tok)
-- `i-want-to-use-floofy-wave.md` — Plan: Re-render process.png for Image Quality Check (~392 tok)
-- `i-was-trying-to-peaceful-avalanche.md` — Plan: LangSmith Tracing for Claude Code (~1298 tok)
-- `if-i-ask-you-tingly-whistle.md` — Install Anthropic Document Skills (~638 tok)
-- `if-i-execute-the-parsed-rabbit.md` — Plan: Register ba-agent as a True Sub-Agent (~1135 tok)
-- `should-i-just-delete-radiant-hammock.md` — Context (~252 tok)
-- `there-is-a-md-vivid-hedgehog.md` — BA Agent Build Plan (~1949 tok)
-- `to-verify-restart-claude-functional-boot.md` — Verify: ba-agent:ba Appears After Restart (~584 tok)
-- `what-is-the-difference-encapsulated-muffin.md` — Plan: Consolidate /ba and /ba-agent into a single /ba skill (~531 tok)
-- `what-sub-agents-do-golden-orbit.md` — Plan: Convert ba-agent to a Registered Sub-Agent (~905 tok)
-- `why-don-t-i-have-logical-gem.md` — Skills & Agents Consolidation Plan (~3440 tok)
-- `why-isnt-the-golden-elegant-turtle.md` — Plan: Fix gbrain MCP Server Connection (~550 tok)
+- `how-would-something-like-quirky-squirrel.md` — Git & Worktree Optimization Plan (~1007 tok)
 
-## plugins/
+## skills/senior-engineering-partner/references/
 
-- `.DS_Store` (~1640 tok)
-- `.last_inuse_sweep` (~7 tok)
-- `blocklist.json` (~119 tok)
-- `installed_plugins.json` (~246 tok)
-- `known_marketplaces.json` (~230 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/
-
-- `.gitignore` — Git ignore rules (~11 tok)
-- `README.md` — Project documentation (~1388 tok)
-- `THIRD_PARTY_NOTICES.md` — **Third-Party Notices** (~11540 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/.claude-plugin/
-
-- `marketplace.json` (~459 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/.in_use/
-
-- `50239.tmp.25a94d08` (~14 tok)
-- `84334` (~14 tok)
-- `84781` (~14 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/algorithmic-art/
-
-- `LICENSE.txt` — Declares name (~2837 tok)
-- `SKILL.md` — ALGORITHMIC PHILOSOPHY CREATION (~4934 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/algorithmic-art/templates/
-
-- `generator_template.js` — ═══════════════════════════════════════════════════════════════════════════ (~2108 tok)
-- `viewer.html` — Generative Art Viewer (~5174 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/brand-guidelines/
-
-- `LICENSE.txt` — Declares name (~2837 tok)
-- `SKILL.md` — Anthropic Brand Styling (~559 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/canvas-design/
-
-- `LICENSE.txt` — Declares name (~2837 tok)
-- `SKILL.md` — DESIGN PHILOSOPHY CREATION (~2985 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/canvas-design/canvas-fonts/
-
-- `ArsenalSC-OFL.txt` — Declares of (~1094 tok)
-- `BigShoulders-OFL.txt` — Declares of (~1100 tok)
-- `Boldonse-OFL.txt` — Declares of (~1098 tok)
-- `BricolageGrotesque-OFL.txt` — Declares of (~1101 tok)
-- `CrimsonPro-OFL.txt` — Declares of (~1099 tok)
-- `DMMono-OFL.txt` — Declares of (~1098 tok)
-- `EricaOne-OFL.txt` — Declares of (~1103 tok)
-- `GeistMono-OFL.txt` — Declares of (~1097 tok)
-- `Gloock-OFL.txt` — Declares of (~1096 tok)
-- `IBMPlexMono-OFL.txt` — Declares of (~1091 tok)
-- `InstrumentSans-OFL.txt` — Declares of (~1101 tok)
-- `Italiana-OFL.txt` — Declares of (~1099 tok)
-- `JetBrainsMono-OFL.txt` — Declares of (~1100 tok)
-- `Jura-OFL.txt` — Declares of (~1095 tok)
-- `LibreBaskerville-OFL.txt` — Declares of (~1113 tok)
-- `Lora-OFL.txt` — Declares of (~1106 tok)
-- `NationalPark-OFL.txt` — Declares of (~1100 tok)
-- `NothingYouCouldDo-OFL.txt` — Declares of (~1091 tok)
-- `Outfit-OFL.txt` — Declares of (~1098 tok)
-- `PixelifySans-OFL.txt` — Declares of (~1099 tok)
-- `PoiretOne-OFL.txt` — Declares of (~1092 tok)
-- `RedHatMono-OFL.txt` — Declares of (~1099 tok)
-- `Silkscreen-OFL.txt` — Declares of (~1099 tok)
-- `SmoochSans-OFL.txt` — Declares of (~1099 tok)
-- `Tektur-OFL.txt` — Declares of (~1097 tok)
-- `WorkSans-OFL.txt` — Declares of (~1100 tok)
-- `YoungSerif-OFL.txt` — Declares of (~1100 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/
-
-- `LICENSE.txt` — Declares name (~2837 tok)
-- `SKILL.md` — Building LLM-Powered Applications with Claude (~10410 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/csharp/
-
-- `claude-api.md` — Claude API — C# (~3907 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/curl/
-
-- `examples.md` — Claude API — cURL / Raw HTTP (~1629 tok)
-- `managed-agents.md` — Managed Agents — cURL / Raw HTTP (~1855 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/go/
-
-- `claude-api.md` — Claude API — Go (~3676 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/go/managed-agents/
-
-- `README.md` — Project documentation (~4613 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/java/
-
-- `claude-api.md` — Claude API — Java (~3956 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/java/managed-agents/
-
-- `README.md` — Project documentation (~4139 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/php/
-
-- `claude-api.md` — Claude API — PHP (~2951 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/php/managed-agents/
-
-- `README.md` — Project documentation (~3287 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/python/claude-api/
-
-- `batches.md` — Message Batches API — Python (~1397 tok)
-- `files-api.md` — Files API — Python (~1094 tok)
-- `README.md` — Project documentation (~4151 tok)
-- `streaming.md` — Streaming — Python (~1514 tok)
-- `tool-use.md` — Tool Use — Python (~4231 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/python/managed-agents/
-
-- `README.md` — Project documentation (~2495 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/ruby/
-
-- `claude-api.md` — Claude API — Ruby (~875 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/ruby/managed-agents/
-
-- `README.md` — Project documentation (~2535 tok)
-
-## plugins/cache/anthropic-agent-skills/document-skills/575462609294/skills/claude-api/shared/
-
-- `agent-design.md` — Agent Design Patterns (~2131 tok)
-- `anthropic-cli.md` — Anthropic CLI (`ant`) (~4035 tok)
-- `claude-platform-on-aws.md` — Claude Platform on AWS (~981 tok)
-
-## skills/ba-agent/agents/
-
-- `ba.md` — Invocation (~1249 tok)
-
-## skills/ba/
-
-- `SKILL.md` — ba (~2330 tok)
-
-## skills/brand/
-
-- `SKILL.md` — Brand Skill — Paul McKay Personal Brand (~1167 tok)
+- `my-environment.md` — My Environment Profile (~692 tok)
