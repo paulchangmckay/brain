@@ -299,3 +299,56 @@ Context window was compacted here. Review the session and capture any key findin
 
 - 2026-06-30: Installed senior-engineering-partner as a **reference library only** — not as workflow enforcement. The SKILL.md gate sequence duplicates existing process gates (brainstorming→TDD→verification chain). Unique value: 21+ domain reference modules (testing, security, GCP, observability) and the tiered rigor ladder (Tier 0/1/2). Wired both into CLAUDE.md Process Layer rather than adding a new competing gate.
 - 2026-06-30: Added **Project Tier table** (0/1/2 with promotion triggers) to CLAUDE.md. Rationale: existing config had no concept of maturity-scaled rigor — same gates fired on throwaway scripts and production services. The tier concept lets rigor scale to context without removing gates for high-stakes work.
+
+## Key Learnings (2026-07-01, session 15 — git/worktree cleanup)
+
+- 2026-07-01: **`git worktree remove --force` is required for post-merge cleanup.** Without `--force`, git refuses to remove a worktree if there are any tracked files on disk, even if the branch has been fully merged. Always use `--force` when cleaning up a merged worktree.
+- 2026-07-01: **Plan mode re-enters mid-skill if an existing plan file is present.** This blocks write-heavy skills (session-reflect, any skill that appends to project files). Workaround: update plan file with a brief note → call ExitPlanMode → continue skill execution.
+- 2026-07-01: **Stop hook worktree check pattern:** `git worktree list | tail -n +2` strips the main working tree entry (always first line). If the output is non-empty, stale worktrees exist. `async: true` on this hook prevents it from blocking the session close.
+
+## Do-Not-Repeat (2026-07-01, session 15)
+
+- 2026-07-01: Do NOT use `git worktree remove <path>` without `--force` for post-merge cleanup — it will fail even when the branch is fully merged. Use `git worktree remove <path> --force`.
+
+## Decision Log (2026-07-01, session 15)
+
+- 2026-07-01: Added worktree reminder to **Stop hook** rather than a PostToolUse on `git merge`. Rationale: the Stop hook fires at end of every session — the point where you're most likely to notice a forgotten worktree before closing. A mid-merge reminder fires in the middle of active work and gets dismissed.
+- 2026-07-01: Worktrees for `~/.claude` config work provide limited isolation benefit: the most complex work (Agents/) is gitignored and can't be isolated anyway. The gate's main value is as a habit-builder for external project work, not for ~/.claude itself. Small config changes don't need worktree overhead.
+
+## Key Learnings (2026-07-01, session 16 — NHL Stats project bootstrap)
+
+- 2026-07-01: **NHL API text fields are nested dicts, not plain strings.** `teamAbbrev`, `firstName`, `lastName`, `placeName`, `teamName`, `teamCommonName` from the web API all return `{'default': 'value'}` (sometimes with a `'fr'` key too). Always access with `['default']`, never treat as a string. Applies to: standings, schedule, boxscore, roster responses.
+- 2026-07-01: **NHL standings API has no `teamId`.** `/v1/standings/now` includes conference, division, points, and abbreviation but no numeric team ID. The only reliable source for numeric IDs is `https://api.nhle.com/stats/rest/en/team` (returns 62 franchise records including defunct teams). Filter to active teams using the standings `teamAbbrev['default']` set and match via `triCode`.
+- 2026-07-01: **Schedule `gameDate` field is null in game objects** — the actual date lives in the parent `day['date']` field of the `gameWeek` array. Always use `day.get('date')`, never `game.get('gameDate')`.
+- 2026-07-01: **Boxscore players aren't always on current roster.** Players on IR, call-ups, or special roster arrangements appear in boxscore `playerByGameStats` but not in `/v1/roster/{team}/current`. FK constraints on `player_game_stats(player_id)` will fail unless you stub-insert missing players first (using `name['default']` from the boxscore player object).
+- 2026-07-01: **macOS Homebrew Python 3.14 is "externally managed."** `python3 -m pip install` fails with `externally-managed-environment`. Always use `python3 -m venv .venv && source .venv/bin/activate` before pip. This is standard behavior for Python 3.11+ on Homebrew.
+
+## Do-Not-Repeat (2026-07-01, session 16)
+
+- 2026-07-01: Do NOT access NHL API name/abbrev fields as plain strings — `teamAbbrev['default']`, `firstName['default']`, `placeName['default']` are the required patterns. Treating them as strings causes `TypeError: string indices must be integers`.
+- 2026-07-01: Do NOT fire 32+ sequential NHL API requests without a per-call sleep. The API returns 429 after ~20 rapid requests. Add 0.5s `time.sleep()` between loop iterations plus exponential backoff retry (`3, 6, 12, 24s`) in the `_get()` helper.
+
+## Decision Log (2026-07-01, session 16)
+
+- 2026-07-01: For NHL Stats project team ID resolution: used `https://api.nhle.com/stats/rest/en/team` (`triCode` → `id` map) joined against active teams from standings. Rationale: standings has all 32 active teams with conference/division; stats REST API has numeric IDs. Neither source alone has everything needed; joining on abbreviation/triCode is the cleanest bridge.
+- 2026-07-01: NHL Stats project built at `/Users/paulmckay/Desktop/NHL Stats Project/` — pushed to `https://github.com/paulchangmckay/nhl-stats`. Architecture: `src/` (api_client, database, models) + `etl/` (5 loaders) + `scripts/` (setup, run_all, query_examples). Python venv at `.venv/`, SQLite at `data/nhl_stats.db` (git-ignored). Uses NHL Web API (`api-web.nhle.com/v1`) as primary source.
+
+## Key Learnings (2026-07-02, session 17 — NHL Stats Flask web app)
+
+- 2026-07-02: **Client-side filter/sort pattern is appropriate for ≤1000 row datasets.** Load all rows once via `/api/` JSON endpoint; filter and sort in JS without server round-trips. Eliminates server-side query complexity, pagination, and state management for small datasets. The NHL Stats player table (705 rows) loads in <100ms.
+- 2026-07-02: **`sys.path.insert(0, os.path.dirname(__file__))` in `app.py` makes `src/` importable without package installation.** This is the correct pattern for Flask apps sitting at the project root that need to import from sibling directories (`src/database.py`, etc.). Avoids `pip install -e .` or `PYTHONPATH` env var setup.
+- 2026-07-02: **macOS port 5000 is often occupied (AirPlay Receiver or stale Flask dev server).** `python app.py` will silently fail with "Address already in use." Always clear it first: `lsof -ti :5000 | xargs kill -9`.
+
+## Do-Not-Repeat (2026-07-02, session 17)
+
+- 2026-07-02: Do NOT start Flask dev server without first clearing port 5000 on macOS. Run `lsof -ti :5000 | xargs kill -9` before `python app.py`, especially in back-to-back test runs. AirPlay Receiver also binds to 5000 by default — disable it in System Settings > AirDrop & Handoff if it recurs.
+
+## Decision Log (2026-07-02, session 17)
+
+- 2026-07-02: Chose Flask over FastAPI for NHL Stats web app. Rationale: learning project — Flask has less boilerplate, no type annotation requirement, built-in Jinja2 templating. FastAPI's strengths (async, auto OpenAPI docs, Pydantic models) add complexity without benefit at this stage.
+- 2026-07-02: Chose vanilla HTML/CSS/JS over React/Vue for the player table. Rationale: learning project — no build step, easily readable by a beginner, no npm or node toolchain needed. A `<style>` block + 80 lines of JS is sufficient for a filtered sortable table at this scale.
+
+
+---
+## Compaction event: 2026-07-02T03:02:36Z
+Context window was compacted here. Review the session and capture any key findings, decisions, or patterns that should persist.

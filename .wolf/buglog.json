@@ -353,6 +353,104 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-07-01T03:08:25.668Z"
+    },
+    {
+      "id": "bug-023",
+      "timestamp": "2026-07-01T03:49:22.647Z",
+      "error_message": "Incorrect value in code",
+      "file": "CLAUDE.md",
+      "root_cause": "Had `git worktree remove .claude/worktrees/<name>`",
+      "fix": "Changed to `git worktree remove .claude/worktrees/<name> --fo",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-01T03:49:22.647Z"
+    },
+    {
+      "id": "bug-024",
+      "timestamp": "2026-07-01T03:53:42.759Z",
+      "error_message": "Significant refactor of ",
+      "file": "plans/how-would-something-like-quirky-squirrel.md",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 7→26 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-01T03:53:42.759Z"
+    },
+    {
+      "id": "bug-025",
+      "timestamp": "2026-07-01T00:00:00.000Z",
+      "error_message": "429 Client Error: Too Many Requests for url: https://api-web.nhle.com/v1/roster/ANA/current",
+      "file": "etl/load_rosters.py, src/api_client.py",
+      "root_cause": "32 sequential roster API calls with no delay saturate the NHL API rate limit after ~20 requests. No retry logic in _get() helper.",
+      "fix": "Added time.sleep(0.5) between roster calls in load_rosters.py. Added exponential backoff retry (3/6/12/24s) in api_client._get() on 429 status codes.",
+      "tags": [
+        "api",
+        "rate-limit",
+        "python",
+        "nhl-stats"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-01T00:00:00.000Z"
+    },
+    {
+      "id": "bug-026",
+      "timestamp": "2026-07-01T00:00:00.000Z",
+      "error_message": "FOREIGN KEY constraint failed (player_game_stats INSERT)",
+      "file": "etl/load_boxscores.py",
+      "root_cause": "Players on IR or non-roster assignments appear in boxscore playerByGameStats but are absent from /v1/roster/{team}/current. FK on player_id references players table which only contains current roster.",
+      "fix": "Added _ensure_player() helper that checks players table first, then stub-inserts from boxscore name.default + playerId if missing. Called before every player_game_stats insert.",
+      "tags": [
+        "sqlite",
+        "foreign-key",
+        "nhl-stats",
+        "python"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-01T00:00:00.000Z"
+    },
+    {
+      "id": "bug-027",
+      "timestamp": "2026-07-02T02:56:40.705Z",
+      "error_message": "Significant refactor of ",
+      "file": "plans/i-want-to-start-flickering-candle.md",
+      "root_cause": "3 lines replaced/restructured",
+      "fix": "Rewrote 4→6 lines (3 removed) | Also: ### `src/models.py` — 2 changes; 2. Add `PlayerCareerStats` dataclass matching the  | Also: 4. Query spot check:; 5. `GET /api/players` in browser still returns all",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 3,
+      "last_seen": "2026-07-02T02:57:04.705Z"
+    },
+    {
+      "id": "bug-028",
+      "timestamp": "2026-07-02T03:12:45.727Z",
+      "error_message": "Significant refactor of ",
+      "file": "../Desktop/NHL Stats Project/src/database.py",
+      "root_cause": "7 lines replaced/restructured",
+      "fix": "Rewrote 10→111 lines (7 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "py"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-02T03:12:45.727Z"
     }
   ]
 }

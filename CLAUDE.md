@@ -35,7 +35,7 @@
 - **Subagent routing:** For any exploration spanning more than 3 files, spawn an Explore subagent — this protects the main context window from search noise.
 - **End of session:** invoke `session-reflect` skill — Phase 1 updates `.wolf/cerebrum.md` (always); Phase 2 conditionally audits CLAUDE.md files for team-worthy learnings (requires approval).
 - **Worktree path isolation:** `EnterWorktree` creates an isolated branch, but absolute-path edits write to the MAIN working tree. Use relative paths or `cd <worktree-path>` before editing to actually isolate changes on the feature branch.
-- **Worktree merge pattern:** After committing in a worktree, `git checkout main` fails from inside it (main is checked out in the parent). Correct exit sequence: `ExitWorktree` (keep) → `git -C /Users/paulmckay/.claude merge <branch>` → `git worktree remove .claude/worktrees/<name>` → `git branch -d <branch>`.
+- **Worktree merge pattern:** After committing in a worktree, `git checkout main` fails from inside it (main is checked out in the parent). Correct exit sequence: `ExitWorktree` (keep) → `git -C /Users/paulmckay/.claude merge <branch>` → `git worktree remove .claude/worktrees/<name> --force` → `git branch -d <branch>`.
 
 ## 4. New Project Bootstrap
 When starting work in a project that has no `.wolf/` directory, invoke the `wolf-init` skill or run manually:

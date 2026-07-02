@@ -1,7 +1,40 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-07-01T03:47:46.571Z
-> Files: 515 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-07-02T03:16:23.745Z
+> Files: 531 tracked | Anatomy hits: 0 | Misses: 0
+
+## ../Desktop/NHL Stats Project/
+
+- `.gitignore` — Git ignore rules (~31 tok)
+- `app.py` — API router (~606 tok)
+- `README.md` — Project documentation (~355 tok)
+- `requirements.txt` — Python dependencies (~24 tok)
+
+## ../Desktop/NHL Stats Project/etl/
+
+- `enrich_players.py` — run (~1276 tok)
+- `load_boxscores.py` — run (~969 tok)
+- `load_rosters.py` — run (~599 tok)
+- `load_schedule.py` — run (~361 tok)
+- `load_season_stats.py` — run (~1388 tok)
+- `load_standings.py` — run (~638 tok)
+- `load_teams.py` — run (~438 tok)
+
+## ../Desktop/NHL Stats Project/scripts/
+
+- `query_examples.py` (~1136 tok)
+- `run_all_etl.py` (~236 tok)
+- `setup_db.py` (~73 tok)
+
+## ../Desktop/NHL Stats Project/src/
+
+- `api_client.py` — get_standings, get_roster, get_schedule, get_boxscore (~610 tok)
+- `database.py` — get_connection, run_migrations, create_all_tables, upsert_team (~4064 tok)
+- `models.py` — Declares from (~1086 tok)
+
+## ../Desktop/NHL Stats Project/templates/
+
+- `index.html` — NHL Players (~2238 tok)
 
 ## ./
 
@@ -10,10 +43,10 @@
 - `.gitmodules` (~99 tok)
 - `.last-cleanup` (~7 tok)
 - `.last-update-result.json` (~46 tok)
-- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~1642 tok)
+- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~1644 tok)
 - `history.jsonl` (~40 tok)
 - `mcp_servers.json` (~38 tok)
-- `mcp-needs-auth-cache.json` (~28 tok)
+- `mcp-needs-auth-cache.json` (~1 tok)
 - `settings.json` (~2675 tok)
 
 ## .claude/
@@ -23,61 +56,6 @@
 ## .claude/rules/
 
 - `openwolf.md` (~313 tok)
-
-## .claude/worktrees/enhance-ba-agent/
-
-- `.gitignore` — Git ignore rules (~282 tok)
-- `.gitmodules` (~58 tok)
-- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~1088 tok)
-- `mcp_servers.json` (~38 tok)
-- `settings.json` (~2542 tok)
-
-## .claude/worktrees/enhance-ba-agent/.claude/
-
-- `settings.json` (~441 tok)
-
-## .claude/worktrees/enhance-ba-agent/.claude/rules/
-
-- `openwolf.md` (~313 tok)
-
-## .claude/worktrees/enhance-ba-agent/.understand-anything/
-
-- `.understandignore` — # **/*Test.java (~256 tok)
-- `fingerprints.json` (~116279 tok)
-- `knowledge-graph.json` (~127512 tok)
-- `meta.json` (~45 tok)
-
-## .claude/worktrees/enhance-ba-agent/.understand-anything/intermediate/
-
-- `scan-result.json` (~18834 tok)
-
-## .claude/worktrees/enhance-ba-agent/hooks/
-
-- `post-bash-truncate.js` — PostToolUse hook (Bash): warns when command output exceeds 15KB. (~294 tok)
-- `post-compact-anatomy.sh` — PostCompact hook: re-injects OpenWolf anatomy after context compaction. (~483 tok)
-- `pre-compact-snapshot.sh` — PreCompact hook: stamps a compaction event in .wolf/cerebrum.md and reminds (~512 tok)
-- `pre-read-check.js` — PreToolUse hook: guards context window before file reads. (~1251 tok)
-- `session-start.sh` — Unified SessionStart hook: Superpowers bootstrap + OpenWolf anatomy injection (~860 tok)
-
-## .claude/worktrees/enhance-ba-agent/skills/ba-agent/
-
-- `SKILL.md` — ba-agent (~85 tok)
-
-## .claude/worktrees/enhance-ba-agent/skills/ba-agent/.claude-plugin/
-
-- `plugin.json` (~109 tok)
-
-## .claude/worktrees/enhance-ba-agent/skills/ba/
-
-- `SKILL.md` (~130 tok)
-
-## .claude/worktrees/enhance-ba-agent/skills/session-reflect/
-
-- `SKILL.md` — Session Reflect Skill (~834 tok)
-
-## .claude/worktrees/enhance-ba-agent/skills/wolf-init/
-
-- `SKILL.md` — Wolf Init Skill (~504 tok)
 
 ## .understand-anything/
 
@@ -242,11 +220,11 @@
 
 ## backups/
 
-- `.claude.json.backup.1782763883081` (~9698 tok)
-- `.claude.json.backup.1782785562455` (~9733 tok)
-- `.claude.json.backup.1782808005888` — Declares breakdown (~9787 tok)
-- `.claude.json.backup.1782830450587` — Declares breakdown (~9800 tok)
-- `.claude.json.backup.1782852056552` — Declares breakdown (~9800 tok)
+- `.claude.json.backup.1782877981995` — Declares breakdown (~10016 tok)
+- `.claude.json.backup.1782878066841` — Declares breakdown (~10016 tok)
+- `.claude.json.backup.1782896924249` — Declares breakdown (~10016 tok)
+- `.claude.json.backup.1782918734476` — Declares breakdown (~10036 tok)
+- `.claude.json.backup.1782941247460` — Declares breakdown (~10044 tok)
 
 ## brand/
 
@@ -350,13 +328,16 @@
 ## file-history/3be5a588-bae6-4972-b0de-d5c57a13a44b/
 
 - `3ad63b0d8ec00de8@v2` — Philosophy — Read This First (~981 tok)
+- `3cd8353c2c9425ee@v1` — Cerebrum (~9867 tok)
 - `5639455d7b004b8c@v2` — Target ~/.claude structure — Paul McKay's optimized implementation (~2818 tok)
 - `596ca8cc7e05db98@v2` — Plan: Migrate Optimized Claude Code Setup to Other Laptop (~1740 tok)
 - `596ca8cc7e05db98@v3` — )` pattern using `<USERNAME>` (~1437 tok)
 - `596ca8cc7e05db98@v4` — )` pattern using `<USERNAME>` (~1850 tok)
 - `596ca8cc7e05db98@v5` — )` pattern using `<USERNAME>` (~2171 tok)
 - `596ca8cc7e05db98@v6` — Plan: Write Philosophy Alignment Document for Transfer Bundle (~856 tok)
+- `596ca8cc7e05db98@v7` — Plan: Complete the Transfer Bundle for Full Philosophy Alignment (~1136 tok)
 - `7f22d1fc51db17e9@v2` — OpenWolf Orientation — How anatomy.md and memory.md Work (~1080 tok)
+- `7f22d1fc51db17e9@v3` — OpenWolf Orientation — How anatomy.md and memory.md Work (~1364 tok)
 - `e0165af5893adb49@v2` — Claude Code Self-Optimization Spec (~14015 tok)
 
 ## file-history/408b78c6-fb3a-4dfe-a186-1826cdc6f15f/
@@ -451,6 +432,23 @@
 
 - `ab0ef73e6d105444@v1` — OpenWolf (~992 tok)
 - `ab0ef73e6d105444@v2` — BA Agent — Output Workspace (~116 tok)
+
+## file-history/6cdc5e97-adc1-48eb-9d8f-7a01df19c115/
+
+- `12f566d79b28ddbb@v2` — My Environment Profile (~738 tok)
+- `3cd8353c2c9425ee@v1` — Cerebrum (~10626 tok)
+- `3cd8353c2c9425ee@v2` — Cerebrum (~11315 tok)
+- `3cd8353c2c9425ee@v3` — Cerebrum (~11789 tok)
+- `4e0f8874ccd03cc9@v2` — Fit Analysis: senior-engineering-partner into Current Config (~1515 tok)
+- `4e0f8874ccd03cc9@v3` — Git & Worktree Optimization Plan (~1075 tok)
+- `4e0f8874ccd03cc9@v4` — Session Reflect (session 15 — git/worktree optimization) (~1119 tok)
+- `c15c82adf8165050@v1` (~2372 tok)
+- `c15c82adf8165050@v2` (~2497 tok)
+- `c47760ed6c9ee802@v1` — System Instructions: Thin Harness, Fat Skills Environment (~1499 tok)
+- `c47760ed6c9ee802@v2` — System Instructions: Thin Harness, Fat Skills Environment (~1752 tok)
+- `c47760ed6c9ee802@v3` — System Instructions: Thin Harness, Fat Skills Environment (~1754 tok)
+- `d6b5feb9ac04de75@v1` (~112 tok)
+- `d6b5feb9ac04de75@v2` (~99 tok)
 
 ## file-history/763d8108-136f-46f4-a9b2-49d6d85f75f6/
 
@@ -707,6 +705,8 @@
 - `state.test.ts` — Declares path (~2148 tok)
 - `state.ts` — Persistent state management — tracks how far we've read in each session's (~1194 tok)
 - `transcript.test.ts` — writeJsonl: makeUser, makeAssistant, makeToolResult (~5137 tok)
+- `transcript.ts` — Transcript parsing — reads Claude Code JSONL transcripts and groups (~4085 tok)
+- `types.ts` — Types for Claude Code hook inputs and JSONL transcript messages. (~1828 tok)
 
 ## langsmith-plugin/src/fixtures/coding-agent-v1/
 
@@ -722,11 +722,9 @@
 - `session-end.ts` — SessionEnd hook entry point. (~866 tok)
 - `stop-failure.ts` — StopFailure hook entry point. (~951 tok)
 - `stop.ts` — Stop hook entry point. (~3072 tok)
+- `subagent-stop.ts` — SubagentStop hook entry point. (~616 tok)
+- `user-prompt-submit.ts` — UserPromptSubmit hook entry point. (~1963 tok)
 
 ## plans/
 
-- `how-would-something-like-quirky-squirrel.md` — Session Reflect (session 15 — git/worktree optimization) (~1049 tok)
-
-## skills/senior-engineering-partner/references/
-
-- `my-environment.md` — My Environment Profile (~692 tok)
+- `i-want-to-start-flickering-candle.md` — NHL Stats — Player Data Enrichment + Historical Season Stats (~2790 tok)
