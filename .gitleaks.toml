@@ -1,0 +1,10 @@
+title = "gitleaks config for ~/.claude"
+
+[extend]
+useDefault = true
+
+# Per skills/senior-engineering-partner SKILL.md: "Allowlist only synthetic test fixtures."
+# This repo has no test fixtures yet (Tier 0, no test infra), so no [[allowlists]] table
+# is defined below — gitleaks rejects an allowlist with no check (commits/paths/regexes/
+# stopwords), so an empty one can't just be a placeholder. Add a `[[allowlists]]` block
+# here only once there's a real, proven false positive to scope it to.

@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# Local pre-commit lint/secret-scan gate — enforcement counterpart to
+# skills/senior-engineering-partner/references/*.md. See CLAUDE.md section 3.
+# Runs shellcheck + eslint + gitleaks against STAGED files only.
+set -euo pipefail
+
+cd "$(git rev-parse --show-toplevel)"
+fail=0
+
+staged() { git diff --cached --name-only --diff-filter=ACM; }
+
+# --- 1. ShellCheck on staged .sh files ---
+sh_files=()
+while IFS= read -r f; do [ -n "$f" ] && sh_files+=("$f"); done < <(staged | grep -E '\.sh$' || true)
+if [ "${#sh_files[@]}" -gt 0 ]; then
+  if command -v shellcheck >/dev/null 2>&1; then
+    echo "-> shellcheck: ${sh_files[*]}"
+    shellcheck "${sh_files[@]}" || fail=1
+  else
+    echo "WARN: shellcheck not installed (brew install shellcheck) — skipping." >&2
+  fi
+fi
+
+# --- 2. ESLint on staged hook .js files ---
+js_files=()
+while IFS= read -r f; do [ -n "$f" ] && js_files+=("$f"); done < <(staged | grep -E '^(hooks|\.wolf/hooks)/.*\.js$' || true)
+if [ "${#js_files[@]}" -gt 0 ]; then
+  if [ -x node_modules/.bin/eslint ]; then
+    echo "-> eslint: ${js_files[*]}"
+    node_modules/.bin/eslint "${js_files[@]}" || fail=1
+  else
+    echo "WARN: eslint not installed (npm install) — skipping." >&2
+  fi
+fi
+
+# --- 3. gitleaks on staged diff (repo-wide, catches any staged file) ---
+if command -v gitleaks >/dev/null 2>&1; then
+  echo "-> gitleaks protect --staged"
+  gitleaks protect --staged --redact --no-banner || fail=1
+else
+  echo "WARN: gitleaks not installed (brew install gitleaks) — skipping." >&2
+fi
+
+if [ "$fail" -ne 0 ]; then
+  echo "" >&2
+  echo "Pre-commit checks failed. Fix findings above, or if a proven false positive, 'git commit --no-verify'." >&2
+  exit 1
+fi
+exit 0

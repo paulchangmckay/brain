@@ -1,0 +1,5 @@
+# Companion enforcement for skills/senior-engineering-partner SKILL.md:
+# "Bash: Apply ShellCheck. Zero warnings is the standard."
+# No blanket severity downgrade here — fix findings, or use a scoped, justified
+# `# shellcheck disable=SCxxxx` comment inline (never a repo-wide suppression).
+shell=bash

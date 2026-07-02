@@ -32,6 +32,7 @@
 ## 3. Infrastructure Layer (OpenWolf Integration)
 - **Protocol enforcement rules:** See `.claude/rules/openwolf.md` — anatomy checks, buglog cross-references, and memory update rules live there.
 - **Prevent re-reads:** The PreToolUse hook blocks re-reads within 10 min (file unchanged) and warns on large files. Heed the warning.
+- **Local lint/secret-scan gate:** `.githooks/pre-commit` (enabled via `git config core.hooksPath .githooks`) runs shellcheck + eslint(+security plugin) + gitleaks against staged files before every commit. This is the **enforcement counterpart** to `skills/senior-engineering-partner/references/secrets-and-key-rotation.md` and `frontend-web-security.md` — those docs shape generation-time behavior, this hook catches what slips through at commit time. Config lives in `eslint.config.js`, `.shellcheckrc`, `.gitleaks.toml`. Tier 0 — no CI, local only. Missing tools warn-and-skip rather than block.
 - **Subagent routing:** For any exploration spanning more than 3 files, spawn an Explore subagent — this protects the main context window from search noise.
 - **End of session:** invoke `session-reflect` skill — Phase 1 updates `.wolf/cerebrum.md` (always); Phase 2 conditionally audits CLAUDE.md files for team-worthy learnings (requires approval).
 - **Worktree path isolation:** `EnterWorktree` creates an isolated branch, but absolute-path edits write to the MAIN working tree. Use relative paths or `cd <worktree-path>` before editing to actually isolate changes on the feature branch.

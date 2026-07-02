@@ -15,6 +15,9 @@ plans/
 security/
 Agents/
 
+# JS lint tooling
+node_modules/
+
 # macOS / editor noise
 .DS_Store
 *.log

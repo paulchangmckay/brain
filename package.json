@@ -1,0 +1,14 @@
+{
+  "name": "dotclaude-hooks-lint",
+  "private": true,
+  "type": "module",
+  "description": "Lint/lockfile home for the ~/.claude hook scripts only — not a published package.",
+  "scripts": {
+    "lint": "eslint hooks .wolf/hooks",
+    "lint:sh": "shellcheck hooks/*.sh"
+  },
+  "devDependencies": {
+    "eslint": "^10.6.0",
+    "eslint-plugin-security": "^4.0.1"
+  }
+}
