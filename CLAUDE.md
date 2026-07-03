@@ -58,6 +58,7 @@ openwolf status      # Confirm health
 - **Write decisions back:** after any significant decision in a session, use `write_file` to persist it to the appropriate brain directory with context
 - **For synthesis questions** (e.g. "what do I know about X?"): list the relevant directory, read matching files, then synthesize
 - **Cross-reference with cerebrum:** brain = cross-project / personal knowledge; `.wolf/cerebrum.md` = project-specific patterns — both complement each other
+- **Native Claude Code auto-memory** (`~/.claude/projects/*/memory/`) is a third, distinct layer: user/feedback/project/reference facts about working *with Claude Code itself*, persisted across all projects. It is not project-specific implementation patterns (that's cerebrum's job) and not long-lived personal/company knowledge (that's brain's job) — keep facts in the layer they belong to rather than duplicating across two.
 
 ## 6. Custom Agents
 - **Location:** `~/.claude/Agents/<agent-name>/` — each has its own CLAUDE.md, skills/, templates/, outputs/, scripts/
@@ -69,6 +70,7 @@ openwolf status      # Confirm health
 - Re-analyze after changes: `/understand-anything:understand ~.claude`
 - `langsmith-plugin` and `superpowers` are git submodules — do NOT `git add` their contents directly; use `git submodule update` to sync them.
 - Before pushing local commits in either submodule, run `git remote -v` first — origin is the third-party upstream (`langchain-ai`, `obra`), not a personal fork. Use a local-only backup branch (`git branch local-customizations`) instead of pushing.
+- `local-customizations` is a snapshot, not a moving ref — re-fast-forward it (`git branch -f local-customizations <sha>`) after every new local commit in the submodule; check `git log --oneline -1 local-customizations` against `main` before trusting it's current.
 
 ## 8. Custom Plugin Registration
 - **Local plugins** (no upstream git repo): `claude plugins init <name> --with agents` → scaffolds at `~/.claude/skills/<name>/`, auto-loads as `<name>@skills-dir` — no marketplace or install step needed
