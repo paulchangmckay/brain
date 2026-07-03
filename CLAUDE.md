@@ -11,7 +11,8 @@
 |------|--------|
 | Before creating any output (PDF, slides, doc, PRD, image, email, diagram) | `brand` (HARD-GATE: brand specs before creating; exempt: `teach` skill's personal lesson HTML output — not a branded deliverable) |
 | Before any feature work or new task | `brainstorming` (HARD-GATE: no code until design approved) |
-| After brainstorm approval | `writing-plans` |
+| After brainstorm approval, before writing-plans | `grilling` (HARD-GATE within brainstorming: mandatory pass on the approved spec, not conditional on spotting a soft spot yourself — scale depth to complexity but never skip it) |
+| After the grilling pass | `writing-plans` |
 | Before touching code | `test-driven-development` (IRON LAW: failing test first) — testing standards: `skills/senior-engineering-partner/references/testing.md` |
 | Before starting implementation | `using-git-worktrees` |
 | When a bug or test failure appears | `systematic-debugging` (root cause BEFORE fix) |
@@ -19,7 +20,7 @@
 | Before merging or creating a PR | `requesting-code-review` |
 | When review feedback arrives | `receiving-code-review` |
 | For security posture, threat modeling, or compliance questions | `senior-engineering-partner` with `AUDIT:` trigger — refs: `threat-modeling-and-api-design.md`, `secrets-and-key-rotation.md`, `frontend-web-security.md` |
-| A plan or design has unresolved soft spots before building | `grilling` (auto) or `/grill-me` (explicit) — one question at a time, each with a recommended answer, never a bulk list |
+| A plan or design has unresolved soft spots outside the brainstorming flow (e.g. a plan handed to you directly, not produced via brainstorming) | `grilling` (auto) or `/grill-me` (explicit) — one question at a time, each with a recommended answer, never a bulk list |
 | Designing/evaluating a module's interface, seam, or "is this deep enough" | `codebase-design` (vocabulary: interface/seam/adapter/deletion test), alongside `senior-engineering-partner` REVIEW:/EXPLAIN: modes |
 | Pinning down domain terminology or recording a hard-to-reverse decision | `domain-modeling` (writes `CONTEXT.md` + `docs/adr/`) — NOT `understand-anything:understand-domain` (read-only: analyzes existing code into a graph, never writes) |
 | Compacting live task context for a fresh agent to pick up mid-task | `/handoff` (writes to `.wolf/handoffs/`) — distinct from `session-reflect`, which is a durable project-cerebrum update at session end, not a task baton-pass |
