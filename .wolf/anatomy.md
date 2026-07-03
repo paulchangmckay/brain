@@ -1,15 +1,27 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-07-03T01:34:59.118Z
-> Files: 511 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-07-03T01:49:46.996Z
+> Files: 514 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../Desktop/NHL Stats Project/
 
 - `app.py` — API router (~2258 tok)
 
+## ../Desktop/NHL Stats Project/.wolf/
+
+- `memory.md` — Memory (~1117 tok)
+
+## ../Desktop/NHL Stats Project/etl/
+
+- `enrich_players.py` — run (~1381 tok)
+
+## ../Desktop/NHL Stats Project/src/
+
+- `database.py` — get_connection, run_migrations, create_all_tables, get_sync_record (~4423 tok)
+
 ## ../Desktop/NHL Stats Project/templates/
 
-- `index.html` — NHL Players (~3905 tok)
+- `index.html` — NHL Players (~4007 tok)
 
 ## ./
 
@@ -20,7 +32,7 @@
 - `.last-cleanup` (~7 tok)
 - `.last-update-result.json` (~46 tok)
 - `.shellcheckrc` — Companion enforcement for skills/senior-engineering-partner SKILL.md: (~81 tok)
-- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~2859 tok)
+- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~2925 tok)
 - `eslint.config.js` — ESLint flat configuration (~365 tok)
 - `history.jsonl` (~40 tok)
 - `mcp_servers.json` (~38 tok)
@@ -666,6 +678,6 @@
 
 ## plans/
 
-- `i-want-to-start-flickering-candle.md` — NHL Stats — Season Filter + Advanced Analytics (~2743 tok)
+- `i-want-to-start-flickering-candle.md` — NHL Stats — Fix Null Display + Missing Bio Data (~1109 tok)
 - `i-want-you-to-deep-balloon.md` — Resolve uncommitted/divergent state in ~/.claude (~1291 tok)
-- `recommend-a-plan-for-sleepy-alpaca.md` — Plan: Address uncommitted-state and memory-hygiene concerns in ~/.claude (~1551 tok)
+- `recommend-a-plan-for-sleepy-alpaca.md` — Plan: Address uncommitted-state and memory-hygiene concerns in ~/.claude (~1299 tok)

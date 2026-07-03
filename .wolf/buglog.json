@@ -282,6 +282,71 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-07-03T01:33:55.796Z"
+    },
+    {
+      "id": "bug-035",
+      "timestamp": "2026-07-03T21:35:00.000Z",
+      "error_message": "fatal: not a valid object name: '68b6303'",
+      "file": "N/A (Bash tool invocation, superpowers submodule)",
+      "root_cause": "Two Bash tool calls sent in the same message run in parallel, each in its own subshell — a `cd` in one does not carry over to the other. `cd langsmith-plugin && git branch -f local-customizations e240c52` ran in call 1; a bare `git branch -f local-customizations 68b6303` (no cd) ran in call 2, executing from the original ~/.claude cwd instead of superpowers/, so the target sha couldn't be resolved.",
+      "fix": "Re-ran the second command with an explicit `cd /Users/paulmckay/.claude/superpowers && git branch -f local-customizations 68b6303` instead of relying on directory state from a sibling parallel call.",
+      "tags": [
+        "bash-tool",
+        "shell-state",
+        "parallel-tool-calls",
+        "git"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-03T21:35:00.000Z"
+    },
+    {
+      "id": "bug-019",
+      "timestamp": "2026-07-03T01:48:15.956Z",
+      "error_message": "Significant refactor of ",
+      "file": "../Desktop/NHL Stats Project/src/database.py",
+      "root_cause": "9 lines replaced/restructured",
+      "fix": "Rewrote 21→27 lines (9 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "py"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-03T01:48:15.956Z"
+    },
+    {
+      "id": "bug-020",
+      "timestamp": "2026-07-03T01:48:48.193Z",
+      "error_message": "Significant refactor of ",
+      "file": "../Desktop/NHL Stats Project/etl/enrich_players.py",
+      "root_cause": "9 lines replaced/restructured",
+      "fix": "Rewrote 12→16 lines (9 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "py"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-03T01:48:48.193Z"
+    },
+    {
+      "id": "bug-021",
+      "timestamp": "2026-07-03T01:49:47.015Z",
+      "error_message": "Wrong return value",
+      "file": "../Desktop/NHL Stats Project/templates/index.html",
+      "root_cause": "Was returning: td;",
+      "fix": "Now returns: td; }",
+      "tags": [
+        "auto-detected",
+        "return-value",
+        "html"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-03T01:49:47.015Z"
     }
   ]
 }

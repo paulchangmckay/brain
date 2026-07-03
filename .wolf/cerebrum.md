@@ -2,7 +2,7 @@
 
 > OpenWolf's learning memory. Updated automatically as the AI learns from interactions.
 > Do not edit manually unless correcting an error.
-> Last updated: 2026-07-02
+> Last updated: 2026-07-03
 
 ## User Preferences
 
@@ -28,6 +28,9 @@
 - 2026-06-25: Superpowers files in `~/.claude/superpowers/` are third-party — direct edits will be overwritten on package update. The plan file at `~/.claude/plans/why-don-t-i-have-logical-gem.md` documents all diffs for re-application after updates.
 - 2026-06-25: Of superpowers/openwolf/gbrain, only gbrain actively checks for upstream updates. Superpowers is a git clone with no auto-pull; openwolf is a global npm package with no polling. Only gbrain's LaunchAgent autopilot pings the package registry each 600s cycle.
 - 2026-06-25: gbrain `~/.gbrain/config.json` `self_upgrade.mode` controls version-check behavior only (`"notify"` | `"off"`). Setting `"off"` stops the registry ping but has zero effect on autopilot knowledge processing (embedding, links, timeline, backlinks).
+- 2026-07-02: The memory-logging hook attributes every action to the Claude Code session's primary working directory's `.wolf/memory.md`, regardless of which file was actually touched — so any session that edits files in an "additional working directory" (e.g. `../Desktop/NHL Stats Project/`) leaks those entries into `~/.claude`'s own memory log instead of that project's. Backfilled the historical backlog into `../Desktop/NHL Stats Project/.wolf/memory.md` on 2026-07-02, but this is a recurring leak, not a one-time fix — expect to re-run the same split periodically for any session touching an external working directory (see `.claude/rules/openwolf.md`'s existing rule on this).
+- 2026-07-02: `.wolf/memory.md` session headers are occasionally date-stamped a day ahead of local time (e.g. `## Session: 2026-07-03 21:36` opened while local time was still `2026-07-02`), while the per-line `HH:MM` timestamps inside the table stay in local time. Looks like a UTC-vs-local mismatch in the hook's header-generation vs. row-generation code paths. Cosmetic only — doesn't corrupt data — but don't be alarmed by "future" session headers.
+- 2026-07-02: PM2 runs one `openwolf-<project>` daemon per registered project (`openwolf-.claude`, `openwolf-NHL`, `openwolf-langsmith-plugin`, `openwolf-superpowers`, `openwolf-ba-agent`). `openwolf-ba-agent` was found in an `errored` state with 15 restart attempts — worth investigating separately, unrelated to the memory-leak issue above (stopping/restarting the `.claude` daemon has no effect on the memory-logging hook itself, which fires per Claude Code session tool call, not per daemon).
 
 ## Do-Not-Repeat
 
@@ -59,6 +62,7 @@
 - 2026-07-02: Do NOT chain multiple edits to external project files without a Read verify step when OpenWolf hooks are active — hooks can silently revert edits.
 - 2026-07-02: Do NOT trust `npx skills@latest add <source> --skill=<comma-list>` to filter which skills install — in non-interactive mode it silently installs the entire source repo (36/36 skills here) to every detected agent, ignoring the flag. Let it over-install, then prune with `npx skills remove <name1> <name2> ... --global -y` (space-separated positional args — confirmed reliable for `remove`), and verify the final set with `ls`/`git status`, not the CLI's own summary output.
 - 2026-07-02: Do NOT treat a claim in a written plan (even one already approved by the user) as verified fact if it was sourced from a subagent's report and never independently checked. This session's approved plan stated the NHL Stats Project's `.wolf/cerebrum.md` "already exists" — a direct `ls` before executing that step showed it didn't. Verify file-existence/state claims with a direct check immediately before acting on them, especially right after plan approval when it's tempting to just execute the plan as written.
+- 2026-07-03: Do NOT assume a `cd` in one Bash tool call carries over to another Bash call sent in the same parallel batch — parallel calls each run in their own subshell, so the "working directory persists between commands" guarantee only holds across strictly sequential calls. Hit this directly: `cd langsmith-plugin && git branch -f ...` in one parallel call, then a bare `git branch -f ...` in the sibling call, failed with "not a valid object name" because the second call never left the original cwd. Fix: give every call in a parallel batch its own explicit `cd <path> &&` prefix, or send cd-dependent commands sequentially instead.
 
 ## Decision Log
 
@@ -328,3 +332,7 @@ Context window was compacted here. Review the session and capture any key findin
 - 2026-07-02: Ran a full audit of `~/.claude` via 3 parallel Explore agents (`.wolf` tracking layer, new skill directories, config/hooks/submodules) rather than one broad pass. Rationale: three genuinely independent areas with no shared files — parallelizing kept each agent's context focused and let findings be cross-checked (e.g. the "duplicate hook wiring" finding was later disproven by reading the actual hook commands directly).
 - 2026-07-02: Created `/Users/paulmckay/Desktop/NHL Stats Project/.wolf/cerebrum.md` to receive NHL-specific learnings migrated out of `~/.claude`'s cerebrum, even though that project isn't fully `openwolf init`'d (no CLAUDE.md / `.claude/rules/openwolf.md` there yet) — noted this explicitly in the new file's header so it isn't mistaken for an auto-loaded file until `openwolf init` is actually run there.
 - 2026-07-02: Consolidated 13 fragmented per-session `## Do-Not-Repeat` headers in cerebrum.md into a single section, but deliberately left `## User Preferences`, `## Key Learnings`, and `## Decision Log` in their original chronological per-session structure — only Do-Not-Repeat had the fragmentation problem the audit flagged; the others are working as intended as append-only logs.
+
+## Key Learnings (2026-07-03, session 23 — submodule backup-branch drift)
+
+- 2026-07-03: `local-customizations` backup branches (the safety-net pattern established in session 22) do NOT auto-track new commits on a submodule's `main` — they are a snapshot, not a moving ref. After a fresh local commit lands in a submodule, the backup branch is immediately stale by that commit until manually fast-forwarded (`git branch -f local-customizations <new-sha>`). Confirmed in both `langsmith-plugin` and `superpowers`: each had picked up one new local commit (`chore: stop tracking .wolf runtime state`) since the backup branch was created, leaving that commit unbacked. Treat backup-branch freshness as a check to repeat every time a submodule gets a new local commit, not a one-time setup step — spot-checked with `git log --oneline -1 local-customizations` vs `main` in each submodule before trusting it was current.
