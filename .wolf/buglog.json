@@ -18,22 +18,6 @@
       "last_seen": "2026-06-24T05:58:45.245Z"
     },
     {
-      "id": "bug-002",
-      "timestamp": "2026-06-25T03:00:55.899Z",
-      "error_message": "Significant refactor of ",
-      "file": "plans/why-don-t-i-have-logical-gem.md",
-      "root_cause": "3 lines replaced/restructured",
-      "fix": "Rewrote 7→31 lines (3 removed)",
-      "tags": [
-        "auto-detected",
-        "refactor",
-        "md"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-06-25T03:00:55.899Z"
-    },
-    {
       "id": "bug-003",
       "timestamp": "2026-06-25T03:07:12.708Z",
       "error_message": "Incorrect value in code",
@@ -82,70 +66,6 @@
       "last_seen": "2026-06-26T02:57:54.900Z"
     },
     {
-      "id": "bug-006",
-      "timestamp": "2026-06-27T03:59:26.434Z",
-      "error_message": "Significant refactor of ",
-      "file": "Agents/ba-agent/.wolf/cerebrum.md",
-      "root_cause": "4 lines replaced/restructured",
-      "fix": "Rewrote 16→18 lines (4 removed)",
-      "tags": [
-        "auto-detected",
-        "refactor",
-        "md"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-06-27T03:59:26.434Z"
-    },
-    {
-      "id": "bug-007",
-      "timestamp": "2026-06-27T04:24:18.105Z",
-      "error_message": "Significant refactor of ",
-      "file": "plans/i-want-to-build-humble-tarjan.md",
-      "root_cause": "5 lines replaced/restructured",
-      "fix": "Rewrote 7→9 lines (5 removed) | Also: New skill: `/Users/paulmckay/.claude/Agents/ba-age; Triggered **automatically** after successful ba-pa | Also: **Mermaid → PNG rendering:**; PUPPETEER_EXECUTABLE_PATH=$(npx playwright install | Also: ## Files to Modify (2); Add two new phases after ba-package assembly: | Also: | `Agents/ba-agent/skills/doc-output.md` | Profess; | `Agents/ba-agent/skills/comms-3p.md` | 3P update",
-      "tags": [
-        "auto-detected",
-        "refactor",
-        "md"
-      ],
-      "related_bugs": [],
-      "occurrences": 5,
-      "last_seen": "2026-06-27T04:25:05.959Z"
-    },
-    {
-      "id": "bug-008",
-      "timestamp": "2026-06-27T16:26:46.893Z",
-      "error_message": "Significant refactor of ",
-      "file": "skills/brand/SKILL.md",
-      "root_cause": "2 lines replaced/restructured",
-      "fix": "Rewrote 4→39 lines (2 removed)",
-      "tags": [
-        "auto-detected",
-        "refactor",
-        "md"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-06-27T16:26:46.893Z"
-    },
-    {
-      "id": "bug-009",
-      "timestamp": "2026-06-27T16:35:19.510Z",
-      "error_message": "Significant refactor of ",
-      "file": "Agents/ba-agent/skills/data-mapping.md",
-      "root_cause": "3 lines replaced/restructured",
-      "fix": "Rewrote 11→15 lines (3 removed)",
-      "tags": [
-        "auto-detected",
-        "refactor",
-        "md"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-06-27T16:35:19.510Z"
-    },
-    {
       "id": "bug-010",
       "timestamp": "2026-06-27T16:37:27.797Z",
       "error_message": "Incorrect value in code",
@@ -160,22 +80,6 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-06-27T16:37:27.797Z"
-    },
-    {
-      "id": "bug-011",
-      "timestamp": "2026-06-27T16:37:59.548Z",
-      "error_message": "Significant refactor of ",
-      "file": "Agents/ba-agent/skills/comms-faq.md",
-      "root_cause": "14 lines replaced/restructured",
-      "fix": "Rewrote 21→27 lines (14 removed)",
-      "tags": [
-        "auto-detected",
-        "refactor",
-        "md"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-06-27T16:37:59.548Z"
     },
     {
       "id": "bug-012",
@@ -211,134 +115,6 @@
       "last_seen": "2026-06-27T17:00:00.000Z"
     },
     {
-      "id": "bug-014",
-      "timestamp": "2026-06-27T16:48:22.868Z",
-      "error_message": "Significant refactor of ",
-      "file": "skills/ba/SKILL.md",
-      "root_cause": "2 lines replaced/restructured",
-      "fix": "Rewrote 3→29 lines (2 removed)",
-      "tags": [
-        "auto-detected",
-        "refactor",
-        "md"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-06-27T16:48:22.868Z"
-    },
-    {
-      "id": "bug-015",
-      "timestamp": "2026-06-28T19:49:30.545Z",
-      "error_message": "Significant refactor of ",
-      "file": "Agents/ba-agent/skills/intake.md",
-      "root_cause": "5 lines replaced/restructured",
-      "fix": "Rewrote 11→16 lines (5 removed)",
-      "tags": [
-        "auto-detected",
-        "refactor",
-        "md"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-06-28T19:49:30.545Z"
-    },
-    {
-      "id": "bug-016",
-      "timestamp": "2026-06-28T20:14:18.925Z",
-      "error_message": "Significant refactor of ",
-      "file": "Agents/ba-agent/skills/intake.md",
-      "root_cause": "2 lines replaced/restructured",
-      "fix": "Rewrote 14→16 lines (2 removed)",
-      "tags": [
-        "auto-detected",
-        "refactor",
-        "md"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-06-28T20:14:18.925Z"
-    },
-    {
-      "id": "bug-017",
-      "timestamp": "2026-06-28T20:15:29.894Z",
-      "error_message": "Significant refactor of ",
-      "file": "Agents/ba-agent/skills/process-viz.md",
-      "root_cause": "5 lines replaced/restructured",
-      "fix": "Rewrote 22→34 lines (5 removed) | Also: A([Start: Lead submits form]) --> B[Explorium enri; B --> C[Snowflake runs ICP match]",
-      "tags": [
-        "auto-detected",
-        "refactor",
-        "md"
-      ],
-      "related_bugs": [],
-      "occurrences": 2,
-      "last_seen": "2026-06-28T20:15:43.943Z"
-    },
-    {
-      "id": "bug-018",
-      "timestamp": "2026-06-28T20:15:57.002Z",
-      "error_message": "Significant refactor of ",
-      "file": "Agents/ba-agent/skills/system-integration-viz.md",
-      "root_cause": "2 lines replaced/restructured",
-      "fix": "Rewrote 15→27 lines (2 removed) | Also: WEB([Website Form]); EXP[Explorium]",
-      "tags": [
-        "auto-detected",
-        "refactor",
-        "md"
-      ],
-      "related_bugs": [],
-      "occurrences": 2,
-      "last_seen": "2026-06-28T20:16:08.609Z"
-    },
-    {
-      "id": "bug-019",
-      "timestamp": "2026-06-28T20:18:45.859Z",
-      "error_message": "Significant refactor of ",
-      "file": "Agents/ba-agent/skills/planner.md",
-      "root_cause": "8 lines replaced/restructured",
-      "fix": "Rewrote 15→17 lines (8 removed)",
-      "tags": [
-        "auto-detected",
-        "refactor",
-        "md"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-06-28T20:18:45.859Z"
-    },
-    {
-      "id": "bug-020",
-      "timestamp": "2026-06-28T20:20:24.511Z",
-      "error_message": "Significant refactor of ",
-      "file": ".claude/worktrees/ba-enhancements/skills/ba/SKILL.md",
-      "root_cause": "2 lines replaced/restructured",
-      "fix": "Rewrote 9→38 lines (2 removed) | Also: > - `process.mmd` / `process.png` — Process flow d; > - `integration.mmd` / `integration.png` — System",
-      "tags": [
-        "auto-detected",
-        "refactor",
-        "md"
-      ],
-      "related_bugs": [],
-      "occurrences": 2,
-      "last_seen": "2026-06-28T20:20:50.655Z"
-    },
-    {
-      "id": "bug-021",
-      "timestamp": "2026-06-29T01:27:27.269Z",
-      "error_message": "Significant refactor of ",
-      "file": "plans/i-have-two-laptops-moonlit-beaver.md",
-      "root_cause": "2 lines replaced/restructured",
-      "fix": "Rewrote 7→34 lines (2 removed)",
-      "tags": [
-        "auto-detected",
-        "refactor",
-        "md"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-06-29T01:27:27.269Z"
-    },
-    {
       "id": "bug-022",
       "timestamp": "2026-07-01T03:08:25.668Z",
       "error_message": "Incorrect value in code",
@@ -369,22 +145,6 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-07-01T03:49:22.647Z"
-    },
-    {
-      "id": "bug-024",
-      "timestamp": "2026-07-01T03:53:42.759Z",
-      "error_message": "Significant refactor of ",
-      "file": "plans/how-would-something-like-quirky-squirrel.md",
-      "root_cause": "2 lines replaced/restructured",
-      "fix": "Rewrote 7→26 lines (2 removed)",
-      "tags": [
-        "auto-detected",
-        "refactor",
-        "md"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-07-01T03:53:42.759Z"
     },
     {
       "id": "bug-025",
@@ -421,36 +181,107 @@
       "last_seen": "2026-07-01T00:00:00.000Z"
     },
     {
-      "id": "bug-027",
-      "timestamp": "2026-07-02T02:56:40.705Z",
-      "error_message": "Significant refactor of ",
-      "file": "plans/i-want-to-start-flickering-candle.md",
-      "root_cause": "3 lines replaced/restructured",
-      "fix": "Rewrote 4→6 lines (3 removed) | Also: ### `src/models.py` — 2 changes; 2. Add `PlayerCareerStats` dataclass matching the  | Also: 4. Query spot check:; 5. `GET /api/players` in browser still returns all",
+      "id": "bug-029",
+      "timestamp": "2026-07-02T04:01:00.000Z",
+      "error_message": "No subschema in \"anyOf\" matched... \"required_pull_request_reviews\", \"required_status_checks\" weren't supplied. For allOf/0, \"true\" is not a boolean.",
+      "file": "gh api (branch protection PUT)",
+      "root_cause": "gh api nested-field shorthand (-f required_status_checks.strict=true) sends booleans and nested objects as literal strings, not JSON types, so GitHub's schema validation for PUT .../branches/main/protection rejects the request with HTTP 422.",
+      "fix": "Switched to a raw JSON body via --input - with a heredoc instead of -f flags for this endpoint.",
       "tags": [
-        "auto-detected",
-        "refactor",
-        "md"
-      ],
-      "related_bugs": [],
-      "occurrences": 3,
-      "last_seen": "2026-07-02T02:57:04.705Z"
-    },
-    {
-      "id": "bug-028",
-      "timestamp": "2026-07-02T03:12:45.727Z",
-      "error_message": "Significant refactor of ",
-      "file": "../Desktop/NHL Stats Project/src/database.py",
-      "root_cause": "7 lines replaced/restructured",
-      "fix": "Rewrote 10→111 lines (7 removed)",
-      "tags": [
-        "auto-detected",
-        "refactor",
-        "py"
+        "gh-cli",
+        "github-api",
+        "branch-protection"
       ],
       "related_bugs": [],
       "occurrences": 1,
-      "last_seen": "2026-07-02T03:12:45.727Z"
+      "last_seen": "2026-07-02T04:01:00.000Z"
+    },
+    {
+      "id": "bug-030",
+      "timestamp": "2026-07-02T04:02:00.000Z",
+      "error_message": "Upgrade to GitHub Pro or make this repository public to enable this feature. (HTTP 403)",
+      "file": "gh api (branch protection PUT)",
+      "root_cause": "Classic branch protection rules on a private repo require a paid GitHub plan (Pro/Team/Enterprise) on personal accounts; free-tier private repos are rejected outright.",
+      "fix": "Confirmed with user, scanned tracked files for secrets, then made the repo public via gh repo edit --visibility public --accept-visibility-change-consequences before retrying branch protection.",
+      "tags": [
+        "gh-cli",
+        "github-api",
+        "branch-protection",
+        "repo-visibility"
+      ],
+      "related_bugs": [
+        "bug-029"
+      ],
+      "occurrences": 1,
+      "last_seen": "2026-07-02T04:02:00.000Z"
+    },
+    {
+      "id": "bug-033",
+      "timestamp": "2026-07-02T01:43:00.000Z",
+      "error_message": "gitleaks: Failed to load config error=\"[[allowlists]] must contain at least one check for: commits, paths, regexes, or stopwords\"",
+      "file": ".gitleaks.toml",
+      "root_cause": "gitleaks requires TOML array-of-tables syntax `[[allowlists]]` with at least one check field (commits/paths/regexes/stopwords); a placeholder `[allowlist]` table with only a `description` key and no check field is rejected outright rather than treated as a no-op.",
+      "fix": "Removed the empty allowlist table entirely and left a comment explaining that a real `[[allowlists]]` block should only be added once there's a proven false positive to scope it to — an intentionally absent section, not an empty placeholder.",
+      "tags": [
+        "gitleaks",
+        "toml",
+        "config",
+        "pre-commit-hook",
+        "lint-setup"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-02T01:43:00.000Z"
+    },
+    {
+      "id": "bug-034",
+      "timestamp": "2026-07-02T06:00:00.000Z",
+      "error_message": "npx skills@latest add mattpocock/skills --skill=grill-me,grilling,codebase-design,domain-modeling,teach --global -y installed all 36 skills to every detected agent (Claude Code, Cline, GitHub Copilot, etc.) instead of the 5 named",
+      "file": "skills/ (six new skill directories)",
+      "root_cause": "The `-s/--skill` flag on the `skills` CLI does not reliably filter the target skill set in non-interactive mode (auto-detected agent, no TTY) — it falls back to installing everything found in the source repo, regardless of a comma-separated --skill value.",
+      "fix": "Let the over-broad install complete, then used `npx skills remove <name1> <name2> ... --global -y` (space-separated positional args, confirmed reliable) to prune down to exactly the intended skill set. Verified the final state with `ls ~/.claude/skills/` and `git status` rather than trusting the CLI's own success output.",
+      "tags": [
+        "npx",
+        "skills-cli",
+        "third-party-tool",
+        "cli-flag-bug",
+        "verification"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-02T06:00:00.000Z"
+    },
+    {
+      "id": "bug-016",
+      "timestamp": "2026-07-02T06:28:01.612Z",
+      "error_message": "Incorrect value in code",
+      "file": "skills/teach/SKILL.md",
+      "root_cause": "Had `./learning-records/*.md`",
+      "fix": "Changed to `GLOSSARY.md`",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-02T06:28:01.612Z"
+    },
+    {
+      "id": "bug-017",
+      "timestamp": "2026-07-03T01:33:55.796Z",
+      "error_message": "Incorrect value in code",
+      "file": "plans/i-want-you-to-deep-balloon.md",
+      "root_cause": "Had `.wolf/`",
+      "fix": "Changed to `anatomy.md`",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-03T01:33:55.796Z"
     }
   ]
 }

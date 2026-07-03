@@ -2,7 +2,7 @@
 
 > OpenWolf's learning memory. Updated automatically as the AI learns from interactions.
 > Do not edit manually unless correcting an error.
-> Last updated: 2026-06-24
+> Last updated: 2026-07-02
 
 ## User Preferences
 
@@ -13,6 +13,7 @@
 - 2026-06-25: Superpowers gate philosophy must be honored — enhance existing gates by adding agent spawning inside them, never by adding competing commands that cover the same phases.
 - 2026-06-25: Combined skill design: auto-always for internal/Claude-facing targets (cerebrum), conditional+approval-gated for shared/team targets (CLAUDE.md).
 - 2026-06-25: User wants to understand impact on functionality before accepting config changes to background services — explain the separation of concerns clearly before asking for approval.
+- 2026-07-02: For multi-part audit/cleanup decisions, consistently picks the labeled "Recommended" option when trade-offs are laid out clearly (submodule handling, cerebrum split, backup-branch approach) — a well-reasoned default recommendation is usually enough, exhaustive option spreads aren't needed.
 
 ## Key Learnings
 
@@ -30,15 +31,34 @@
 
 ## Do-Not-Repeat
 
-- 2026-06-25: Do NOT build new agents or Claude Code tooling under `~/` — always default to `~/.claude/` so it sits within the user's tracked codebase. User had to correct this mid-session when ba-agent was created at `~/ba-agent/` instead of `~/.claude/Agents/ba-agent/`.
-- 2026-06-25: Do NOT skip test/sample files mentioned in a spec document. If a spec includes a test brief or example input, create it as a file in `templates/` during the build — don't assume it will be added separately. User had to ask for it.
-
-## Do-Not-Repeat (pre-existing)
-
 - 2026-06-24: Do NOT add `mcpServers` as a top-level key in `settings.json` — it's not in the schema and will cause a validation error. Use `~/.claude/mcp_servers.json` instead.
 - 2026-06-24: Do NOT assume superpowers skills are invocable via `Skill("superpowers:skillname")` — they must first be symlinked (or copied) into `~/.claude/skills/` for Claude Code's skill registry to discover them.
+- 2026-06-25: Do NOT build new agents or Claude Code tooling under `~/` — always default to `~/.claude/` so it sits within the user's tracked codebase. User had to correct this mid-session when ba-agent was created at `~/ba-agent/` instead of `~/.claude/Agents/ba-agent/`.
+- 2026-06-25: Do NOT skip test/sample files mentioned in a spec document. If a spec includes a test brief or example input, create it as a file in `templates/` during the build — don't assume it will be added separately. User had to ask for it.
 - 2026-06-25: Do NOT install two skills/plugins that cover the same concept — pick one home and consolidate. Audit for overlap before installing anything new.
 - 2026-06-25: Do NOT enable security-guidance via `enabledPlugins` without also manually wiring its hooks into settings.json — the `${CLAUDE_PLUGIN_ROOT}` variable in hooks.json won't resolve automatically for marketplace plugins not in the install cache.
+- 2026-06-26: Do NOT run understand-anything on `~/.claude` without first auditing `.understandignore` — plugins/ alone contains 725 cached 3rd-party files. Scope exclusions first or the scan is 4× larger than necessary.
+- 2026-06-26: Do NOT leave `meta.json` with a null `gitCommitHash` after setting up git — understand-anything will fall back to a full rebuild prompt instead of incrementally diffing. Patch the hash immediately after the first commit.
+- 2026-06-26: Do NOT create skills as standalone `.md` files in `~/.claude/skills/` — the skill registry silently ignores them. Correct structure: `~/.claude/skills/<name>/SKILL.md` (a directory, not a file).
+- 2026-06-26: Do NOT manually add entries to `installed_plugins.json` for a plugin that lacks a valid supported source type in its marketplace.json entry. The loader checks source type before using installPath. Use `plugins init` → skills-dir for local plugins instead.
+- 2026-06-26: Do NOT write unquoted colon-space sequences in YAML agent frontmatter `description:` fields. Always quote the entire value when it contains `: `.
+- 2026-06-27: Do NOT hardcode brand values (hex codes, font names, sizes) in any file other than `~/.claude/brand/brand-guide.md`. Even in document briefs where it feels like a "helpful reminder," it creates drift the moment brand-guide.md is updated. Always reference the Brand Spec Card dynamically.
+- 2026-06-27: Do NOT add protocol enforcement bullets to CLAUDE.md Section 3 if they are already in `.claude/rules/openwolf.md`. The rules file is the enforcement layer; CLAUDE.md is the architecture index. Duplicating between them creates drift — fix pattern: single pointer line in CLAUDE.md, full rule in openwolf.md.
+- 2026-06-27: When adding a new section to CLAUDE.md, check that the section number is in order relative to the physical position in the file. Historical additions have landed out of sequence (Section 4 appeared after Section 9). Renumber before appending.
+- 2026-06-27: Do NOT attempt to satisfy ba-agent comms Stage 1 gates via SendMessage relay after the sub-agent has returned. Either (a) include all comms context in the initial ba-agent:ba prompt so it completes in one run, or (b) execute comms workflows directly in the parent conversation by reading comms-3p.md and comms-faq.md and following the 3-stage workflows inline.
+- 2026-06-27: Do NOT generate FAQ questions from templates alone — mine actual artifacts first for `[inferred]` fields, non-obvious decision outcomes, and handoff steps before applying templates. Template-only questions are generic; content-informed questions are the ones stakeholders will actually ask.
+- 2026-06-27: Do NOT attempt `git checkout main` from inside a worktree session — it will fail because main is checked out in the parent working tree. Always exit the worktree first, then merge from outside.
+- 2026-06-27: Do NOT modify files under `~/.claude/plugins/cache/` — they are third-party cached downloads that will be overwritten on plugin updates. Create local wrapper skills in `~/.claude/skills/` instead.
+- 2026-06-28: Do NOT try to edit `~/.claude/Agents/` files via a worktree — the directory is gitignored and won't appear in the worktree at all. Check `git check-ignore -v <path>` before assuming a directory is tracked; edit gitignored files directly.
+- 2026-06-30: Do NOT use `find ~/.claude | sort` as a target-structure reference when the directory contains large submodules. The output becomes 300+ lines of irrelevant internal files. Write the tree manually and annotate it.
+- 2026-06-30: `ExitPlanMode`'s `allowedPrompts` parameter only accepts `"Bash"` as the tool value — passing `"Edit"` causes `InputValidationError`. Only list Bash operations in allowedPrompts; mention file editing in the prompt description instead.
+- 2026-06-30: Do NOT call `git submodule add` with an absolute destination path. Use a repo-relative path (e.g., `skills/senior-engineering-partner`). Absolute paths land in the index correctly but corrupt `.gitmodules` with a non-portable absolute path.
+- 2026-06-30: Do NOT run `git rm --cached <stale-path>` while `.gitmodules` has unstaged modifications — git will error. Always `git add .gitmodules` first.
+- 2026-07-01: Do NOT use `git worktree remove <path>` without `--force` for post-merge cleanup — it will fail even when the branch is fully merged. Use `git worktree remove <path> --force`.
+- 2026-07-02: Do NOT add an empty `[allowlist]`/`[[allowlists]]` block to `.gitleaks.toml` "for documentation" when there's nothing to allowlist yet — gitleaks treats a check-less allowlist as a fatal config error, not a no-op. Leave the section out and add it only once there's a real, scoped false positive.
+- 2026-07-02: Do NOT chain multiple edits to external project files without a Read verify step when OpenWolf hooks are active — hooks can silently revert edits.
+- 2026-07-02: Do NOT trust `npx skills@latest add <source> --skill=<comma-list>` to filter which skills install — in non-interactive mode it silently installs the entire source repo (36/36 skills here) to every detected agent, ignoring the flag. Let it over-install, then prune with `npx skills remove <name1> <name2> ... --global -y` (space-separated positional args — confirmed reliable for `remove`), and verify the final set with `ls`/`git status`, not the CLI's own summary output.
+- 2026-07-02: Do NOT treat a claim in a written plan (even one already approved by the user) as verified fact if it was sourced from a subagent's report and never independently checked. This session's approved plan stated the NHL Stats Project's `.wolf/cerebrum.md` "already exists" — a direct `ls` before executing that step showed it didn't. Verify file-existence/state claims with a direct check immediately before acting on them, especially right after plan approval when it's tempting to just execute the plan as written.
 
 ## Decision Log
 
@@ -66,20 +86,11 @@ Context window was compacted here. Review the session and capture any key findin
 - 2026-06-26: Large esbuild bundles (8,000–9,100 line JS files in `langsmith-plugin/bundle/`) must be treated as opaque `file` nodes by file-analyzer agents — no tree-sitter extraction. Attempting to extract caused batches 29/30 to hit context limits and fail.
 - 2026-06-26: Architecture-analyzer and file-analyzer can disagree on node type prefixes. CI workflow files may be assigned `config:` by the architecture layer but `pipeline:` by file-analyzer. Always run inline validation (ua-inline-validate.cjs) after assembling layers and patch mismatches before saving.
 
-## Do-Not-Repeat (2026-06-26)
-
-- 2026-06-26: Do NOT run understand-anything on `~/.claude` without first auditing `.understandignore` — plugins/ alone contains 725 cached 3rd-party files. Scope exclusions first or the scan is 4× larger than necessary.
-- 2026-06-26: Do NOT leave `meta.json` with a null `gitCommitHash` after setting up git — understand-anything will fall back to a full rebuild prompt instead of incrementally diffing. Patch the hash immediately after the first commit.
-
 ## Decision Log (2026-06-26)
 
 - 2026-06-26: Registered `langsmith-plugin` and `superpowers` as git submodules (pointing to `langchain-ai/langsmith-claude-code-plugins` and `obra/Superpowers`) rather than gitignoring them. Rationale: submodule pointer commits appear in parent `git diff`, so understand-anything detects when those dirs change and re-analyzes them incrementally.
 - 2026-06-26: Custom skills must be directories (`~/.claude/skills/<name>/SKILL.md`), not flat `.md` files. Symlinks to superpowers follow this same pattern — they point to directories, not files. Standalone `.md` files in `skills/` are silently ignored by the skill registry.
 - 2026-06-26: To expose an agent-scoped skillset globally without duplicating routing logic, create a thin orchestrator skill (`~/.claude/skills/ba/SKILL.md`) that reads the agent's CLAUDE.md and resolves relative skill paths from the agent directory.
-
-## Do-Not-Repeat (2026-06-26 continued)
-
-- 2026-06-26: Do NOT create skills as standalone `.md` files in `~/.claude/skills/` — the skill registry silently ignores them. Correct structure: `~/.claude/skills/<name>/SKILL.md` (a directory, not a file).
 
 ## Key Learnings (2026-06-26, session 2)
 
@@ -87,11 +98,6 @@ Context window was compacted here. Review the session and capture any key findin
 - 2026-06-26: Claude Code 2.1.186 supports only `git-subdir` and `"./"` source types in marketplace.json. The `local` source type is rejected with "source type not supported". Missing source is also rejected. Plugin loader validates the source type BEFORE checking installPath — valid files at installPath do not bypass a bad source.
 - 2026-06-26: `claude plugins init <name> --with agents` scaffolds a plugin into `~/.claude/skills/<name>/` that auto-loads as `<name>@skills-dir` without any marketplace registration or install step. This is the correct path for custom local plugins that aren't in an upstream git repo.
 - 2026-06-26: YAML frontmatter `description:` values containing `: ` (colon-space, e.g. `"full BA package: Mermaid..."`) must be double-quoted. Unquoted colon-space is parsed as a nested key-value and causes a YAML parse error that silently drops all frontmatter at runtime.
-
-## Do-Not-Repeat (2026-06-26, session 2)
-
-- 2026-06-26: Do NOT manually add entries to `installed_plugins.json` for a plugin that lacks a valid supported source type in its marketplace.json entry. The loader checks source type before using installPath. Use `plugins init` → skills-dir for local plugins instead.
-- 2026-06-26: Do NOT write unquoted colon-space sequences in YAML agent frontmatter `description:` fields. Always quote the entire value when it contains `: `.
 
 ## Decision Log (2026-06-26, session 2)
 
@@ -132,10 +138,6 @@ Context window was compacted here. Review the session and capture any key findin
 - 2026-06-27: **Brand/structure separation pattern in document briefs**: Split brief rules into two categories — (1) brand values (colors, fonts, sizes) → say "Apply Brand Spec Card exactly", never hardcode; (2) format-structural constraints (slide count, DXA widths, `No \n in paragraphs`) → live in the skill file, unrelated to brand, safe to hardcode. This separation makes briefs resilient to brand changes.
 - 2026-06-27: Sub-agent brand enforcement architecture: (1) brand voice → `~/.claude/Agents/ba-agent/CLAUDE.md` (sub-agent reads it); (2) brand visual specs → brand gate in parent `~/.claude/skills/ba-agent/SKILL.md` (brand skill can't be invoked in sub-agent). Never try to invoke brand skill from inside a sub-agent.
 
-## Do-Not-Repeat (2026-06-27, session 3)
-
-- 2026-06-27: Do NOT hardcode brand values (hex codes, font names, sizes) in any file other than `~/.claude/brand/brand-guide.md`. Even in document briefs where it feels like a "helpful reminder," it creates drift the moment brand-guide.md is updated. Always reference the Brand Spec Card dynamically.
-
 ## Decision Log (2026-06-27, session 3)
 
 - 2026-06-27: Wired brand into ba-agent at the **parent SKILL.md level** (not inside the sub-agent). Rationale: sub-agents can't invoke the Skill tool — they're limited to Bash/Read/Write/WebFetch/TodoWrite. Brand visual specs belong at the parent level; brand voice belongs in the agent's CLAUDE.md.
@@ -145,11 +147,6 @@ Context window was compacted here. Review the session and capture any key findin
 
 - 2026-06-27: CLAUDE.md bloat is not just line count — structural drift matters more. This session's audit found sections numbered 1,2,3,5,6,7,8,9,4 (Section 4 appended to the bottom months later without renumbering), and 2 bullets duplicating content already enforced in `.claude/rules/openwolf.md`. The file was 64 lines and NOT bloated by volume; the problem was out-of-order sections and cross-file duplication.
 - 2026-06-27: Two-category test for CLAUDE.md content: (1) Architecture/routing — belongs in CLAUDE.md; (2) Protocol enforcement rules — belongs in `.claude/rules/openwolf.md`. When a new bullet is added to Section 3 (Infrastructure), check openwolf.md first. If it's already enforced there, don't add it to CLAUDE.md — add a pointer instead.
-
-## Do-Not-Repeat (2026-06-27, session 4)
-
-- 2026-06-27: Do NOT add protocol enforcement bullets to CLAUDE.md Section 3 if they are already in `.claude/rules/openwolf.md`. The rules file is the enforcement layer; CLAUDE.md is the architecture index. Duplicating between them creates drift — fix pattern: single pointer line in CLAUDE.md, full rule in openwolf.md.
-- 2026-06-27: When adding a new section to CLAUDE.md, check that the section number is in order relative to the physical position in the file. Historical additions have landed out of sequence (Section 4 appeared after Section 9). Renumber before appending.
 
 ## Decision Log (2026-06-27, session 4)
 
@@ -169,10 +166,6 @@ Context window was compacted here. Review the session and capture any key findin
 - 2026-06-27: `ba-agent:ba` comms skill gates (comms-3p.md Stage 1, comms-faq.md Stage 1) explicitly reject coordinator relay messages — they only accept messages the sub-agent classifies as coming directly from the user. After a sub-agent is resumed via SendMessage, all further messages arrive as coordinator relay and cannot satisfy these gates. The sub-agent loops indefinitely.
 - 2026-06-27: Meta-test (using ba-agent:ba to document its own pipeline as input brief) confirmed the pipeline is robust: self-referential brief → 10 artifacts, 0 observe revisions, all quality gates passed. Self-referential briefs are a valid and clean way to validate the BA pipeline end-to-end.
 
-## Do-Not-Repeat (2026-06-27, session 6)
-
-- 2026-06-27: Do NOT attempt to satisfy ba-agent comms Stage 1 gates via SendMessage relay after the sub-agent has returned. Either (a) include all comms context in the initial ba-agent:ba prompt so it completes in one run, or (b) execute comms workflows directly in the parent conversation by reading comms-3p.md and comms-faq.md and following the 3-stage workflows inline.
-
 ## Decision Log (2026-06-27, session 6)
 
 - 2026-06-27: When ba-agent comms gates blocked on coordinator relay (3 attempts), generated 3P and FAQ directly in main conversation by reading comms skill files and executing the workflows inline. Rationale: main conversation has live user interaction; a resumed background sub-agent does not and the skill explicitly rejects relay messages.
@@ -185,10 +178,6 @@ Context window was compacted here. Review the session and capture any key findin
 - 2026-06-27: **understand-anything knowledge graph goes stale fast for actively edited directories.** The BA agent had been substantially modified after the last graph analysis. Keyword searches returned no results; direct file reads were required. For directories under active development, the graph should be re-analyzed after any significant batch of changes — don't rely on it for queries about recently added files.
 - 2026-06-27: **Data maps without data types and flow direction force implementation rework.** Stakeholders treating a data map as an implementation spec need Type (string/integer/date/etc.) and Direction (→/↔/←) as first-class columns, not notes. Marking unknown values as `[inferred]` surfaces them explicitly as open items rather than leaving implementers to guess.
 - 2026-06-27: **Integration diagrams without timing semantics are incomplete for technical audiences.** Whether a data flow is synchronous, asynchronous, or batch is an architectural fact that affects latency, reliability, and error-handling design. Every edge label in an integration diagram should carry a `[sync]`, `[async]`, `[batch]`, or `[inferred]` timing suffix.
-
-## Do-Not-Repeat (2026-06-27, session 7)
-
-- 2026-06-27: Do NOT generate FAQ questions from templates alone — mine actual artifacts first for `[inferred]` fields, non-obvious decision outcomes, and handoff steps before applying templates. Template-only questions are generic; content-informed questions are the ones stakeholders will actually ask.
 
 ## Decision Log (2026-06-27, session 7)
 
@@ -214,11 +203,6 @@ Context window was compacted here. Review the session and capture any key findin
 - 2026-06-27: **Cached plugins are read-only**: `~/.claude/plugins/cache/` contains third-party plugin files that can be overwritten on package update. Never modify files in this directory directly. The correct pattern: create a local wrapper or extension skill in `~/.claude/skills/<name>/SKILL.md` that references or wraps the cached plugin's scripts.
 - 2026-06-27: **Gap analysis via Explore agents**: For "what am I missing?" questions about a toolchain, launch 2 parallel Explore agents — one to inventory existing skills/stack, one to check installed runtimes/packages — then synthesize gaps by use case and priority-rank by effort vs. impact. This produces a grounded gap analysis rather than a generic "here's what exists" survey.
 
-## Do-Not-Repeat (2026-06-27, session 9)
-
-- 2026-06-27: Do NOT attempt `git checkout main` from inside a worktree session — it will fail because main is checked out in the parent working tree. Always exit the worktree first, then merge from outside.
-- 2026-06-27: Do NOT modify files under `~/.claude/plugins/cache/` — they are third-party cached downloads that will be overwritten on plugin updates. Create local wrapper skills in `~/.claude/skills/` instead.
-
 ## Decision Log (2026-06-27, session 9)
 
 - 2026-06-27: Created `dataviz`, `html-export`, and `exec-dashboard` skills to fill three critical gaps for exec stakeholder presentation work: (1) recharts + brand-palette defaults for charts, (2) Playwright HTML→PNG/PDF export pipeline, (3) KPI+chart+insight full-page dashboard template. All three are wired together as a workflow: brand → dataviz → build → html-export → embed in PPTX.
@@ -228,10 +212,6 @@ Context window was compacted here. Review the session and capture any key findin
 - 2026-06-28: **`Agents/` is gitignored in `~/.claude`** — changes to ba-agent skill files (e.g. `ba-package.md`, `intake.md`, `planner.md`) go directly to `~/.claude/Agents/ba-agent/skills/` in the main tree and are never tracked by git. A worktree branch cannot carry these changes. The correct workflow: edit Agents/ files directly, commit only the tracked `skills/` and `hooks/` changes via worktree.
 - 2026-06-28: **`has_metrics` flag pattern**: The cleanest way to pass brief-type context from a sub-agent to the parent skill is to write a computed flag into `context.json` during sub-agent assembly. The sub-agent has full artifact context at that point (data-map.md scanned, types identified). The parent reads the flag without re-analyzing the artifacts. This avoids duplicating scan logic and keeps the parent skill brief-agnostic.
 - 2026-06-28: **Two-variant skill pattern**: When a skill needs to produce the same artifact type (dashboard HTML) from two different data shapes (business metrics vs. process counts), the right structure is one skill with two clearly-labelled App.tsx templates (Variant A / Variant B), not two separate skills. The caller passes the variant name in the brief; the skill executes the matching template.
-
-## Do-Not-Repeat (2026-06-28, session 10)
-
-- 2026-06-28: Do NOT try to edit `~/.claude/Agents/` files via a worktree — the directory is gitignored and won't appear in the worktree at all. Check `git check-ignore -v <path>` before assuming a directory is tracked; edit gitignored files directly.
 
 ## Decision Log (2026-06-28, session 10)
 
@@ -274,11 +254,6 @@ Context window was compacted here. Review the session and capture any key findin
 - 2026-06-30: **Gap analysis against philosophy > file inventory**: When auditing what's missing from a transfer, map each philosophical requirement to the files that enable it (e.g., "self-learning" → cron-manifest.json, "memory layer" → reframe-frameworks.md). A generic file-listing approach misses non-obvious dependencies that only reveal themselves when a feature breaks on first use.
 - 2026-06-30: **Raw `find` is useless for directory structure references when submodules are present**: Submodule internals (langsmith-plugin/src, superpowers/tests, etc.) flood the output. Write annotated directory trees manually — curate what matters, label each entry ([FILE], [SUBMOD], [SYMLINK], [RUNTIME], [SKIP]).
 
-## Do-Not-Repeat (2026-06-30, session 13)
-
-- 2026-06-30: Do NOT use `find ~/.claude | sort` as a target-structure reference when the directory contains large submodules. The output becomes 300+ lines of irrelevant internal files. Write the tree manually and annotate it.
-- 2026-06-30: `ExitPlanMode`'s `allowedPrompts` parameter only accepts `"Bash"` as the tool value — passing `"Edit"` causes `InputValidationError`. Only list Bash operations in allowedPrompts; mention file editing in the prompt description instead.
-
 ## Decision Log (2026-06-30, session 13)
 
 - 2026-06-30: Chose self-optimization spec approach over zip-file transfer for cross-machine Claude Code migration. Rationale: zip requires knowing exactly what to include/exclude and can't handle username path differences gracefully. A spec gives the receiving Claude Code the judgment to do its own audit, gap-close intelligently, and skip what it already has.
@@ -289,11 +264,6 @@ Context window was compacted here. Review the session and capture any key findin
 - 2026-06-30: **`git submodule add <abs-path>` writes absolute path to .gitmodules**: The index entry normalizes correctly to a relative path, but the `.gitmodules` entry captures the absolute path literally. This causes `git submodule status` to fail with "no submodule mapping found". Always use a path relative to the repo root as the destination argument: `git submodule add <url> skills/<name>`, not `/Users/paulmckay/.claude/skills/<name>`.
 - 2026-06-30: **Stale worktree index entry (mode 160000) blocks git submodule operations**: A removed worktree that was never cleaned from the index causes `git submodule sync` to error. To fix: stage .gitmodules changes first (`git add .gitmodules`), then remove the stale entry (`git rm --cached <stale-path>`). Attempting `git rm --cached` without staging .gitmodules first throws "please stage your changes to .gitmodules or stash them".
 - 2026-06-30: **Reference library install pattern**: When a third-party skill has a workflow enforcement layer that duplicates existing gates, install it as a git submodule for its reference modules only — bypass SKILL.md's workflow loop. Wire the reference module paths into the relevant existing skill rows (e.g., CLAUDE.md Process Layer) rather than invoking the whole skill.
-
-## Do-Not-Repeat (2026-06-30, session 14)
-
-- 2026-06-30: Do NOT call `git submodule add` with an absolute destination path. Use a repo-relative path (e.g., `skills/senior-engineering-partner`). Absolute paths land in the index correctly but corrupt `.gitmodules` with a non-portable absolute path.
-- 2026-06-30: Do NOT run `git rm --cached <stale-path>` while `.gitmodules` has unstaged modifications — git will error. Always `git add .gitmodules` first.
 
 ## Decision Log (2026-06-30, session 14)
 
@@ -306,49 +276,55 @@ Context window was compacted here. Review the session and capture any key findin
 - 2026-07-01: **Plan mode re-enters mid-skill if an existing plan file is present.** This blocks write-heavy skills (session-reflect, any skill that appends to project files). Workaround: update plan file with a brief note → call ExitPlanMode → continue skill execution.
 - 2026-07-01: **Stop hook worktree check pattern:** `git worktree list | tail -n +2` strips the main working tree entry (always first line). If the output is non-empty, stale worktrees exist. `async: true` on this hook prevents it from blocking the session close.
 
-## Do-Not-Repeat (2026-07-01, session 15)
-
-- 2026-07-01: Do NOT use `git worktree remove <path>` without `--force` for post-merge cleanup — it will fail even when the branch is fully merged. Use `git worktree remove <path> --force`.
-
 ## Decision Log (2026-07-01, session 15)
 
 - 2026-07-01: Added worktree reminder to **Stop hook** rather than a PostToolUse on `git merge`. Rationale: the Stop hook fires at end of every session — the point where you're most likely to notice a forgotten worktree before closing. A mid-merge reminder fires in the middle of active work and gets dismissed.
 - 2026-07-01: Worktrees for `~/.claude` config work provide limited isolation benefit: the most complex work (Agents/) is gitignored and can't be isolated anyway. The gate's main value is as a habit-builder for external project work, not for ~/.claude itself. Small config changes don't need worktree overhead.
 
-## Key Learnings (2026-07-01, session 16 — NHL Stats project bootstrap)
-
-- 2026-07-01: **NHL API text fields are nested dicts, not plain strings.** `teamAbbrev`, `firstName`, `lastName`, `placeName`, `teamName`, `teamCommonName` from the web API all return `{'default': 'value'}` (sometimes with a `'fr'` key too). Always access with `['default']`, never treat as a string. Applies to: standings, schedule, boxscore, roster responses.
-- 2026-07-01: **NHL standings API has no `teamId`.** `/v1/standings/now` includes conference, division, points, and abbreviation but no numeric team ID. The only reliable source for numeric IDs is `https://api.nhle.com/stats/rest/en/team` (returns 62 franchise records including defunct teams). Filter to active teams using the standings `teamAbbrev['default']` set and match via `triCode`.
-- 2026-07-01: **Schedule `gameDate` field is null in game objects** — the actual date lives in the parent `day['date']` field of the `gameWeek` array. Always use `day.get('date')`, never `game.get('gameDate')`.
-- 2026-07-01: **Boxscore players aren't always on current roster.** Players on IR, call-ups, or special roster arrangements appear in boxscore `playerByGameStats` but not in `/v1/roster/{team}/current`. FK constraints on `player_game_stats(player_id)` will fail unless you stub-insert missing players first (using `name['default']` from the boxscore player object).
-- 2026-07-01: **macOS Homebrew Python 3.14 is "externally managed."** `python3 -m pip install` fails with `externally-managed-environment`. Always use `python3 -m venv .venv && source .venv/bin/activate` before pip. This is standard behavior for Python 3.11+ on Homebrew.
-
-## Do-Not-Repeat (2026-07-01, session 16)
-
-- 2026-07-01: Do NOT access NHL API name/abbrev fields as plain strings — `teamAbbrev['default']`, `firstName['default']`, `placeName['default']` are the required patterns. Treating them as strings causes `TypeError: string indices must be integers`.
-- 2026-07-01: Do NOT fire 32+ sequential NHL API requests without a per-call sleep. The API returns 429 after ~20 rapid requests. Add 0.5s `time.sleep()` between loop iterations plus exponential backoff retry (`3, 6, 12, 24s`) in the `_get()` helper.
-
-## Decision Log (2026-07-01, session 16)
-
-- 2026-07-01: For NHL Stats project team ID resolution: used `https://api.nhle.com/stats/rest/en/team` (`triCode` → `id` map) joined against active teams from standings. Rationale: standings has all 32 active teams with conference/division; stats REST API has numeric IDs. Neither source alone has everything needed; joining on abbreviation/triCode is the cleanest bridge.
-- 2026-07-01: NHL Stats project built at `/Users/paulmckay/Desktop/NHL Stats Project/` — pushed to `https://github.com/paulchangmckay/nhl-stats`. Architecture: `src/` (api_client, database, models) + `etl/` (5 loaders) + `scripts/` (setup, run_all, query_examples). Python venv at `.venv/`, SQLite at `data/nhl_stats.db` (git-ignored). Uses NHL Web API (`api-web.nhle.com/v1`) as primary source.
-
-## Key Learnings (2026-07-02, session 17 — NHL Stats Flask web app)
-
-- 2026-07-02: **Client-side filter/sort pattern is appropriate for ≤1000 row datasets.** Load all rows once via `/api/` JSON endpoint; filter and sort in JS without server round-trips. Eliminates server-side query complexity, pagination, and state management for small datasets. The NHL Stats player table (705 rows) loads in <100ms.
-- 2026-07-02: **`sys.path.insert(0, os.path.dirname(__file__))` in `app.py` makes `src/` importable without package installation.** This is the correct pattern for Flask apps sitting at the project root that need to import from sibling directories (`src/database.py`, etc.). Avoids `pip install -e .` or `PYTHONPATH` env var setup.
-- 2026-07-02: **macOS port 5000 is often occupied (AirPlay Receiver or stale Flask dev server).** `python app.py` will silently fail with "Address already in use." Always clear it first: `lsof -ti :5000 | xargs kill -9`.
-
-## Do-Not-Repeat (2026-07-02, session 17)
-
-- 2026-07-02: Do NOT start Flask dev server without first clearing port 5000 on macOS. Run `lsof -ti :5000 | xargs kill -9` before `python app.py`, especially in back-to-back test runs. AirPlay Receiver also binds to 5000 by default — disable it in System Settings > AirDrop & Handoff if it recurs.
-
-## Decision Log (2026-07-02, session 17)
-
-- 2026-07-02: Chose Flask over FastAPI for NHL Stats web app. Rationale: learning project — Flask has less boilerplate, no type annotation requirement, built-in Jinja2 templating. FastAPI's strengths (async, auto OpenAPI docs, Pydantic models) add complexity without benefit at this stage.
-- 2026-07-02: Chose vanilla HTML/CSS/JS over React/Vue for the player table. Rationale: learning project — no build step, easily readable by a beginner, no npm or node toolchain needed. A `<style>` block + 80 lines of JS is sufficient for a filtered sortable table at this scale.
-
-
 ---
 ## Compaction event: 2026-07-02T03:02:36Z
 Context window was compacted here. Review the session and capture any key findings, decisions, or patterns that should persist.
+
+## Key Learnings (2026-07-02, session 19 — ~/.claude lint/secret-scan gate)
+
+- 2026-07-02: **Check a submodule's own reference docs before treating a lint/tooling request as green-field design.** `skills/senior-engineering-partner/SKILL.md` already prescribed the exact toolset needed (ShellCheck "zero warnings", `eslint-plugin-security`, `gitleaks` with a root `.gitleaks.toml`) at lines 62/82/83 — the "new" plan was really just wiring up enforcement for a standard the repo had already adopted via its reference docs. Reading the submodule's top-level SKILL.md first turned a design exercise into a lookup.
+- 2026-07-02: **gitleaks rejects an empty/placeholder allowlist.** A `.gitleaks.toml` with `[allowlist]` containing only a `description` (no `commits`/`paths`/`regexes`/`stopwords` check) fails to load entirely: `"[[allowlists]] must contain at least one check"`. It also must be the TOML array-of-tables form `[[allowlists]]`, not a bare `[allowlist]` table. If there's nothing to allowlist yet, omit the section rather than adding a placeholder.
+
+## Decision Log (2026-07-02, session 19)
+
+- 2026-07-02: Wired the lint/secret-scan gate as a **tracked local pre-commit hook** (`.githooks/pre-commit` + `git config core.hooksPath .githooks`) rather than CI or a husky/lefthook dependency. Rationale: repo is Tier 0 (single dev, no `.github/workflows/`) per its own CLAUDE.md tiering — a plain tracked bash script needs zero added dependencies and survives being cloned to another machine, unlike default `.git/hooks` which isn't tracked.
+- 2026-07-02: Pre-commit hook treats a missing tool (shellcheck/eslint/gitleaks not installed) as warn-and-skip, not a blocking failure. Rationale: lets a fresh clone still commit before running the one-time `brew`/`npm install` setup step; a real finding from an installed tool still blocks unconditionally.
+
+## Key Learnings (2026-07-02, session 20 — OpenWolf hook behavior)
+
+- 2026-07-02: **OpenWolf hooks can revert edits to files outside `~/.claude` silently.** After editing `~/Desktop/NHL Stats Project/src/database.py`, a subsequent system-reminder showed the pre-edit file state — the hook had reverted the file. Pattern: after multiple edits to any external-project file, Read it back to confirm on-disk state before proceeding.
+
+---
+## Compaction event: 2026-07-02T06:07:36Z
+Context window was compacted here. Review the session and capture any key findings, decisions, or patterns that should persist.
+
+## Key Learnings (2026-07-02, session 21 — mattpocock/skills integration)
+
+- 2026-07-02: **OpenWolf's anatomy scan explicitly ignores `skills/**`** (alongside `superpowers/**`, `langsmith-plugin/**`, `node_modules/**`). Newly added skill directories will never show up in `anatomy.md` — that's by design, not a scan failure. Don't treat their absence there as a verification signal; use `ls`/`git status` on `skills/` directly instead.
+- 2026-07-02: **ExitPlanMode's own tool description excludes pure research/gap-analysis tasks** ("do NOT use this tool" for research/searching/understanding-only work), even while plan mode is technically active for the turn. Correct pattern: finish the research, answer directly as text, and only invoke ExitPlanMode once the user actually asks for an implementation plan with file/config changes.
+
+## Decision Log (2026-07-02, session 21)
+
+- 2026-07-02: Installed mattpocock/skills subset (grill-me, grilling, codebase-design, domain-modeling, teach, handoff) with `--copy` rather than the CLI's default symlink-into-`~/.agents/skills/` mode. Rationale: keeps `~/.claude` fully self-contained and consistent with every other custom skill in this repo being a real tracked file, not a symlink to an external cache outside the repo.
+
+## Key Learnings (2026-07-02, session 21 continued — live skill verification)
+
+- 2026-07-02: **`disable-model-invocation: true` is enforced by the Skill tool itself, not just a convention.** Calling `Skill({skill: "grill-me"})` (or `teach`, `handoff`) throws `"Skill grill-me cannot be used with Skill tool due to disable-model-invocation"` — Claude cannot self-invoke these under any circumstance, including for verification/testing. Only a literal user-typed `/grill-me` (etc.) works. `codebase-design` and `domain-modeling` (no such flag) invoke fine via the Skill tool and behave as documented — confirmed live by asking each a real project question and getting on-vocabulary, code-cross-referenced answers back.
+
+## Key Learnings (2026-07-02, session 22 — full system audit)
+
+- 2026-07-02: **A submodule's `origin` can silently be a third-party upstream, not the user's fork.** `langsmith-plugin` (→ `langchain-ai/langsmith-claude-code-plugins`) and `superpowers` (→ `obra/Superpowers`) each had 1 local-only commit "ahead" of `origin/main`. Before ever suggesting `git push` to resolve an ahead/behind submodule state, run `git -C <submodule> remote -v` to confirm the user actually owns the remote — otherwise the safe fix is a local-only backup branch, never a push.
+- 2026-07-02: **`.wolf/` runtime files (anatomy.md, cron-state.json, daemon.log) can end up git-tracked inside third-party submodules** if OpenWolf was ever run with that submodule as the working directory. They show as `M` (modified-tracked), not untracked — a bare `.gitignore` entry won't stop them from showing dirty; `git rm -r --cached .wolf` is required first.
+- 2026-07-02: **`.wolf/cerebrum.md`/`memory.md` accumulate cross-project content when a session runs from `~/.claude` with another project as an "additional working directory"** (e.g. NHL Stats Project) — OpenWolf's hooks are tied to the primary project dir, so all learnings land in `~/.claude`'s files regardless of which project the actual edits touched. Watch for this pattern and split project-specific entries out proactively rather than letting it compound.
+- 2026-07-02: **`.wolf/memory.md` is a raw hook-generated per-action log, not a narrative session summary** — much more voluminous than it looks from the surrounding docs. A "consolidated session" line can still hide dozens of near-duplicate "Session end: N writes..." rows from the same session (the running total re-logged on every tool call). Archiving by "everything before today" is a more meaningful cut than a strict N-day window when the whole log only spans ~9 days.
+
+## Decision Log (2026-07-02, session 22 — full system audit)
+
+- 2026-07-02: Ran a full audit of `~/.claude` via 3 parallel Explore agents (`.wolf` tracking layer, new skill directories, config/hooks/submodules) rather than one broad pass. Rationale: three genuinely independent areas with no shared files — parallelizing kept each agent's context focused and let findings be cross-checked (e.g. the "duplicate hook wiring" finding was later disproven by reading the actual hook commands directly).
+- 2026-07-02: Created `/Users/paulmckay/Desktop/NHL Stats Project/.wolf/cerebrum.md` to receive NHL-specific learnings migrated out of `~/.claude`'s cerebrum, even though that project isn't fully `openwolf init`'d (no CLAUDE.md / `.claude/rules/openwolf.md` there yet) — noted this explicitly in the new file's header so it isn't mistaken for an auto-loaded file until `openwolf init` is actually run there.
+- 2026-07-02: Consolidated 13 fragmented per-session `## Do-Not-Repeat` headers in cerebrum.md into a single section, but deliberately left `## User Preferences`, `## Key Learnings`, and `## Decision Log` in their original chronological per-session structure — only Do-Not-Repeat had the fragmentation problem the audit flagged; the others are working as intended as append-only logs.

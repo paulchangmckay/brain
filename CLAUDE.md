@@ -9,7 +9,7 @@
 
 | When | Invoke |
 |------|--------|
-| Before creating any output (PDF, slides, doc, PRD, image, email, diagram) | `brand` (HARD-GATE: brand specs before creating) |
+| Before creating any output (PDF, slides, doc, PRD, image, email, diagram) | `brand` (HARD-GATE: brand specs before creating; exempt: `teach` skill's personal lesson HTML output — not a branded deliverable) |
 | Before any feature work or new task | `brainstorming` (HARD-GATE: no code until design approved) |
 | After brainstorm approval | `writing-plans` |
 | Before touching code | `test-driven-development` (IRON LAW: failing test first) — testing standards: `skills/senior-engineering-partner/references/testing.md` |
@@ -19,6 +19,11 @@
 | Before merging or creating a PR | `requesting-code-review` |
 | When review feedback arrives | `receiving-code-review` |
 | For security posture, threat modeling, or compliance questions | `senior-engineering-partner` with `AUDIT:` trigger — refs: `threat-modeling-and-api-design.md`, `secrets-and-key-rotation.md`, `frontend-web-security.md` |
+| A plan or design has unresolved soft spots before building | `grilling` (auto) or `/grill-me` (explicit) — one question at a time, each with a recommended answer, never a bulk list |
+| Designing/evaluating a module's interface, seam, or "is this deep enough" | `codebase-design` (vocabulary: interface/seam/adapter/deletion test), alongside `senior-engineering-partner` REVIEW:/EXPLAIN: modes |
+| Pinning down domain terminology or recording a hard-to-reverse decision | `domain-modeling` (writes `CONTEXT.md` + `docs/adr/`) — NOT `understand-anything:understand-domain` (read-only: analyzes existing code into a graph, never writes) |
+| Compacting live task context for a fresh agent to pick up mid-task | `/handoff` (writes to `.wolf/handoffs/`) — distinct from `session-reflect`, which is a durable project-cerebrum update at session end, not a task baton-pass |
+| Teaching the user a new skill/concept over multiple sessions (non-code) | `/teach` — only from a dedicated learning directory, never from `~/.claude` itself |
 
 ### Project Tier (scale rigor to maturity)
 | Tier | State | Gates active |
@@ -63,6 +68,7 @@ openwolf status      # Confirm health
 - `~/.claude` is tracked in git (baseline `b354ad3`). Commit changes regularly so understand-anything uses incremental updates (1-5 batches) instead of full rebuilds (32 batches).
 - Re-analyze after changes: `/understand-anything:understand ~.claude`
 - `langsmith-plugin` and `superpowers` are git submodules — do NOT `git add` their contents directly; use `git submodule update` to sync them.
+- Before pushing local commits in either submodule, run `git remote -v` first — origin is the third-party upstream (`langchain-ai`, `obra`), not a personal fork. Use a local-only backup branch (`git branch local-customizations`) instead of pushing.
 
 ## 8. Custom Plugin Registration
 - **Local plugins** (no upstream git repo): `claude plugins init <name> --with agents` → scaffolds at `~/.claude/skills/<name>/`, auto-loads as `<name>@skills-dir` — no marketplace or install step needed
@@ -72,3 +78,13 @@ openwolf status      # Confirm health
 ## 9. Brand / Document Skill Convention
 - **Brand/structure separation:** In document skill briefs, never hardcode brand values (hex codes, font names, sizes) — say "Apply Brand Spec Card" and let `~/.claude/brand/brand-guide.md` be the only source. Only format-structural constraints (DXA widths, slide count, `No \n in paragraphs`) belong in the skill file itself.
 - **Brand source of truth:** `~/.claude/brand/brand-guide.md` → read at runtime by `~/.claude/skills/brand/SKILL.md` → outputs Brand Spec Card → referenced by all document briefs. Updating brand-guide.md propagates everywhere automatically.
+
+## 10. External Skill Integrations (mattpocock/skills)
+- Installed via the `npx skills` CLI (`npx skills@latest add mattpocock/skills <skill-names...> --global --copy -y`; the `-s/--skill` flag does not reliably filter in non-interactive mode — pass skill names positionally, or install everything and prune unwanted ones with `npx skills remove <names...> --global -y`). Installed as real copies (`--copy`), not symlinks into `~/.agents/skills/`, so they live fully inside this git repo like every other custom skill.
+- **grill-me** (user-invoked, `/grill-me`) + **grilling** (model-invoked primitive it wraps) — relentless one-question-at-a-time interview to stress-test a plan. `grilling` may also be reached for automatically by other skills; `grill-me` never invokes anything except `grilling`.
+- **codebase-design** (model-invoked) — deep-module design vocabulary (interface/seam/adapter/deletion test). Installed standalone, not merged into `senior-engineering-partner`; reach for it alongside `senior-engineering-partner` REVIEW:/EXPLAIN: modes when the topic is module/interface shape, not general code correctness. Includes `DEEPENING.md` and `DESIGN-IT-TWICE.md` references.
+- **domain-modeling** (model-invoked) — active glossary/ADR discipline, writes `CONTEXT.md` and `docs/adr/`. Distinct from `understand-anything:understand-domain`, which only reads existing code into a graph and never writes back to the repo. Includes `CONTEXT-FORMAT.md` and `ADR-FORMAT.md` references.
+- **teach** (user-invoked, `/teach`) — stateful multi-session tutoring workspace (`MISSION.md`, `lessons/`, `reference/`, `learning-records/`, `assets/`). Personal/educational output — exempt from the `brand` hard-gate. Treats the current directory as the workspace: only invoke from a dedicated learning directory, never from `~/.claude` itself.
+- **handoff** (user-invoked, `/handoff`) — locally modified from upstream: saves to `.wolf/handoffs/<UTC-timestamp>-handoff.md` instead of the OS temp dir, for discoverability via OpenWolf and worktree-friendliness. Because it's modified, re-running the install for `handoff` will overwrite the local edit — reapply the `.wolf/handoffs/` change after any upstream update.
+- **Note:** `grill-me`, `teach`, and `handoff` are enforced user-invoked at the tool level — calling `Skill({skill: "grill-me"})` etc. throws `disable-model-invocation` and fails. They can only be triggered by the user typing the slash command directly; Claude cannot self-invoke or self-verify them.
+- Not installed from this repo (considered and skipped): `ask-matt`, `code-review`, `diagnosing-bugs`, `grill-with-docs`, `implement`, `improve-codebase-architecture`, `prototype`, `setup-matt-pocock-skills`, `tdd`, `to-issues`, `to-prd`, `triage`, `writing-great-skills`, and the `general/` category skills — out of scope for this integration pass, revisit individually if a need arises.

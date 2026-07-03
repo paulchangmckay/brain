@@ -1,52 +1,32 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-07-02T03:16:23.745Z
-> Files: 531 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-07-03T01:34:59.118Z
+> Files: 511 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../Desktop/NHL Stats Project/
 
-- `.gitignore` — Git ignore rules (~31 tok)
-- `app.py` — API router (~606 tok)
-- `README.md` — Project documentation (~355 tok)
-- `requirements.txt` — Python dependencies (~24 tok)
-
-## ../Desktop/NHL Stats Project/etl/
-
-- `enrich_players.py` — run (~1276 tok)
-- `load_boxscores.py` — run (~969 tok)
-- `load_rosters.py` — run (~599 tok)
-- `load_schedule.py` — run (~361 tok)
-- `load_season_stats.py` — run (~1388 tok)
-- `load_standings.py` — run (~638 tok)
-- `load_teams.py` — run (~438 tok)
-
-## ../Desktop/NHL Stats Project/scripts/
-
-- `query_examples.py` (~1136 tok)
-- `run_all_etl.py` (~236 tok)
-- `setup_db.py` (~73 tok)
-
-## ../Desktop/NHL Stats Project/src/
-
-- `api_client.py` — get_standings, get_roster, get_schedule, get_boxscore (~610 tok)
-- `database.py` — get_connection, run_migrations, create_all_tables, upsert_team (~4064 tok)
-- `models.py` — Declares from (~1086 tok)
+- `app.py` — API router (~2258 tok)
 
 ## ../Desktop/NHL Stats Project/templates/
 
-- `index.html` — NHL Players (~2238 tok)
+- `index.html` — NHL Players (~3905 tok)
 
 ## ./
 
 - `.DS_Store` (~3275 tok)
-- `.gitignore` — Git ignore rules (~282 tok)
+- `.gitignore` — Git ignore rules (~291 tok)
+- `.gitleaks.toml` (~143 tok)
 - `.gitmodules` (~99 tok)
 - `.last-cleanup` (~7 tok)
 - `.last-update-result.json` (~46 tok)
-- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~1644 tok)
+- `.shellcheckrc` — Companion enforcement for skills/senior-engineering-partner SKILL.md: (~81 tok)
+- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~2859 tok)
+- `eslint.config.js` — ESLint flat configuration (~365 tok)
 - `history.jsonl` (~40 tok)
 - `mcp_servers.json` (~38 tok)
 - `mcp-needs-auth-cache.json` (~1 tok)
+- `package-lock.json` — npm lock file (~9251 tok)
+- `package.json` — Node.js package manifest (~106 tok)
 - `settings.json` (~2675 tok)
 
 ## .claude/
@@ -55,7 +35,11 @@
 
 ## .claude/rules/
 
-- `openwolf.md` (~313 tok)
+- `openwolf.md` (~375 tok)
+
+## .githooks/
+
+- `pre-commit` — Local pre-commit lint/secret-scan gate — enforcement counterpart to (~455 tok)
 
 ## .understand-anything/
 
@@ -220,11 +204,11 @@
 
 ## backups/
 
-- `.claude.json.backup.1782877981995` — Declares breakdown (~10016 tok)
-- `.claude.json.backup.1782878066841` — Declares breakdown (~10016 tok)
-- `.claude.json.backup.1782896924249` — Declares breakdown (~10016 tok)
-- `.claude.json.backup.1782918734476` — Declares breakdown (~10036 tok)
-- `.claude.json.backup.1782941247460` — Declares breakdown (~10044 tok)
+- `.claude.json.backup.1782973983895` — Declares breakdown (~10272 tok)
+- `.claude.json.backup.1782986511750` — Declares breakdown (~10272 tok)
+- `.claude.json.backup.1782994703328` — Declares breakdown (~10272 tok)
+- `.claude.json.backup.1783008999093` — Declares breakdown (~10272 tok)
+- `.claude.json.backup.1783017355949` (~10272 tok)
 
 ## brand/
 
@@ -241,6 +225,15 @@
 ## file-history/
 
 - `.DS_Store` (~1639 tok)
+
+## file-history/0d5c5fb2-80a2-48fd-b91c-5d91a9e55ffc/
+
+- `3cd8353c2c9425ee@v1` — Cerebrum (~13155 tok)
+- `3d6e521e74effdd2@v1` — NHL Stats Database (~379 tok)
+- `3d6e521e74effdd2@v2` — NHL Stats Database (~402 tok)
+- `3db85f411e3a438e@v2` — Adopt GitHub Flow branching for NHL Stats Project (~1915 tok)
+- `68dbf6830ce030c4@v2` (~286 tok)
+- `8ab4d4bad744d978@v2` — Contributing (~104 tok)
 
 ## file-history/15e36da0-a0a7-4527-b6b1-f1f84d6bdc1b/
 
@@ -270,6 +263,19 @@
 - `bbf1c9c196e3b05b@v2` — Plan: CLAUDE.md Audit & Optimization (~797 tok)
 - `c47760ed6c9ee802@v1` — System Instructions: Thin Harness, Fat Skills Environment (~1422 tok)
 - `c47760ed6c9ee802@v2` — System Instructions: Thin Harness, Fat Skills Environment (~1373 tok)
+
+## file-history/30cde21e-1156-40bc-b441-d12aa0f6667c/
+
+- `3cd8353c2c9425ee@v1` — Cerebrum (~15083 tok)
+- `3cd8353c2c9425ee@v2` — Cerebrum (~15563 tok)
+- `7f3eb749f5136661@v1` (~235 tok)
+- `7f3eb749f5136661@v2` (~279 tok)
+- `916e5e1db0377e1a@v2` — Gap Analysis: mattpocock/skills vs. current ~/.claude setup (~2440 tok)
+- `916e5e1db0377e1a@v3` — Integration Plan: mattpocock/skills → ~/.claude (~2628 tok)
+- `b45c8bd906e21647@v1` (~5064 tok)
+- `b45c8bd906e21647@v2` (~5396 tok)
+- `c47760ed6c9ee802@v1` — System Instructions: Thin Harness, Fat Skills Environment (~1914 tok)
+- `c47760ed6c9ee802@v2` — System Instructions: Thin Harness, Fat Skills Environment (~2903 tok)
 
 ## file-history/313d95d2-fd19-4b81-a264-51764cbf2e54/
 
@@ -419,6 +425,23 @@
 - `86bdc14cf9789346@v2` — CLAUDE.md (~1179 tok)
 - `8c741517e4792813@v1` — Exports ChatInterface (~366 tok)
 
+## file-history/54b7bf06-2f76-471a-a6d0-ff6eb281a1cf/
+
+- `0f2349ea71102bdb@v2` — Should ~/.claude have linting? — Recommendation (no changes made) (~736 tok)
+- `0f2349ea71102bdb@v3` — /*.js", ".wolf/hooks/**/*.js"]`, ignore `skills/**`, `superpowers/**`, `langsmith-plugin/**`, `node_modules/**`. Explicit rule list (not `security.... (~1662 tok)
+- `1a3eeb9a006e8d47@v2` — ", "skills/**", "superpowers/**", "langsmith-plugin/**"] }, (~340 tok)
+- `27c5910828ff9f75@v1` — System Instructions: Thin Harness, Fat Skills Environment (~1754 tok)
+- `3cd8353c2c9425ee@v1` — Cerebrum (~13762 tok)
+- `5b9708948928c2cd@v2` — Local pre-commit lint/secret-scan gate — enforcement counterpart to (~455 tok)
+- `5e554bbefd75b7f9@v1` — Runtime / ephemeral Claude Code data (~282 tok)
+- `b45c8bd906e21647@v1` (~4787 tok)
+- `b45c8bd906e21647@v2` (~5064 tok)
+- `c0f499d9fd74f710@v2` — Runtime / ephemeral Claude Code data (~291 tok)
+- `c47760ed6c9ee802@v2` — System Instructions: Thin Harness, Fat Skills Environment (~1914 tok)
+- `dd66786fec23ae5e@v2` — Companion enforcement for skills/senior-engineering-partner SKILL.md: (~81 tok)
+- `f44d1f7616d1e400@v2` (~99 tok)
+- `f98895d076f3d96c@v2` (~133 tok)
+
 ## file-history/591a8d74-0ae7-4375-a5f5-e90b445841f9/
 
 - `462e620384c2d0a2@v1` (~424 tok)
@@ -433,6 +456,50 @@
 - `ab0ef73e6d105444@v1` — OpenWolf (~992 tok)
 - `ab0ef73e6d105444@v2` — BA Agent — Output Workspace (~116 tok)
 
+## file-history/66e23b84-3bba-42ed-8cb1-f5693abac963/
+
+- `010456bb8242a6a8@v2` — sel: render, esc (~2238 tok)
+- `0ea690425da85a83@v2` (~1191 tok)
+- `0ea690425da85a83@v3` (~1223 tok)
+- `112809977b280784@v2` (~175 tok)
+- `112809977b280784@v3` (~220 tok)
+- `15f33e9722426fe1@v2` (~68 tok)
+- `266a2c4cb5cb489a@v2` — NHL Stats SQLite Project — Implementation Plan (~2273 tok)
+- `266a2c4cb5cb489a@v3` — NHL Stats Web App — Player Table Page (~1045 tok)
+- `266a2c4cb5cb489a@v4` — NHL Stats — Player Data Enrichment + Historical Season Stats (~2976 tok)
+- `266a2c4cb5cb489a@v5` — NHL Stats — Incremental Sync (~1594 tok)
+- `32dfd6fadb934013@v2` (~1060 tok)
+- `3cd8353c2c9425ee@v1` — Cerebrum (~11789 tok)
+- `3cd8353c2c9425ee@v2` — Cerebrum (~12598 tok)
+- `3cd8353c2c9425ee@v3` — Cerebrum (~13108 tok)
+- `3cd8353c2c9425ee@v4` — Cerebrum (~13155 tok)
+- `3cd8353c2c9425ee@v5` — Cerebrum (~13762 tok)
+- `3cd8353c2c9425ee@v6` — Cerebrum (~15036 tok)
+- `3cd8353c2c9425ee@v7` — Cerebrum (~15563 tok)
+- `3cd8353c2c9425ee@v8` — Cerebrum (~15755 tok)
+- `3d6e521e74effdd2@v2` — NHL Stats Database (~379 tok)
+- `3d6e521e74effdd2@v3` — NHL Stats Database (~402 tok)
+- `66bf48b8897f35d6@v2` (~337 tok)
+- `6771006ac6549ee5@v2` (~23 tok)
+- `6771006ac6549ee5@v3` (~26 tok)
+- `6cb7b8aed455ac63@v2` (~327 tok)
+- `6f144bcf67ab7aa0@v2` — Declares combo (~1296 tok)
+- `6f144bcf67ab7aa0@v3` — Declares combo (~1405 tok)
+- `72d981694851ddbf@v2` (~409 tok)
+- `73697caea1a17eab@v2` — Declares from (~443 tok)
+- `73697caea1a17eab@v3` — Declares from (~1014 tok)
+- `816734ea575522d1@v2` (~596 tok)
+- `8f4bad226680b910@v2` — Declares INTEGER (~1740 tok)
+- `8f4bad226680b910@v3` — Declares INTEGER (~3793 tok)
+- `8f4bad226680b910@v4` — Declares INTEGER (~4025 tok)
+- `b5a32fb9e675785e@v2` (~400 tok)
+- `b5a32fb9e675785e@v3` (~569 tok)
+- `ce165c40fc422bac@v2` (~566 tok)
+- `cf8de1a06d6b667a@v2` (~905 tok)
+- `edb6f5e5e3e9fd24@v2` (~31 tok)
+- `f516b6f61ada745b@v2` (~474 tok)
+- `f516b6f61ada745b@v3` (~559 tok)
+
 ## file-history/6cdc5e97-adc1-48eb-9d8f-7a01df19c115/
 
 - `12f566d79b28ddbb@v2` — My Environment Profile (~738 tok)
@@ -442,6 +509,7 @@
 - `4e0f8874ccd03cc9@v2` — Fit Analysis: senior-engineering-partner into Current Config (~1515 tok)
 - `4e0f8874ccd03cc9@v3` — Git & Worktree Optimization Plan (~1075 tok)
 - `4e0f8874ccd03cc9@v4` — Session Reflect (session 15 — git/worktree optimization) (~1119 tok)
+- `4e0f8874ccd03cc9@v5` — ~/.claude Remote Tracking — Current State & Next Steps (~1320 tok)
 - `c15c82adf8165050@v1` (~2372 tok)
 - `c15c82adf8165050@v2` (~2497 tok)
 - `c47760ed6c9ee802@v1` — System Instructions: Thin Harness, Fat Skills Environment (~1499 tok)
@@ -595,136 +663,9 @@
 ## file-history/d6f2ff3b-88a0-4112-adc9-f62be7cb49de/
 
 - `3cd8353c2c9425ee@v1` — Cerebrum (~165 tok)
-- `706259cb5a86cdf2@v2` (~354 tok)
-- `7f23e9cb8911dab8@v2` — Plan: 9 Claude Code Setup Enhancements (~1748 tok)
-- `7f23e9cb8911dab8@v3` — Plan: Completed — Next Steps Advisory (~170 tok)
-- `7f23e9cb8911dab8@v4` — Advisory: session-reflect is manual — no auto-equivalent for cerebrum.md (~47 tok)
-- `92303fcc4fd5fe9c@v2` — PostCompact hook: re-injects OpenWolf anatomy after context compaction. (~451 tok)
-- `a0a1332d0ffab6f9@v2` (~398 tok)
-- `a2d6ddb762e50f9a@v2` — Memory Index (~155 tok)
-- `c15c82adf8165050@v1` (~1092 tok)
-- `c15c82adf8165050@v2` (~1199 tok)
-- `c15c82adf8165050@v3` (~1239 tok)
-- `c47760ed6c9ee802@v1` — System Instructions: Thin Harness, Fat Skills Environment (~796 tok)
-- `c47760ed6c9ee802@v2` — System Instructions: Thin Harness, Fat Skills Environment (~767 tok)
-- `cbe6c40d634e5d7d@v2` (~288 tok)
-- `dad9aa259a03aa1c@v1` — PreToolUse hook: checks anatomy.md before Claude opens a file. (~535 tok)
-- `dad9aa259a03aa1c@v2` — PreToolUse hook: checks anatomy.md before Claude opens a file. (~659 tok)
-- `dbb80f17757574a5@v2` (~551 tok)
-- `e4fd4ba21fab6ca8@v2` (~35 tok)
-
-## file-history/f5bfc5ff-e84c-411b-8b48-d059dbcdb3b3/
-
-- `31a2a3eee90333eb@v1` (~104 tok)
-- `c15c82adf8165050@v1` (~2312 tok)
-
-## file-history/f875251b-1b93-4abb-b5ef-01fbc75b4467/
-
-- `07a6245c8b57fcc7@v2` — Plan: Consolidate /ba and /ba-agent into a single /ba skill (~567 tok)
-- `31a2a3eee90333eb@v1` (~138 tok)
-- `31a2a3eee90333eb@v2` (~2026 tok)
-- `3cd8353c2c9425ee@v1` — Cerebrum (~5267 tok)
-
-## file-history/fb94f48e-a473-4a19-830e-27d6be4d7eed/
-
-- `07bef9dce235dd8b@v2` — Install Anthropic Document Skills (~680 tok)
-
-## hooks/
-
-- `post-bash-truncate.js` — PostToolUse hook (Bash): warns when command output exceeds 15KB. (~294 tok)
-- `post-compact-anatomy.sh` — PostCompact hook: re-injects OpenWolf anatomy after context compaction. (~483 tok)
-- `pre-compact-snapshot.sh` — PreCompact hook: stamps a compaction event in .wolf/cerebrum.md and reminds (~512 tok)
-- `pre-read-check.js` — PreToolUse hook: guards context window before file reads. (~1251 tok)
-- `session-start.sh` — Unified SessionStart hook: Superpowers bootstrap + OpenWolf anatomy injection (~860 tok)
-
-## langsmith-plugin/
-
-- `.gitattributes` — Git attributes (~10 tok)
-- `.gitignore` — Git ignore rules (~66 tok)
-- `.oxfmtrc.json` (~29 tok)
-- `.oxlintrc.json` (~11 tok)
-- `CLAUDE.md` — OpenWolf (~57 tok)
-- `esbuild.config.mjs` — Read the plugin version at BUILD TIME and inject it as a global constant. (~381 tok)
-- `LICENSE` — Project license (~280 tok)
-- `package.json` — Node.js package manifest (~276 tok)
-- `pnpm-lock.yaml` — pnpm lock file (~14859 tok)
-- `README.md` — Project documentation (~2882 tok)
-- `tsconfig.json` — TypeScript configuration (~126 tok)
-
-## langsmith-plugin/.claude-plugin/
-
-- `marketplace.json` (~173 tok)
-- `plugin.json` (~95 tok)
-
-## langsmith-plugin/.claude/
-
-- `CLAUDE.md` — Claude Code to LangSmith Tracing Project (~259 tok)
-- `settings.json` (~441 tok)
-
-## langsmith-plugin/.claude/rules/
-
-- `openwolf.md` (~313 tok)
-
-## langsmith-plugin/.claude/state/
-
-- `langsmith_state.json` (~0 tok)
-
-## langsmith-plugin/.github/workflows/
-
-- `ci.yml` — CI: CI (~216 tok)
-- `claude-code-review.yml` — CI: Claude Code Review (~575 tok)
-
-## langsmith-plugin/bundle/
-
-- `post-compact.js` — __require: Events, EE, addListener + 12 more (~82948 tok)
-- `post-tool-use.js` — __require: Events, EE, addListener + 12 more (~83412 tok)
-- `pre-compact.js` — dist/logger.js (~2765 tok)
-- `pre-tool-use.js` — dist/logger.js (~2763 tok)
-- `session-end.js` — __require: Events, EE, addListener + 12 more (~89661 tok)
-- `stop-failure.js` — __require: Events, EE, addListener + 12 more (~82934 tok)
-- `stop.js` — __require: Events, EE, addListener + 12 more (~90514 tok)
-- `subagent-stop.js` — dist/logger.js (~2930 tok)
-- `user-prompt-submit.js` — __require: Events, EE, addListener + 12 more (~90848 tok)
-
-## langsmith-plugin/hooks/
-
-- `hooks.json` (~662 tok)
-
-## langsmith-plugin/src/
-
-- `config.test.ts` — Declares originalEnv (~3735 tok)
-- `config.ts` — Configuration — reads from environment variables. (~2498 tok)
-- `constants.ts` — Declares USER_PROMPT_TURN_NAME (~41 tok)
-- `hook-init.test.ts` — Declares originalEnv (~584 tok)
-- `index.ts` — Public API — re-exports for programmatic use and testing. (~154 tok)
-- `langsmith.test.ts` — Declares mockCreateRun (~11381 tok)
-- `langsmith.ts` — LangSmith run construction and submission. (~7345 tok)
-- `logger.ts` — Simple file logger with size-based rotation. (~392 tok)
-- `metadata.test.ts` — Contract test: loads validator.json and asserts the helper emits the required (~2742 tok)
-- `metadata.ts` — coding-agent-v1 trace metadata contract. One shared helper, stamped on every (~1083 tok)
-- `state.test.ts` — Declares path (~2148 tok)
-- `state.ts` — Persistent state management — tracks how far we've read in each session's (~1194 tok)
-- `transcript.test.ts` — writeJsonl: makeUser, makeAssistant, makeToolResult (~5137 tok)
-- `transcript.ts` — Transcript parsing — reads Claude Code JSONL transcripts and groups (~4085 tok)
-- `types.ts` — Types for Claude Code hook inputs and JSONL transcript messages. (~1828 tok)
-
-## langsmith-plugin/src/fixtures/coding-agent-v1/
-
-- `validator.json` (~2268 tok)
-- `worked-examples.json` (~1430 tok)
-
-## langsmith-plugin/src/hooks/
-
-- `post-compact.ts` — PostCompact hook entry point. (~927 tok)
-- `post-tool-use.ts` — PostToolUse hook entry point. (~1651 tok)
-- `pre-compact.ts` — PreCompact hook entry point. (~393 tok)
-- `pre-tool-use.ts` — PreToolUse hook entry point. (~377 tok)
-- `session-end.ts` — SessionEnd hook entry point. (~866 tok)
-- `stop-failure.ts` — StopFailure hook entry point. (~951 tok)
-- `stop.ts` — Stop hook entry point. (~3072 tok)
-- `subagent-stop.ts` — SubagentStop hook entry point. (~616 tok)
-- `user-prompt-submit.ts` — UserPromptSubmit hook entry point. (~1963 tok)
 
 ## plans/
 
-- `i-want-to-start-flickering-candle.md` — NHL Stats — Player Data Enrichment + Historical Season Stats (~2790 tok)
+- `i-want-to-start-flickering-candle.md` — NHL Stats — Season Filter + Advanced Analytics (~2743 tok)
+- `i-want-you-to-deep-balloon.md` — Resolve uncommitted/divergent state in ~/.claude (~1291 tok)
+- `recommend-a-plan-for-sleepy-alpaca.md` — Plan: Address uncommitted-state and memory-hygiene concerns in ~/.claude (~1551 tok)
