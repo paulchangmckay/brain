@@ -2,7 +2,7 @@
 
 > OpenWolf's learning memory. Updated automatically as the AI learns from interactions.
 > Do not edit manually unless correcting an error.
-> Last updated: 2026-07-03
+> Last updated: 2026-07-03 (session 25)
 
 ## User Preferences
 
@@ -66,8 +66,15 @@
 - 2026-07-03: Do NOT assume a `cd` in one Bash tool call carries over to another Bash call sent in the same parallel batch — parallel calls each run in their own subshell, so the "working directory persists between commands" guarantee only holds across strictly sequential calls. Hit this directly: `cd langsmith-plugin && git branch -f ...` in one parallel call, then a bare `git branch -f ...` in the sibling call, failed with "not a valid object name" because the second call never left the original cwd. Fix: give every call in a parallel batch its own explicit `cd <path> &&` prefix, or send cd-dependent commands sequentially instead.
 - 2026-07-03: Do NOT retry `Write` (full-file replacement) against a file another live session is actively appending to — it requires the entire file to match your last `Read`, so every tail append from the other session invalidates it, producing an unbreakable "file changed since read" retry loop. Use targeted `Edit` calls scoped to the specific lines being changed instead: a concurrent append at the tail doesn't invalidate an `Edit` whose `old_string` lives earlier in the file, so read-then-edit-immediately succeeds far more often. Confirmed while splitting NHL entries out of `.wolf/memory.md` during a session that another live session was simultaneously appending to.
 
+## Key Learnings — NHL Stats Project
+
+- 2026-07-02: The stats REST API (`api.nhle.com/stats/rest/en`) returns `avgToi` as decimal seconds string (e.g. "1379.12" = 22:59/game) while the landing API returns it as "MM:SS". Both land in the same DB column. Normalize at display time: `float(val) → f"{int(s//60)}:{int(s%60):02d}"`, fallback to raw string if float() raises.
+- 2026-07-02: `upsert_player_stub()` only writes 5 fields. Players loaded this way are bio-incomplete (null height/weight/birth_date/birth_country). The landing API returns `heightInInches`, `weightInPounds`, `birthDate`, `birthCountry` — must be explicitly extracted and added to `upsert_player_enrichment()`'s UPDATE or they'll never be written.
+- 2026-07-02: ETL enrichment WHERE clauses that combine `is_active` AND `enriched_at` conditions create permanent dead zones for partial-state rows. Pattern: use orthogonal single-field conditions: `WHERE enriched_at IS NULL OR (is_active=1 AND enriched_at < datetime('now','-7 days'))` — each branch independently covers its case.
+
 ## Decision Log
 
+- 2026-07-02: NHL Stats advanced analytics — chose play-by-play scratch build (Corsi/Fenwick/xG from NHL API events) over MoneyPuck free CSV download. Tradeoff: weeks of work, approximate xG model, but deeper educational understanding of how the metrics are constructed. Strategic question remains open: if goal shifts from "learn" to "see accurate results," switch to MoneyPuck.
 - 2026-06-24: Symlinked superpowers skills into `~/.claude/skills/` rather than copying them. Rationale: symlinks auto-pick-up updates when the superpowers package is updated; copies would drift silently.
 - 2026-06-24: Used `osascript` Glass sound in Stop hook for completion notifications instead of trying `NotificationReceived`. Rationale: NotificationReceived is not a documented Claude Code hook type; osascript is reliable and native on macOS.
 - 2026-06-25: Absorbed skill-development (plugin-dev) into writing-skills rather than installing both. Rationale: avoid duplicating directory anatomy + progressive disclosure across two loaded skills.
@@ -343,3 +350,28 @@ Context window was compacted here. Review the session and capture any key findin
 
 - 2026-07-03: Hit a live second Claude Code session actively editing the same files (`.wolf/memory.md`, `CLAUDE.md`) needed for the NHL memory-split task. Rather than silently retrying until a write happened to land, stopped and used `AskUserQuestion` to surface the collision and let the user decide how to proceed (wait / proceed now / "that's actually me"). User chose "wait, then proceed"; used `ScheduleWakeup` for a short check-back instead of blocking synchronously. The other session never fully went idle, so ultimately proceeded once the *specific region being edited* (not the whole file) was confirmed stable across reads — matches the Do-Not-Repeat entry on targeted `Edit` vs `Write` under concurrent writes.
 - 2026-07-03: Split the NHL Stats Project's memory backfill into two separate git commits in two separate repos (`~/.claude` and the NHL project itself), rather than one combined commit. Rationale: they're genuinely different repositories with different histories — a single commit spanning both isn't possible, and keeping them separate makes each repo's log self-explanatory without a cross-repo pointer.
+
+
+---
+## Compaction event: 2026-07-03T02:25:08Z
+Context window was compacted here. Review the session and capture any key findings, decisions, or patterns that should persist.
+
+## Decision Log (2026-07-03, session 25 — grilling wired into brainstorming)
+
+- 2026-07-03: User flagged `grilling`/`grill-me` as underused. Root cause: the old CLAUDE.md trigger ("a plan has unresolved soft spots") was self-assessed — a plan I just finished writing rarely looks flawed to me, so the trigger almost never fired. Fix applied structurally, not by reminder: added step 9 "Grill the spec" to `brainstorming/SKILL.md`'s own checklist (mandatory, between spec approval and `writing-plans`), updated its process-flow diagram and terminal-state language, and changed the CLAUDE.md gate table so `brainstorming → grilling → writing-plans` reads as one sequence. The old discretionary CLAUDE.md row is scoped down to only cover plans that arrive outside the brainstorming flow.
+- 2026-07-03: Local-only edit to the `superpowers` submodule (origin is `obra/Superpowers`, third-party upstream) — committed there, then immediately fast-forwarded `local-customizations` to the new SHA in the same turn, rather than leaving it to drift and catching it in a later audit (see session 23's entry on backup-branch staleness).
+
+## User Preferences (2026-07-03, session 25)
+
+- 2026-07-03: Reconfirms the 2026-07-02 pattern: given a 3-option AskUserQuestion with a labeled "Recommended" choice and clear tradeoffs (mandatory checkpoint vs. threshold vs. reminder-only), picked the Recommended option immediately with no back-and-forth. Second independent confirmation of this pattern — safe to lead with a strong recommendation rather than a neutral option spread when the tradeoffs are already spelled out.
+
+## Key Learnings (2026-07-11, session 26 — superpowers plugin never actually registered)
+
+- 2026-07-11: **A skill file existing inside the `superpowers` submodule does not make it invocable.** `subagent-driven-development` and `executing-plans` live at `~/.claude/superpowers/skills/`, but `superpowers` was never added to `~/.claude/plugins/installed_plugins.json` — it was only ever a git submodule on disk. `Skill({skill: "subagent-driven-development"})` and the `superpowers:`-prefixed form both failed with `"Unknown skill"`, even though CLAUDE.md's own process table names it as a required sub-skill and a prior session's cerebrum entry (2026-06-24) had listed it as "verified." That prior verification was wrong — it only checked skills living directly under `~/.claude/skills/` (`brainstorming`, `grilling`, `writing-plans`, which auto-discover fine), not the submodule-only ones. Corrected in `project_claude_setup.md` (native auto-memory) and here.
+- 2026-07-11: **Fix for an unregistered local-repo plugin:** `claude plugin marketplace add <path-to-repo>` (the repo needs a `.claude-plugin/marketplace.json`, which `superpowers` already had) followed by `claude plugin install <plugin-name>@<marketplace-name>` (here: `superpowers@superpowers-dev`). Confirmed success by checking the plugin now appears in `installed_plugins.json`, not just by the CLI's success message.
+- 2026-07-11: **A newly installed plugin's skills are not invocable in the same session** — skill discovery is computed at session start. Even after `claude plugin install` succeeds and `installed_plugins.json` shows the entry, `Skill()` calls for that plugin's skills still throw `"Unknown skill"` until Claude Code is restarted. When a plugin install "succeeds" but a skill from it still won't invoke, check whether a restart happened yet before assuming the registration itself failed.
+
+## Decision Log (2026-07-12, session 27 — github-issue-first policy)
+
+- 2026-07-12: Added a new global process gate: `github-issue-first`, a dedicated skill at `~/.claude/skills/github-issue-first/` (not inline CLAUDE.md text) — matches the existing convention that every branching-logic gate in the process table (`brainstorming`, `grilling`, `writing-plans`, `systematic-debugging`) is a skill file, not a paragraph. Fires after `writing-plans` produces a plan, or after `systematic-debugging` confirms a root cause, always before `test-driven-development`/`using-git-worktrees`. Scope, confirmed directly with the user rather than assumed: global (all projects, not just one repo); mirrors the local spec/plan docs rather than replacing them; applies to non-trivial changes only; no-ops gracefully with no git repo/no GitHub remote/no `gh` auth. Also lightly edited the existing `systematic-debugging` and `requesting-code-review` table rows to cross-reference the new gate (forward-pointer so a bug-fix path reaches it too, and a `Closes #N` reminder at PR time) — the reminder lives in CLAUDE.md, not in `requesting-code-review`'s own `SKILL.md`, since that file lives in the third-party `superpowers` submodule and shouldn't be locally edited.
+- 2026-07-12: First real use of `github-issue-first` (dogfooded on the NHL Stats Project repo) surfaced that PRs there can get merged by an external actor (human or automation watching the repo) *between* two of your own pushes to the same branch — confirmed via `gh pr view <N> --json commits` showing fewer commits than were actually pushed, meaning a follow-up commit silently didn't land in the merged PR. Lesson generalized to the NHL Stats Project's own cerebrum.md too: verify post-merge by diffing `origin/main` against intended content, don't trust a successful `git push` exit code alone.

@@ -1,27 +1,16 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-07-03T01:49:46.996Z
-> Files: 514 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-07-13T04:15:58.815Z
+> Files: 509 tracked | Anatomy hits: 0 | Misses: 0
 
-## ../Desktop/NHL Stats Project/
+## ../Desktop/NHL Stats Project/.claude/worktrees/buglog-bug002/.wolf/
 
-- `app.py` — API router (~2258 tok)
+- `buglog.json` (~698 tok)
+- `cerebrum.md` — Cerebrum (~3322 tok)
 
-## ../Desktop/NHL Stats Project/.wolf/
+## ../Desktop/NHL Stats Project/.claude/worktrees/fix-search-suggestion-filter/.wolf/
 
-- `memory.md` — Memory (~1117 tok)
-
-## ../Desktop/NHL Stats Project/etl/
-
-- `enrich_players.py` — run (~1381 tok)
-
-## ../Desktop/NHL Stats Project/src/
-
-- `database.py` — get_connection, run_migrations, create_all_tables, get_sync_record (~4423 tok)
-
-## ../Desktop/NHL Stats Project/templates/
-
-- `index.html` — NHL Players (~4007 tok)
+- `buglog.json` (~698 tok)
 
 ## ./
 
@@ -32,14 +21,14 @@
 - `.last-cleanup` (~7 tok)
 - `.last-update-result.json` (~46 tok)
 - `.shellcheckrc` — Companion enforcement for skills/senior-engineering-partner SKILL.md: (~81 tok)
-- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~2925 tok)
+- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~3506 tok)
 - `eslint.config.js` — ESLint flat configuration (~365 tok)
 - `history.jsonl` (~40 tok)
 - `mcp_servers.json` (~38 tok)
-- `mcp-needs-auth-cache.json` (~1 tok)
+- `mcp-needs-auth-cache.json` (~28 tok)
 - `package-lock.json` — npm lock file (~9251 tok)
 - `package.json` — Node.js package manifest (~106 tok)
-- `settings.json` (~2675 tok)
+- `settings.json` (~2728 tok)
 
 ## .claude/
 
@@ -216,11 +205,11 @@
 
 ## backups/
 
-- `.claude.json.backup.1782973983895` — Declares breakdown (~10272 tok)
-- `.claude.json.backup.1782986511750` — Declares breakdown (~10272 tok)
-- `.claude.json.backup.1782994703328` — Declares breakdown (~10272 tok)
-- `.claude.json.backup.1783008999093` — Declares breakdown (~10272 tok)
-- `.claude.json.backup.1783017355949` (~10272 tok)
+- `.claude.json.backup.1783914628953` — Declares breakdown (~10602 tok)
+- `.claude.json.backup.1783914735812` — Declares breakdown (~10602 tok)
+- `.claude.json.backup.1783914827057` — Declares breakdown (~10602 tok)
+- `.claude.json.backup.1783914893775` — Declares breakdown (~10602 tok)
+- `.claude.json.backup.1783915160532` — Declares breakdown (~10602 tok)
 
 ## brand/
 
@@ -370,6 +359,10 @@
 - `c47760ed6c9ee802@v1` — System Instructions: Thin Harness, Fat Skills Environment (~893 tok)
 - `c47760ed6c9ee802@v2` — System Instructions: Thin Harness, Fat Skills Environment (~1011 tok)
 
+## file-history/4965f475-1991-4dcc-a80c-d1afba31887f/
+
+- `125ff2eaebbf22c1@v1` — Cerebrum (~3215 tok)
+
 ## file-history/4f278f88-b54a-4a04-a39f-2b0d2544498b/
 
 - `094596fcf6c93f38@v2` — Gap Analysis: Web Visualization & Executive Presentation Stack (~1713 tok)
@@ -454,6 +447,14 @@
 - `f44d1f7616d1e400@v2` (~99 tok)
 - `f98895d076f3d96c@v2` (~133 tok)
 
+## file-history/562e3f21-003b-4d74-bf87-198b5ffd4068/
+
+- `27406d450c0669f9@v2` — Advanced Player Filters Implementation Plan (~12508 tok)
+- `e659faf60bd1e848@v2` — Advanced Player Filters — Design (~1695 tok)
+- `e659faf60bd1e848@v3` — Advanced Player Filters — Design (~2637 tok)
+- `edb6f5e5e3e9fd24@v1` (~31 tok)
+- `edb6f5e5e3e9fd24@v2` (~36 tok)
+
 ## file-history/591a8d74-0ae7-4375-a5f5-e90b445841f9/
 
 - `462e620384c2d0a2@v1` (~424 tok)
@@ -463,6 +464,17 @@
 - `dad9aa259a03aa1c@v1` — PreToolUse hook: checks anatomy.md before Claude opens a file. (~535 tok)
 - `e5c8bc511ee2bf09@v1` (~424 tok)
 
+## file-history/5f9a9884-b8a1-4a0a-a946-065d557c3f54/
+
+- `3cd8353c2c9425ee@v1` — Cerebrum (~14613 tok)
+- `3cd8353c2c9425ee@v2` — Cerebrum (~15049 tok)
+- `7b19033400ad0ebf@v1` — Memory (~4350 tok)
+- `7b19033400ad0ebf@v2` — Memory (~3491 tok)
+- `7e44fc2c881d5570@v2` — Memory (~1192 tok)
+- `c47760ed6c9ee802@v1` — System Instructions: Thin Harness, Fat Skills Environment (~3120 tok)
+- `c47760ed6c9ee802@v2` — System Instructions: Thin Harness, Fat Skills Environment (~3234 tok)
+- `e85c4c3c6f10ee25@v2` — Plan: Address uncommitted-state and memory-hygiene concerns in ~/.claude (~1386 tok)
+
 ## file-history/60900757-643b-4980-842b-d7faa8c4a7b4/
 
 - `ab0ef73e6d105444@v1` — OpenWolf (~992 tok)
@@ -471,17 +483,33 @@
 ## file-history/66e23b84-3bba-42ed-8cb1-f5693abac963/
 
 - `010456bb8242a6a8@v2` — sel: render, esc (~2238 tok)
+- `010456bb8242a6a8@v3` — BIO_COLS: activeCols, showLoading, loadStats + 3 more (~3913 tok)
+- `010456bb8242a6a8@v4` — BIO_COLS: activeCols, showLoading, loadStats + 3 more (~4007 tok)
+- `010456bb8242a6a8@v5` — Declares SEASONS (~7366 tok)
 - `0ea690425da85a83@v2` (~1191 tok)
 - `0ea690425da85a83@v3` (~1223 tok)
+- `0ea690425da85a83@v4` (~1289 tok)
+- `0ea690425da85a83@v5` (~1298 tok)
+- `0ea690425da85a83@v6` (~1353 tok)
 - `112809977b280784@v2` (~175 tok)
 - `112809977b280784@v3` (~220 tok)
+- `125ff2eaebbf22c1@v1` — Cerebrum (~2480 tok)
+- `125ff2eaebbf22c1@v2` — Cerebrum (~3215 tok)
 - `15f33e9722426fe1@v2` (~68 tok)
 - `266a2c4cb5cb489a@v2` — NHL Stats SQLite Project — Implementation Plan (~2273 tok)
 - `266a2c4cb5cb489a@v3` — NHL Stats Web App — Player Table Page (~1045 tok)
 - `266a2c4cb5cb489a@v4` — NHL Stats — Player Data Enrichment + Historical Season Stats (~2976 tok)
 - `266a2c4cb5cb489a@v5` — NHL Stats — Incremental Sync (~1594 tok)
+- `266a2c4cb5cb489a@v6` — NHL Stats — Season Filter + Advanced Analytics (~2926 tok)
+- `266a2c4cb5cb489a@v7` — NHL Stats — Fix Null Display + Missing Bio Data (~1183 tok)
 - `32dfd6fadb934013@v2` (~1060 tok)
 - `3cd8353c2c9425ee@v1` — Cerebrum (~11789 tok)
+- `3cd8353c2c9425ee@v10` — Cerebrum (~14613 tok)
+- `3cd8353c2c9425ee@v11` — Cerebrum (~15049 tok)
+- `3cd8353c2c9425ee@v12` — Cerebrum (~15190 tok)
+- `3cd8353c2c9425ee@v13` — Cerebrum (~16076 tok)
+- `3cd8353c2c9425ee@v14` — Cerebrum (~16554 tok)
+- `3cd8353c2c9425ee@v15` — Cerebrum (~17053 tok)
 - `3cd8353c2c9425ee@v2` — Cerebrum (~12598 tok)
 - `3cd8353c2c9425ee@v3` — Cerebrum (~13108 tok)
 - `3cd8353c2c9425ee@v4` — Cerebrum (~13155 tok)
@@ -489,8 +517,12 @@
 - `3cd8353c2c9425ee@v6` — Cerebrum (~15036 tok)
 - `3cd8353c2c9425ee@v7` — Cerebrum (~15563 tok)
 - `3cd8353c2c9425ee@v8` — Cerebrum (~15755 tok)
+- `3cd8353c2c9425ee@v9` — Cerebrum (~14198 tok)
 - `3d6e521e74effdd2@v2` — NHL Stats Database (~379 tok)
 - `3d6e521e74effdd2@v3` — NHL Stats Database (~402 tok)
+- `51128709282998c1@v2` — ETL & Sync Behavior — Design (~2198 tok)
+- `51128709282998c1@v3` — ETL & Sync Behavior — Design (~3035 tok)
+- `5c12970e4cc137d6@v2` (~343 tok)
 - `66bf48b8897f35d6@v2` (~337 tok)
 - `6771006ac6549ee5@v2` (~23 tok)
 - `6771006ac6549ee5@v3` (~26 tok)
@@ -500,15 +532,33 @@
 - `72d981694851ddbf@v2` (~409 tok)
 - `73697caea1a17eab@v2` — Declares from (~443 tok)
 - `73697caea1a17eab@v3` — Declares from (~1014 tok)
+- `7de73714d9590e17@v1` — Declares SEASONS (~7366 tok)
 - `816734ea575522d1@v2` (~596 tok)
 - `8f4bad226680b910@v2` — Declares INTEGER (~1740 tok)
 - `8f4bad226680b910@v3` — Declares INTEGER (~3793 tok)
 - `8f4bad226680b910@v4` — Declares INTEGER (~4025 tok)
+- `8f4bad226680b910@v5` — Declares INTEGER (~4128 tok)
+- `8f4bad226680b910@v6` — Declares INTEGER (~4153 tok)
+- `b11b78bcecc7369d@v2` — ETL & Sync Behavior Implementation Plan (~12602 tok)
+- `b45c8bd906e21647@v1` (~3689 tok)
+- `b45c8bd906e21647@v2` (~4163 tok)
+- `b45c8bd906e21647@v3` (~4875 tok)
+- `b45c8bd906e21647@v4` (~5632 tok)
+- `b45c8bd906e21647@v5` (~5782 tok)
+- `b45c8bd906e21647@v6` (~5922 tok)
 - `b5a32fb9e675785e@v2` (~400 tok)
 - `b5a32fb9e675785e@v3` (~569 tok)
+- `c47760ed6c9ee802@v1` — System Instructions: Thin Harness, Fat Skills Environment (~3404 tok)
+- `c47760ed6c9ee802@v2` — System Instructions: Thin Harness, Fat Skills Environment (~3589 tok)
 - `ce165c40fc422bac@v2` (~566 tok)
+- `ce165c40fc422bac@v3` (~2108 tok)
+- `ce165c40fc422bac@v4` (~2217 tok)
 - `cf8de1a06d6b667a@v2` (~905 tok)
+- `dbb80f17757574a5@v1` (~551 tok)
+- `dbb80f17757574a5@v2` (~882 tok)
+- `e523154cf2e6b559@v1` — Contributing (~104 tok)
 - `edb6f5e5e3e9fd24@v2` (~31 tok)
+- `edb6f5e5e3e9fd24@v3` (~36 tok)
 - `f516b6f61ada745b@v2` (~474 tok)
 - `f516b6f61ada745b@v3` (~559 tok)
 
@@ -559,6 +609,16 @@
 - `f8a5c4c6a0f3b8f6@v1` (~754 tok)
 - `f8a5c4c6a0f3b8f6@v2` (~779 tok)
 
+## file-history/8a74ca54-916a-4abb-a707-4060bb738569/
+
+- `3cd8353c2c9425ee@v1` — Cerebrum (~16123 tok)
+- `706259cb5a86cdf2@v1` (~354 tok)
+- `706259cb5a86cdf2@v2` (~512 tok)
+- `97b5e5bfed44d4cb@v1` — Declares utility (~2846 tok)
+- `97b5e5bfed44d4cb@v2` — Declares utility (~3125 tok)
+- `c47760ed6c9ee802@v1` — System Instructions: Thin Harness, Fat Skills Environment (~3320 tok)
+- `c47760ed6c9ee802@v2` — System Instructions: Thin Harness, Fat Skills Environment (~3404 tok)
+
 ## file-history/8fe38856-bc47-438e-a67d-38835c3eb7c4/
 
 - `1b61678ae50da3a6@v1` (~303 tok)
@@ -604,80 +664,3 @@
 - `3cd8353c2c9425ee@v1` — Cerebrum (~1346 tok)
 - `e379b8ba1f2307c6@v2` — Plan: Disable Auto-Updates for Superpowers, OpenWolf, and gbrain (~663 tok)
 - `e379b8ba1f2307c6@v3` — Plan: Disable Auto-Updates for Superpowers, OpenWolf, and gbrain (~772 tok)
-- `fc0b648a381fa7c1@v1` (~104 tok)
-- `fc0b648a381fa7c1@v2` (~103 tok)
-
-## file-history/c49f9bae-b19d-4fcf-9efe-d1eca6ca5093/
-
-- `2acd6d65f2c82913@v2` (~1208 tok)
-- `31ccfafb5247a916@v1` (~83 tok)
-- `31ccfafb5247a916@v2` (~91 tok)
-- `3cd8353c2c9425ee@v1` — Cerebrum (~2720 tok)
-- `3cd8353c2c9425ee@v2` — Cerebrum (~3340 tok)
-- `aa4954cd50ef5b14@v1` (~118 tok)
-- `aa4954cd50ef5b14@v2` (~230 tok)
-- `c47760ed6c9ee802@v1` — System Instructions: Thin Harness, Fat Skills Environment (~1011 tok)
-- `cfa4c5558a3ec354@v1` (~59 tok)
-- `cfa4c5558a3ec354@v2` (~65 tok)
-- `d9d264dcbb7e53bf@v1` (~1204 tok)
-- `d9d264dcbb7e53bf@v2` (~1204 tok)
-- `e109108c6327bfaa@v1` (~37041 tok)
-- `e109108c6327bfaa@v2` (~37114 tok)
-
-## file-history/c5eec794-a8f9-4671-a472-b6daf14ce33a/
-
-- `31a2a3eee90333eb@v1` (~2026 tok)
-- `31a2a3eee90333eb@v2` (~2248 tok)
-- `3cd8353c2c9425ee@v1` — Cerebrum (~5945 tok)
-- `5ae2b520802d8605@v1` — Skill: Process Visualisation (~591 tok)
-- `5ae2b520802d8605@v2` — Skill: Process Visualisation (~646 tok)
-- `6cbfe9b7a117b79e@v1` — Skill: PNG Rendering + Docs Manifest (~797 tok)
-- `6cbfe9b7a117b79e@v2` — Skill: PNG Rendering + Docs Manifest (~1066 tok)
-- `724586e847d4008c@v1` — Skill: FAQ Sheet Co-Authoring (~1107 tok)
-- `724586e847d4008c@v2` — Skill: FAQ Sheet Co-Authoring (~1380 tok)
-- `8d580e42f744c8d4@v1` — Skill: Data Mapping (~820 tok)
-- `8d580e42f744c8d4@v2` — Skill: Data Mapping (~1051 tok)
-- `acdbe33f6caf465a@v1` — Usage: bash scripts/validate-mermaid.sh outputs/process.mmd (~258 tok)
-- `acdbe33f6caf465a@v2` — Usage: bash scripts/validate-mermaid.sh outputs/process.mmd (~469 tok)
-- `ad63495c918b7775@v1` — Skill: BA Package Assembly (~867 tok)
-- `ad63495c918b7775@v2` — Skill: BA Package Assembly (~1010 tok)
-- `b45c8bd906e21647@v1` (~1623 tok)
-- `c4dcb2c4f7a81fa9@v2` — Plan: BA Agent — Efficiency & Quality Improvements (~3160 tok)
-- `c9a05f8ac3aac240@v1` — Skill: System Integration Visualisation (~519 tok)
-- `c9a05f8ac3aac240@v2` — Skill: System Integration Visualisation (~682 tok)
-- `d954585803c8c617@v1` — Skill: SOP Writer (~1211 tok)
-- `d954585803c8c617@v2` — Skill: SOP Writer (~1272 tok)
-- `d954585803c8c617@v3` — Skill: SOP Writer (~1372 tok)
-- `db3a81fe58469d8d@v1` — Skill: Planner + Observe (~1304 tok)
-- `db3a81fe58469d8d@v2` — Skill: Planner + Observe (~1567 tok)
-- `ee221a11d5bc534d@v1` — Skill: Brief Normaliser (~1004 tok)
-- `ee221a11d5bc534d@v2` — Skill: Brief Normaliser (~1287 tok)
-- `f3c5ee297a6e8452@v1` — Declares identified (~972 tok)
-- `f3c5ee297a6e8452@v2` — Declares identified (~1245 tok)
-
-## file-history/c851ab8a-14e6-4770-9ec4-b00503f78b97/
-
-- `2acd6d65f2c82913@v1` (~1208 tok)
-- `2acd6d65f2c82913@v2` (~1365 tok)
-- `31ccfafb5247a916@v1` (~91 tok)
-- `31ccfafb5247a916@v2` (~1797 tok)
-- `3cd8353c2c9425ee@v1` — Cerebrum (~3340 tok)
-- `3cd8353c2c9425ee@v2` — Cerebrum (~3699 tok)
-- `5e03ff684878a9f9@v1` — Plan: Enhance BA Sub-Agent with Professional Outputs & Communication Documents (~3046 tok)
-- `5e03ff684878a9f9@v2` — Plan: Session Reflect — BA Agent Enhancement Session (2026-06-27) (~824 tok)
-- `6cbfe9b7a117b79e@v2` — Skill: PNG Rendering + Docs Manifest (~797 tok)
-- `724586e847d4008c@v2` — Skill: FAQ Sheet Co-Authoring (~1107 tok)
-- `938ba3acf42f2380@v2` — Skill: 3P Update Co-Authoring (~1036 tok)
-- `c47760ed6c9ee802@v1` — System Instructions: Thin Harness, Fat Skills Environment (~1161 tok)
-- `db3a81fe58469d8d@v1` — Skill: Planner + Observe (~927 tok)
-- `db3a81fe58469d8d@v2` — Skill: Planner + Observe (~1304 tok)
-
-## file-history/d6f2ff3b-88a0-4112-adc9-f62be7cb49de/
-
-- `3cd8353c2c9425ee@v1` — Cerebrum (~165 tok)
-
-## plans/
-
-- `i-want-to-start-flickering-candle.md` — NHL Stats — Fix Null Display + Missing Bio Data (~1109 tok)
-- `i-want-you-to-deep-balloon.md` — Resolve uncommitted/divergent state in ~/.claude (~1291 tok)
-- `recommend-a-plan-for-sleepy-alpaca.md` — Plan: Address uncommitted-state and memory-hygiene concerns in ~/.claude (~1299 tok)

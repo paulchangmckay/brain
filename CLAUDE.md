@@ -13,11 +13,12 @@
 | Before any feature work or new task | `brainstorming` (HARD-GATE: no code until design approved) |
 | After brainstorm approval, before writing-plans | `grilling` (HARD-GATE within brainstorming: mandatory pass on the approved spec, not conditional on spotting a soft spot yourself — scale depth to complexity but never skip it) |
 | After the grilling pass | `writing-plans` |
+| After writing-plans produces a plan, or after root cause is confirmed in systematic-debugging — always before test-driven-development or using-git-worktrees | `github-issue-first` (HARD-GATE for non-trivial changes: file a GitHub issue mirroring the spec/plan or root-cause summary before any code is touched; no-ops gracefully outside a git repo, without a GitHub remote, or without `gh` auth) |
 | Before touching code | `test-driven-development` (IRON LAW: failing test first) — testing standards: `skills/senior-engineering-partner/references/testing.md` |
 | Before starting implementation | `using-git-worktrees` |
-| When a bug or test failure appears | `systematic-debugging` (root cause BEFORE fix) |
+| When a bug or test failure appears | `systematic-debugging` (root cause BEFORE fix; once root cause is confirmed, go to `github-issue-first` before implementing) |
 | Before claiming anything is done | `verification-before-completion` (IRON LAW: evidence first) |
-| Before merging or creating a PR | `requesting-code-review` |
+| Before merging or creating a PR | `requesting-code-review` (if the change went through `github-issue-first`, include `Closes #N` in the PR body) |
 | When review feedback arrives | `receiving-code-review` |
 | For security posture, threat modeling, or compliance questions | `senior-engineering-partner` with `AUDIT:` trigger — refs: `threat-modeling-and-api-design.md`, `secrets-and-key-rotation.md`, `frontend-web-security.md` |
 | A plan or design has unresolved soft spots outside the brainstorming flow (e.g. a plan handed to you directly, not produced via brainstorming) | `grilling` (auto) or `/grill-me` (explicit) — one question at a time, each with a recommended answer, never a bulk list |
@@ -78,6 +79,7 @@ openwolf status      # Confirm health
 - **Local plugins** (no upstream git repo): `claude plugins init <name> --with agents` → scaffolds at `~/.claude/skills/<name>/`, auto-loads as `<name>@skills-dir` — no marketplace or install step needed
 - **YAML agent frontmatter:** quote any `description:` value that contains `: ` (colon-space) or the parser silently drops all frontmatter
 - **Do NOT** manually edit `installed_plugins.json` — source type validation blocks loading even with a valid `installPath`; use `claude plugins validate <path>` to check before wiring
+- **Submodule ≠ registered plugin:** a skill file existing inside a git submodule (e.g. `superpowers/skills/<name>/`) does not make it invocable via the Skill tool — check `~/.claude/plugins/installed_plugins.json` for the plugin name before assuming a submodule's skills are live. Fix for an unregistered local-repo plugin (needs a `.claude-plugin/marketplace.json`, which `superpowers` has): `claude plugin marketplace add <path-to-repo>` then `claude plugin install <plugin>@<marketplace-name>`. A restart is required afterward — skill discovery is computed at session start, so the newly installed skill will still throw `"Unknown skill"` in the same session even after a successful install.
 
 ## 9. Brand / Document Skill Convention
 - **Brand/structure separation:** In document skill briefs, never hardcode brand values (hex codes, font names, sizes) — say "Apply Brand Spec Card" and let `~/.claude/brand/brand-guide.md` be the only source. Only format-structural constraints (DXA widths, slide count, `No \n in paragraphs`) belong in the skill file itself.

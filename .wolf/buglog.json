@@ -347,6 +347,295 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-07-03T01:49:47.015Z"
+    },
+    {
+      "id": "bug-022",
+      "timestamp": "2026-07-02T21:50:00.000Z",
+      "error_message": "~1,076 players permanently skipped by enrich_players.py — bio fields (height/weight/birth_date/birth_country) never populated",
+      "file": "../Desktop/NHL Stats Project/etl/enrich_players.py",
+      "root_cause": "WHERE clause combined `is_active IS NULL OR (is_active=1 AND ...)` — players with is_active=0 and enriched_at=NULL (set by a run before the enriched_at column existed) matched neither branch and were permanently skipped",
+      "fix": "Changed to `WHERE enriched_at IS NULL OR (is_active=1 AND enriched_at < datetime('now','-7 days'))` — orthogonal conditions, each independently catches its case regardless of is_active value",
+      "tags": [
+        "etl",
+        "enrichment",
+        "where-clause",
+        "dead-zone",
+        "nhl-stats"
+      ],
+      "occurrences": 1,
+      "last_seen": "2026-07-02"
+    },
+    {
+      "id": "bug-023",
+      "timestamp": "2026-07-02T21:50:00.000Z",
+      "error_message": "Players loaded via upsert_player_stub() have null height/weight/birth_date/birth_country even after enrichment runs",
+      "file": "../Desktop/NHL Stats Project/src/database.py",
+      "root_cause": "upsert_player_enrichment() UPDATE statement did not include height_inches, weight_pounds, birth_date, birth_country — fields present in landing API response (heightInInches, weightInPounds, birthDate, birthCountry) were never written",
+      "fix": "Added COALESCE(height_inches, ?), COALESCE(weight_pounds, ?), COALESCE(birth_date, ?), COALESCE(birth_country, ?) to UPDATE SET; added corresponding values to parameter tuple and extraction in enrich_players.py",
+      "tags": [
+        "etl",
+        "enrichment",
+        "missing-fields",
+        "nhl-stats"
+      ],
+      "occurrences": 1,
+      "last_seen": "2026-07-02"
+    },
+    {
+      "id": "bug-024",
+      "timestamp": "2026-07-03T02:26:15.109Z",
+      "error_message": "Missing error handling in unknown",
+      "file": "superpowers/skills/brainstorming/SKILL.md",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-03T02:26:15.109Z"
+    },
+    {
+      "id": "bug-025",
+      "timestamp": "2026-07-03T02:31:02.766Z",
+      "error_message": "Significant refactor of ",
+      "file": "superpowers/skills/brainstorming/SKILL.md",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 8→13 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-03T02:31:02.766Z"
+    },
+    {
+      "id": "bug-026",
+      "timestamp": "2026-07-03T02:31:16.068Z",
+      "error_message": "Incorrect value in code",
+      "file": "CLAUDE.md",
+      "root_cause": "Had `writing-plans`",
+      "fix": "Changed to `grilling`",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-03T02:31:16.068Z"
+    },
+    {
+      "id": "bug-027",
+      "timestamp": "2026-07-03T02:32:10.210Z",
+      "error_message": "Incorrect value in code",
+      "file": "projects/-Users-paulmckay--claude/memory/feedback_process_gates.md",
+      "root_cause": "Had `superpowers:test-driven-development`",
+      "fix": "Changed to 's spec is approved, before writing-plans:** invok",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-03T02:32:10.210Z"
+    },
+    {
+      "id": "bug-028",
+      "timestamp": "2026-07-03T02:37:39.327Z",
+      "error_message": "Significant refactor of ",
+      "file": "../Desktop/NHL Stats Project/docs/superpowers/specs/2026-07-02-advanced-filters-design.md",
+      "root_cause": "3 lines replaced/restructured",
+      "fix": "Rewrote 22→33 lines (3 removed) | Also: - **Row 1 (always):** title, name search box, Team; button, Bio/Stats tabs, player count.",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-07-03T02:37:53.427Z"
+    },
+    {
+      "id": "bug-029",
+      "timestamp": "2026-07-03T19:46:10.694Z",
+      "error_message": "Significant refactor of ",
+      "file": "../Desktop/NHL Stats Project/docs/superpowers/specs/2026-07-02-etl-sync-behavior-design.md",
+      "root_cause": "3 lines replaced/restructured",
+      "fix": "Rewrote 5→5 lines (3 removed) | Also: - **Concurrency guard**: a dedicated `sync_log` (o; - The pipeline records per-step status (`pending`  | Also: - `scripts/run_all_etl.py`, `scripts/sync.py` → co; - `src/database.py` → `sync_log` helpers extended ",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 3,
+      "last_seen": "2026-07-03T19:47:05.277Z"
+    },
+    {
+      "id": "bug-030",
+      "timestamp": "2026-07-03T19:46:54.741Z",
+      "error_message": "Significant refactor of ",
+      "file": "../Desktop/NHL Stats Project/.claude/worktrees/advanced-filters/app.py",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 4→7 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "py"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-03T19:46:54.741Z"
+    },
+    {
+      "id": "bug-031",
+      "timestamp": "2026-07-12T02:19:37.222Z",
+      "error_message": "Wrong reference: 57px should be var",
+      "file": "../Desktop/NHL Stats Project/.claude/worktrees/advanced-filters/templates/index.html",
+      "root_cause": "Used \"57px\" instead of \"var\"",
+      "fix": "Changed 57px → var",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "html"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-12T02:19:37.222Z"
+    },
+    {
+      "id": "bug-032",
+      "timestamp": "2026-07-12T02:19:50.341Z",
+      "error_message": "Incorrect value in code",
+      "file": "../Desktop/NHL Stats Project/.claude/worktrees/advanced-filters/templates/index.html",
+      "root_cause": "Had \";\n  let sortKey      = \"",
+      "fix": "Changed to \";\n  let activePositions = new Set();\n  let sortKe",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "html"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-12T02:19:50.341Z"
+    },
+    {
+      "id": "bug-033",
+      "timestamp": "2026-07-12T02:20:02.803Z",
+      "error_message": "Significant refactor of ",
+      "file": "../Desktop/NHL Stats Project/.claude/worktrees/advanced-filters/templates/index.html",
+      "root_cause": "3 lines replaced/restructured",
+      "fix": "Rewrote 4→4 lines (3 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "html"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-12T02:20:02.803Z"
+    },
+    {
+      "id": "bug-034",
+      "timestamp": "2026-07-12T03:53:27.613Z",
+      "error_message": "Null/undefined access in ",
+      "file": "../Desktop/NHL Stats Project/.claude/worktrees/advanced-filters/templates/index.html",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "html"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-12T03:53:27.613Z"
+    },
+    {
+      "id": "bug-035",
+      "timestamp": "2026-07-12T04:53:22.636Z",
+      "error_message": "Missing error handling in unknown",
+      "file": "../Desktop/NHL Stats Project/.wolf/cerebrum.md",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-12T04:53:22.636Z"
+    },
+    {
+      "id": "bug-036",
+      "timestamp": "2026-07-13T03:52:22.426Z",
+      "error_message": "Significant refactor of ",
+      "file": "CLAUDE.md",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 6→7 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-13T03:52:22.426Z"
+    },
+    {
+      "id": "bug-037",
+      "timestamp": "2026-07-13T03:55:01.096Z",
+      "error_message": "Missing guard clause",
+      "file": "../Desktop/NHL Stats Project/.wolf/buglog.json",
+      "root_cause": "No early return/throw for edge case: !row",
+      "fix": "Added guard clause: if (!row)",
+      "tags": [
+        "auto-detected",
+        "guard-clause",
+        "json"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-13T03:55:01.096Z"
+    },
+    {
+      "id": "bug-038",
+      "timestamp": "2026-07-13T04:05:08.397Z",
+      "error_message": "Missing guard clause",
+      "file": "../Desktop/NHL Stats Project/.claude/worktrees/fix-search-suggestion-filter/.wolf/buglog.json",
+      "root_cause": "No early return/throw for edge case: !row",
+      "fix": "Added guard clause: if (!row)",
+      "tags": [
+        "auto-detected",
+        "guard-clause",
+        "json"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-13T04:05:08.397Z"
+    },
+    {
+      "id": "bug-039",
+      "timestamp": "2026-07-13T04:11:23.133Z",
+      "error_message": "Missing guard clause",
+      "file": "../Desktop/NHL Stats Project/.claude/worktrees/buglog-bug002/.wolf/buglog.json",
+      "root_cause": "No early return/throw for edge case: !row",
+      "fix": "Added guard clause: if (!row)",
+      "tags": [
+        "auto-detected",
+        "guard-clause",
+        "json"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-13T04:11:23.133Z"
     }
   ]
 }
