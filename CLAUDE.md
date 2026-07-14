@@ -14,13 +14,15 @@
 | After brainstorm approval, before writing-plans | `grilling` (HARD-GATE within brainstorming: mandatory pass on the approved spec, not conditional on spotting a soft spot yourself — scale depth to complexity but never skip it) |
 | After the grilling pass | `writing-plans` |
 | After writing-plans produces a plan, or after root cause is confirmed in systematic-debugging — always before test-driven-development or using-git-worktrees | `github-issue-first` (HARD-GATE for non-trivial changes: file a GitHub issue mirroring the spec/plan or root-cause summary before any code is touched; no-ops gracefully outside a git repo, without a GitHub remote, or without `gh` auth) |
+| After github-issue-first files multiple issues for a multi-phase plan, or on demand when asked to review/work through the open issue backlog | `issue-backlog-cycle` (proposes how open issues should be grouped into a branch via a priority cascade, waits for explicit approval before creating anything; skipped with fewer than 2 open issues, falling through to the row below unchanged) |
 | Before touching code | `test-driven-development` (IRON LAW: failing test first) — testing standards: `skills/senior-engineering-partner/references/testing.md` |
 | Before starting implementation | `using-git-worktrees` |
 | When a bug or test failure appears | `systematic-debugging` (root cause BEFORE fix; once root cause is confirmed, go to `github-issue-first` before implementing) |
 | Before claiming anything is done | `verification-before-completion` (IRON LAW: evidence first) |
 | Before merging or creating a PR | `requesting-code-review` (if the change went through `github-issue-first`, include `Closes #N` in the PR body) |
 | When review feedback arrives | `receiving-code-review` |
-| After the PR is created and any review feedback is addressed — the final step | Ask whether to merge into `main`. Never merge without an explicit yes — a green CI check or no review comments is not itself permission; merging is its own separate confirmed action. |
+| After the PR is created and any review feedback is addressed | Ask whether to merge into `main`. Never merge without an explicit yes — a green CI check or no review comments is not itself permission; merging is its own separate confirmed action. |
+| After a group's PR(s) merge, following the row above — only relevant when working from `issue-backlog-cycle` | `issue-backlog-cycle` (round-complete checkpoint: present ranked recommendations, file only the accepted top-N as new issues, then re-check the backlog to propose the next round or end the cycle) |
 | For security posture, threat modeling, or compliance questions | `senior-engineering-partner` with `AUDIT:` trigger — refs: `threat-modeling-and-api-design.md`, `secrets-and-key-rotation.md`, `frontend-web-security.md` |
 | A plan or design has unresolved soft spots outside the brainstorming flow (e.g. a plan handed to you directly, not produced via brainstorming) | `grilling` (auto) or `/grill-me` (explicit) — one question at a time, each with a recommended answer, never a bulk list |
 | Designing/evaluating a module's interface, seam, or "is this deep enough" | `codebase-design` (vocabulary: interface/seam/adapter/deletion test), alongside `senior-engineering-partner` REVIEW:/EXPLAIN: modes |
