@@ -28,17 +28,25 @@ The user wants: multi-phase plans to file multiple issues instead of one; relate
 
 Currently `github-issue-first` has two entry paths — from a `writing-plans` plan, or from a confirmed `systematic-debugging` root cause — each producing exactly one issue. This adds a third condition on the `writing-plans` path: if the plan has multiple distinct phases/tasks (as opposed to one plan describing one cohesive change), file one issue per phase/task, each with its own title/body/label, rather than one issue summarizing the whole plan. Single-phase plans and bug fixes from `systematic-debugging` are unaffected — they still file exactly one issue, as today.
 
+Every issue filed from the same multi-phase plan also gets a shared, plan-specific label (e.g. `plan:2026-07-14-etl-sync`, derived from the plan's own filename) applied at filing time. This label is the durable signal tier-1 grouping (below) reads later — it survives a session boundary or context compaction, is visible directly in `gh issue list`, and reuses GitHub's own label primitive rather than a side-channel.
+
 ## 2. Grouping Proposal (new: `issue-backlog-cycle`)
 
-Before any worktree/branch is created for a batch of work, query `gh issue list --state open` and propose a grouping using this priority cascade — evaluated per-issue-pair, not applied uniformly to the whole backlog at once:
+**Invocation — two entry points, same skill:** auto-triggers immediately after `github-issue-first` files multiple issues for a fresh multi-phase plan, and is also directly invocable on demand with no plan involved (e.g. the user asks to review or work through the open backlog after issues have accumulated over time).
 
-1. **Plan-phase boundaries (highest priority)** — if two open issues came from the same `writing-plans` plan's phase/task grouping, group them. This only applies within a single session's freshly-filed issues, where the plan itself already reasoned about the right boundaries.
-2. **Subsystem/feature relatedness** — for issues that didn't come from the same plan (ad-hoc bugs, issues accumulated across sessions, prior rounds' leftover backlog), group by reading each issue's title/body/labels and judging whether they're part of the same conceptual feature area — not by file overlap. This is the primary mechanism once a plan's own phase context is gone.
+**Activation threshold:** query `gh issue list --state open` with no label filter (Dependabot or other bot-filed issues are in scope like anything else — they simply won't match tier 1/2 with unrelated work and will fall into their own single-issue group). If this query returns fewer than 2 open issues, skip the grouping ceremony entirely and hand off straight to the existing single-issue pipeline unchanged — the ceremony below only exists to resolve a decision that only exists once there are 2+ issues to weigh against each other.
+
+With 2+ open issues, propose a grouping using this priority cascade — evaluated per-issue-pair, not applied uniformly to the whole backlog at once:
+
+1. **Plan-phase boundaries (highest priority)** — if two open issues share the same plan-specific label from section 1, group them.
+2. **Subsystem/feature relatedness** — for issues that don't share a plan label (ad-hoc bugs, issues accumulated across sessions, prior rounds' leftover backlog, bot-filed issues), group by reading each issue's title/body/labels and judging whether they're part of the same conceptual feature area — not by file overlap. This is the primary mechanism once a plan's own phase context is gone.
 3. **File overlap (lowest priority, weak signal only)** — if two issues aren't clearly related by (1) or (2) but their described fixes are highly likely to touch the same file(s), this can support a grouping decision but never justifies one on its own. (Concretely: this rule alone must NOT bundle #10 and #20 — the worked example this design is built against.)
 
 Issues that don't group with anything get their own single-issue branch, same as the existing pipeline's default behavior.
 
 **Present the proposal, then wait.** Format: a short list, one line per group, naming the issues, a one-phrase reason for the grouping (or "no related open issues"), and which cascade tier decided it. No branch, worktree, or file change happens until the user responds — this is a hard wait, not a default-proceed-after-N-seconds pattern.
+
+**On rejection or adjustment:** freeform, not a fixed menu — the user describes what should change (e.g. "put #20 with #22 instead"), the grouping is revised and re-presented, repeating until approved. No alternative-proposals-up-front and no discard-and-restart-from-zero; feedback is incorporated incrementally.
 
 ## 3. Executing an Approved Group
 
@@ -50,10 +58,10 @@ Once a grouping is approved, hand off to the existing pipeline unchanged: `using
 
 Once a group's PR(s) merge (following the existing ask-before-merge confirmation), two things happen before the cycle continues:
 
-1. **Recommend further work**, grounded specifically in what the just-merged group touched — this can be a new feature/capability, an optimization or refactor, or a design/UX/UI improvement. Presented as a recommendation, not auto-filed.
-2. **On agreement**, file new issues for the accepted recommendations — these enter the open backlog exactly like any other issue and become eligible for grouping in a future round.
+1. **Recommend further work**, grounded specifically in what the just-merged group touched — this can be a new feature/capability, an optimization or refactor, or a design/UX/UI improvement. Presented as a **ranked list**, strongest/most-relevant recommendation first, not an arbitrary or alphabetical ordering.
+2. **User specifies how many to take from the top of the list** (e.g. "just the top 2") rather than picking arbitrary items by number or an all-or-nothing accept/reject. Only the accepted top-N get filed as new issues; the rest are not filed and are not remembered for a future round (if still worth doing later, they'd need to be recommended again next time, freshly grounded in whatever's been built since).
 
-Whether or not new issues were filed from recommendations, re-query the open backlog and propose the next round's grouping (step 2 again), continuing the cycle until no open issues remain. This checkpoint fires **after each grouped round**, not after every single merge and not only once at the very end — the middle-ground cadence the user chose, explicitly flagged by the user as something to try and potentially revisit if it turns out too frequent or too sparse.
+Whether or not new issues were filed from recommendations, re-query the open backlog and re-apply section 2's activation threshold: 2+ open issues → propose the next round's grouping; exactly 1 → fall through to the single-issue pipeline for it (same as any other lone issue, no grouping ceremony); 0 → the cycle ends, nothing further to do. This checkpoint fires **after each grouped round**, not after every single merge and not only once at the very end — the middle-ground cadence the user chose, explicitly flagged by the user as something to try and potentially revisit if it turns out too frequent or too sparse.
 
 ## Files Changed
 
@@ -65,4 +73,4 @@ Whether or not new issues were filed from recommendations, re-query the open bac
 
 ## Open Questions for the Plan Stage
 
-None outstanding — every decision above was confirmed directly with the user during design discussion (grouping cascade priority and worked counter-example, approval-before-work requirement, inline-fix-if-related-else-defer rule, per-round recommendation cadence, global scope).
+None outstanding. Beyond the initial design discussion (grouping cascade priority and worked counter-example, approval-before-work requirement, inline-fix-if-related-else-defer rule, per-round recommendation cadence, global scope), a grilling pass resolved six further branch points: the 2+-issue activation threshold (below it, fall through to the unchanged existing pipeline), the plan-label mechanism for durable tier-1 detection, backlog scope (all open issues, no label filter), dual invocation (auto-trigger plus standalone on-demand), freeform rejection/adjustment of a proposed grouping, and ranked top-N acceptance of round-complete recommendations.
