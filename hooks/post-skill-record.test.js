@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { mkdtempSync, readFileSync, existsSync, rmSync } from 'node:fs';
+import { mkdtempSync, existsSync, readdirSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -15,6 +15,10 @@ function run(payload) {
   });
 }
 
+function runRaw(rawStdin) {
+  return spawnSync('node', [SCRIPT], { input: rawStdin, encoding: 'utf8' });
+}
+
 function withTmpCwd(fn) {
   const cwd = mkdtempSync(join(tmpdir(), 'skill-gate-test-'));
   try {
@@ -24,7 +28,11 @@ function withTmpCwd(fn) {
   }
 }
 
-test('records the invoked skill into the session-scoped state file', () => {
+function markerPath(cwd, sessionId, skill) {
+  return join(cwd, '.wolf', `_skill-gate-${sessionId}--${skill}.json`);
+}
+
+test('records the invoked skill as a marker file scoped to the session', () => {
   withTmpCwd((cwd) => {
     const result = run({
       session_id: 'sess-1',
@@ -35,33 +43,28 @@ test('records the invoked skill into the session-scoped state file', () => {
     });
 
     assert.equal(result.status, 0);
-    const statePath = join(cwd, '.wolf', '_skill-gate-sess-1.json');
-    assert.ok(existsSync(statePath), 'state file should be created');
-    const state = JSON.parse(readFileSync(statePath, 'utf8'));
-    assert.deepEqual(state.skills, ['grilling']);
+    assert.ok(existsSync(markerPath(cwd, 'sess-1', 'grilling')), 'marker file should be created');
   });
 });
 
-test('appends subsequent skill invocations to the same session file', () => {
+test('records multiple distinct skills as separate marker files', () => {
   withTmpCwd((cwd) => {
     run({ session_id: 'sess-2', cwd, tool_name: 'Skill', tool_input: { skill: 'brainstorming' } });
     run({ session_id: 'sess-2', cwd, tool_name: 'Skill', tool_input: { skill: 'grilling' } });
 
-    const statePath = join(cwd, '.wolf', '_skill-gate-sess-2.json');
-    const state = JSON.parse(readFileSync(statePath, 'utf8'));
-    assert.deepEqual(state.skills, ['brainstorming', 'grilling']);
+    assert.ok(existsSync(markerPath(cwd, 'sess-2', 'brainstorming')));
+    assert.ok(existsSync(markerPath(cwd, 'sess-2', 'grilling')));
   });
 });
 
-test('keeps separate state files per session id', () => {
+test('keeps separate markers per session id', () => {
   withTmpCwd((cwd) => {
     run({ session_id: 'sess-a', cwd, tool_name: 'Skill', tool_input: { skill: 'grilling' } });
     run({ session_id: 'sess-b', cwd, tool_name: 'Skill', tool_input: { skill: 'writing-plans' } });
 
-    const stateA = JSON.parse(readFileSync(join(cwd, '.wolf', '_skill-gate-sess-a.json'), 'utf8'));
-    const stateB = JSON.parse(readFileSync(join(cwd, '.wolf', '_skill-gate-sess-b.json'), 'utf8'));
-    assert.deepEqual(stateA.skills, ['grilling']);
-    assert.deepEqual(stateB.skills, ['writing-plans']);
+    assert.ok(existsSync(markerPath(cwd, 'sess-a', 'grilling')));
+    assert.ok(!existsSync(markerPath(cwd, 'sess-a', 'writing-plans')));
+    assert.ok(existsSync(markerPath(cwd, 'sess-b', 'writing-plans')));
   });
 });
 
@@ -69,6 +72,55 @@ test('does nothing when session_id is missing', () => {
   withTmpCwd((cwd) => {
     const result = run({ cwd, tool_name: 'Skill', tool_input: { skill: 'grilling' } });
     assert.equal(result.status, 0);
-    assert.ok(!existsSync(join(cwd, '.wolf')), 'no state file should be created without a session id');
+    assert.ok(!existsSync(join(cwd, '.wolf')), 'no marker file should be created without a session id');
+  });
+});
+
+test('does nothing on malformed JSON stdin', () => {
+  withTmpCwd((cwd) => {
+    const result = runRaw('{not valid json');
+    assert.equal(result.status, 0);
+  });
+});
+
+test('rejects a path-traversal-shaped session_id without writing outside .wolf', () => {
+  withTmpCwd((cwd) => {
+    const result = run({
+      session_id: '../../../../tmp/evil',
+      cwd,
+      tool_name: 'Skill',
+      tool_input: { skill: 'grilling' },
+    });
+
+    assert.equal(result.status, 0);
+    // Nothing should have been written inside cwd/.wolf, and nothing should
+    // exist outside the tmp cwd's own .wolf directory either.
+    assert.ok(!existsSync(join(cwd, '.wolf')));
+  });
+});
+
+test('rejects a path-traversal-shaped skill name without writing outside .wolf', () => {
+  withTmpCwd((cwd) => {
+    const result = run({
+      session_id: 'sess-3',
+      cwd,
+      tool_name: 'Skill',
+      tool_input: { skill: '../../evil' },
+    });
+
+    assert.equal(result.status, 0);
+    if (existsSync(join(cwd, '.wolf'))) {
+      const entries = readdirSync(join(cwd, '.wolf'));
+      assert.ok(entries.every((e) => !e.includes('..')));
+    }
+  });
+});
+
+test('concurrent invocations for the same session and skill do not error or corrupt state', () => {
+  withTmpCwd((cwd) => {
+    const payload = { session_id: 'sess-4', cwd, tool_name: 'Skill', tool_input: { skill: 'grilling' } };
+    const results = [run(payload), run(payload), run(payload)];
+    for (const r of results) assert.equal(r.status, 0);
+    assert.ok(existsSync(markerPath(cwd, 'sess-4', 'grilling')));
   });
 });

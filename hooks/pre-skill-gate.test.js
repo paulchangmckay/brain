@@ -15,6 +15,10 @@ function run(payload) {
   });
 }
 
+function runRaw(rawStdin) {
+  return spawnSync('node', [SCRIPT], { input: rawStdin, encoding: 'utf8' });
+}
+
 function withTmpCwd(fn) {
   const cwd = mkdtempSync(join(tmpdir(), 'skill-gate-test-'));
   try {
@@ -24,10 +28,10 @@ function withTmpCwd(fn) {
   }
 }
 
-function seedState(cwd, sessionId, skills) {
+function seedMarker(cwd, sessionId, skill) {
   const dir = join(cwd, '.wolf');
   mkdirSync(dir, { recursive: true });
-  writeFileSync(join(dir, `_skill-gate-${sessionId}.json`), JSON.stringify({ skills }));
+  writeFileSync(join(dir, `_skill-gate-${sessionId}--${skill}.json`), '{}');
 }
 
 test('blocks writing-plans when grilling has not run this session', () => {
@@ -48,7 +52,7 @@ test('blocks writing-plans when grilling has not run this session', () => {
 
 test('allows writing-plans when grilling already ran this session', () => {
   withTmpCwd((cwd) => {
-    seedState(cwd, 'sess-2', ['brainstorming', 'grilling']);
+    seedMarker(cwd, 'sess-2', 'grilling');
     const result = run({
       session_id: 'sess-2',
       cwd,
@@ -63,7 +67,7 @@ test('allows writing-plans when grilling already ran this session', () => {
 
 test('allows writing-plans when grill-me already ran this session', () => {
   withTmpCwd((cwd) => {
-    seedState(cwd, 'sess-3', ['grill-me']);
+    seedMarker(cwd, 'sess-3', 'grill-me');
     const result = run({
       session_id: 'sess-3',
       cwd,
@@ -90,11 +94,36 @@ test('never blocks skills other than writing-plans', () => {
   });
 });
 
-test('blocks writing-plans when state file exists but has no grilling entry', () => {
+test('blocks writing-plans when a marker exists for an unrelated skill only', () => {
   withTmpCwd((cwd) => {
-    seedState(cwd, 'sess-5', ['brainstorming']);
+    seedMarker(cwd, 'sess-5', 'brainstorming');
     const result = run({
       session_id: 'sess-5',
+      cwd,
+      tool_name: 'Skill',
+      tool_input: { skill: 'writing-plans' },
+    });
+
+    assert.equal(result.status, 0);
+    const out = JSON.parse(result.stdout);
+    assert.equal(out.decision, 'block');
+  });
+});
+
+test('does not block on malformed JSON stdin', () => {
+  const result = runRaw('{not valid json');
+  assert.equal(result.status, 0);
+  assert.equal(result.stdout.trim(), '');
+});
+
+test('does not block when session_id is a path-traversal shape, even with a real grilling marker present elsewhere', () => {
+  withTmpCwd((cwd) => {
+    // A legitimate marker exists for a normal session...
+    seedMarker(cwd, 'sess-6', 'grilling');
+    // ...but the incoming session_id is traversal-shaped and must not be
+    // used to escape into .wolf/ and find that unrelated marker.
+    const result = run({
+      session_id: '../../../../sess-6',
       cwd,
       tool_name: 'Skill',
       tool_input: { skill: 'writing-plans' },

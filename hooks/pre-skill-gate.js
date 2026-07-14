@@ -7,6 +7,7 @@ import { readFileSync, existsSync } from 'fs';
 import { resolve } from 'path';
 
 const SATISFYING_SKILLS = ['grilling', 'grill-me'];
+const SAFE_NAME = /^[A-Za-z0-9._-]+$/;
 
 function readStdin() {
   try {
@@ -29,17 +30,9 @@ const skill = input.tool_input && input.tool_input.skill;
 
 if (skill !== 'writing-plans') process.exit(0);
 
-const statePath = resolve(cwd, `.wolf/_skill-gate-${sessionId}.json`);
-
-let skillsUsed = [];
-if (sessionId && existsSync(statePath)) {
-  try {
-    const state = JSON.parse(readFileSync(statePath, 'utf8'));
-    if (Array.isArray(state.skills)) skillsUsed = state.skills;
-  } catch (_) {}
-}
-
-const grilled = skillsUsed.some((s) => SATISFYING_SKILLS.includes(s));
+const grilled = !!sessionId
+  && SAFE_NAME.test(sessionId)
+  && SATISFYING_SKILLS.some((s) => existsSync(resolve(cwd, `.wolf/_skill-gate-${sessionId}--${s}.json`)));
 
 if (!grilled) {
   process.stdout.write(JSON.stringify({

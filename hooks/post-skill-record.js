@@ -1,10 +1,14 @@
 #!/usr/bin/env node
-// PostToolUse hook (matcher: Skill): records each invoked skill into a
-// session-scoped state file so pre-skill-gate.js can check what already
-// ran earlier in this session (e.g. did grilling run before writing-plans).
+// PostToolUse hook (matcher: Skill): records each invoked skill as a
+// per-(session, skill) marker file so pre-skill-gate.js can check what
+// already ran earlier in this session (e.g. did grilling run before
+// writing-plans). One marker file per skill avoids any read-modify-write
+// race on shared state between concurrent Skill invocations.
 
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import { resolve, dirname } from 'path';
+
+const SAFE_NAME = /^[A-Za-z0-9._-]+$/;
 
 function readStdin() {
   try {
@@ -26,18 +30,15 @@ const cwd = input.cwd || process.cwd();
 const skill = input.tool_input && input.tool_input.skill;
 
 if (!sessionId || !skill) process.exit(0);
+if (!SAFE_NAME.test(sessionId) || !SAFE_NAME.test(skill)) process.exit(0);
 
-const statePath = resolve(cwd, `.wolf/_skill-gate-${sessionId}.json`);
+const markerPath = resolve(cwd, `.wolf/_skill-gate-${sessionId}--${skill}.json`);
 
 try {
-  mkdirSync(dirname(statePath), { recursive: true });
-  let state = { skills: [] };
-  if (existsSync(statePath)) {
-    try { state = JSON.parse(readFileSync(statePath, 'utf8')); } catch (_) {}
+  mkdirSync(dirname(markerPath), { recursive: true });
+  if (!existsSync(markerPath)) {
+    writeFileSync(markerPath, JSON.stringify({ skill, ts: Date.now() }));
   }
-  if (!Array.isArray(state.skills)) state.skills = [];
-  state.skills.push(skill);
-  writeFileSync(statePath, JSON.stringify(state, null, 2));
 } catch (_) {}
 
 process.exit(0);
