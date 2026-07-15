@@ -20,18 +20,35 @@ Two phases:
 
 Phased rather than one combined pass so the CLAUDE.md trim (highest-judgment item, touches the file every session reads) can be sanity-checked before a second project is touched.
 
+**Process per phase (resolved during grilling):**
+- **Phase 1 (`~/.claude`)**: no GitHub remote configured, so `github-issue-first` no-ops automatically. Lands direct-to-main, consistent with the precedent already set this session for skill/config edits in this repo (no worktree — personal config, single-dev, low blast radius, no benefit from branch isolation for file-based skill/doc edits).
+- **Phase 2 (NHL Stats)**: has an active GitHub remote and an established issue/PR workflow. File a GitHub issue via `github-issue-first` before touching anything, then use a worktree — consistent with that project's existing convention (a `.claude/worktrees/` directory already exists there).
+
 ## Component 1 — CLAUDE.md trim
 
-Target: ~2220 words → ~1100-1300 words remaining in CLAUDE.md.
+Measured actual section word counts before finalizing the target:
+
+| Section | Words | Disposition |
+|---|---|---|
+| 3 (Infrastructure) | 484 | Condensed conservatively (see below) |
+| 6 (Custom Agents) | 44 | Moved entirely |
+| 8 (Plugin Registration) | 170 | Moved entirely |
+| 9 (Brand convention) | 81 | Moved entirely |
+| 10 (External Skill Integrations) | 345 | Moved entirely |
+| **Total file** | **2220** | |
+
+Revised target: **~1450-1600 words** (not the originally-stated 1100-1300 — that range assumed a more aggressive Section 3 trim than the safety-preserving approach below allows). Moving sections 6/8/9/10 is the guaranteed win (~600 words, replaced by ~4 one-line pointers). Section 3's conservative condensation is smaller and less certain by design — see verification method below.
 
 **Keep as-is:**
 - Section 1 (Core Philosophy)
 - Section 2 (Process gate table + Project Tier table) — the routing logic; must stay visible every session
 
 **Keep, condensed:**
-- Section 3 (Infrastructure Layer) minus its lookup-style subsections — hook behavior, worktree path-isolation gotcha, concurrent-session detection rule all stay (passive, no natural trigger to recall them from a skill); verbose multi-sentence bullets get tightened to the load-bearing fact
+- Section 3 (Infrastructure Layer) minus its lookup-style subsections — hook behavior, worktree path-isolation gotcha, concurrent-session detection rule all stay (passive, no natural trigger to recall them from a skill). Gets one addition: a compressed inline model-routing bullet (see Component 2).
 - Section 4 (New Project Bootstrap) — already short
 - Section 5 (Personal Knowledge Layer / brain MCP) — passive "check before answering" trigger, same reasoning as Section 3
+
+**Section 3 condensation method:** for every bullet touched, write the edit as an explicit before/after pair in the implementation plan (not "tighten prose" as a vague instruction) so it's reviewable as a diff. After condensing, cross-check each touched bullet against `.wolf/cerebrum.md`'s Do-Not-Repeat list to confirm the specific gotcha it encodes (worktree path isolation, concurrent-session detection, etc.) is still present in the shortened version, not just gestured at.
 
 **Move to new skill `skills/claude-infra-reference/SKILL.md`, replaced in CLAUDE.md with one-line pointers:**
 - Section 6 (Custom Agents)
@@ -41,19 +58,13 @@ Target: ~2220 words → ~1100-1300 words remaining in CLAUDE.md.
 
 Trigger description for the new skill: "Use when registering, troubleshooting, or looking up details about custom agents, local plugins, or the mattpocock external skill integrations."
 
-## Component 2 — model-routing skill
+## Component 2 — model-routing
 
-New `skills/model-routing/SKILL.md` — a skill, not a `.claude/rules/*.md` file (rules with broad `globs` auto-load every session, which would defeat the purpose of moving this out of CLAUDE.md).
+**Inline compressed rule in CLAUDE.md Section 3** (not skill-only — skills only get read when triggered, and a fast in-flow dispatch decision is unlikely to pause and check one):
 
-Trigger description: "Use when deciding which model to route an Agent/subagent task to, or when deciding whether to cap reasoning effort for a task."
+> Model routing: Haiku for mechanical/log-inspection/single-file-lookup subagent work, Sonnet default, Opus for complex multi-file reasoning. Default effort for routine work; extended thinking only for genuinely complex decisions. See `model-routing` skill for detail.
 
-Contents:
-- Haiku: mechanical, log-inspection, single-file-lookup subagent work
-- Sonnet: default for typical work
-- Opus: reserved for complex multi-file architecture/reasoning tasks
-- Effort guideline: default effort for routine work; extended/deeper thinking reserved for genuinely complex decisions, not invoked reflexively
-
-CLAUDE.md Section 3 gets a one-line pointer to this skill.
+New `skills/model-routing/SKILL.md` holds the elaboration only — worked examples, edge cases, the reasoning behind the split — not the sole carrier of the policy itself. Trigger description: "Use when deciding which model to route an Agent/subagent task to, or when deciding whether to cap reasoning effort for a task."
 
 ## Component 3 — global permissions.deny
 
