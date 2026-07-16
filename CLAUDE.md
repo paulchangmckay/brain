@@ -44,6 +44,13 @@
 - **Prevent re-reads:** PreToolUse hook blocks re-reads within 10 min (file unchanged); warns on large files.
 - **Grilling gate hook:** `hooks/pre-skill-gate.js`/`hooks/post-skill-record.js` block invoking `writing-plans` unless `grilling` (or `/grill-me`) already ran this session — session-scoped via `.wolf/_skill-gate-<session>--<skill>.json` marker files. Real enforcement for the `brainstorming → grilling → writing-plans` gate, not just prose.
 - **Local lint/secret-scan gate:** `.githooks/pre-commit` (`git config core.hooksPath .githooks`) runs shellcheck + eslint(security) + gitleaks on staged files pre-commit — enforcement counterpart to `secrets-and-key-rotation.md`/`frontend-web-security.md`. Config: `eslint.config.js`, `.shellcheckrc`, `.gitleaks.toml`. Tier 0, local only; missing tools warn-and-skip.
+- **Deliberate-shortcut ledger:** When cutting a real corner with a known
+  ceiling (naive algorithm, global lock, skipped edge case), leave a
+  `wolf-debt: <ceiling>, <upgrade trigger>` comment naming both. Harvest the
+  ledger with the `debt-ledger` skill (`scripts/wolf-debt-scan.js`) so a
+  deferral doesn't quietly become permanent. Digest for subagents:
+  `hooks/subagent-thin-harness.md` (kept in sync with this bullet manually —
+  no scripted check, only one duplicate exists).
 - **Subagent routing:** Exploration spanning >3 files → spawn an Explore subagent (protects main context from search noise).
 - **End of session:** invoke `session-reflect` — Phase 1 updates `.wolf/cerebrum.md` (always); Phase 2 conditionally audits CLAUDE.md for team-worthy learnings (approval-gated).
 - **Worktree path isolation:** `EnterWorktree` creates an isolated branch, but absolute-path edits still write to the MAIN working tree. Use relative paths or `cd <worktree-path>` before editing to isolate changes on the branch.
@@ -72,8 +79,8 @@ openwolf status      # Confirm health
 ## 6. Knowledge Graph (`understand-anything`)
 - `~/.claude` is tracked in git (baseline `b354ad3`) — commit regularly for incremental updates (1-5 batches vs. 32 for a full rebuild).
 - Re-analyze after changes: `/understand-anything:understand ~.claude`
-- `langsmith-plugin` and `superpowers` are git submodules — do NOT `git add` their contents directly; use `git submodule update` to sync them.
-- Before pushing submodule commits, run `git remote -v` first — origin is third-party upstream (`langchain-ai`, `obra`), not a personal fork. Use a local branch (`git branch local-customizations`) instead of pushing.
+- `langsmith-plugin`, `superpowers`, and `skills/senior-engineering-partner` are git submodules — do NOT `git add` their contents directly; use `git submodule update` to sync them.
+- Before pushing submodule commits, run `git remote -v` first — origin is third-party upstream (`langchain-ai`, `obra`, `bjgreenberg`), not a personal fork. Use a local branch (`git branch local-customizations`) instead of pushing.
 - `local-customizations` is a snapshot, not a moving ref — re-fast-forward it (`git branch -f local-customizations <sha>`) after every new submodule commit; check `git log --oneline -1 local-customizations` against `main` first.
 
 ## 7. Reference Pointers
