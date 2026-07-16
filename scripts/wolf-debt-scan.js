@@ -4,7 +4,7 @@
 
 import { readFileSync, existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
-import { resolve } from 'node:path';
+import { resolve, basename } from 'node:path';
 
 function getSubmodulePaths(cwd) {
   const gitmodulesPath = resolve(cwd, '.gitmodules');
@@ -18,7 +18,15 @@ function getSubmodulePaths(cwd) {
 }
 
 function grepMarkers(cwd) {
-  const excludeDirs = ['.git', 'node_modules', ...getSubmodulePaths(cwd)];
+  // grep's --exclude-dir=PATTERN matches a single directory-name component
+  // during recursion, not a multi-segment relative path. Reduce submodule
+  // paths (which may be nested, e.g. "skills/senior-engineering-partner")
+  // to their basename so grep actually excludes them. Tradeoff: two
+  // different submodules sharing a final path segment (e.g. "foo/vendor"
+  // and "bar/vendor") both get excluded by one --exclude-dir=vendor — this
+  // matches grep's own basename-matching semantics and is not solved further.
+  const submoduleDirs = getSubmodulePaths(cwd).map((p) => basename(p));
+  const excludeDirs = ['.git', 'node_modules', ...submoduleDirs];
   const args = [
     '-rnE',
     '(#|//) ?wolf-debt:',

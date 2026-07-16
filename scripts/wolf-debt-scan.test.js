@@ -60,6 +60,24 @@ test('excludes submodule paths listed in .gitmodules', () => {
   });
 });
 
+test('excludes a nested submodule path by its basename', () => {
+  withTmpRepo((cwd) => {
+    writeFileSync(
+      join(cwd, '.gitmodules'),
+      '[submodule "skills/vendor-thing"]\n\tpath = skills/vendor-thing\n\turl = https://example.com/vendor-thing.git\n',
+    );
+    mkdirSync(join(cwd, 'skills', 'vendor-thing'), { recursive: true });
+    writeFileSync(
+      join(cwd, 'skills', 'vendor-thing', 'lib.js'),
+      '// wolf-debt: should be ignored, never\n',
+    );
+    writeFileSync(join(cwd, 'app.js'), '// wolf-debt: real one, real trigger\n');
+    const markers = scanDebtMarkers(cwd);
+    assert.equal(markers.length, 1);
+    assert.match(markers[0].file, /app\.js$/);
+  });
+});
+
 test('excludes .git and node_modules unconditionally', () => {
   withTmpRepo((cwd) => {
     mkdirSync(join(cwd, 'node_modules'));
