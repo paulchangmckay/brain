@@ -62,6 +62,16 @@ test('buildSkillPage omits description line when description is missing', () => 
   assert.doesNotMatch(page, /description:/);
 });
 
+test('buildSkillPage escapes internal quotes in description frontmatter', () => {
+  const page = buildSkillPage({
+    name: 'test-skill',
+    description: 'Use when the user says "give me ideas"',
+    body: 'Body\n',
+  });
+  // Verify JSON-escaped quote appears in the frontmatter block
+  assert.match(page, /description: "Use when the user says \\"give me ideas\\"/);
+});
+
 import { existsSync, readFileSync } from 'node:fs';
 import { syncSkills } from './pull-skills.mjs';
 
@@ -91,6 +101,26 @@ test('syncSkills warns but still writes a page when frontmatter fields are missi
     assert.equal(warnings.length, 1);
     assert.match(warnings[0], /broken-skill\/SKILL\.md is missing/);
     assert.equal(existsSync(join(outputDir, 'broken-skill.md')), true);
+  } finally {
+    rmSync(skillsDir, { recursive: true, force: true });
+    rmSync(outputDir, { recursive: true, force: true });
+  }
+});
+
+test('syncSkills warns and uses skillName fallback when name field is missing', () => {
+  const skillsDir = makeTempDir();
+  const outputDir = makeTempDir();
+  try {
+    const skillDir = join(skillsDir, 'missing-name-skill');
+    mkdirSync(skillDir);
+    writeFileSync(join(skillDir, 'SKILL.md'), '---\ndescription: "A skill without a name field"\n---\n\nBody text\n');
+    const { warnings } = syncSkills({ skillsDir, outputDir });
+    assert.equal(warnings.length, 1);
+    assert.match(warnings[0], /missing-name-skill\/SKILL\.md is missing/);
+    assert.equal(existsSync(join(outputDir, 'missing-name-skill.md')), true);
+    // Verify the title uses the skillName fallback
+    const content = readFileSync(join(outputDir, 'missing-name-skill.md'), 'utf8');
+    assert.match(content, /title: "missing-name-skill"/);
   } finally {
     rmSync(skillsDir, { recursive: true, force: true });
     rmSync(outputDir, { recursive: true, force: true });
