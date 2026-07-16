@@ -1,6 +1,6 @@
 # Bloat/debt tooling inspired by ponytail
 
-**Status:** Approved (pending grilling pass)
+**Status:** Approved, grilled
 **Date:** 2026-07-15
 
 ## Context
@@ -61,12 +61,18 @@ New file: `skills/debt-ledger/SKILL.md`.
 - **Trigger phrases:** "wolf-debt", "what debt do we have", "list deferred
   shortcuts", "debt ledger".
 - **Behavior:**
-  1. `grep -rnE '(#|//) ?wolf-debt:' .` excluding `.git`, `node_modules`, and any
-     git-submodule paths (`langsmith-plugin/`, `superpowers/`).
+  1. `grep -rnE '(#|//) ?wolf-debt:' .` excluding `.git`, `node_modules`, and
+     every submodule path read dynamically from `.gitmodules` at scan time (not
+     hardcoded — so a future submodule addition can't silently go unexcluded).
+     `bloat-audit` (below) uses the same exclusion logic for its own repo-wide
+     scan.
   2. One row per hit, grouped by file: `<file>:<line>, <what was simplified>.
      ceiling: <X>. upgrade: <trigger>.`
-  3. A marker with no parseable ceiling/trigger (i.e. no comma-separated second
-     clause) is tagged `no-trigger` — these are the ones that silently rot.
+  3. **Syntax-only trigger check:** a marker is `no-trigger` purely if there's no
+     comma-separated second clause after the ceiling — the harvester does not
+     judge whether the named trigger is a *good* one (e.g. "will fix later"
+     still counts as present). Keeps the skill mechanical: presence, not
+     quality.
   4. Ends with `<N> markers, <M> with no trigger.` or, if none found, `No
      wolf-debt: markers. Clean ledger.`
 - **Boundaries:** read-only, changes nothing. Persisting to `.wolf/debt.md` only
@@ -96,7 +102,17 @@ New file: `skills/bloat-audit/SKILL.md`.
   `<tag> <what to cut>. <replacement>. [path]`. Ends with `net: -N lines, -M deps
   possible.`, or `Lean already. Ship.` if nothing qualifies.
 - **Boundaries:** whole-repo, read-only, one-shot. Lists findings, applies
-  nothing.
+  nothing. Dependency-bloat findings (unused/redundant deps) are model-judgment
+  based — reads `package.json`/`requirements.txt`/imports and reasons about
+  them, same as ponytail-audit itself. No new tool dependency (`depcheck` etc.)
+  — would only cover JS anyway, and this repo also has Python/bash/skill-file
+  content such a tool can't see.
+- **Cross-reference (two-way):** this skill's boundaries section states that
+  correctness/security/performance route to `senior-engineering-partner`'s
+  `AUDIT:` mode instead. `senior-engineering-partner`'s `AUDIT:` section also
+  gets one added line noting that pure complexity/bloat findings route to
+  `bloat-audit`, so a bare "audit this repo" isn't ambiguously answered by
+  whichever skill's description happens to match first.
 
 ## 3. Subagent rule propagation
 
@@ -126,9 +142,13 @@ periodic CLAUDE.md audit is the backstop against drift.
   `Agents/*` types, etc.), reads `subagent-thin-harness.md` and emits it as
   `hookSpecificOutput.additionalContext`, matching the existing hook
   output-shape convention already used by `pre-skill-gate.js`/`post-skill-record.js`.
-- Fail-open on any error (missing file, unparseable stdin, unknown agent_type):
-  inject anyway rather than silently drop the ruleset — same philosophy the
-  existing hooks use ("never block the session").
+- Fail-open on any error (unparseable stdin, unknown agent_type): inject the
+  digest anyway rather than silently drop the ruleset — same philosophy the
+  existing hooks use ("never block the session"). If reading
+  `subagent-thin-harness.md` itself throws (moved/typo'd), fall back to a small
+  hardcoded 2-3 line digest embedded directly in the hook file ("no premature
+  abstraction, YAGNI, reuse before rewrite") so "fail-open" is actually true in
+  every failure mode, not just the ones where the file read succeeds.
 - No session-scoped marker files, no dependency on session_id propagation
   behavior — the hook only needs the per-invocation `agent_type` field, which is
   a much smaller and more reliable surface than the skill-gate's session-scoped
@@ -138,10 +158,12 @@ periodic CLAUDE.md audit is the backstop against drift.
 
 Given `verification-before-completion` requires evidence, not assertions: after
 wiring the hook, spawn one `Explore` subagent and one `general-purpose` subagent
-in the same session and confirm (via each subagent's actual behavior/output, not
-just hook exit code) that only the `general-purpose` one received the digest —
-e.g. by having it echo back a line from the digest, or by inspecting hook debug
-output if the harness exposes it.
+in the same session, each prompted to state as its first line whether it was
+given any instructions about `wolf-debt:` or a thin-harness ruleset before its
+actual task. Confirm the `general-purpose` one reports receiving it and the
+`Explore` one does not — direct behavioral evidence from the subagent itself,
+not an assumption about hook plumbing or reliance on a debug log the harness
+may not expose.
 
 ## Testing (all three pieces)
 
@@ -155,6 +177,16 @@ check is unfinished" idea, applied to this repo's actual conventions:
   the output shape (even if the repo is already lean and it reports `Lean
   already. Ship.`).
 - Subagent propagation: the Explore-vs-general-purpose comparison above.
+
+## Discoverability
+
+Neither skill is added to CLAUDE.md §2's process gate table. That table is
+reserved for the sequential brainstorm→plan→build→review pipeline; ad-hoc
+audit/cleanup tools already in this repo (`code-review`, `simplify`) are
+deliberately *not* in it, discoverable purely via their own SKILL.md
+description/trigger phrases instead. `debt-ledger` and `bloat-audit` are the
+same shape — one-shot, no gating relationship to any other skill — so they
+follow the same precedent.
 
 ## Out of scope
 
