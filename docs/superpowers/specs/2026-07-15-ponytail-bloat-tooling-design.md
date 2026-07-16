@@ -43,13 +43,17 @@ alongside the marker's harvester skill.
 
 ### CLAUDE.md change
 
-Add one bullet to the existing "Doing tasks" list (§ near "Don't add features,
-refactor, or introduce abstractions beyond what the task requires"):
+Correction from initial draft: there is no "Doing tasks" bullet list inside
+CLAUDE.md — that section lives in the harness's own base system prompt, not
+this file. The actual current CLAUDE.md is organized §1-7, with OpenWolf
+conventions in §3 ("Infrastructure Layer"). Add one bullet there, after the
+"Local lint/secret-scan gate" bullet:
 
-> When deliberately cutting a real corner with a known ceiling (naive algorithm,
-> global lock, skipped edge case), leave a `wolf-debt: <ceiling>, <upgrade
-> trigger>` comment naming both — don't let a deferred shortcut silently become
-> permanent.
+> **Deliberate-shortcut ledger:** When cutting a real corner with a known
+> ceiling (naive algorithm, global lock, skipped edge case), leave a
+> `wolf-debt: <ceiling>, <upgrade trigger>` comment naming both. Harvest the
+> ledger with the `debt-ledger` skill (`scripts/wolf-debt-scan.js`) so a
+> deferral doesn't quietly become permanent.
 
 ### `debt-ledger` skill
 
@@ -113,22 +117,32 @@ New file: `skills/bloat-audit/SKILL.md`.
   gets one added line noting that pure complexity/bloat findings route to
   `bloat-audit`, so a bare "audit this repo" isn't ambiguously answered by
   whichever skill's description happens to match first.
+- **Submodule wrinkle (discovered during planning):** `skills/senior-engineering-partner`
+  is itself a git submodule pointing at a third-party upstream
+  (`bjgreenberg/senior-engineering-partner`) — a gap CLAUDE.md §6 doesn't
+  currently document (it only lists `langsmith-plugin` and `superpowers`).
+  Editing its `SKILL.md` means: commit inside the submodule, never push to
+  `origin` (third-party), fast-forward a local `local-customizations` branch
+  per the existing pattern for the other two submodules, then bump the parent
+  repo's submodule pointer. CLAUDE.md §6 gets updated to list all three
+  submodules, closing the documentation gap.
 
 ## 3. Subagent rule propagation
 
 ### New digest file
 
-`hooks/subagent-thin-harness.md` — a short (5-8 bullet), standalone digest of the
-core code-quality rules a subagent needs (condensed from CLAUDE.md §"Doing tasks"):
-no premature abstraction, YAGNI, reuse over rewrite, the `wolf-debt:` convention,
-no unnecessary error handling/fallbacks. Kept deliberately short since the
-decision was "core rules only," not the full CLAUDE.md.
+`hooks/subagent-thin-harness.md` — a short (5-8 bullet), standalone digest of
+core code-quality rules a subagent needs: no premature abstraction, YAGNI,
+reuse over rewrite, the `wolf-debt:` convention, no unnecessary error
+handling/fallbacks. Kept deliberately short since the decision was "core rules
+only," not the full CLAUDE.md.
 
-Add a one-line note in CLAUDE.md §"Doing tasks" pointing at this file so a future
-edit to the bullet list prompts a check of the digest too. Not a scripted sync
-check (ponytail needed one because it has ~15 duplicated rule-copies across agent
-surfaces; this repo would only have one duplicate) — `session-reflect`'s existing
-periodic CLAUDE.md audit is the backstop against drift.
+Add a one-line note in CLAUDE.md §3 (next to the new deliberate-shortcut-ledger
+bullet) pointing at this file so a future edit to either prompts a check of the
+other. Not a scripted sync check (ponytail needed one because it has ~15
+duplicated rule-copies across agent surfaces; this repo would only have one
+duplicate) — `session-reflect`'s existing periodic CLAUDE.md audit is the
+backstop against drift.
 
 ### New hook: `hooks/subagent-thin-harness.js`
 
