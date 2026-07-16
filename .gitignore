@@ -48,3 +48,9 @@ mcp-needs-auth-cache.json
 .understand-anything/intermediate/fingerprint-input.json
 .understand-anything/tmp/
 .understand-anything/.trash-*/
+
+# docs-site (Blume) build/dependency artifacts
+docs-site/node_modules/
+docs-site/dist/
+docs-site/.astro/
+docs-site/.blume/
