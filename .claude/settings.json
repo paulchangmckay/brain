@@ -68,5 +68,15 @@
         ]
       }
     ]
+  },
+  "permissions": {
+    "deny": [
+      "Read(**/node_modules/**)",
+      "Read(**/*.lock)",
+      "Read(**/package-lock.json)",
+      "Read(**/.env*)",
+      "Read(**/*.pem)",
+      "Read(**/*credentials*)"
+    ]
   }
 }
