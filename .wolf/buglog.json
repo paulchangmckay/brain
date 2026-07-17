@@ -6,7 +6,7 @@
       "timestamp": "2026-06-24T05:58:45.245Z",
       "error_message": "Missing error handling in unknown",
       "file": "hooks/pre-read-check.js",
-      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "root_cause": "Code path had no error handling \u2014 exceptions would propagate uncaught",
       "fix": "Added try/catch block",
       "tags": [
         "auto-detected",
@@ -221,7 +221,7 @@
       "error_message": "gitleaks: Failed to load config error=\"[[allowlists]] must contain at least one check for: commits, paths, regexes, or stopwords\"",
       "file": ".gitleaks.toml",
       "root_cause": "gitleaks requires TOML array-of-tables syntax `[[allowlists]]` with at least one check field (commits/paths/regexes/stopwords); a placeholder `[allowlist]` table with only a `description` key and no check field is rejected outright rather than treated as a no-op.",
-      "fix": "Removed the empty allowlist table entirely and left a comment explaining that a real `[[allowlists]]` block should only be added once there's a proven false positive to scope it to — an intentionally absent section, not an empty placeholder.",
+      "fix": "Removed the empty allowlist table entirely and left a comment explaining that a real `[[allowlists]]` block should only be added once there's a proven false positive to scope it to \u2014 an intentionally absent section, not an empty placeholder.",
       "tags": [
         "gitleaks",
         "toml",
@@ -238,7 +238,7 @@
       "timestamp": "2026-07-02T06:00:00.000Z",
       "error_message": "npx skills@latest add mattpocock/skills --skill=grill-me,grilling,codebase-design,domain-modeling,teach --global -y installed all 36 skills to every detected agent (Claude Code, Cline, GitHub Copilot, etc.) instead of the 5 named",
       "file": "skills/ (six new skill directories)",
-      "root_cause": "The `-s/--skill` flag on the `skills` CLI does not reliably filter the target skill set in non-interactive mode (auto-detected agent, no TTY) — it falls back to installing everything found in the source repo, regardless of a comma-separated --skill value.",
+      "root_cause": "The `-s/--skill` flag on the `skills` CLI does not reliably filter the target skill set in non-interactive mode (auto-detected agent, no TTY) \u2014 it falls back to installing everything found in the source repo, regardless of a comma-separated --skill value.",
       "fix": "Let the over-broad install complete, then used `npx skills remove <name1> <name2> ... --global -y` (space-separated positional args, confirmed reliable) to prune down to exactly the intended skill set. Verified the final state with `ls ~/.claude/skills/` and `git status` rather than trusting the CLI's own success output.",
       "tags": [
         "npx",
@@ -288,7 +288,7 @@
       "timestamp": "2026-07-03T21:35:00.000Z",
       "error_message": "fatal: not a valid object name: '68b6303'",
       "file": "N/A (Bash tool invocation, superpowers submodule)",
-      "root_cause": "Two Bash tool calls sent in the same message run in parallel, each in its own subshell — a `cd` in one does not carry over to the other. `cd langsmith-plugin && git branch -f local-customizations e240c52` ran in call 1; a bare `git branch -f local-customizations 68b6303` (no cd) ran in call 2, executing from the original ~/.claude cwd instead of superpowers/, so the target sha couldn't be resolved.",
+      "root_cause": "Two Bash tool calls sent in the same message run in parallel, each in its own subshell \u2014 a `cd` in one does not carry over to the other. `cd langsmith-plugin && git branch -f local-customizations e240c52` ran in call 1; a bare `git branch -f local-customizations 68b6303` (no cd) ran in call 2, executing from the original ~/.claude cwd instead of superpowers/, so the target sha couldn't be resolved.",
       "fix": "Re-ran the second command with an explicit `cd /Users/paulmckay/.claude/superpowers && git branch -f local-customizations 68b6303` instead of relying on directory state from a sibling parallel call.",
       "tags": [
         "bash-tool",
@@ -306,7 +306,7 @@
       "error_message": "Significant refactor of ",
       "file": "../Desktop/NHL Stats Project/src/database.py",
       "root_cause": "9 lines replaced/restructured",
-      "fix": "Rewrote 21→27 lines (9 removed)",
+      "fix": "Rewrote 21\u219227 lines (9 removed)",
       "tags": [
         "auto-detected",
         "refactor",
@@ -322,7 +322,7 @@
       "error_message": "Significant refactor of ",
       "file": "../Desktop/NHL Stats Project/etl/enrich_players.py",
       "root_cause": "9 lines replaced/restructured",
-      "fix": "Rewrote 12→16 lines (9 removed)",
+      "fix": "Rewrote 12\u219216 lines (9 removed)",
       "tags": [
         "auto-detected",
         "refactor",
@@ -351,10 +351,10 @@
     {
       "id": "bug-022",
       "timestamp": "2026-07-02T21:50:00.000Z",
-      "error_message": "~1,076 players permanently skipped by enrich_players.py — bio fields (height/weight/birth_date/birth_country) never populated",
+      "error_message": "~1,076 players permanently skipped by enrich_players.py \u2014 bio fields (height/weight/birth_date/birth_country) never populated",
       "file": "../Desktop/NHL Stats Project/etl/enrich_players.py",
-      "root_cause": "WHERE clause combined `is_active IS NULL OR (is_active=1 AND ...)` — players with is_active=0 and enriched_at=NULL (set by a run before the enriched_at column existed) matched neither branch and were permanently skipped",
-      "fix": "Changed to `WHERE enriched_at IS NULL OR (is_active=1 AND enriched_at < datetime('now','-7 days'))` — orthogonal conditions, each independently catches its case regardless of is_active value",
+      "root_cause": "WHERE clause combined `is_active IS NULL OR (is_active=1 AND ...)` \u2014 players with is_active=0 and enriched_at=NULL (set by a run before the enriched_at column existed) matched neither branch and were permanently skipped",
+      "fix": "Changed to `WHERE enriched_at IS NULL OR (is_active=1 AND enriched_at < datetime('now','-7 days'))` \u2014 orthogonal conditions, each independently catches its case regardless of is_active value",
       "tags": [
         "etl",
         "enrichment",
@@ -370,7 +370,7 @@
       "timestamp": "2026-07-02T21:50:00.000Z",
       "error_message": "Players loaded via upsert_player_stub() have null height/weight/birth_date/birth_country even after enrichment runs",
       "file": "../Desktop/NHL Stats Project/src/database.py",
-      "root_cause": "upsert_player_enrichment() UPDATE statement did not include height_inches, weight_pounds, birth_date, birth_country — fields present in landing API response (heightInInches, weightInPounds, birthDate, birthCountry) were never written",
+      "root_cause": "upsert_player_enrichment() UPDATE statement did not include height_inches, weight_pounds, birth_date, birth_country \u2014 fields present in landing API response (heightInInches, weightInPounds, birthDate, birthCountry) were never written",
       "fix": "Added COALESCE(height_inches, ?), COALESCE(weight_pounds, ?), COALESCE(birth_date, ?), COALESCE(birth_country, ?) to UPDATE SET; added corresponding values to parameter tuple and extraction in enrich_players.py",
       "tags": [
         "etl",
@@ -386,7 +386,7 @@
       "timestamp": "2026-07-03T02:26:15.109Z",
       "error_message": "Missing error handling in unknown",
       "file": "superpowers/skills/brainstorming/SKILL.md",
-      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "root_cause": "Code path had no error handling \u2014 exceptions would propagate uncaught",
       "fix": "Added try/catch block",
       "tags": [
         "auto-detected",
@@ -403,7 +403,7 @@
       "error_message": "Significant refactor of ",
       "file": "superpowers/skills/brainstorming/SKILL.md",
       "root_cause": "2 lines replaced/restructured",
-      "fix": "Rewrote 8→13 lines (2 removed)",
+      "fix": "Rewrote 8\u219213 lines (2 removed)",
       "tags": [
         "auto-detected",
         "refactor",
@@ -451,7 +451,7 @@
       "error_message": "Significant refactor of ",
       "file": "../Desktop/NHL Stats Project/docs/superpowers/specs/2026-07-02-advanced-filters-design.md",
       "root_cause": "3 lines replaced/restructured",
-      "fix": "Rewrote 22→33 lines (3 removed) | Also: - **Row 1 (always):** title, name search box, Team; button, Bio/Stats tabs, player count.",
+      "fix": "Rewrote 22\u219233 lines (3 removed) | Also: - **Row 1 (always):** title, name search box, Team; button, Bio/Stats tabs, player count.",
       "tags": [
         "auto-detected",
         "refactor",
@@ -467,7 +467,7 @@
       "error_message": "Significant refactor of ",
       "file": "../Desktop/NHL Stats Project/docs/superpowers/specs/2026-07-02-etl-sync-behavior-design.md",
       "root_cause": "3 lines replaced/restructured",
-      "fix": "Rewrote 5→5 lines (3 removed) | Also: - **Concurrency guard**: a dedicated `sync_log` (o; - The pipeline records per-step status (`pending`  | Also: - `scripts/run_all_etl.py`, `scripts/sync.py` → co; - `src/database.py` → `sync_log` helpers extended ",
+      "fix": "Rewrote 5\u21925 lines (3 removed) | Also: - **Concurrency guard**: a dedicated `sync_log` (o; - The pipeline records per-step status (`pending`  | Also: - `scripts/run_all_etl.py`, `scripts/sync.py` \u2192 co; - `src/database.py` \u2192 `sync_log` helpers extended ",
       "tags": [
         "auto-detected",
         "refactor",
@@ -483,7 +483,7 @@
       "error_message": "Significant refactor of ",
       "file": "../Desktop/NHL Stats Project/.claude/worktrees/advanced-filters/app.py",
       "root_cause": "2 lines replaced/restructured",
-      "fix": "Rewrote 4→7 lines (2 removed)",
+      "fix": "Rewrote 4\u21927 lines (2 removed)",
       "tags": [
         "auto-detected",
         "refactor",
@@ -499,7 +499,7 @@
       "error_message": "Wrong reference: 57px should be var",
       "file": "../Desktop/NHL Stats Project/.claude/worktrees/advanced-filters/templates/index.html",
       "root_cause": "Used \"57px\" instead of \"var\"",
-      "fix": "Changed 57px → var",
+      "fix": "Changed 57px \u2192 var",
       "tags": [
         "auto-detected",
         "wrong-reference",
@@ -531,7 +531,7 @@
       "error_message": "Significant refactor of ",
       "file": "../Desktop/NHL Stats Project/.claude/worktrees/advanced-filters/templates/index.html",
       "root_cause": "3 lines replaced/restructured",
-      "fix": "Rewrote 4→4 lines (3 removed)",
+      "fix": "Rewrote 4\u21924 lines (3 removed)",
       "tags": [
         "auto-detected",
         "refactor",
@@ -562,7 +562,7 @@
       "timestamp": "2026-07-12T04:53:22.636Z",
       "error_message": "Missing error handling in unknown",
       "file": "../Desktop/NHL Stats Project/.wolf/cerebrum.md",
-      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "root_cause": "Code path had no error handling \u2014 exceptions would propagate uncaught",
       "fix": "Added try/catch block",
       "tags": [
         "auto-detected",
@@ -579,7 +579,7 @@
       "error_message": "Significant refactor of ",
       "file": "CLAUDE.md",
       "root_cause": "2 lines replaced/restructured",
-      "fix": "Rewrote 6→7 lines (2 removed)",
+      "fix": "Rewrote 6\u21927 lines (2 removed)",
       "tags": [
         "auto-detected",
         "refactor",
@@ -636,6 +636,457 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-07-13T04:11:23.133Z"
+    },
+    {
+      "id": "bug-040",
+      "timestamp": "2026-07-13T04:32:40.395Z",
+      "error_message": "Wrong reference: txt should be dev",
+      "file": "../Desktop/NHL Stats Project/.claude/worktrees/audit-remediation-7/.github/workflows/ci.yml",
+      "root_cause": "Used \"txt\" instead of \"dev\"",
+      "fix": "Changed txt \u2192 dev",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "yml"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-13T04:32:40.395Z"
+    },
+    {
+      "id": "bug-041",
+      "timestamp": "2026-07-13T04:36:55.279Z",
+      "error_message": "Incorrect value in code",
+      "file": "../Desktop/NHL Stats Project/.claude/worktrees/audit-remediation-7/CONTRIBUTING.md",
+      "root_cause": "Had `.github/workflows/ci.yml`",
+      "fix": "Changed to `scripts/audit.sh`",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-13T04:36:55.279Z"
+    },
+    {
+      "id": "bug-042",
+      "timestamp": "2026-07-13T04:43:22.419Z",
+      "error_message": "Significant refactor of ",
+      "file": "../Desktop/NHL Stats Project/.claude/worktrees/fix-full-name-search/templates/index.html",
+      "root_cause": "4 lines replaced/restructured",
+      "fix": "Rewrote 8\u219214 lines (4 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "html"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-13T04:43:22.419Z"
+    },
+    {
+      "id": "bug-043",
+      "timestamp": "2026-07-13T04:56:13.611Z",
+      "error_message": "Missing error handling in unknown",
+      "file": "../Desktop/NHL Stats Project/.wolf/cerebrum.md",
+      "root_cause": "Code path had no error handling \u2014 exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-13T04:56:13.611Z"
+    },
+    {
+      "id": "bug-044",
+      "timestamp": "2026-07-13T04:56:48.129Z",
+      "error_message": "Missing error handling in unknown",
+      "file": "../Desktop/NHL Stats Project/.wolf/memory.md",
+      "root_cause": "Code path had no error handling \u2014 exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-13T04:56:48.129Z"
+    },
+    {
+      "id": "bug-045",
+      "timestamp": "2026-07-14T01:49:17.025Z",
+      "error_message": "Significant refactor of ",
+      "file": "plans/in-my-nhl-stats-stateless-unicorn.md",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 3\u21929 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-14T01:49:17.025Z"
+    },
+    {
+      "id": "bug-046",
+      "timestamp": "2026-07-14T01:52:22.754Z",
+      "error_message": "Incorrect value in code",
+      "file": "CLAUDE.md",
+      "root_cause": "Had `senior-engineering-partner`",
+      "fix": "Changed to `main`",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-14T01:52:22.754Z"
+    },
+    {
+      "id": "bug-047",
+      "timestamp": "2026-07-14T01:53:27.801Z",
+      "error_message": "Missing error handling in test_debug_enabled_false_for_any_other_value",
+      "file": "../Desktop/NHL Stats Project/.claude/worktrees/fix-player-search/tests/test_app_helpers.py",
+      "root_cause": "Code path had no error handling \u2014 exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "py"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-14T01:53:27.801Z"
+    },
+    {
+      "id": "bug-048",
+      "timestamp": "2026-07-14T01:54:35.002Z",
+      "error_message": "Significant refactor of ",
+      "file": "../Desktop/NHL Stats Project/.claude/worktrees/fix-player-search/templates/index.html",
+      "root_cause": "5 lines replaced/restructured",
+      "fix": "Rewrote 8\u21924 lines (5 removed) | Also: const q = searchText.toLowerCase();; rows = rows.filter(p =>",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "html"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-07-14T01:54:39.388Z"
+    },
+    {
+      "id": "bug-049",
+      "timestamp": "2026-07-14T01:54:53.173Z",
+      "error_message": "Wrong reference: var should be 0",
+      "file": "../Desktop/NHL Stats Project/.claude/worktrees/fix-20-sticky-headers/templates/index.html",
+      "root_cause": "Used \"var\" instead of \"0\"",
+      "fix": "Changed var \u2192 0",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "html"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-14T01:54:53.173Z"
+    },
+    {
+      "id": "bug-050",
+      "timestamp": "2026-07-14T02:20:45.568Z",
+      "error_message": "Incorrect value in code",
+      "file": "docs/superpowers/specs/2026-07-14-issue-backlog-cycle-design.md",
+      "root_cause": "Had `verification-before-completion`",
+      "fix": "Changed to `fix/10-plus-2-more-<short-description>`",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-14T02:20:45.568Z"
+    },
+    {
+      "id": "bug-051",
+      "timestamp": "2026-07-14T02:31:44.872Z",
+      "error_message": "Significant refactor of ",
+      "file": "docs/superpowers/specs/2026-07-14-issue-backlog-cycle-design.md",
+      "root_cause": "3 lines replaced/restructured",
+      "fix": "Rewrote 15\u219223 lines (3 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-14T02:31:44.872Z"
+    },
+    {
+      "id": "bug-052",
+      "timestamp": "2026-07-14T02:43:36.333Z",
+      "error_message": "Incorrect value in code",
+      "file": "CLAUDE.md",
+      "root_cause": "Had `test-driven-development`",
+      "fix": "Changed to `issue-backlog-cycle`",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-14T02:43:36.333Z"
+    },
+    {
+      "id": "bug-053",
+      "timestamp": "2026-07-14T22:51:00.000Z",
+      "error_message": "Path traversal via unsanitized session_id in hook state file path",
+      "file": "hooks/pre-skill-gate.js, hooks/post-skill-record.js",
+      "root_cause": "New PreToolUse/PostToolUse Skill hooks built a state file path via resolve(cwd, `.wolf/_skill-gate-${sessionId}.json`) with no validation of session_id. A crafted session_id like '../../../../tmp/evil' resolved outside both .wolf/ and cwd entirely, and post-skill-record.js would mkdirSync + writeFileSync there.",
+      "fix": "Reject session_id and skill name unless they match ^[A-Za-z0-9._-]+$ before any path is built. Also redesigned state storage from a shared per-session JSON array (read-modify-write) to one marker file per (session_id, skill) pair, which incidentally removed a related lost-update race under concurrent Skill invocations. Verified fix by reproducing the exact traversal payload against the patched script and confirming nothing was written outside the intended directory.",
+      "tags": [
+        "security",
+        "path-traversal",
+        "hooks",
+        "code-review-caught"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-14T22:51:00.000Z"
+    },
+    {
+      "id": "bug-054",
+      "timestamp": "2026-07-15T01:12:48.286Z",
+      "error_message": "Missing error handling in unknown",
+      "file": "../Desktop/NHL Stats Project/.wolf/memory.md",
+      "root_cause": "Code path had no error handling \u2014 exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-15T01:12:48.286Z"
+    },
+    {
+      "id": "bug-055",
+      "timestamp": "2026-07-15T02:15:17.922Z",
+      "error_message": "Significant refactor of ",
+      "file": "docs/superpowers/specs/2026-07-14-token-optimization-design.md",
+      "root_cause": "11 lines replaced/restructured",
+      "fix": "Rewrote 34\u219241 lines (11 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-15T02:15:17.922Z"
+    },
+    {
+      "id": "bug-056",
+      "timestamp": "2026-07-15T02:29:41.600Z",
+      "error_message": "Significant refactor of ",
+      "file": "CLAUDE.md",
+      "root_cause": "25 lines replaced/restructured",
+      "fix": "Rewrote 31\u21929 lines (25 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-15T02:29:41.600Z"
+    },
+    {
+      "id": "bug-057",
+      "timestamp": "2026-07-16T01:34:38.174Z",
+      "error_message": "Significant refactor of ",
+      "file": ".superpowers/sdd/progress.md",
+      "root_cause": "5 lines replaced/restructured",
+      "fix": "Rewrote 7\u21928 lines (5 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-16T01:34:38.174Z"
+    },
+    {
+      "id": "bug-058",
+      "timestamp": "2026-07-16T01:40:34.659Z",
+      "error_message": "Significant refactor of ",
+      "file": "docs/superpowers/specs/2026-07-15-ponytail-bloat-tooling-design.md",
+      "root_cause": "4 lines replaced/restructured",
+      "fix": "Rewrote 8\u219214 lines (4 removed) | Also: - Fail-open on any error (missing file, unparseabl; inject anyway rather than silently drop the rulese",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-07-16T01:40:53.358Z"
+    },
+    {
+      "id": "bug-059",
+      "timestamp": "2026-07-16T01:46:24.649Z",
+      "error_message": "Significant refactor of ",
+      "file": "docs/superpowers/specs/2026-07-15-ponytail-bloat-tooling-design.md",
+      "root_cause": "6 lines replaced/restructured",
+      "fix": "Rewrote 9\u219213 lines (6 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-16T01:46:24.649Z"
+    },
+    {
+      "id": "bug-060",
+      "timestamp": "2026-07-16T01:54:03.809Z",
+      "error_message": "Incorrect value in code",
+      "file": ".claude/worktrees/ponytail-bloat-tooling/CLAUDE.md",
+      "root_cause": "Had `git add`",
+      "fix": "Changed to `skills/senior-engineering-partner`",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-16T01:54:03.809Z"
+    },
+    {
+      "id": "bug-061",
+      "timestamp": "2026-07-16T02:01:51.541Z",
+      "error_message": "Significant refactor of ",
+      "file": "../Desktop/NHL Stats Project/docs/superpowers/specs/2026-07-15-desktop-launcher-design.md",
+      "root_cause": "5 lines replaced/restructured",
+      "fix": "Rewrote 26\u219243 lines (5 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-16T02:01:51.541Z"
+    },
+    {
+      "id": "bug-062",
+      "timestamp": "2026-07-16T02:15:42.750Z",
+      "error_message": "Incorrect value in code",
+      "file": ".claude/worktrees/ponytail-bloat-tooling/scripts/wolf-debt-scan.test.js",
+      "root_cause": "Had '# wolf-debt: naive O(n^2) scan\\n'",
+      "fix": "Changed to `# ${MARKER} naive O(n^2) scan\\n`",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "js"
+      ],
+      "related_bugs": [],
+      "occurrences": 4,
+      "last_seen": "2026-07-16T02:16:25.445Z"
+    },
+    {
+      "id": "bug-063",
+      "timestamp": "2026-07-16T02:17:59.812Z",
+      "error_message": "Null/undefined access in ",
+      "file": ".claude/worktrees/blume-docs-site/docs-site/scripts/pull-skills.mjs",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "mjs"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-16T02:17:59.812Z"
+    },
+    {
+      "id": "bug-064",
+      "timestamp": "2026-07-16T02:24:02.175Z",
+      "error_message": "Missing error handling in uses",
+      "file": ".claude/worktrees/blume-docs-site/.superpowers/sdd/task-3-report.md",
+      "root_cause": "Code path had no error handling \u2014 exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-16T02:24:02.175Z"
+    },
+    {
+      "id": "bug-065",
+      "timestamp": "2026-07-17T02:28:59.433Z",
+      "error_message": "Missing error handling in unknown",
+      "file": "../Desktop/NHL Stats Project/.claude/worktrees/26-desktop-launcher/.wolf/buglog.json",
+      "root_cause": "Code path had no error handling \u2014 exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "json"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-17T02:28:59.433Z"
+    },
+    {
+      "id": "bug-066",
+      "timestamp": "2026-07-17T02:40:13.965Z",
+      "error_message": "Wrong return value",
+      "file": ".claude/worktrees/ponytail-bloat-tooling/scripts/wolf-debt-scan.js",
+      "root_cause": "Was returning: grepMarkers(cwd).map(parseLine).filter(Boolean);",
+      "fix": "Now returns: grepMarkers(cwd)",
+      "tags": [
+        "auto-detected",
+        "return-value",
+        "js"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-17T02:40:13.965Z"
+    },
+    {
+      "id": "bug-067",
+      "timestamp": "2026-07-16T22:35:00.000Z",
+      "error_message": "grep --exclude-dir=<basename> silently drops non-submodule content sharing that basename",
+      "file": "scripts/wolf-debt-scan.js",
+      "root_cause": "Submodule paths from .gitmodules were reduced to basename() before passing to grep --exclude-dir (needed because grep only matches single path components, not multi-segment paths). But basename matching is directory-name-anywhere-in-tree, not path-anchored \u2014 the superpowers submodule (basename \"superpowers\") also silently excluded the unrelated tracked directory docs/superpowers/, dropping real wolf-debt: markers from the scan.",
+      "fix": "Removed grep --exclude-dir delegation for submodules entirely (kept only for literal .git and node_modules). Added isUnderSubmodule() that filters parsed grep results in JS by full-path-prefix match against the raw submodule paths read from .gitmodules (file === p || file.startsWith(p + \"/\")), not basename.",
+      "tags": [
+        "auto-detected",
+        "logic-error",
+        "js",
+        "submodule",
+        "final-review-catch"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-16T22:35:00.000Z"
     }
   ]
 }
