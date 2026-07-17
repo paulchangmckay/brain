@@ -83,6 +83,28 @@ test('excludes a nested submodule path by its basename', () => {
   });
 });
 
+test('does not exclude a non-submodule directory that shares a basename with a submodule', () => {
+  withTmpRepo((cwd) => {
+    writeFileSync(
+      join(cwd, '.gitmodules'),
+      '[submodule "superpowers"]\n\tpath = superpowers\n\turl = https://example.com/superpowers.git\n',
+    );
+    mkdirSync(join(cwd, 'superpowers'));
+    writeFileSync(
+      join(cwd, 'superpowers', 'lib.js'),
+      `// ${MARKER} should be ignored, never\n`,
+    );
+    mkdirSync(join(cwd, 'docs', 'superpowers'), { recursive: true });
+    writeFileSync(
+      join(cwd, 'docs', 'superpowers', 'spec.md'),
+      `// ${MARKER} real one, real trigger\n`,
+    );
+    const markers = scanDebtMarkers(cwd);
+    assert.equal(markers.length, 1);
+    assert.match(markers[0].file, /docs\/superpowers\/spec\.md$/);
+  });
+});
+
 test('excludes .git and node_modules unconditionally', () => {
   withTmpRepo((cwd) => {
     mkdirSync(join(cwd, 'node_modules'));

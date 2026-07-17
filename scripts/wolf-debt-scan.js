@@ -4,7 +4,7 @@
 
 import { readFileSync, existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
-import { resolve, basename } from 'node:path';
+import { resolve } from 'node:path';
 
 function getSubmodulePaths(cwd) {
   const gitmodulesPath = resolve(cwd, '.gitmodules');
@@ -17,20 +17,28 @@ function getSubmodulePaths(cwd) {
   return paths;
 }
 
+function isUnderSubmodule(file, submodulePaths) {
+  const normalized = file.startsWith('./') ? file.slice(2) : file;
+  return submodulePaths.some(
+    (p) => normalized === p || normalized.startsWith(`${p}/`),
+  );
+}
+
 function grepMarkers(cwd) {
-  // grep's --exclude-dir=PATTERN matches a single directory-name component
-  // during recursion, not a multi-segment relative path. Reduce submodule
-  // paths (which may be nested, e.g. "skills/senior-engineering-partner")
-  // to their basename so grep actually excludes them. Tradeoff: two
-  // different submodules sharing a final path segment (e.g. "foo/vendor"
-  // and "bar/vendor") both get excluded by one --exclude-dir=vendor — this
-  // matches grep's own basename-matching semantics and is not solved further.
-  const submoduleDirs = getSubmodulePaths(cwd).map((p) => basename(p));
-  const excludeDirs = ['.git', 'node_modules', ...submoduleDirs];
+  // grep's --exclude-dir=PATTERN only matches a single directory-name
+  // component during recursion, not a multi-segment relative path — so it
+  // can't be used to exclude submodule paths directly (which may be nested,
+  // e.g. "skills/senior-engineering-partner", or collide on basename with
+  // an unrelated real directory, e.g. a "superpowers" submodule vs. a
+  // tracked "docs/superpowers/" directory). Only use --exclude-dir for the
+  // two fixed, well-known top-level names where basename matching is safe;
+  // submodule exclusion is instead applied afterward in JS, as a full-path
+  // prefix filter against the paths read from .gitmodules.
   const args = [
     '-rnE',
     '(#|//) ?wolf-debt:',
-    ...excludeDirs.map((d) => `--exclude-dir=${d}`),
+    '--exclude-dir=.git',
+    '--exclude-dir=node_modules',
     '.',
   ];
   try {
@@ -62,7 +70,11 @@ function parseLine(line) {
 }
 
 export function scanDebtMarkers(cwd) {
-  return grepMarkers(cwd).map(parseLine).filter(Boolean);
+  const submodulePaths = getSubmodulePaths(cwd);
+  return grepMarkers(cwd)
+    .map(parseLine)
+    .filter(Boolean)
+    .filter((m) => !isUnderSubmodule(m.file, submodulePaths));
 }
 
 export function formatReport(markers) {
