@@ -2,5 +2,9 @@
   "brain": {
     "command": "npx",
     "args": ["-y", "@modelcontextprotocol/server-filesystem", "/Users/paulmckay/brain"]
+  },
+  "playwright": {
+    "command": "npx",
+    "args": ["-y", "@playwright/mcp@latest"]
   }
 }

@@ -1,34 +1,49 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-07-13T04:15:58.815Z
-> Files: 509 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-07-17T04:08:04.032Z
+> Files: 532 tracked | Anatomy hits: 0 | Misses: 0
 
-## ../Desktop/NHL Stats Project/.claude/worktrees/buglog-bug002/.wolf/
+## ../Desktop/NHL Stats Project/
 
-- `buglog.json` (~698 tok)
-- `cerebrum.md` — Cerebrum (~3322 tok)
+- `app.py` — API router (~2496 tok)
 
-## ../Desktop/NHL Stats Project/.claude/worktrees/fix-search-suggestion-filter/.wolf/
+## ../Desktop/NHL Stats Project/.claude/worktrees/26-desktop-launcher/
 
-- `buglog.json` (~698 tok)
+- `.gitignore` — Git ignore rules (~38 tok)
+- `app.py` — API router (~2496 tok)
+
+## ../Desktop/NHL Stats Project/.claude/worktrees/26-desktop-launcher/.wolf/
+
+- `buglog.json` — Declares of (~2951 tok)
+- `cerebrum.md` — Cerebrum (~4592 tok)
+
+## ../Desktop/NHL Stats Project/.claude/worktrees/26-desktop-launcher/scripts/
+
+- `launch_app.applescript` (~116 tok)
+- `launch_app.sh` (~341 tok)
+
+## ../Desktop/NHL Stats Project/.wolf/
+
+- `buglog.json` — Declares of (~3466 tok)
+- `cerebrum.md` — Cerebrum (~6696 tok)
 
 ## ./
 
 - `.DS_Store` (~3275 tok)
-- `.gitignore` — Git ignore rules (~291 tok)
+- `.gitignore` — Git ignore rules (~298 tok)
 - `.gitleaks.toml` (~143 tok)
 - `.gitmodules` (~99 tok)
 - `.last-cleanup` (~7 tok)
 - `.last-update-result.json` (~46 tok)
 - `.shellcheckrc` — Companion enforcement for skills/senior-engineering-partner SKILL.md: (~81 tok)
-- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~3506 tok)
+- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~2975 tok)
 - `eslint.config.js` — ESLint flat configuration (~365 tok)
 - `history.jsonl` (~40 tok)
-- `mcp_servers.json` (~38 tok)
+- `mcp_servers.json` (~64 tok)
 - `mcp-needs-auth-cache.json` (~28 tok)
 - `package-lock.json` — npm lock file (~9251 tok)
 - `package.json` — Node.js package manifest (~106 tok)
-- `settings.json` (~2728 tok)
+- `settings.json` (~2848 tok)
 
 ## docs-site/
 
@@ -58,15 +73,556 @@
 
 ## .claude/
 
-- `settings.json` (~441 tok)
+- `settings.json` (~504 tok)
 
 ## .claude/rules/
 
 - `openwolf.md` (~375 tok)
 
+## .claude/worktrees/blume-docs-site/
+
+- `.gitignore` — Git ignore rules (~331 tok)
+- `.gitleaks.toml` (~143 tok)
+- `.gitmodules` (~99 tok)
+- `.shellcheckrc` — Companion enforcement for skills/senior-engineering-partner SKILL.md: (~81 tok)
+- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~2650 tok)
+- `eslint.config.js` — ESLint flat configuration (~365 tok)
+- `history.jsonl` (~40 tok)
+- `mcp_servers.json` (~38 tok)
+- `package-lock.json` — npm lock file (~9251 tok)
+- `package.json` — Node.js package manifest (~106 tok)
+- `settings.json` (~2848 tok)
+
+## .claude/worktrees/blume-docs-site/.claude/
+
+- `settings.json` (~504 tok)
+
+## .claude/worktrees/blume-docs-site/.claude/rules/
+
+- `openwolf.md` (~375 tok)
+
+## .claude/worktrees/blume-docs-site/.githooks/
+
+- `pre-commit` — Local pre-commit lint/secret-scan gate — enforcement counterpart to (~455 tok)
+
+## .claude/worktrees/blume-docs-site/.superpowers/sdd/
+
+- `.gitignore` — Git ignore rules (~1 tok)
+- `progress.md` (~45 tok)
+- `review-2424798..2e6f6b5.diff` — Review package: 24247984ef9bad5e71d7f95400ddc5046752652a..HEAD (~145039 tok)
+- `review-2e6f6b5..6fd4338.diff` — Review package: 2e6f6b5e312a527cdd6532e7b60eb546dec77dca..HEAD (~2775 tok)
+- `review-2e6f6b5..ad47055.diff` — Review package: 2e6f6b5e312a527cdd6532e7b60eb546dec77dca..HEAD (~3158 tok)
+- `task-1-brief.md` — ## Task 1: Install Blume globally (~136 tok)
+- `task-1-report.md` — Task 1: Install Blume Globally — Report (~493 tok)
+- `task-2-brief.md` — ## Task 2: Scaffold `docs-site/` with `blume init` and commit (~498 tok)
+- `task-2-report.md` — Task 2 Report: Scaffold docs-site with blume init and commit (~1474 tok)
+- `task-3-brief.md` — ## Task 3: Build and test the skills sync script (pure logic) (~3312 tok)
+- `task-3-report.md` — Task 3 Report: Build and test the skills sync script (pure logic) (~2278 tok)
+
+## .claude/worktrees/blume-docs-site/.understand-anything/
+
+- `.understandignore` — # **/*Test.java (~256 tok)
+- `fingerprints.json` (~116279 tok)
+- `knowledge-graph.json` (~127512 tok)
+- `meta.json` (~45 tok)
+
+## .claude/worktrees/blume-docs-site/.understand-anything/intermediate/
+
+- `scan-result.json` (~18834 tok)
+
+## .claude/worktrees/blume-docs-site/.wolf/
+
+- `anatomy.md` — anatomy.md (~8047 tok)
+- `memory.md` — Memory (~8064 tok)
+
+## .claude/worktrees/blume-docs-site/brand/
+
+- `brand-guide.md` — Paul McKay — Personal Brand Guide (~3689 tok)
+
+## .claude/worktrees/blume-docs-site/chrome/
+
+- `chrome-native-host` — Chrome native host wrapper script (~48 tok)
+
+## .claude/worktrees/blume-docs-site/docs-site/
+
+- `.gitignore` — Git ignore rules (~4 tok)
+- `blume.config.ts` (~68 tok)
+- `package-lock.json` — npm lock file (~150416 tok)
+- `package.json` — Node.js package manifest (~105 tok)
+- `README.md` — Project documentation (~765 tok)
+
+## .claude/worktrees/blume-docs-site/docs-site/content/
+
+- `index.mdx` — ~/.claude Reference (~286 tok)
+- `openwolf.md` (~244 tok)
+
+## .claude/worktrees/blume-docs-site/docs-site/content/overview/
+
+- `core-philosophy.md` (~131 tok)
+- `infrastructure-layer.md` (~239 tok)
+- `knowledge-graph.md` (~197 tok)
+- `new-project-bootstrap.md` (~134 tok)
+- `personal-knowledge-layer.md` (~202 tok)
+- `process-layer.md` (~214 tok)
+- `reference-pointers.md` (~121 tok)
+
+## .claude/worktrees/blume-docs-site/docs-site/scripts/
+
+- `pull-skills.mjs` — Exports parseFrontmatter, isDenylisted, findNestedMarkdownFiles, buildSkillPage, syncSkills (~995 tok)
+- `pull-skills.test.mjs` — content: makeTempDir (~2274 tok)
+
+## .claude/worktrees/blume-docs-site/docs/superpowers/plans/
+
+- `2026-07-15-blume-docs-site.md` — Blume Harness Docs Site Implementation Plan (~8528 tok)
+
+## .claude/worktrees/blume-docs-site/docs/superpowers/specs/
+
+- `2026-07-14-issue-backlog-cycle-design.md` — Issue Backlog Cycle — Design (~2685 tok)
+- `2026-07-14-token-optimization-design.md` — Token Optimization Pass — Design (~1979 tok)
+- `2026-07-15-blume-docs-site-design.md` — Incorporate Blume: local harness docs site (~2334 tok)
+- `2026-07-15-ponytail-bloat-tooling-design.md` — Bloat/debt tooling inspired by ponytail (~2804 tok)
+
+## .claude/worktrees/blume-docs-site/hooks/
+
+- `post-bash-truncate.js` — PostToolUse hook (Bash): warns when command output exceeds 15KB. (~294 tok)
+- `post-compact-anatomy.sh` — PostCompact hook: re-injects OpenWolf anatomy after context compaction. (~483 tok)
+- `post-skill-record.js` — PostToolUse hook (matcher: Skill): records each invoked skill as a (~364 tok)
+- `post-skill-record.test.js` — SCRIPT: run, runRaw, withTmpCwd, markerPath (~1193 tok)
+- `pre-compact-snapshot.sh` — PreCompact hook: stamps a compaction event in .wolf/cerebrum.md and reminds (~512 tok)
+- `pre-read-check.js` — PreToolUse hook: guards context window before file reads. (~1251 tok)
+- `pre-skill-gate.js` — PreToolUse hook (matcher: Skill): blocks invoking the writing-plans skill (~367 tok)
+- `pre-skill-gate.test.js` — SCRIPT: run, runRaw, withTmpCwd, seedMarker (~1084 tok)
+- `session-start.sh` — Unified SessionStart hook: Superpowers bootstrap + OpenWolf anatomy injection (~914 tok)
+
+## .claude/worktrees/blume-docs-site/skills/ba-agent/.claude-plugin/
+
+- `plugin.json` (~109 tok)
+
+## .claude/worktrees/blume-docs-site/skills/ba/
+
+- `SKILL.md` — ba (~6233 tok)
+
+## .claude/worktrees/blume-docs-site/skills/brand/
+
+- `SKILL.md` — Brand Skill — Paul McKay Personal Brand (~1167 tok)
+
+## .claude/worktrees/blume-docs-site/skills/brand/.claude-plugin/
+
+- `plugin.json` (~108 tok)
+
+## .claude/worktrees/blume-docs-site/skills/claude-infra-reference/
+
+- `SKILL.md` — Claude Infra Reference (~1575 tok)
+
+## .claude/worktrees/blume-docs-site/skills/codebase-design/
+
+- `DEEPENING.md` — Deepening (~638 tok)
+- `DESIGN-IT-TWICE.md` — Design It Twice (~673 tok)
+- `SKILL.md` — Codebase Design (~1520 tok)
+
+## .claude/worktrees/blume-docs-site/skills/dataviz/
+
+- `SKILL.md` — DataViz Skill — Executive Data Visualization (~1996 tok)
+
+## .claude/worktrees/blume-docs-site/skills/divergent-ideation/
+
+- `SKILL.md` — Divergent Ideation (~729 tok)
+
+## .claude/worktrees/blume-docs-site/skills/domain-modeling/
+
+- `ADR-FORMAT.md` — ADR Format (~686 tok)
+- `CONTEXT-FORMAT.md` — CONTEXT.md Format (~572 tok)
+- `SKILL.md` — Domain Modeling (~821 tok)
+
+## .claude/worktrees/blume-docs-site/skills/exec-dashboard/
+
+- `SKILL.md` — Executive Dashboard Skill (~5489 tok)
+
+## .claude/worktrees/blume-docs-site/skills/github-issue-first/
+
+- `SKILL.md` — GitHub Issue First (~1072 tok)
+
+## .claude/worktrees/blume-docs-site/skills/grill-me/
+
+- `SKILL.md` (~37 tok)
+
+## .claude/worktrees/blume-docs-site/skills/grilling/
+
+- `SKILL.md` (~167 tok)
+
+## .claude/worktrees/blume-docs-site/skills/handoff/
+
+- `SKILL.md` (~262 tok)
+
+## .claude/worktrees/blume-docs-site/skills/html-export/
+
+- `SKILL.md` — HTML Export Skill — Playwright Screenshot & PDF (~725 tok)
+
+## .claude/worktrees/blume-docs-site/skills/html-export/scripts/
+
+- `html-export.js` — Usage: node html-export.js <input.html|url> [output-dir] [--wait <ms>] (~652 tok)
+
+## .claude/worktrees/blume-docs-site/skills/issue-backlog-cycle/
+
+- `SKILL.md` — Issue Backlog Cycle (~1729 tok)
+
+## .claude/worktrees/blume-docs-site/skills/model-routing/
+
+- `SKILL.md` — Model Routing (~515 tok)
+
+## .claude/worktrees/blume-docs-site/skills/session-reflect/
+
+- `SKILL.md` — Session Reflect Skill (~834 tok)
+
+## .claude/worktrees/blume-docs-site/skills/teach/
+
+- `GLOSSARY-FORMAT.md` — GLOSSARY.md Format (~531 tok)
+- `LEARNING-RECORD-FORMAT.md` — Learning Record Format (~690 tok)
+- `MISSION-FORMAT.md` — MISSION.md Format (~386 tok)
+- `RESOURCES-FORMAT.md` — RESOURCES.md Format (~481 tok)
+- `SKILL.md` — Teaching Workspace (~2441 tok)
+
+## .claude/worktrees/blume-docs-site/skills/wolf-init/
+
+- `SKILL.md` — Wolf Init Skill (~504 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/
+
+- `.gitignore` — Git ignore rules (~298 tok)
+- `.gitleaks.toml` (~143 tok)
+- `.gitmodules` (~99 tok)
+- `.shellcheckrc` — Companion enforcement for skills/senior-engineering-partner SKILL.md: (~81 tok)
+- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~2784 tok)
+- `eslint.config.js` — ESLint flat configuration (~365 tok)
+- `history.jsonl` (~40 tok)
+- `mcp_servers.json` (~38 tok)
+- `package-lock.json` — npm lock file (~9251 tok)
+- `package.json` — Node.js package manifest (~106 tok)
+- `settings.json` (~2909 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/.claude/
+
+- `settings.json` (~504 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/.claude/rules/
+
+- `openwolf.md` (~375 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/.githooks/
+
+- `pre-commit` — Local pre-commit lint/secret-scan gate — enforcement counterpart to (~455 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/.superpowers/sdd/
+
+- `.gitignore` — Git ignore rules (~1 tok)
+- `progress.md` (~92 tok)
+- `review-0eee4fc..63ece4b.diff` — Review package: 0eee4fc996a4892be75cbfed701428668b3ce7fb..HEAD (~2068 tok)
+- `review-0eee4fc..8fb63f8.diff` — Review package: 0eee4fc996a4892be75cbfed701428668b3ce7fb..HEAD (~2555 tok)
+- `review-0eee4fc..cf53d08.diff` — Review package: 0eee4fc996a4892be75cbfed701428668b3ce7fb..HEAD (~1697 tok)
+- `review-63ece4b..8fb63f8.diff` — Review package: 63ece4b6a06191d1882efe71822511d7e5f7ac6e..HEAD (~1807 tok)
+- `review-89cc3cc..0eee4fc.diff` — Review package: 89cc3cc18b8b1e882e3a88c68c4a5c3f702dda20..HEAD (~1851 tok)
+- `review-8fb63f8..3666f8b.diff` — Review package: 8fb63f8bf896e2286ec02fb0352b5ba25fcef345..HEAD (~854 tok)
+- `review-8fb63f8..8b071c4.diff` — Review package: 8fb63f8bf896e2286ec02fb0352b5ba25fcef345..HEAD (~728 tok)
+- `review-submodule-958534f..8394779.diff` (~948 tok)
+- `task-1-brief.md` — ## Task 1: Document the `wolf-debt:` convention in CLAUDE.md (~555 tok)
+- `task-1-report.md` — Task 1 Report: Document the wolf-debt: Convention in CLAUDE.md (~468 tok)
+- `task-2-brief.md` — ## Task 2: `scripts/wolf-debt-scan.js` — deterministic marker scanner (TDD) (~1755 tok)
+- `task-2-report.md` — Task 2 Report: `scripts/wolf-debt-scan.js` — Deterministic Marker Scanner (~2651 tok)
+- `task-3-brief.md` — Scan (~678 tok)
+- `task-3-report.md` — Task 3 Implementation Report: `skills/debt-ledger/SKILL.md` (~809 tok)
+- `task-4-brief.md` — Tags (~691 tok)
+- `task-4-report.md` — Task 4 Report: `skills/bloat-audit/SKILL.md` (~445 tok)
+- `task-6-report.md` — Task 6 Report: `hooks/subagent-thin-harness.md` (~74 tok)
+- `task-7-report.md` — Task 7 Completion Report (~254 tok)
+- `task-8-report.md` — Task 8 Steps 1-3 Report (~248 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/.understand-anything/
+
+- `.understandignore` — # **/*Test.java (~256 tok)
+- `fingerprints.json` (~116279 tok)
+- `knowledge-graph.json` (~127512 tok)
+- `meta.json` (~45 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/.understand-anything/intermediate/
+
+- `scan-result.json` (~18834 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/brand/
+
+- `brand-guide.md` — Paul McKay — Personal Brand Guide (~3689 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/chrome/
+
+- `chrome-native-host` — Chrome native host wrapper script (~48 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/docs/superpowers/plans/
+
+- `2026-07-15-ponytail-bloat-tooling.md` — Ponytail-Inspired Bloat/Debt Tooling Implementation Plan (~7398 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/docs/superpowers/specs/
+
+- `2026-07-14-issue-backlog-cycle-design.md` — Issue Backlog Cycle — Design (~2685 tok)
+- `2026-07-14-token-optimization-design.md` — Token Optimization Pass — Design (~1979 tok)
+- `2026-07-15-blume-docs-site-design.md` — Incorporate Blume: local harness docs site (~1835 tok)
+- `2026-07-15-ponytail-bloat-tooling-design.md` — Bloat/debt tooling inspired by ponytail (~2804 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/hooks/
+
+- `post-bash-truncate.js` — PostToolUse hook (Bash): warns when command output exceeds 15KB. (~294 tok)
+- `post-compact-anatomy.sh` — PostCompact hook: re-injects OpenWolf anatomy after context compaction. (~483 tok)
+- `post-skill-record.js` — PostToolUse hook (matcher: Skill): records each invoked skill as a (~364 tok)
+- `post-skill-record.test.js` — SCRIPT: run, runRaw, withTmpCwd, markerPath (~1193 tok)
+- `pre-compact-snapshot.sh` — PreCompact hook: stamps a compaction event in .wolf/cerebrum.md and reminds (~512 tok)
+- `pre-read-check.js` — PreToolUse hook: guards context window before file reads. (~1251 tok)
+- `pre-skill-gate.js` — PreToolUse hook (matcher: Skill): blocks invoking the writing-plans skill (~367 tok)
+- `pre-skill-gate.test.js` — SCRIPT: run, runRaw, withTmpCwd, seedMarker (~1084 tok)
+- `session-start.sh` — Unified SessionStart hook: Superpowers bootstrap + OpenWolf anatomy injection (~914 tok)
+- `subagent-thin-harness.js` — SubagentStart hook: injects a short thin-harness digest into every (~520 tok)
+- `subagent-thin-harness.md` — Declares with (~197 tok)
+- `subagent-thin-harness.test.js` — SCRIPT: run, withTmpDigest (~775 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/scripts/
+
+- `wolf-debt-scan.js` — Deterministic scanner for wolf-debt: markers, used by the debt-ledger skill. (~957 tok)
+- `wolf-debt-scan.test.js` — Split so this test file's own source never contains the literal, (~1367 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/skills/ba-agent/.claude-plugin/
+
+- `plugin.json` (~109 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/skills/ba/
+
+- `SKILL.md` — ba (~6233 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/skills/bloat-audit/
+
+- `SKILL.md` — Tags (~553 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/skills/brand/
+
+- `SKILL.md` — Brand Skill — Paul McKay Personal Brand (~1167 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/skills/brand/.claude-plugin/
+
+- `plugin.json` (~108 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/skills/claude-infra-reference/
+
+- `SKILL.md` — Claude Infra Reference (~1575 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/skills/codebase-design/
+
+- `DEEPENING.md` — Deepening (~638 tok)
+- `DESIGN-IT-TWICE.md` — Design It Twice (~673 tok)
+- `SKILL.md` — Codebase Design (~1520 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/skills/dataviz/
+
+- `SKILL.md` — DataViz Skill — Executive Data Visualization (~1996 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/skills/debt-ledger/
+
+- `SKILL.md` — Scan (~294 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/skills/divergent-ideation/
+
+- `SKILL.md` — Divergent Ideation (~729 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/skills/domain-modeling/
+
+- `ADR-FORMAT.md` — ADR Format (~686 tok)
+- `CONTEXT-FORMAT.md` — CONTEXT.md Format (~572 tok)
+- `SKILL.md` — Domain Modeling (~821 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/skills/exec-dashboard/
+
+- `SKILL.md` — Executive Dashboard Skill (~5489 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/skills/github-issue-first/
+
+- `SKILL.md` — GitHub Issue First (~1072 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/skills/grill-me/
+
+- `SKILL.md` (~37 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/skills/grilling/
+
+- `SKILL.md` (~167 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/skills/handoff/
+
+- `SKILL.md` (~262 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/skills/html-export/
+
+- `SKILL.md` — HTML Export Skill — Playwright Screenshot & PDF (~725 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/skills/html-export/scripts/
+
+- `html-export.js` — Usage: node html-export.js <input.html|url> [output-dir] [--wait <ms>] (~652 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/skills/issue-backlog-cycle/
+
+- `SKILL.md` — Issue Backlog Cycle (~1729 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/skills/model-routing/
+
+- `SKILL.md` — Model Routing (~515 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/skills/senior-engineering-partner/
+
+- `.gitignore` — Git ignore rules (~110 tok)
+- `.release-please-manifest.json` (~6 tok)
+- `CHANGELOG.md` — Change log (~5597 tok)
+- `CODE_OF_CONDUCT.md` — Contributor Covenant Code of Conduct (~1374 tok)
+- `CONTRIBUTING.md` — Contributing (~2165 tok)
+- `LICENSE` — Project license (~3029 tok)
+- `MAINTAINERS.md` — Maintainers (~977 tok)
+- `NOTICE` (~150 tok)
+- `README.md` — Project documentation (~4517 tok)
+- `release-please-config.json` (~112 tok)
+- `SECURITY.md` — Security Policy (~367 tok)
+- `SKILL.md` — ROLE AND CONTEXT (~21949 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/skills/senior-engineering-partner/.github/
+
+- `CODEOWNERS` — CODEOWNERS — documents who owns each part of the skill, and (when branch protection's (~243 tok)
+- `dependabot.yml` (~109 tok)
+- `pull_request_template.md` — What changed (~318 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/skills/senior-engineering-partner/.github/ISSUE_TEMPLATE/
+
+- `bug_report.yml` (~495 tok)
+- `config.yml` (~149 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/skills/senior-engineering-partner/.github/workflows/
+
+- `docs-render.yml` — CI: docs-render (~237 tok)
+- `leakage-guard.yml` — CI: leakage-guard (~167 tok)
+- `release-please.yml` — CI: release-please (~423 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/skills/senior-engineering-partner/evals/
+
+- `README.md` — Project documentation (~828 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/skills/senior-engineering-partner/evals/scenarios/
+
+- `adr-must-name-overridden-discipline.json` (~393 tok)
+- `adversarial-review-green-but-insufficient.json` (~778 tok)
+- `apps-script-least-privilege-scope.json` — Declares KEY (~450 tok)
+- `bash-injection-eval.json` (~232 tok)
+- `csv-formula-injection-export.json` (~337 tok)
+- `debug-root-cause-not-symptom.json` (~284 tok)
+- `degrade-dont-crash-on-dependency-failure.json` (~368 tok)
+- `dependency-manifest-drift.json` (~264 tok)
+- `fail-closed-not-degraded-success.json` (~339 tok)
+- `fda-compiled-launcher.json` (~282 tok)
+- `graceful-shutdown-sigterm.json` (~309 tok)
+- `immutable-backup-not-just-versioning.json` (~362 tok)
+- `log-injection-sanitize.json` (~371 tok)
+- `preserve-input-on-failed-submit.json` (~227 tok)
+- `restore-drill-required.json` (~344 tok)
+- `rls-cross-tenant-deny.json` (~272 tok)
+- `rls-superuser-parity-gate.json` (~726 tok)
+- `sbom-provenance-on-release.json` (~351 tok)
+- `secrets-never-hardcoded.json` (~242 tok)
+- `spec-first-gate.json` (~248 tok)
+- `squash-not-rebase-merge.json` (~208 tok)
+- `stale-diagram-on-behavior-change.json` (~239 tok)
+- `standards-authoring-timeless-enforceable.json` (~454 tok)
+- `stateless-for-horizontal-scale.json` (~380 tok)
+- `tdd-regression-red-first.json` — Declares contract (~270 tok)
+- `typecheck-gate-required.json` — Declares checking (~340 tok)
+- `yagni-no-speculative-abstraction.json` (~364 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/skills/senior-engineering-partner/references/
+
+- `audit-report-format.md` — Audit Report Format (the `AUDIT:` mode deliverable) (~1274 tok)
+- `business-continuity.md` — Business Continuity (BC) (~1612 tok)
+- `caching.md` — Caching Strategy (~1767 tok)
+- `compliance.md` — Security & Compliance Frameworks (NIST CSF 2.0 + SSDF, OWASP, SOC 2, Well-Architected) (~7076 tok)
+- `containers-and-orchestration.md` — Docker & Kubernetes Standards (~5107 tok)
+- `data-protection.md` — Data Protection & Privacy (GDPR / UK-GDPR / CCPA) (~4373 tok)
+- `databases.md` — Database Standards (Postgres / Supabase, BigQuery, SQLite) (~6743 tok)
+- `debugging.md` — Systematic Debugging (root cause, not symptom) (~2629 tok)
+- `dev-environment-isolation.md` — Dev-Environment Isolation & Sandboxing (~3779 tok)
+- `dev-environments.md` — IDE & Dev-Environment Standards (VS Code, Xcode, Google Antigravity) (~4328 tok)
+- `diagrams-and-visual-docs.md` — Diagrams & Visual Documentation (~4013 tok)
+- `disaster-recovery.md` — Disaster Recovery, Backups & Restore Drills (~3463 tok)
+- `engineering-workflow.md` — Engineering Workflow (spec → plan → build → verify) (~4178 tok)
+- `foss-adoption.md` — FOSS Adoption: The "Secure AND Tested" Gate (~2017 tok)
+- `frontend-web-security.md` — Frontend / Web-App Security (~2237 tok)
+- `gcp.md` — Google Cloud Platform Standards (~6279 tok)
+- `github-actions.md` — GitHub Actions CI/CD Standards (~3514 tok)
+- `github-teams.md` — GitHub Team Workflows (solo + agents -> human team) (~3750 tok)
+- `google-apps-script.md` — Google Apps Script Discipline (~3609 tok)
+- `iac-terraform.md` — Infrastructure as Code (Terraform on GCP) (~4826 tok)
+- `javascript-and-typescript.md` — JavaScript & TypeScript Standards (~3533 tok)
+- `leakage-denylist.local.template` — leakage-denylist.local.template — copy to references/leakage-denylist.local (which is (~435 tok)
+- `local-and-agentic-ai-tools.md` — Local & Agentic AI Tooling (~2969 tok)
+- `logging-and-monitoring.md` — Log Location, Rotation & Unattended-Job Monitoring (~2018 tok)
+- `macos-app-bundles.md` — macOS App Bundle Standards (~1711 tok)
+- `multi-agent-coordination.md` — Multi-Agent & Shared-Repo Coordination (~2016 tok)
+- `my-environment.template.md` — My Environment Profile (template) (~1054 tok)
+- `observability-and-incident-response.md` — Observability & Incident Response (SRE) (~5596 tok)
+- `package-managers.md` — Package Manager Standards (Homebrew, npm, mas) (~4138 tok)
+- `python-typing-and-packaging.md` — Python Typing & Single-File→Package Layout (~816 tok)
+- `python-web-apis.md` — Python Web API Standards (FastAPI / Uvicorn / psycopg) (~3288 tok)
+- `resilience-engineering.md` — Resilience Engineering (designing software to degrade, not die) (~2727 tok)
+- `scalability-and-system-design.md` — Scalability & System Design (the "-ilities") (~2086 tok)
+- `secrets-and-key-rotation.md` — Secrets & Key Rotation Lifecycle (~2577 tok)
+- `secure-data-processing.md` — Secure Data Processing for Commercial / Multi-Tenant Apps (~3425 tok)
+- `standards-authoring.md` — Standards Authoring: distill sprawling conventions into checkable rules (~1441 tok)
+- `testing-single-file.md` — Testing strategy for single-file scripts with module-level side effects (~427 tok)
+- `testing.md` — Testing Strategy (strict, enforced gates) (~4701 tok)
+- `threat-modeling-and-api-design.md` — Threat Modeling & API Design (~3548 tok)
+- `ui-design-and-accessibility.md` — UI Design & Accessibility (~3308 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/skills/senior-engineering-partner/scripts/
+
+- `audit.sh` — audit.sh — manifest-level dependency audit gate (the SKILL.md "Dependency-audit gate"). (~659 tok)
+- `leakage-guard.sh` — leakage-guard.sh — fail if any environment-specific / personal identifier leaks into the (~1308 tok)
+- `render-diagrams.sh` — render-diagrams.sh — render-check every ```mermaid block in the given Markdown files. (~741 tok)
+- `self-review.md` — Self-Review Checklist (verify before done) (~743 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/skills/session-reflect/
+
+- `SKILL.md` — Session Reflect Skill (~834 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/skills/teach/
+
+- `GLOSSARY-FORMAT.md` — GLOSSARY.md Format (~531 tok)
+- `LEARNING-RECORD-FORMAT.md` — Learning Record Format (~690 tok)
+- `MISSION-FORMAT.md` — MISSION.md Format (~386 tok)
+- `RESOURCES-FORMAT.md` — RESOURCES.md Format (~481 tok)
+- `SKILL.md` — Teaching Workspace (~2441 tok)
+
+## .claude/worktrees/ponytail-bloat-tooling/skills/wolf-init/
+
+- `SKILL.md` — Wolf Init Skill (~504 tok)
+
 ## .githooks/
 
 - `pre-commit` — Local pre-commit lint/secret-scan gate — enforcement counterpart to (~455 tok)
+
+## .superpowers/sdd/
+
+- `.gitignore` — Git ignore rules (~1 tok)
+- `progress.md` — SDD Progress Ledger — Token Optimization Pass (~878 tok)
+- `review-083357b..66cf457.diff` — Review package: 083357b2abca8ba27d2adf2311eeaf01daf83b0f..HEAD (~245 tok)
+- `review-3da0b9b..66cf457.diff` — Review package: 3da0b9b8a6ba960298d73cffa4beb892a0ed3686..HEAD (~8995 tok)
+- `review-3da0b9b..dba8303.diff` — Review package: 3da0b9b8a6ba960298d73cffa4beb892a0ed3686..HEAD (~1827 tok)
+- `review-bd77286..6564e28.diff` — Review package: bd77286b426cdbd1d0f78f51006b908b0e106ac9..HEAD (~3980 tok)
+- `review-dba8303..bd77286.diff` — Review package: dba83039bbb6b562dba43c032702f1620826590a..HEAD (~681 tok)
+- `task-1-brief.md` — Task 1: Create `claude-infra-reference` skill with moved content (~1907 tok)
+- `task-1-report.md` — Task 1 Report: Create `claude-infra-reference` Skill (~308 tok)
+- `task-2-brief.md` — Task 2: Create `model-routing` skill (~776 tok)
+- `task-2-report.md` — Task 2 Report: Create `model-routing` skill (~263 tok)
+- `task-3-brief.md` — Task 3: Trim CLAUDE.md — remove moved sections, condense Section 3 (+7), add pointers and model-routing bullet (~2979 tok)
+- `task-3-report.md` — Task 3 Report: Trim CLAUDE.md (~928 tok)
+- `task-5-brief.md` — Task 5: Add global permissions.deny (~1259 tok)
+- `task-5-report.md` — Task 5 Report: Add global permissions.deny (~375 tok)
 
 ## .understand-anything/
 
@@ -231,11 +787,11 @@
 
 ## backups/
 
-- `.claude.json.backup.1783914628953` — Declares breakdown (~10602 tok)
-- `.claude.json.backup.1783914735812` — Declares breakdown (~10602 tok)
-- `.claude.json.backup.1783914827057` — Declares breakdown (~10602 tok)
-- `.claude.json.backup.1783914893775` — Declares breakdown (~10602 tok)
-- `.claude.json.backup.1783915160532` — Declares breakdown (~10602 tok)
+- `.claude.json.backup.1784188709596` (~11354 tok)
+- `.claude.json.backup.1784197550206` (~11363 tok)
+- `.claude.json.backup.1784212127798` (~11363 tok)
+- `.claude.json.backup.1784219447453` — Declares breakdown (~11394 tok)
+- `.claude.json.backup.1784234033579` (~11344 tok)
 
 ## brand/
 
@@ -248,6 +804,21 @@
 ## chrome/
 
 - `chrome-native-host` — Chrome native host wrapper script (~48 tok)
+
+## docs/superpowers/plans/
+
+- `2026-07-14-claude-md-token-optimization.md` — CLAUDE.md Token Optimization (Phase 1: ~/.claude) Implementation Plan (~8421 tok)
+- `2026-07-14-issue-backlog-cycle.md` — Issue Backlog Cycle Implementation Plan (~5622 tok)
+- `2026-07-14-nhl-stats-claudeignore.md` — NHL Stats Project Token Optimization (Phase 2) Implementation Plan (~1770 tok)
+- `2026-07-15-blume-docs-site.md` — Blume Harness Docs Site Implementation Plan (~8528 tok)
+- `2026-07-15-ponytail-bloat-tooling.md` — Ponytail-Inspired Bloat/Debt Tooling Implementation Plan (~7398 tok)
+
+## docs/superpowers/specs/
+
+- `2026-07-14-issue-backlog-cycle-design.md` — Issue Backlog Cycle — Design (~2685 tok)
+- `2026-07-14-token-optimization-design.md` — Token Optimization Pass — Design (~1979 tok)
+- `2026-07-15-blume-docs-site-design.md` — Incorporate Blume: local harness docs site (~2334 tok)
+- `2026-07-15-ponytail-bloat-tooling-design.md` — Bloat/debt tooling inspired by ponytail (~2804 tok)
 
 ## file-history/
 
@@ -283,6 +854,10 @@
 - `c47760ed6c9ee802@v4` — System Instructions: Thin Harness, Fat Skills Environment (~796 tok)
 - `c47871093baa7d78@v2` — Unified SessionStart hook: Superpowers bootstrap + OpenWolf anatomy injection (~562 tok)
 - `dad9aa259a03aa1c@v2` — PreToolUse hook: checks anatomy.md before Claude opens a file. (~535 tok)
+
+## file-history/1f98b20d-1f87-4772-950e-6fafcf9cd926/
+
+- `125ff2eaebbf22c1@v1` — Cerebrum (~4620 tok)
 
 ## file-history/21639edb-2d3b-4c98-8cf5-8254e54045f7/
 
@@ -342,351 +917,3 @@
 - `31ccfafb5247a916@v2` (~2208 tok)
 - `31ccfafb5247a916@v3` (~2010 tok)
 - `3cd8353c2c9425ee@v1` — Cerebrum (~3699 tok)
-- `3cd8353c2c9425ee@v2` — Cerebrum (~4195 tok)
-- `3cd8353c2c9425ee@v3` — Cerebrum (~4781 tok)
-- `7251b5fcb44ea790@v2` (~428 tok)
-- `928596402335cdbb@v1` — Memory Index (~81 tok)
-- `928596402335cdbb@v2` — Memory Index (~119 tok)
-- `957dcfb080f1315b@v2` — Paul McKay — Personal Brand Guide (~2876 tok)
-- `ab0ef73e6d105444@v1` — BA Agent — Output Workspace (~231 tok)
-- `ab0ef73e6d105444@v2` — BA Agent — Output Workspace (~422 tok)
-- `b97263653feeca91@v2` (~100 tok)
-- `c47760ed6c9ee802@v1` — System Instructions: Thin Harness, Fat Skills Environment (~1225 tok)
-- `c47760ed6c9ee802@v2` — System Instructions: Thin Harness, Fat Skills Environment (~1259 tok)
-- `e3b3b4b0ecb389a6@v2` — Plan: Personal Brand Integration into ~/.claude (~1727 tok)
-- `e3b3b4b0ecb389a6@v3` — Plan: Wire Brand Skill into ba-agent Output Pipeline (~1530 tok)
-- `e3b3b4b0ecb389a6@v4` — Plan: Eliminate Brand Drift Risk in ba-agent (~1702 tok)
-- `f3c5ee297a6e8452@v2` — Declares identified (~972 tok)
-
-## file-history/3be5a588-bae6-4972-b0de-d5c57a13a44b/
-
-- `3ad63b0d8ec00de8@v2` — Philosophy — Read This First (~981 tok)
-- `3cd8353c2c9425ee@v1` — Cerebrum (~9867 tok)
-- `5639455d7b004b8c@v2` — Target ~/.claude structure — Paul McKay's optimized implementation (~2818 tok)
-- `596ca8cc7e05db98@v2` — Plan: Migrate Optimized Claude Code Setup to Other Laptop (~1740 tok)
-- `596ca8cc7e05db98@v3` — )` pattern using `<USERNAME>` (~1437 tok)
-- `596ca8cc7e05db98@v4` — )` pattern using `<USERNAME>` (~1850 tok)
-- `596ca8cc7e05db98@v5` — )` pattern using `<USERNAME>` (~2171 tok)
-- `596ca8cc7e05db98@v6` — Plan: Write Philosophy Alignment Document for Transfer Bundle (~856 tok)
-- `596ca8cc7e05db98@v7` — Plan: Complete the Transfer Bundle for Full Philosophy Alignment (~1136 tok)
-- `7f22d1fc51db17e9@v2` — OpenWolf Orientation — How anatomy.md and memory.md Work (~1080 tok)
-- `7f22d1fc51db17e9@v3` — OpenWolf Orientation — How anatomy.md and memory.md Work (~1364 tok)
-- `e0165af5893adb49@v2` — Claude Code Self-Optimization Spec (~14015 tok)
-
-## file-history/408b78c6-fb3a-4dfe-a186-1826cdc6f15f/
-
-- `3cd8353c2c9425ee@v1` — Cerebrum (~1862 tok)
-- `3cd8353c2c9425ee@v2` — Cerebrum (~2512 tok)
-- `41428afe2173d7f7@v1` — # **/*Test.java (~179 tok)
-- `41428afe2173d7f7@v2` — # **/*Test.java (~251 tok)
-- `41428afe2173d7f7@v3` — # **/*Test.java (~256 tok)
-- `4b7bb86291ffbad9@v2` — Plan: Initialize ~/.claude as a Git Repository (~1299 tok)
-- `c0f499d9fd74f710@v2` — Runtime / ephemeral Claude Code data (~282 tok)
-- `c47760ed6c9ee802@v1` — System Instructions: Thin Harness, Fat Skills Environment (~893 tok)
-- `c47760ed6c9ee802@v2` — System Instructions: Thin Harness, Fat Skills Environment (~1011 tok)
-
-## file-history/4965f475-1991-4dcc-a80c-d1afba31887f/
-
-- `125ff2eaebbf22c1@v1` — Cerebrum (~3215 tok)
-
-## file-history/4f278f88-b54a-4a04-a39f-2b0d2544498b/
-
-- `094596fcf6c93f38@v2` — Gap Analysis: Web Visualization & Executive Presentation Stack (~1713 tok)
-- `094596fcf6c93f38@v3` — BA Agent Enhancement: Wire dataviz / html-export / exec-dashboard (~1723 tok)
-- `094596fcf6c93f38@v4` — BA Agent: Discovery Mode & Active BA Intelligence (~2654 tok)
-- `094596fcf6c93f38@v5` — BA Agent Enhancement Plan — Tiers 1, 2, and 4 (~4315 tok)
-- `1139bd2dd98f75dc@v2` — BRAND_COLORS: KPICard (~2130 tok)
-- `1185533a49c9b38c@v2` — Skill: To-Be Process Visualisation (~903 tok)
-- `1a6f662cb8176cdd@v2` — Skill: RACI Matrix (~878 tok)
-- `1c860a2ce3b8fea4@v2` — Skill: User Stories (~1124 tok)
-- `31a2a3eee90333eb@v2` (~3761 tok)
-- `31a2a3eee90333eb@v3` (~5368 tok)
-- `31a2a3eee90333eb@v4` (~6648 tok)
-- `36e0c7aeb2f8bd8a@v2` — Usage: node html-export.js <input.html|url> [output-dir] [--wait <ms>] (~609 tok)
-- `3cd8353c2c9425ee@v1` — Cerebrum (~7307 tok)
-- `3cd8353c2c9425ee@v2` — Cerebrum (~7886 tok)
-- `3cd8353c2c9425ee@v3` — Cerebrum (~8496 tok)
-- `3cd8353c2c9425ee@v4` — Cerebrum (~9055 tok)
-- `53233320e4c86e86@v2` (~773 tok)
-- `5ae2b520802d8605@v1` — Skill: Process Visualisation (~646 tok)
-- `5ae2b520802d8605@v2` — Skill: Process Visualisation (~1032 tok)
-- `6cbfe9b7a117b79e@v1` — Skill: PNG Rendering + Docs Manifest (~1071 tok)
-- `6cbfe9b7a117b79e@v2` — Skill: PNG Rendering + Docs Manifest (~1202 tok)
-- `78b1d082a922114a@v2` — Skill: Risk Register (~1316 tok)
-- `87ede538cbe63069@v2` — Skill: Assumption Log (~1043 tok)
-- `97d5da55a93bc18e@v2` — Skill: Transformation Plan (~1246 tok)
-- `ad63495c918b7775@v1` — Skill: BA Package Assembly (~1291 tok)
-- `ad63495c918b7775@v2` — Skill: BA Package Assembly (~1782 tok)
-- `ad63495c918b7775@v3` — Skill: BA Package Assembly (~1782 tok)
-- `b81a39a996be463e@v2` — Exports App (~3423 tok)
-- `b81a39a996be463e@v3` — Exports App (~5855 tok)
-- `c47760ed6c9ee802@v1` — System Instructions: Thin Harness, Fat Skills Environment (~1373 tok)
-- `c47760ed6c9ee802@v2` — System Instructions: Thin Harness, Fat Skills Environment (~1456 tok)
-- `c47760ed6c9ee802@v3` — System Instructions: Thin Harness, Fat Skills Environment (~1499 tok)
-- `c9a05f8ac3aac240@v1` — Skill: System Integration Visualisation (~682 tok)
-- `c9a05f8ac3aac240@v2` — Skill: System Integration Visualisation (~998 tok)
-- `d2b79c9d8d29b1e5@v1` (~2485 tok)
-- `db3a81fe58469d8d@v1` — Skill: Planner + Observe (~1323 tok)
-- `db3a81fe58469d8d@v2` — Skill: Planner + Observe (~2174 tok)
-- `ee221a11d5bc534d@v1` — Skill: Brief Normaliser (~1605 tok)
-- `ee221a11d5bc534d@v2` — Skill: Brief Normaliser (~1784 tok)
-- `ee221a11d5bc534d@v3` — Skill: Brief Normaliser (~1784 tok)
-
-## file-history/52aeb251-6000-4916-8faa-64f152450b22/
-
-- `12d818ec9eb9e1d6@v2` — SOP: Inbound Lead Routing (~805 tok)
-- `328ad490b06fa4d4@v1` (~9 tok)
-- `328ad490b06fa4d4@v2` — Declares f (~433 tok)
-- `5165755be57136f6@v2` — BA Package: Inbound Lead Routing (~186 tok)
-- `8ade2365d0ae338a@v2` — Data Mapping: Inbound Lead Routing (~482 tok)
-- `9614ce7b71896603@v2` (~282 tok)
-- `9d0dc81043b58bf7@v2` — # BA Agent session — 2026-06-26 (~126 tok)
-- `ab0ef73e6d105444@v1` — BA Agent — Output Workspace (~116 tok)
-- `acdbe33f6caf465a@v1` — Usage: bash scripts/validate-mermaid.sh outputs/process.mmd (~168 tok)
-- `acdbe33f6caf465a@v2` — Usage: bash scripts/validate-mermaid.sh outputs/process.mmd (~258 tok)
-- `adae898aa06d995a@v2` — BA Package: Inbound Lead Routing (~716 tok)
-- `cd3231dbf842b4dc@v2` (~158 tok)
-- `ddb8a19d787053b3@v2` — Observe Log (~247 tok)
-- `e0d6f2a63a3ac4d3@v1` — Cerebrum (~165 tok)
-- `e0d6f2a63a3ac4d3@v2` — Cerebrum (~419 tok)
-- `fa46906b0cd23150@v2` (~219 tok)
-
-## file-history/53534f20-6dc4-4b37-857d-b89bf059febb/
-
-- `86bdc14cf9789346@v2` — CLAUDE.md (~1179 tok)
-- `8c741517e4792813@v1` — Exports ChatInterface (~366 tok)
-
-## file-history/54b7bf06-2f76-471a-a6d0-ff6eb281a1cf/
-
-- `0f2349ea71102bdb@v2` — Should ~/.claude have linting? — Recommendation (no changes made) (~736 tok)
-- `0f2349ea71102bdb@v3` — /*.js", ".wolf/hooks/**/*.js"]`, ignore `skills/**`, `superpowers/**`, `langsmith-plugin/**`, `node_modules/**`. Explicit rule list (not `security.... (~1662 tok)
-- `1a3eeb9a006e8d47@v2` — ", "skills/**", "superpowers/**", "langsmith-plugin/**"] }, (~340 tok)
-- `27c5910828ff9f75@v1` — System Instructions: Thin Harness, Fat Skills Environment (~1754 tok)
-- `3cd8353c2c9425ee@v1` — Cerebrum (~13762 tok)
-- `5b9708948928c2cd@v2` — Local pre-commit lint/secret-scan gate — enforcement counterpart to (~455 tok)
-- `5e554bbefd75b7f9@v1` — Runtime / ephemeral Claude Code data (~282 tok)
-- `b45c8bd906e21647@v1` (~4787 tok)
-- `b45c8bd906e21647@v2` (~5064 tok)
-- `c0f499d9fd74f710@v2` — Runtime / ephemeral Claude Code data (~291 tok)
-- `c47760ed6c9ee802@v2` — System Instructions: Thin Harness, Fat Skills Environment (~1914 tok)
-- `dd66786fec23ae5e@v2` — Companion enforcement for skills/senior-engineering-partner SKILL.md: (~81 tok)
-- `f44d1f7616d1e400@v2` (~99 tok)
-- `f98895d076f3d96c@v2` (~133 tok)
-
-## file-history/562e3f21-003b-4d74-bf87-198b5ffd4068/
-
-- `27406d450c0669f9@v2` — Advanced Player Filters Implementation Plan (~12508 tok)
-- `e659faf60bd1e848@v2` — Advanced Player Filters — Design (~1695 tok)
-- `e659faf60bd1e848@v3` — Advanced Player Filters — Design (~2637 tok)
-- `edb6f5e5e3e9fd24@v1` (~31 tok)
-- `edb6f5e5e3e9fd24@v2` (~36 tok)
-
-## file-history/591a8d74-0ae7-4375-a5f5-e90b445841f9/
-
-- `462e620384c2d0a2@v1` (~424 tok)
-- `c15c82adf8165050@v1` (~942 tok)
-- `c47871093baa7d78@v1` — Unified SessionStart hook: Superpowers bootstrap + OpenWolf anatomy injection (~562 tok)
-- `cfa72bc9a8bdc140@v1` (~424 tok)
-- `dad9aa259a03aa1c@v1` — PreToolUse hook: checks anatomy.md before Claude opens a file. (~535 tok)
-- `e5c8bc511ee2bf09@v1` (~424 tok)
-
-## file-history/5f9a9884-b8a1-4a0a-a946-065d557c3f54/
-
-- `3cd8353c2c9425ee@v1` — Cerebrum (~14613 tok)
-- `3cd8353c2c9425ee@v2` — Cerebrum (~15049 tok)
-- `7b19033400ad0ebf@v1` — Memory (~4350 tok)
-- `7b19033400ad0ebf@v2` — Memory (~3491 tok)
-- `7e44fc2c881d5570@v2` — Memory (~1192 tok)
-- `c47760ed6c9ee802@v1` — System Instructions: Thin Harness, Fat Skills Environment (~3120 tok)
-- `c47760ed6c9ee802@v2` — System Instructions: Thin Harness, Fat Skills Environment (~3234 tok)
-- `e85c4c3c6f10ee25@v2` — Plan: Address uncommitted-state and memory-hygiene concerns in ~/.claude (~1386 tok)
-
-## file-history/60900757-643b-4980-842b-d7faa8c4a7b4/
-
-- `ab0ef73e6d105444@v1` — OpenWolf (~992 tok)
-- `ab0ef73e6d105444@v2` — BA Agent — Output Workspace (~116 tok)
-
-## file-history/66e23b84-3bba-42ed-8cb1-f5693abac963/
-
-- `010456bb8242a6a8@v2` — sel: render, esc (~2238 tok)
-- `010456bb8242a6a8@v3` — BIO_COLS: activeCols, showLoading, loadStats + 3 more (~3913 tok)
-- `010456bb8242a6a8@v4` — BIO_COLS: activeCols, showLoading, loadStats + 3 more (~4007 tok)
-- `010456bb8242a6a8@v5` — Declares SEASONS (~7366 tok)
-- `0ea690425da85a83@v2` (~1191 tok)
-- `0ea690425da85a83@v3` (~1223 tok)
-- `0ea690425da85a83@v4` (~1289 tok)
-- `0ea690425da85a83@v5` (~1298 tok)
-- `0ea690425da85a83@v6` (~1353 tok)
-- `112809977b280784@v2` (~175 tok)
-- `112809977b280784@v3` (~220 tok)
-- `125ff2eaebbf22c1@v1` — Cerebrum (~2480 tok)
-- `125ff2eaebbf22c1@v2` — Cerebrum (~3215 tok)
-- `15f33e9722426fe1@v2` (~68 tok)
-- `266a2c4cb5cb489a@v2` — NHL Stats SQLite Project — Implementation Plan (~2273 tok)
-- `266a2c4cb5cb489a@v3` — NHL Stats Web App — Player Table Page (~1045 tok)
-- `266a2c4cb5cb489a@v4` — NHL Stats — Player Data Enrichment + Historical Season Stats (~2976 tok)
-- `266a2c4cb5cb489a@v5` — NHL Stats — Incremental Sync (~1594 tok)
-- `266a2c4cb5cb489a@v6` — NHL Stats — Season Filter + Advanced Analytics (~2926 tok)
-- `266a2c4cb5cb489a@v7` — NHL Stats — Fix Null Display + Missing Bio Data (~1183 tok)
-- `32dfd6fadb934013@v2` (~1060 tok)
-- `3cd8353c2c9425ee@v1` — Cerebrum (~11789 tok)
-- `3cd8353c2c9425ee@v10` — Cerebrum (~14613 tok)
-- `3cd8353c2c9425ee@v11` — Cerebrum (~15049 tok)
-- `3cd8353c2c9425ee@v12` — Cerebrum (~15190 tok)
-- `3cd8353c2c9425ee@v13` — Cerebrum (~16076 tok)
-- `3cd8353c2c9425ee@v14` — Cerebrum (~16554 tok)
-- `3cd8353c2c9425ee@v15` — Cerebrum (~17053 tok)
-- `3cd8353c2c9425ee@v2` — Cerebrum (~12598 tok)
-- `3cd8353c2c9425ee@v3` — Cerebrum (~13108 tok)
-- `3cd8353c2c9425ee@v4` — Cerebrum (~13155 tok)
-- `3cd8353c2c9425ee@v5` — Cerebrum (~13762 tok)
-- `3cd8353c2c9425ee@v6` — Cerebrum (~15036 tok)
-- `3cd8353c2c9425ee@v7` — Cerebrum (~15563 tok)
-- `3cd8353c2c9425ee@v8` — Cerebrum (~15755 tok)
-- `3cd8353c2c9425ee@v9` — Cerebrum (~14198 tok)
-- `3d6e521e74effdd2@v2` — NHL Stats Database (~379 tok)
-- `3d6e521e74effdd2@v3` — NHL Stats Database (~402 tok)
-- `51128709282998c1@v2` — ETL & Sync Behavior — Design (~2198 tok)
-- `51128709282998c1@v3` — ETL & Sync Behavior — Design (~3035 tok)
-- `5c12970e4cc137d6@v2` (~343 tok)
-- `66bf48b8897f35d6@v2` (~337 tok)
-- `6771006ac6549ee5@v2` (~23 tok)
-- `6771006ac6549ee5@v3` (~26 tok)
-- `6cb7b8aed455ac63@v2` (~327 tok)
-- `6f144bcf67ab7aa0@v2` — Declares combo (~1296 tok)
-- `6f144bcf67ab7aa0@v3` — Declares combo (~1405 tok)
-- `72d981694851ddbf@v2` (~409 tok)
-- `73697caea1a17eab@v2` — Declares from (~443 tok)
-- `73697caea1a17eab@v3` — Declares from (~1014 tok)
-- `7de73714d9590e17@v1` — Declares SEASONS (~7366 tok)
-- `816734ea575522d1@v2` (~596 tok)
-- `8f4bad226680b910@v2` — Declares INTEGER (~1740 tok)
-- `8f4bad226680b910@v3` — Declares INTEGER (~3793 tok)
-- `8f4bad226680b910@v4` — Declares INTEGER (~4025 tok)
-- `8f4bad226680b910@v5` — Declares INTEGER (~4128 tok)
-- `8f4bad226680b910@v6` — Declares INTEGER (~4153 tok)
-- `b11b78bcecc7369d@v2` — ETL & Sync Behavior Implementation Plan (~12602 tok)
-- `b45c8bd906e21647@v1` (~3689 tok)
-- `b45c8bd906e21647@v2` (~4163 tok)
-- `b45c8bd906e21647@v3` (~4875 tok)
-- `b45c8bd906e21647@v4` (~5632 tok)
-- `b45c8bd906e21647@v5` (~5782 tok)
-- `b45c8bd906e21647@v6` (~5922 tok)
-- `b5a32fb9e675785e@v2` (~400 tok)
-- `b5a32fb9e675785e@v3` (~569 tok)
-- `c47760ed6c9ee802@v1` — System Instructions: Thin Harness, Fat Skills Environment (~3404 tok)
-- `c47760ed6c9ee802@v2` — System Instructions: Thin Harness, Fat Skills Environment (~3589 tok)
-- `ce165c40fc422bac@v2` (~566 tok)
-- `ce165c40fc422bac@v3` (~2108 tok)
-- `ce165c40fc422bac@v4` (~2217 tok)
-- `cf8de1a06d6b667a@v2` (~905 tok)
-- `dbb80f17757574a5@v1` (~551 tok)
-- `dbb80f17757574a5@v2` (~882 tok)
-- `e523154cf2e6b559@v1` — Contributing (~104 tok)
-- `edb6f5e5e3e9fd24@v2` (~31 tok)
-- `edb6f5e5e3e9fd24@v3` (~36 tok)
-- `f516b6f61ada745b@v2` (~474 tok)
-- `f516b6f61ada745b@v3` (~559 tok)
-
-## file-history/6cdc5e97-adc1-48eb-9d8f-7a01df19c115/
-
-- `12f566d79b28ddbb@v2` — My Environment Profile (~738 tok)
-- `3cd8353c2c9425ee@v1` — Cerebrum (~10626 tok)
-- `3cd8353c2c9425ee@v2` — Cerebrum (~11315 tok)
-- `3cd8353c2c9425ee@v3` — Cerebrum (~11789 tok)
-- `4e0f8874ccd03cc9@v2` — Fit Analysis: senior-engineering-partner into Current Config (~1515 tok)
-- `4e0f8874ccd03cc9@v3` — Git & Worktree Optimization Plan (~1075 tok)
-- `4e0f8874ccd03cc9@v4` — Session Reflect (session 15 — git/worktree optimization) (~1119 tok)
-- `4e0f8874ccd03cc9@v5` — ~/.claude Remote Tracking — Current State & Next Steps (~1320 tok)
-- `c15c82adf8165050@v1` (~2372 tok)
-- `c15c82adf8165050@v2` (~2497 tok)
-- `c47760ed6c9ee802@v1` — System Instructions: Thin Harness, Fat Skills Environment (~1499 tok)
-- `c47760ed6c9ee802@v2` — System Instructions: Thin Harness, Fat Skills Environment (~1752 tok)
-- `c47760ed6c9ee802@v3` — System Instructions: Thin Harness, Fat Skills Environment (~1754 tok)
-- `d6b5feb9ac04de75@v1` (~112 tok)
-- `d6b5feb9ac04de75@v2` (~99 tok)
-
-## file-history/763d8108-136f-46f4-a9b2-49d6d85f75f6/
-
-- `7251b5fcb44ea790@v1` (~428 tok)
-- `928596402335cdbb@v1` — Memory Index (~119 tok)
-- `957dcfb080f1315b@v1` — Paul McKay — Personal Brand Guide (~2876 tok)
-- `957dcfb080f1315b@v2` — Paul McKay — Personal Brand Guide (~2967 tok)
-- `957dcfb080f1315b@v3` — Paul McKay — Personal Brand Guide (~3234 tok)
-- `d48c6c56d44bf1ac@v2` — Declares SvgFlowable (~1925 tok)
-
-## file-history/7f63e15c-a09e-4052-9528-32f7ec804712/
-
-- `26246df51fcad529@v1` (~628 tok)
-- `26246df51fcad529@v2` (~889 tok)
-- `3cd8353c2c9425ee@v1` — Cerebrum (~672 tok)
-- `3cd8353c2c9425ee@v2` — Cerebrum (~1346 tok)
-- `70c0635296f69882@v1` (~7133 tok)
-- `70c0635296f69882@v2` (~7394 tok)
-- `78f31cf64ba3f4ed@v2` — Skills & Agents Consolidation Plan (~2420 tok)
-- `78f31cf64ba3f4ed@v3` — Skills & Agents Consolidation Plan (~3670 tok)
-- `7f8f9c20b0997945@v1` — Declares names (~1886 tok)
-- `7f8f9c20b0997945@v2` — Declares names (~1935 tok)
-- `97b5e5bfed44d4cb@v1` — Declares utility (~2772 tok)
-- `97b5e5bfed44d4cb@v2` — Declares utility (~2846 tok)
-- `c15c82adf8165050@v1` (~1239 tok)
-- `c15c82adf8165050@v2` (~2206 tok)
-- `c47760ed6c9ee802@v1` — System Instructions: Thin Harness, Fat Skills Environment (~767 tok)
-- `f8a5c4c6a0f3b8f6@v1` (~754 tok)
-- `f8a5c4c6a0f3b8f6@v2` (~779 tok)
-
-## file-history/8a74ca54-916a-4abb-a707-4060bb738569/
-
-- `3cd8353c2c9425ee@v1` — Cerebrum (~16123 tok)
-- `706259cb5a86cdf2@v1` (~354 tok)
-- `706259cb5a86cdf2@v2` (~512 tok)
-- `97b5e5bfed44d4cb@v1` — Declares utility (~2846 tok)
-- `97b5e5bfed44d4cb@v2` — Declares utility (~3125 tok)
-- `c47760ed6c9ee802@v1` — System Instructions: Thin Harness, Fat Skills Environment (~3320 tok)
-- `c47760ed6c9ee802@v2` — System Instructions: Thin Harness, Fat Skills Environment (~3404 tok)
-
-## file-history/8fe38856-bc47-438e-a67d-38835c3eb7c4/
-
-- `1b61678ae50da3a6@v1` (~303 tok)
-- `1b61678ae50da3a6@v2` (~334 tok)
-- `3cd8353c2c9425ee@v1` — Cerebrum (~2512 tok)
-- `8752592b1922cfd9@v2` — Plan: Expose BA Agent as a Reachable Command (~556 tok)
-- `cf30335cec38bdb8@v2` (~104 tok)
-
-## file-history/a397ba63-c079-4077-8278-68505464e61b/
-
-- `c15c82adf8165050@v1` (~1199 tok)
-
-## file-history/add637d5-044d-4888-99c1-d47ef7c46a95/
-
-- `280bc48e35214432@v2` — Plan: Map the BA Agent Process Using Itself (~1282 tok)
-- `280bc48e35214432@v3` — Plan: Fix BA Agent Professional Document & Comms Flow (~1433 tok)
-- `280bc48e35214432@v4` — Plan: Re-render process.png for Image Quality Check (~418 tok)
-- `2acd6d65f2c82913@v1` (~1365 tok)
-- `2acd6d65f2c82913@v2` (~1333 tok)
-- `31a2a3eee90333eb@v1` (~2248 tok)
-- `31a2a3eee90333eb@v2` (~2485 tok)
-- `3cd8353c2c9425ee@v1` — Cerebrum (~5532 tok)
-- `3cd8353c2c9425ee@v2` — Cerebrum (~5945 tok)
-- `3cd8353c2c9425ee@v3` — Cerebrum (~6948 tok)
-- `3cd8353c2c9425ee@v4` — Cerebrum (~7307 tok)
-- `3e952abe308ab27e@v2` — FAQ: ba-package-generation (~902 tok)
-- `5131c1712f382ed8@v2` — 3P Update: ba-package-generation (~345 tok)
-- `6cbfe9b7a117b79e@v1` — Skill: PNG Rendering + Docs Manifest (~1066 tok)
-- `6cbfe9b7a117b79e@v2` — Skill: PNG Rendering + Docs Manifest (~1071 tok)
-- `ab0ef73e6d105444@v1` — BA Agent — Output Workspace (~422 tok)
-- `ab0ef73e6d105444@v2` — BA Agent — Output Workspace (~510 tok)
-- `db3a81fe58469d8d@v1` — Skill: Planner + Observe (~1567 tok)
-- `db3a81fe58469d8d@v2` — Skill: Planner + Observe (~1323 tok)
-- `e0d6f2a63a3ac4d3@v1` — Cerebrum (~419 tok)
-- `e0d6f2a63a3ac4d3@v2` — Cerebrum (~692 tok)
-
-## file-history/ae43e70e-0bdd-4666-8325-f654e3b51577/
-
-- `957dcfb080f1315b@v1` — Paul McKay — Personal Brand Guide (~3234 tok)
-
-## file-history/afe2552a-4fbe-4c08-be3f-a3618977793b/
-
-- `3cd8353c2c9425ee@v1` — Cerebrum (~1346 tok)
-- `e379b8ba1f2307c6@v2` — Plan: Disable Auto-Updates for Superpowers, OpenWolf, and gbrain (~663 tok)
-- `e379b8ba1f2307c6@v3` — Plan: Disable Auto-Updates for Superpowers, OpenWolf, and gbrain (~772 tok)
