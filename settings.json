@@ -216,6 +216,16 @@
         ]
       }
     ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node /Users/paulmckay/.claude/hooks/subagent-thin-harness.js"
+          }
+        ]
+      }
+    ],
     "SubagentStop": [
       {
         "hooks": [
