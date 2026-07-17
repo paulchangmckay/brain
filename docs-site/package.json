@@ -3,9 +3,13 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "sync": "node scripts/pull-skills.mjs",
+    "predev": "npm run sync",
+    "prebuild": "npm run sync",
     "dev": "blume dev",
     "build": "blume build",
-    "doctor": "blume doctor"
+    "doctor": "blume doctor",
+    "test": "node --test scripts/*.test.mjs"
   },
   "dependencies": {
     "blume": "^1.0.4"

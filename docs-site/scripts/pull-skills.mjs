@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
+import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync, statSync } from 'node:fs';
 import { join, relative, dirname } from 'node:path';
 
 export function parseFrontmatter(content) {
@@ -46,10 +46,11 @@ export function findNestedMarkdownFiles(skillDir) {
   function walk(dir) {
     for (const entry of readdirSync(dir, { withFileTypes: true })) {
       const fullPath = join(dir, entry.name);
-      if (entry.isDirectory()) {
+      const stat = statSync(fullPath);
+      if (stat.isDirectory()) {
         walk(fullPath);
       } else if (
-        entry.isFile() &&
+        stat.isFile() &&
         entry.name.endsWith('.md') &&
         entry.name !== 'SKILL.md' &&
         !isDenylisted(entry.name)
@@ -70,7 +71,7 @@ export function buildSkillPage({ name, description, body }) {
 export function syncSkills({ skillsDir, outputDir }) {
   const warnings = [];
   const skillNames = readdirSync(skillsDir, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory())
+    .filter((entry) => statSync(join(skillsDir, entry.name)).isDirectory())
     .map((entry) => entry.name)
     .sort();
 

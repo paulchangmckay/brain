@@ -45,6 +45,21 @@ test('findNestedMarkdownFiles finds nested files, skips SKILL.md and denylist', 
   }
 });
 
+test('findNestedMarkdownFiles follows symlinked subdirectories', () => {
+  const dir = makeTempDir();
+  const realReferencesDir = makeTempDir();
+  try {
+    writeFileSync(join(dir, 'SKILL.md'), '---\nname: x\n---\n');
+    writeFileSync(join(realReferencesDir, 'testing.md'), 'testing content');
+    symlinkSync(realReferencesDir, join(dir, 'references'), 'dir');
+    const found = findNestedMarkdownFiles(dir);
+    assert.deepEqual(found, [join('references', 'testing.md')]);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+    rmSync(realReferencesDir, { recursive: true, force: true });
+  }
+});
+
 import { buildSkillPage } from './pull-skills.mjs';
 
 test('buildSkillPage renders title and description frontmatter plus body', () => {
@@ -72,7 +87,7 @@ test('buildSkillPage escapes internal quotes in description frontmatter', () => 
   assert.match(page, /description: "Use when the user says \\"give me ideas\\"/);
 });
 
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, symlinkSync } from 'node:fs';
 import { syncSkills } from './pull-skills.mjs';
 
 test('syncSkills skips directories with no SKILL.md', () => {
@@ -152,6 +167,28 @@ test('syncSkills writes nested reference files as sub-pages, excluding denylist'
   } finally {
     rmSync(skillsDir, { recursive: true, force: true });
     rmSync(outputDir, { recursive: true, force: true });
+  }
+});
+
+test('syncSkills follows symlinked skill directories (e.g. superpowers submodule skills)', () => {
+  const skillsDir = makeTempDir();
+  const outputDir = makeTempDir();
+  const realSkillDir = makeTempDir();
+  try {
+    writeFileSync(
+      join(realSkillDir, 'SKILL.md'),
+      '---\nname: systematic-debugging\ndescription: "Root cause before fix"\n---\n\nBody\n'
+    );
+    symlinkSync(realSkillDir, join(skillsDir, 'systematic-debugging'), 'dir');
+
+    const { warnings } = syncSkills({ skillsDir, outputDir });
+
+    assert.deepEqual(warnings, []);
+    assert.equal(existsSync(join(outputDir, 'systematic-debugging.md')), true);
+  } finally {
+    rmSync(skillsDir, { recursive: true, force: true });
+    rmSync(outputDir, { recursive: true, force: true });
+    rmSync(realSkillDir, { recursive: true, force: true });
   }
 });
 
