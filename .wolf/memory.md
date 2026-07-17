@@ -355,3 +355,27 @@
 | 00:14 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/buglog-bug002/.wolf/cerebrum.md | 1→3 lines | ~287 |
 | 00:14 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/buglog-bug002/.wolf/cerebrum.md | 1→2 lines | ~219 |
 | 00:15 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/buglog-bug002/.wolf/cerebrum.md | inline fix | ~7 |
+
+## Session: 2026-07-15 22:11 (docs-site scaffold, worktree blume-docs-site)
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 22:11 | Ran blume init docs-site --yes --content-dir content --template docs --package-manager npm | docs-site/package.json, docs-site/blume.config.ts, docs-site/content/index.mdx, docs-site/.gitignore | exit 0, scaffolded project | ~200 |
+| 22:11 | Edited .gitignore | +6 lines (docs-site/node_modules, dist, .astro, .blume) | ~60 |
+| 22:11 | Ran npm install in docs-site/ | docs-site/node_modules, docs-site/package-lock.json | exit 0, 868 packages | ~40 |
+| 22:11 | Verified blume devDependency is caret range | docs-site/package.json | OK: ^1.0.4, no fix needed | ~30 |
+| 22:11 | Committed 2e6f6b5 feat: scaffold docs-site with blume init | .gitignore, docs-site/{.gitignore,blume.config.ts,content/index.mdx,package.json,package-lock.json} | gitleaks clean, 6 files changed | ~50 |
+
+## Session: 2026-07-17 (resumed docs-site build-out, worktree blume-docs-site)
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 00:00 | Read spec, git log, worktree status to resume in-progress Blume work | docs-site-design.md, .wolf/memory.md | Found: init + TDD sync script done, stub content/README not yet written | ~2000 |
+| 00:00 | Ran `git submodule update --init skills/senior-engineering-partner` | skills/senior-engineering-partner/ | Submodule was uninitialized in this worktree; needed for accurate sync test | ~30 |
+| 00:00 | Ran pull-skills.mjs, found only 19/27 skills got pages | content/skills/ | Root cause: 8 superpowers-submodule skills are symlinks; Dirent.isDirectory() doesn't follow symlinks | ~100 |
+| 00:00 | Added failing tests (symlinked skill dir, symlinked nested dir), then fixed syncSkills/findNestedMarkdownFiles to use statSync | pull-skills.mjs, pull-skills.test.mjs | 14/14 tests pass, all 27 skills (minus ba-agent) now generate pages | ~500 |
+| 00:00 | Logged bug-040 to buglog.json (symlink-following bug) | .wolf/buglog.json | — | ~200 |
+| 00:00 | Committed 15cc6cb fix: follow symlinked skill dirs in pull-skills sync, wire npm run sync | pull-skills.mjs/.test.mjs, package.json, content/skills/**, buglog.json | gitleaks clean, 95 files changed | ~100 |
+| 00:00 | Wrote 7 overview stub pages, openwolf.md stub, updated index.mdx home page, wrote README.md, set blume.config.ts title | content/overview/*.md, content/openwolf.md, content/index.mdx, README.md, blume.config.ts | — | ~1500 |
+| 00:00 | Ran `blume dev`, fetched every route (home, 7 overview pages, openwolf, several skill pages incl. nested, ba-agent) to verify | (no files changed) | All content routes 200; /skills/ba-agent and /skills/nonexistent-skill correctly 404 | ~300 |
+| 00:00 | Re-ran `npm run sync`, diffed hand-authored pages before/after | content/overview/*.md md5sums | Confirmed unchanged — sync only touches content/skills/ | ~50 |

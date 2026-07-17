@@ -1,8 +1,8 @@
 import { defineConfig } from "blume";
 
 export default defineConfig({
-  title: "My Docs",
-  description: "Documentation powered by Blume.",
+  title: "~/.claude Reference",
+  description: "Personal reference docs for the thin-harness, fat-skills Claude Code setup.",
   content: {
     root: "content",
   },
