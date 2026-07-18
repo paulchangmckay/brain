@@ -364,7 +364,7 @@ import { BarChart2, TrendingUp } from 'react-feather';
 | Element | Spec |
 |---|---|
 | Background | Off-White `#fafaf8`; Linen `#f5f2ed` for region/cluster/boundary containers only |
-| Component fill | Off-White = standard component (any category) · Linen = region/cluster boundary · White + 2px Taupe border = emphasized/entry-point component (max 1 per diagram) |
+| Component fill | Off-White = standard component (any category) · Linen = region/cluster boundary · Off-White + 2px Taupe border = emphasized/entry-point component (max 1 per diagram; differentiated by border alone, not a 7th fill color) |
 | Component border | Charcoal `#2a2a28` 1.5px solid = standard · Slate `#5a7a8a` dashed = security group / trust boundary · Khaki `#a89980` dashed = region/cloud boundary |
 | Accent | Slate only — category tags, connectors, and any boundary/arrow label (label color always matches the element it identifies) |
 | Category tags | Small uppercase Poppins 700 tag per component (BACKEND, DATABASE, SECURITY, CLOUD, FRONTEND, MESSAGE BUS, EXTERNAL) — replaces color-coding by component type |
