@@ -30,7 +30,7 @@ Only brand palette colors are used — no exceptions:
 
 Six-plus component types (frontend, backend, database, cloud, security, message bus, external) are told apart using three signals instead of six hues:
 
-1. **Fill tone** — Off-White (standard) · Linen (boundary/grouping container) · White + 2px Taupe border (emphasized/entry-point, max 1 per diagram)
+1. **Fill tone** — Off-White (standard) · Linen (boundary/grouping container) · Off-White + 2px Taupe border (emphasized/entry-point, max 1 per diagram)
 2. **Border style** — Charcoal 1.5px solid (standard) · Slate dashed `4,4` (security group / trust boundary) · Khaki dashed `8,4` (region/cloud boundary)
 3. **Category tag** — small uppercase Poppins 700 7px tag in Slate, positioned above the component name: `BACKEND` / `DATABASE` / `SECURITY` / `CLOUD` / `FRONTEND` / `MESSAGE BUS` / `EXTERNAL`
 
@@ -65,7 +65,7 @@ Standard component (any category — differentiation is the tag, not the box sty
 Emphasized/entry-point component (use for **at most one** component per diagram):
 
 ```svg
-<rect x="X" y="Y" width="W" height="76" rx="6" fill="#ffffff" stroke="#6b5b54" stroke-width="2"/>
+<rect x="X" y="Y" width="W" height="76" rx="6" fill="#fafaf8" stroke="#6b5b54" stroke-width="2"/>
 <!-- same tag/name/sublabel text pattern as above -->
 ```
 
@@ -96,7 +96,7 @@ All connector lines are Slate, solid for standard data flow, dashed (`5,5`) for 
 ### Legend
 
 Place below all boundaries (at least 20px below the lowest boundary's bottom edge). Show:
-- 3 fill-tone swatches (Off-White / Linen / White+Taupe) with labels
+- 3 fill-tone swatches (Off-White / Linen / Off-White+Taupe) with labels
 - 3 border-style line samples (Charcoal solid / Slate dashed / Khaki dashed) with labels
 - The list of category tag words in use, as plain Slate 8px text (tags are self-explanatory once printed on each box — no swatch needed)
 
@@ -144,11 +144,12 @@ Always produce a single self-contained `.html` file with:
 ## Delivery Checklist
 
 - [ ] `brand` skill was invoked and "Architecture Diagram" Brand Spec Card confirmed
-- [ ] Only Off-White/Linen/Charcoal/Slate/Taupe used; Slate is the only content accent; Taupe appears only on the mark and (at most) one emphasized component border
+- [ ] Only Off-White/Linen/Charcoal/Slate/Khaki/Taupe used; Slate is the only content accent; Taupe appears only on the mark and (at most) one emphasized component border
 - [ ] Poppins for all diagram labels/tags, Lora only in summary-card prose
 - [ ] Every component box has a fill tone + border style + category tag per the matrix, sized to comfortably fit all 3 text lines (~72-76px standard height)
 - [ ] Boundary and arrow labels match the color of the element they identify
 - [ ] Summary cards have no leading color dot
 - [ ] ◆ mark present in header, ≥24px
+- [ ] No background grid pattern, no pulse-dot decoration in the header
 - [ ] Export toolbar present and functional, using inlined Feather icon SVGs (not emoji), CDN scripts' SRI hashes unmodified
 - [ ] Output is a single self-contained `.html` file
