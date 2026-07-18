@@ -30,8 +30,8 @@ Only brand palette colors are used — no exceptions:
 
 Six-plus component types (frontend, backend, database, cloud, security, message bus, external) are told apart using three signals instead of six hues:
 
-1. **Fill tone** — Off-White (standard) · Linen (boundary/grouping container) · Off-White + 2px Taupe border (emphasized/entry-point, max 1 per diagram)
-2. **Border style** — Charcoal 1.5px solid (standard) · Slate dashed `4,4` (security group / trust boundary) · Khaki dashed `8,4` (region/cloud boundary)
+1. **Fill tone** — Off-White (standard and emphasized/entry-point) · Linen (boundary/grouping container)
+2. **Border style** — Charcoal 1.5px solid (standard) · Taupe 2px solid (emphasized/entry-point, max 1 per diagram) · Slate dashed `4,4` (security group / trust boundary) · Khaki dashed `8,4` (region/cloud boundary)
 3. **Category tag** — small uppercase Poppins 700 7px tag in Slate, positioned above the component name: `BACKEND` / `DATABASE` / `SECURITY` / `CLOUD` / `FRONTEND` / `MESSAGE BUS` / `EXTERNAL`
 
 **Label color always matches the element it identifies:** a region boundary (Khaki border) gets a Khaki label; a security-group boundary (Slate border) gets a Slate label; an arrow (Slate line) gets a Slate label. No new colors are introduced by labels.
@@ -96,8 +96,8 @@ All connector lines are Slate, solid for standard data flow, dashed (`5,5`) for 
 ### Legend
 
 Place below all boundaries (at least 20px below the lowest boundary's bottom edge). Show:
-- 3 fill-tone swatches (Off-White / Linen / Off-White+Taupe) with labels
-- 3 border-style line samples (Charcoal solid / Slate dashed / Khaki dashed) with labels
+- 2 fill-tone swatches (Off-White standard/emphasized / Linen boundary) with labels
+- 4 border-style line samples (Charcoal solid standard / Taupe solid emphasized / Slate dashed security-group / Khaki dashed region) with labels
 - The list of category tag words in use, as plain Slate 8px text (tags are self-explanatory once printed on each box — no swatch needed)
 
 ### Header
