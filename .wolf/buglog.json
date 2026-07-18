@@ -1216,6 +1216,24 @@
       "related_bugs": [],
       "occurrences": 2,
       "last_seen": "2026-07-18T11:51:05.635Z"
+    },
+    {
+      "id": "bug-076",
+      "timestamp": "2026-07-18T12:20:11.627Z",
+      "error_message": "subagent-driven-development implementer committed to main instead of the worktree branch",
+      "file": "docs/superpowers/plans/2026-07-18-architecture-diagram-skill.md",
+      "root_cause": "Plan verification/commit commands used absolute /Users/paulmckay/.claude/... paths (correct for a normal session), but a fresh implementer subagent dispatched from inside a worktree ran them literally without cd-ing into the worktree first, so edits and the commit landed on main in the primary checkout instead of the worktree branch. This is the documented \"Worktree path isolation\" gotcha (CLAUDE.md §3) recurring at the plan-authoring layer, not just manual editing.",
+      "fix": "Cherry-picked the misplaced commit onto the worktree branch, then git reset --hard on main to remove it. Going forward, every implementer dispatch in this session explicitly instructs the subagent to cd into the worktree path first and translate any /Users/paulmckay/.claude/... path in its brief to a worktree-relative path before running it.",
+      "tags": [
+        "auto-detected",
+        "worktree",
+        "git",
+        "process",
+        "subagent-driven-development"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-18T12:20:11.627Z"
     }
   ]
 }
