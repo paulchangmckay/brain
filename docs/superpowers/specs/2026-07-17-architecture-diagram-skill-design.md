@@ -1,6 +1,6 @@
 # Architecture Diagram Generator skill
 
-**Status:** Approved
+**Status:** Approved, grilled
 **Date:** 2026-07-17
 
 ## Context
@@ -86,6 +86,11 @@ gate line, matching `exec-dashboard`'s convention:
 This keeps `brand-guide.md` the single source of truth; future palette edits
 propagate to this skill automatically instead of needing a second edit here.
 
+The new `Format:` section's content is a direct transcription of the matrix
+and rules below — no separate drafting pass is needed, since every decision
+in it is already made by this spec (unlike the existing `Format:` sections,
+which set original policy for their output type).
+
 ### Category differentiation matrix (replaces the 6-hue system)
 
 Three orthogonal signals replace color-per-category:
@@ -96,15 +101,29 @@ Three orthogonal signals replace color-per-category:
 | **Border style** | Charcoal 1.5px solid = standard component · Slate dashed `4,4` = security group / trust boundary · Khaki dashed `8,4` = region/cloud boundary |
 | **Category tag** | Small uppercase Poppins 700 7px tag in Slate, positioned above each component label: `BACKEND` / `DATABASE` / `SECURITY` / `CLOUD` / `FRONTEND` / `MESSAGE BUS` / `EXTERNAL` |
 
-**Single accent (Slate)** is used only for: category tags, and connectors
-(arrows). Arrow *type* (data flow vs. auth/security flow) is differentiated
-by solid-vs-dashed stroke plus the arrow's label text (`HTTPS`,
-`JWT + PKCE`, `TLS`) — not by a second color.
+**Single accent (Slate)** is used only for: category tags, connectors
+(arrows), and their labels. Arrow *type* (data flow vs. auth/security flow)
+is differentiated by solid-vs-dashed stroke plus the arrow's label text
+(`HTTPS`, `JWT + PKCE`, `TLS`) — not by a second color. Arrow labels are
+Slate, matching their line, per the "label color matches the element it's
+labeling" rule below.
 
 Rationale for Slate specifically: `brand-guide.md`'s color table already
 names Slate the "secondary accent, data visualization" color, so this is the
 brand-intended choice for a technical/diagram artifact, not an arbitrary
 pick.
+
+**Boundary and arrow label color rule:** a label's text color always matches
+the color of the element it identifies — a region/cloud boundary (Khaki
+border) gets a Khaki label, a security-group boundary (Slate border) gets a
+Slate label, an arrow (Slate line) gets a Slate label. This makes every
+label self-identifying without a legend lookup, and introduces no new color.
+
+**Taupe usage is intentionally narrow:** Taupe appears in exactly two
+places — the ◆ mark (see Header changes), and optionally the border of a
+single emphasized/entry-point component box. It is never used for category
+differentiation, boundaries, arrows, or labels. At most one component per
+diagram may use the Taupe-bordered emphasis treatment.
 
 ### Typography
 
@@ -117,6 +136,19 @@ the diagram (those are explanatory prose, closer to `exec-dashboard`'s
 
 Font sizes carry over unchanged from upstream's ladder: 12/11px component
 name, 9px sublabel, 8px annotation, 7px tiny label/tag.
+
+**Component sizing must increase to fit the added tag line.** Upstream's
+spacing rules (60px standard component height, 80-120px for larger
+components, 40px minimum gap) were tuned for 2 lines of monospace text. This
+design adds a 3rd line (the category tag) and switches to proportional
+Poppins, which has different metrics than JetBrains Mono. Upstream's
+concrete pixel values are a starting point, not a fixed constraint:
+standard component height increases from 60px to ~72-76px, and the
+80-120px "larger component" range increases proportionally (~92-136px), to
+comfortably fit name + sublabel + tag without overflow. The underlying
+*rules* (minimum 40px vertical gap, message buses placed in the gap,
+legends placed below all boundaries) carry over unchanged — only the
+absolute pixel values tied to box height shift.
 
 ### Header changes
 
@@ -132,6 +164,18 @@ name, 9px sublabel, 8px annotation, 7px tiny label/tag.
   from its `COLORS.primary`/`COLORS.secondary` content accents.
 - Recolor toolbar chrome (buttons, hover states) to Off-White/Linen/Charcoal
   to sit on the new light page background
+- Replace the emoji toolbar icons (📋 🖼️ 📄) with inlined Feather icon SVG
+  paths — `copy`, `image`, `file-text` — at the brand's standard
+  `stroke-width: 1.5`, sized to the button, Charcoal (or Slate on hover),
+  since `brand-guide.md` explicitly bans decorative/illustrative icons in
+  favor of Feather/Heroicons. None of these three are in the guide's curated
+  per-role icon tables (those tables are domain vocabulary for BA/PM/Ops
+  deliverables, not an exhaustive UI whitelist), but they are real Feather
+  icons used at the brand's standard style — `file-text` in particular
+  already appears in the Foundation table ("Documents, reports"), a direct
+  semantic match for the PDF button. Paths are inlined (not CDN-loaded) to
+  keep the output self-contained, same reasoning as the rejected
+  icon-differentiation approach in Context above.
 - **Leave the Copy/PNG/PDF export mechanics untouched**: same
   `html2canvas`/`jsPDF` CDN scripts, same pinned versions, same SRI hashes,
   same `copyAsImage()`/`downloadPNG()`/`downloadPDF()` functions. This is
@@ -156,14 +200,27 @@ key: 3 boxes showing each fill tone, 3 line samples showing each border
 style) rather than 6 color swatches — same content, recast to the new
 differentiation system.
 
+### Summary cards
+
+The three info cards below the diagram drop their leading colored
+`card-dot` entirely (upstream used arbitrary rose/amber/violet dots with no
+semantic payload — they didn't map to any category in the differentiation
+matrix). Card headings become a plain Poppins 700 heading with no leading
+dot, relying on typographic weight alone for emphasis, per the same
+"scale/weight/spacing, not color" rule already driving the rest of this
+design — this is a pure decoration removal, not a recoloring, since the
+dot's original color carried no meaning to preserve.
+
 ### Delivery checklist (end of SKILL.md, mirrors exec-dashboard's)
 
 - [ ] `brand` skill was invoked and "Architecture Diagram" Brand Spec Card confirmed
-- [ ] Only Off-White/Linen/Charcoal/Slate/Taupe used (Taupe confined to the mark; Slate is the only content accent)
+- [ ] Only Off-White/Linen/Charcoal/Slate/Taupe used; Slate is the only content accent; Taupe appears only on the mark and (at most) one emphasized/entry-point component border — never for category differentiation
 - [ ] Poppins for all diagram labels/tags, Lora only in summary-card prose
-- [ ] Every component box has a fill tone + border style + category tag per the matrix (no bare color-only differentiation)
+- [ ] Every component box has a fill tone + border style + category tag per the matrix (no bare color-only differentiation), sized to comfortably fit all 3 text lines (~72-76px standard height)
+- [ ] Boundary and arrow labels match the color of the element they identify (Khaki/Slate/Slate)
+- [ ] Summary cards have no leading color dot — heading weight only
 - [ ] ◆ mark present in header, ≥24px
-- [ ] Export toolbar (Copy/PNG/PDF) present and functional, CDN scripts' SRI hashes unmodified
+- [ ] Export toolbar (Copy/PNG/PDF) present and functional, using inlined Feather icon SVGs (not emoji), CDN scripts' SRI hashes unmodified
 - [ ] Output is a single self-contained `.html` file (embedded CSS, inline SVG, only Google Fonts + the two pinned export CDN scripts as external refs)
 
 ## Verification
