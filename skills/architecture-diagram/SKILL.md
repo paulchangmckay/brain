@@ -148,6 +148,8 @@ Always produce a single self-contained `.html` file with:
 - [ ] Poppins for all diagram labels/tags, Lora only in summary-card prose
 - [ ] Every component box has a fill tone + border style + category tag per the matrix, sized to comfortably fit all 3 text lines (~72-76px standard height)
 - [ ] Boundary and arrow labels match the color of the element they identify
+- [ ] Legend shows 2 fill-tone swatches and 4 border-style line samples with category tag list — not 6 color swatches
+- [ ] Arrows are Slate only, solid for standard flow / dashed for auth-security flow, differentiated by dash pattern and label text (not color); drawn early in the SVG so they render behind component boxes
 - [ ] Summary cards have no leading color dot
 - [ ] ◆ mark present in header, ≥24px
 - [ ] No background grid pattern, no pulse-dot decoration in the header

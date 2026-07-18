@@ -71,6 +71,16 @@
           </marker>
         </defs>
 
+        <!-- Arrows -->
+        <line x1="190" y1="238" x2="318" y2="238" stroke="#5a7a8a" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <text x="254" y="232" fill="#5a7a8a" font-size="9" text-anchor="middle">HTTPS</text>
+
+        <line x1="470" y1="222" x2="598" y2="164" stroke="#5a7a8a" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <text x="535" y="180" fill="#5a7a8a" font-size="9" text-anchor="middle">SQL</text>
+
+        <line x1="470" y1="254" x2="598" y2="312" stroke="#5a7a8a" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <text x="535" y="300" fill="#5a7a8a" font-size="9" text-anchor="middle">Cache</text>
+
         <!-- Emphasized entry point -->
         <rect x="40" y="200" width="150" height="76" rx="6" fill="#fafaf8" stroke="#6b5b54" stroke-width="2"/>
         <text x="115" y="218" fill="#5a7a8a" font-size="7" font-weight="700" text-anchor="middle" letter-spacing="0.05em">FRONTEND</text>
@@ -94,16 +104,6 @@
         <text x="675" y="298" fill="#5a7a8a" font-size="7" font-weight="700" text-anchor="middle" letter-spacing="0.05em">DATABASE</text>
         <text x="675" y="318" fill="#2a2a28" font-size="11" font-weight="600" text-anchor="middle">Redis</text>
         <text x="675" y="336" fill="#a89980" font-size="9" text-anchor="middle">Session cache</text>
-
-        <!-- Arrows -->
-        <line x1="190" y1="238" x2="318" y2="238" stroke="#5a7a8a" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-        <text x="254" y="232" fill="#5a7a8a" font-size="9" text-anchor="middle">HTTPS</text>
-
-        <line x1="470" y1="222" x2="598" y2="164" stroke="#5a7a8a" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-        <text x="535" y="180" fill="#5a7a8a" font-size="9" text-anchor="middle">SQL</text>
-
-        <line x1="470" y1="254" x2="598" y2="312" stroke="#5a7a8a" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-        <text x="535" y="300" fill="#5a7a8a" font-size="9" text-anchor="middle">Cache</text>
 
         <!-- Legend -->
         <text x="40" y="392" fill="#2a2a28" font-size="11" font-weight="700">Legend</text>
@@ -162,9 +162,9 @@
         const canvas = await html2canvas(document.body, { backgroundColor: '#fafaf8', scale: 2, useCORS: true, ignoreElements: (e) => e.classList && e.classList.contains('toolbar'), x: r.left + window.scrollX - pad, y: r.top + window.scrollY - pad, width: r.width + pad * 2, height: r.height + pad * 2 });
         const blob = await new Promise(res => canvas.toBlob(res, 'image/png'));
         await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
-        label.textContent = '✓ Copied!';
+        label.textContent = 'Copied';
       } catch (e) {
-        label.textContent = '✗ Failed';
+        label.textContent = 'Failed';
       }
       setTimeout(() => label.textContent = orig, 2000);
     }
@@ -172,7 +172,7 @@
     async function downloadPNG(btn) {
       const label = btn.querySelector('.label');
       const orig = label.textContent;
-      label.textContent = '⏳ ...';
+      label.textContent = 'Downloading…';
       try {
         const el = document.getElementById('report-container');
         const r = el.getBoundingClientRect();
@@ -182,9 +182,9 @@
         link.download = 'diagram.png';
         link.href = canvas.toDataURL('image/png');
         link.click();
-        label.textContent = '✓ Done!';
+        label.textContent = 'Done';
       } catch (e) {
-        label.textContent = '✗ Failed';
+        label.textContent = 'Failed';
       }
       setTimeout(() => label.textContent = orig, 2000);
     }
@@ -192,7 +192,7 @@
     async function downloadPDF(btn) {
       const label = btn.querySelector('.label');
       const orig = label.textContent;
-      label.textContent = '⏳ ...';
+      label.textContent = 'Generating…';
       try {
         const el = document.getElementById('report-container');
         const r = el.getBoundingClientRect();
@@ -204,9 +204,9 @@
         const pdf = new jsPDF({ orientation, unit: 'px', format: [canvas.width, canvas.height], hotfixes: ['px_scaling'] });
         pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
         pdf.save('diagram.pdf');
-        label.textContent = '✓ Done!';
+        label.textContent = 'Done';
       } catch (e) {
-        label.textContent = '✗ Failed';
+        label.textContent = 'Failed';
       }
       setTimeout(() => label.textContent = orig, 2000);
     }

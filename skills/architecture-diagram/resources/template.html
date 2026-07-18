@@ -182,6 +182,28 @@
         </defs>
 
         <!-- =================================================================
+             ARROW EXAMPLES
+             ================================================================= -->
+
+        <line x1="140" y1="368" x2="218" y2="368" stroke="#5a7a8a" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <text x="179" y="362" fill="#5a7a8a" font-size="9" text-anchor="middle">HTTPS</text>
+
+        <line x1="340" y1="368" x2="378" y2="368" stroke="#5a7a8a" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <text x="359" y="362" fill="#5a7a8a" font-size="9" text-anchor="middle">TLS</text>
+
+        <line x1="280" y1="406" x2="280" y2="448" stroke="#5a7a8a" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <text x="296" y="430" fill="#5a7a8a" font-size="9">OAI</text>
+
+        <line x1="520" y1="368" x2="568" y2="368" stroke="#5a7a8a" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+        <line x1="690" y1="368" x2="728" y2="368" stroke="#5a7a8a" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <text x="709" y="362" fill="#5a7a8a" font-size="9" text-anchor="middle">SQL</text>
+
+        <!-- Dashed arrow for auth/security flow (curved path) -->
+        <path d="M140,178 L140,250 Q140,280 170,280 L400,280 Q430,280 430,300 L430,308" fill="none" stroke="#5a7a8a" stroke-width="1.5" stroke-dasharray="5,5" marker-end="url(#arrowhead)"/>
+        <text x="270" y="274" fill="#5a7a8a" font-size="8">JWT + PKCE</text>
+
+        <!-- =================================================================
              COMPONENT EXAMPLES - Copy and customize these patterns
              ================================================================= -->
 
@@ -246,28 +268,6 @@
         <text x="330" y="736" fill="#a89980" font-size="9" text-anchor="middle">Additional detail</text>
         <text x="330" y="752" fill="#a89980" font-size="9" text-anchor="middle">More info</text>
         <text x="330" y="774" fill="#5a7a8a" font-size="8" text-anchor="middle">domain.example.com</text>
-
-        <!-- =================================================================
-             ARROW EXAMPLES
-             ================================================================= -->
-
-        <line x1="140" y1="368" x2="218" y2="368" stroke="#5a7a8a" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-        <text x="179" y="362" fill="#5a7a8a" font-size="9" text-anchor="middle">HTTPS</text>
-
-        <line x1="340" y1="368" x2="378" y2="368" stroke="#5a7a8a" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-        <text x="359" y="362" fill="#5a7a8a" font-size="9" text-anchor="middle">TLS</text>
-
-        <line x1="280" y1="406" x2="280" y2="448" stroke="#5a7a8a" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-        <text x="296" y="430" fill="#5a7a8a" font-size="9">OAI</text>
-
-        <line x1="520" y1="368" x2="568" y2="368" stroke="#5a7a8a" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-
-        <line x1="690" y1="368" x2="728" y2="368" stroke="#5a7a8a" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-        <text x="709" y="362" fill="#5a7a8a" font-size="9" text-anchor="middle">SQL</text>
-
-        <!-- Dashed arrow for auth/security flow (curved path) -->
-        <path d="M140,178 L140,250 Q140,280 170,280 L400,280 Q430,280 430,300 L430,308" fill="none" stroke="#5a7a8a" stroke-width="1.5" stroke-dasharray="5,5" marker-end="url(#arrowhead)"/>
-        <text x="270" y="274" fill="#5a7a8a" font-size="8">JWT + PKCE</text>
 
         <!-- =================================================================
              LEGEND - placed below all boundaries, per spacing rules
@@ -346,9 +346,9 @@
         const canvas = await html2canvas(document.body, { backgroundColor: '#fafaf8', scale: 2, useCORS: true, ignoreElements: (e) => e.classList && e.classList.contains('toolbar'), x: r.left + window.scrollX - pad, y: r.top + window.scrollY - pad, width: r.width + pad * 2, height: r.height + pad * 2 });
         const blob = await new Promise(res => canvas.toBlob(res, 'image/png'));
         await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
-        label.textContent = '✓ Copied!';
+        label.textContent = 'Copied';
       } catch (e) {
-        label.textContent = '✗ Failed';
+        label.textContent = 'Failed';
       }
       setTimeout(() => label.textContent = orig, 2000);
     }
@@ -356,7 +356,7 @@
     async function downloadPNG(btn) {
       const label = btn.querySelector('.label');
       const orig = label.textContent;
-      label.textContent = '⏳ ...';
+      label.textContent = 'Downloading…';
       try {
         const el = document.getElementById('report-container');
         const r = el.getBoundingClientRect();
@@ -366,9 +366,9 @@
         link.download = 'diagram.png';
         link.href = canvas.toDataURL('image/png');
         link.click();
-        label.textContent = '✓ Done!';
+        label.textContent = 'Done';
       } catch (e) {
-        label.textContent = '✗ Failed';
+        label.textContent = 'Failed';
       }
       setTimeout(() => label.textContent = orig, 2000);
     }
@@ -376,7 +376,7 @@
     async function downloadPDF(btn) {
       const label = btn.querySelector('.label');
       const orig = label.textContent;
-      label.textContent = '⏳ ...';
+      label.textContent = 'Generating…';
       try {
         const el = document.getElementById('report-container');
         const r = el.getBoundingClientRect();
@@ -388,9 +388,9 @@
         const pdf = new jsPDF({ orientation, unit: 'px', format: [canvas.width, canvas.height], hotfixes: ['px_scaling'] });
         pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
         pdf.save('diagram.pdf');
-        label.textContent = '✓ Done!';
+        label.textContent = 'Done';
       } catch (e) {
-        label.textContent = '✗ Failed';
+        label.textContent = 'Failed';
       }
       setTimeout(() => label.textContent = orig, 2000);
     }
