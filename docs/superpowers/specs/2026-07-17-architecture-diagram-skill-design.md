@@ -97,7 +97,7 @@ Three orthogonal signals replace color-per-category:
 
 | Signal | Values |
 |---|---|
-| **Fill tone** | Off-White = standard component · Linen = boundary/grouping container (region, cluster, VPC) · White + 2px Taupe border = emphasized/entry-point component |
+| **Fill tone** | Off-White = standard component · Linen = boundary/grouping container (region, cluster, VPC) · Off-White + 2px Taupe border = emphasized/entry-point component (differentiated by border weight/color alone, not a 7th fill color) |
 | **Border style** | Charcoal 1.5px solid = standard component · Slate dashed `4,4` = security group / trust boundary · Khaki dashed `8,4` = region/cloud boundary |
 | **Category tag** | Small uppercase Poppins 700 7px tag in Slate, positioned above each component label: `BACKEND` / `DATABASE` / `SECURITY` / `CLOUD` / `FRONTEND` / `MESSAGE BUS` / `EXTERNAL` |
 
@@ -214,7 +214,8 @@ dot's original color carried no meaning to preserve.
 ### Delivery checklist (end of SKILL.md, mirrors exec-dashboard's)
 
 - [ ] `brand` skill was invoked and "Architecture Diagram" Brand Spec Card confirmed
-- [ ] Only Off-White/Linen/Charcoal/Slate/Taupe used; Slate is the only content accent; Taupe appears only on the mark and (at most) one emphasized/entry-point component border — never for category differentiation
+- [ ] Only Off-White/Linen/Charcoal/Slate/Taupe/Khaki used; Slate is the only content accent; Taupe appears only on the mark and (at most) one emphasized/entry-point component border — never for category differentiation
+- [ ] No background grid pattern, no pulse-dot decoration in the header
 - [ ] Poppins for all diagram labels/tags, Lora only in summary-card prose
 - [ ] Every component box has a fill tone + border style + category tag per the matrix (no bare color-only differentiation), sized to comfortably fit all 3 text lines (~72-76px standard height)
 - [ ] Boundary and arrow labels match the color of the element they identify (Khaki/Slate/Slate)
