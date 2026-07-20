@@ -359,6 +359,22 @@ import { BarChart2, TrendingUp } from 'react-feather';
 
 ---
 
+## Format: Architecture Diagram
+
+| Element | Spec |
+|---|---|
+| Background | Off-White `#fafaf8`; Linen `#f5f2ed` for region/cluster/boundary containers only |
+| Component fill | Off-White = standard component (any category) · Linen = region/cluster boundary · Off-White + 2px Taupe border = emphasized/entry-point component (max 1 per diagram; differentiated by border alone, not a 7th fill color) |
+| Component border | Charcoal `#2a2a28` 1.5px solid = standard · Taupe `#6b5b54` 2px solid = emphasized/entry-point (max 1 per diagram) · Slate `#5a7a8a` dashed = security group / trust boundary · Khaki `#a89980` dashed = region/cloud boundary |
+| Accent | Slate only — category tags, connectors, and any boundary/arrow label (label color always matches the element it identifies) |
+| Category tags | Small uppercase Poppins 700 tag per component (BACKEND, DATABASE, SECURITY, CLOUD, FRONTEND, MESSAGE BUS, EXTERNAL) — replaces color-coding by component type |
+| Typography | Poppins for all diagram labels/tags/legend; Lora reserved for narrative summary-card prose only |
+| Mark | ◆ Taupe `#6b5b54`, ≥24px, in the header |
+| Icons | Feather-style icons only, no emoji, for toolbar controls — `stroke-width: 1.5` |
+| Component sizing | 72-76px standard height, 92-136px for larger/multi-line components (wider than upstream's 60px/80-120px to fit the added category tag with proportional type) |
+
+---
+
 ## Component Library
 
 ### Buttons
