@@ -71,3 +71,35 @@ test('reports no findings when everything matches', () => {
     rmSync(home, { recursive: true, force: true });
   }
 });
+
+test('reports a finding instead of crashing on malformed installed_plugins.json', () => {
+  const home = mkdtempSync(join(tmpdir(), 'plugin-health-'));
+  try {
+    mkdirSync(join(home, 'plugins'), { recursive: true });
+    writeFileSync(join(home, 'plugins/installed_plugins.json'), '{ not valid json');
+    mkdirSync(join(home, 'superpowers'), { recursive: true });
+    git(home, 'init', '-q');
+    git(join(home, 'superpowers'), 'init', '-q');
+    const findings = checkPluginDrift(home);
+    assert.ok(Array.isArray(findings));
+    assert.ok(findings.some((f) => f.toLowerCase().includes('not valid json')));
+  } finally {
+    rmSync(home, { recursive: true, force: true });
+  }
+});
+
+test('reports a finding instead of crashing when the install cache has no skills/ directory', () => {
+  const { home, sha } = setupFakeClaudeHome();
+  try {
+    const installPath = join(home, 'plugins/cache/superpowers-dev/superpowers/no-skills-dir');
+    mkdirSync(installPath, { recursive: true });
+    writeFileSync(join(home, 'plugins/installed_plugins.json'), JSON.stringify({
+      plugins: { 'superpowers@superpowers-dev': [{ gitCommitSha: sha, installPath }] },
+    }));
+    writeFileSync(join(home, 'CLAUDE.md'), 'no refs');
+    const findings = checkPluginDrift(home);
+    assert.ok(findings.some((f) => f.includes('has no skills/ directory')));
+  } finally {
+    rmSync(home, { recursive: true, force: true });
+  }
+});

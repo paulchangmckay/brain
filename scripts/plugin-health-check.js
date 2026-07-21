@@ -18,7 +18,14 @@ export function checkPluginDrift(claudeHome) {
     return findings;
   }
 
-  const installed = JSON.parse(readFileSync(installedPath, 'utf8'));
+  let installed;
+  try {
+    installed = JSON.parse(readFileSync(installedPath, 'utf8'));
+  } catch (_) {
+    findings.push('installed_plugins.json is not valid JSON — cannot check for drift.');
+    return findings;
+  }
+
   const entries = installed.plugins && installed.plugins['superpowers@superpowers-dev'];
   const recordedSha = entries && entries[0] && entries[0].gitCommitSha;
 
@@ -33,14 +40,19 @@ export function checkPluginDrift(claudeHome) {
 
   const cachePath = entries && entries[0] && entries[0].installPath;
   if (cachePath && existsSync(cachePath)) {
-    const cachedSkills = new Set(readdirSync(resolve(cachePath, 'skills')));
-    const claudeMdPath = resolve(claudeHome, 'CLAUDE.md');
-    if (existsSync(claudeMdPath)) {
-      const claudeMd = readFileSync(claudeMdPath, 'utf8');
-      const referenced = [...claudeMd.matchAll(/superpowers:([a-z-]+)/g)].map((m) => m[1]);
-      for (const skill of new Set(referenced)) {
-        if (!cachedSkills.has(skill)) {
-          findings.push(`CLAUDE.md references superpowers:${skill} but it isn't in the installed plugin cache at ${cachePath}/skills/.`);
+    const skillsDir = resolve(cachePath, 'skills');
+    if (!existsSync(skillsDir)) {
+      findings.push(`installed plugin cache at ${cachePath} has no skills/ directory — cache may be corrupt or incomplete.`);
+    } else {
+      const cachedSkills = new Set(readdirSync(skillsDir));
+      const claudeMdPath = resolve(claudeHome, 'CLAUDE.md');
+      if (existsSync(claudeMdPath)) {
+        const claudeMd = readFileSync(claudeMdPath, 'utf8');
+        const referenced = [...claudeMd.matchAll(/superpowers:([a-z-]+)/g)].map((m) => m[1]);
+        for (const skill of new Set(referenced)) {
+          if (!cachedSkills.has(skill)) {
+            findings.push(`CLAUDE.md references superpowers:${skill} but it isn't in the installed plugin cache at ${cachePath}/skills/.`);
+          }
         }
       }
     }
