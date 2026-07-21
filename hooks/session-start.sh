@@ -5,6 +5,7 @@ set -euo pipefail
 
 # Best-effort cleanup of stale per-session grilling-gate state files (>24h old)
 find "${CLAUDE_CWD:-.}/.wolf" -maxdepth 1 -name '_skill-gate-*.json' -mmin +1440 -delete 2>/dev/null || true
+find "${CLAUDE_CWD:-.}/.wolf" -maxdepth 1 -name '_writecount-*.json' -mmin +1440 -delete 2>/dev/null || true
 
 escape_for_json() {
     local s="$1"
