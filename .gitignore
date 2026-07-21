@@ -33,6 +33,9 @@ mcp-needs-auth-cache.json
 .wolf/cron-state.json
 .wolf/daemon.log
 .wolf/hooks/_session.json
+.wolf/hooks/_session-*.json
+.wolf/_cerebrum-guard-*.json
+.wolf/_plugin-health-check-last-run
 .wolf/designqc-report.json
 .wolf/suggestions.json
 .wolf/_skill-gate-*.json
