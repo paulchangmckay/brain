@@ -17,7 +17,7 @@ Bootstrap OpenWolf for a new project. Run once per project root to activate toke
    ```bash
    ls .wolf/ 2>/dev/null && echo "EXISTS" || echo "NOT_FOUND"
    ```
-   - If EXISTS: read `.wolf/OPENWOLF.md` and `.wolf/anatomy.md`, report project state, and skip to step 6
+   - If EXISTS: read `.wolf/OPENWOLF.md` and `.wolf/anatomy.md`, report project state, and skip to step 7
    - If NOT_FOUND: continue
 
 3. **Initialize OpenWolf**
