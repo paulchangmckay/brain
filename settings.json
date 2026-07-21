@@ -104,6 +104,15 @@
         ]
       },
       {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node /Users/paulmckay/.claude/hooks/worktree-path-guard.js"
+          }
+        ]
+      },
+      {
         "hooks": [
           {
             "type": "command",
