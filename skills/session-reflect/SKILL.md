@@ -5,7 +5,7 @@ description: Use at the end of any substantive coding session — captures patte
 
 # Session Reflect Skill
 
-End-of-session audit with two phases. Phase 1 (cerebrum) always runs automatically. Phase 2 (CLAUDE.md) runs only when something team-worthy was learned.
+End-of-session audit with three phases. Phase 1 (cerebrum) always runs automatically. Phase 2 (CLAUDE.md) runs only when something team-worthy was learned. Phase 3 (skill observation review) runs on a 7-day fallback cadence.
 
 ## Phase 1: Cerebrum Update (always)
 
@@ -57,41 +57,95 @@ End-of-session audit with two phases. Phase 1 (cerebrum) always runs automatical
    }
    ```
 
+6. **Resolve this session's observation-log checkpoints**
+   Check `.wolf/observations.md` for OPEN `compaction-checkpoint` or
+   `write-batch-checkpoint` entries whose `**Session:**` field matches this
+   session. For each: if the session produced a real insight worth keeping,
+   resolve it as ACTIONED and fold the content into a proper entry via
+   `node scripts/wolf-observation-log.js append` (with a `skill-improvement`
+   or `new-skill-candidate` type as appropriate); otherwise resolve DECLINED:
+   ```bash
+   node scripts/wolf-observation-log.js resolve <N> DECLINED "nothing to log this session"
+   ```
+
+7. **Check for a new-skill candidate**
+   Ask: "was there a repeating 3+-step manual workflow this session that no
+   existing skill covers?" If yes, log it — flag only, never create the
+   skill automatically:
+   ```bash
+   echo '{"type":"new-skill-candidate","skill":"New skill candidate: <working name>","issue":"<what the repeating workflow was>","improvement":"<what a skill for this would need to cover>","principle":"<why this generalizes beyond this session>"}' | node scripts/wolf-observation-log.js append
+   ```
+
 ## Phase 2: CLAUDE.md Audit (conditional)
 
-6. **Assess — did this session reveal anything CLAUDE.md-worthy?**
+8. **Assess — did this session reveal anything CLAUDE.md-worthy?**
    Ask: "Would a future Claude session working in this project be helped by knowing this?"
    - New commands or build/test invocations discovered?
    - Environment or configuration gotchas?
    - Non-obvious code patterns or conventions?
    - Warnings or constraints that apply project-wide?
 
-   If none of the above: skip to step 9.
+   If none of the above: skip to step 13.
 
-7. **Find CLAUDE.md files**
+9. **Find CLAUDE.md files**
    ```bash
    find . -name "CLAUDE.md" -o -name ".claude.local.md" 2>/dev/null | head -20
    ```
    Decide per addition: `CLAUDE.md` (team-shared, checked into git) vs `.claude.local.md` (personal, gitignored).
 
-8. **Draft additions and get approval**
-   One line per concept. Format: `<command or pattern>` — `<brief description>`
-   Avoid verbose explanations, obvious info, one-off fixes unlikely to recur.
+10. **Draft additions and get approval**
+    One line per concept. Format: `<command or pattern>` — `<brief description>`
+    Avoid verbose explanations, obvious info, one-off fixes unlikely to recur.
 
-   Present as diffs before writing:
-   ```
-   ### Update: ./CLAUDE.md
-   **Why:** [one-line reason]
-   + [the addition]
-   ```
-   Apply only changes the user approves.
+    Present as diffs before writing:
+    ```
+    ### Update: ./CLAUDE.md
+    **Why:** [one-line reason]
+    + [the addition]
+    ```
+    Apply only changes the user approves.
 
-## Step 9: Report
+## Phase 3: Skill Observation Review (conditional, 7-day fallback)
+
+11. **Check whether a review is due**
+    ```bash
+    cat .wolf/observations-last-review.txt 2>/dev/null || echo never
+    ```
+    If the value is `never` or the date is more than 7 days old, AND
+    `.wolf/observations.md` has at least one `### Observation` header whose
+    Status is not ACTIONED/DECLINED (statusless entries count as OPEN — never
+    filter by grepping for the literal string `OPEN`, since that silently
+    drops entries missing a Status line): offer one line — "The
+    skill-observation backlog hasn't been reviewed [in N days / yet] — run it
+    now, or wrap up?" Never gate the user's task on this; proceed either way.
+
+12. **If the user accepts the review:**
+    a. Archive first:
+       ```bash
+       node scripts/wolf-observation-log.js archive
+       ```
+    b. Enumerate the remaining OPEN entries and cross-check each against the
+       skill(s) it names.
+    c. For each entry:
+       - **Small additive** (new rule, clarification, factual fix): show an
+         inline diff of the proposed SKILL.md change, apply on approval,
+         write live — same shape as the Phase 2 CLAUDE.md pattern above.
+       - **Substantial** (restructuring, new capability, or any
+         new-skill-candidate the user wants to build): hand off to the
+         `github-issue-first` skill to file the issue, then the normal
+         `using-git-worktrees → test-driven-development →
+         verification-before-completion → requesting-code-review` pipeline.
+       - Mark the entry via `node scripts/wolf-observation-log.js resolve <N> ACTIONED "<what was applied>"`
+         or `... DECLINED "<why not>"`.
+    d. Write today's date to `.wolf/observations-last-review.txt`.
+
+## Step 13: Report
 
 ```
 Session reflect complete:
 - cerebrum.md: N entries added [or: no high-signal patterns this session]
 - buglog.json: [updated / not updated]
 - CLAUDE.md: [M additions applied / nothing team-worthy this session]
+- observations.md: [K entries resolved / review skipped or not due]
 Most important learning: <one sentence>
 ```
