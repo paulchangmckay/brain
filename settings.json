@@ -266,6 +266,10 @@
           },
           {
             "type": "command",
+            "command": "node /Users/paulmckay/.claude/hooks/post-compact-observation.js"
+          },
+          {
+            "type": "command",
             "command": "node \"/Users/paulmckay/.claude/langsmith-plugin/bundle/post-compact.js\"",
             "timeout": 30,
             "async": true
