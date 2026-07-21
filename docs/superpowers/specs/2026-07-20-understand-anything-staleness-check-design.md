@@ -33,11 +33,11 @@ Structured as pure functions plus a thin orchestrator, the same shape as `docs-s
 
 - **`readMeta(cwd)`** — reads and `JSON.parse`s `${cwd}/.understand-anything/meta.json`. Returns `null` if the file doesn't exist or fails to parse (tool never run in this project, or something is corrupt) — not an error case, just "nothing to check."
 - **`countCommitsBehind(cwd, commitHash)`** — runs `git -C <cwd> rev-list --count <commitHash>..HEAD` via `execFileSync`, parses the numeric result. Returns `null` on any failure (non-git directory, unreachable/rewritten commit hash, git not installed) rather than throwing.
-- **`formatStalenessMessage({ commitsBehind, threshold, cwd })`** — pure function. Returns a one-line message (e.g. `"Knowledge graph is 14 commits behind HEAD — consider running /understand-anything:understand /Users/paulmckay/.claude"`) when `commitsBehind > threshold`, else `null`. No I/O, trivially testable.
+- **`formatStalenessMessage({ commitsBehind, threshold, cwd })`** — pure function. Returns a one-line message with `cwd` double-quoted so the suggested command stays copy-pasteable even when the path contains spaces (a real case in this environment — `/Users/paulmckay/Desktop/NHL Stats Project`), e.g. `` "Knowledge graph is 14 commits behind HEAD — consider running /understand-anything:understand \"/Users/paulmckay/.claude\"" `` when `commitsBehind > threshold`, else `null`. No I/O, trivially testable.
 - **`checkStaleness(cwd, threshold = 10)`** — orchestrates the three above: `readMeta` → if `null`, return `null`; else `countCommitsBehind` using `meta.gitCommitHash` → if `null`, return `null`; else `formatStalenessMessage({ commitsBehind, threshold, cwd })`. This is what the CLI entrypoint calls.
-- **CLI entrypoint** (`if (isMain)` block, matching `pull-skills.mjs`'s convention): calls `checkStaleness(process.argv[2] || process.cwd())` and, if it returns a non-null message, prints it to stdout via `console.log`. Prints nothing otherwise. Never throws past this point — the orchestrator's own `null`-on-failure contract means the CLI body has no error path left to handle.
+- **CLI entrypoint** (`if (isMain)` block, matching `pull-skills.mjs`'s convention): calls `checkStaleness(process.argv[2] || process.cwd(), threshold)` — where `threshold` comes from an optional `UNDERSTAND_STALENESS_THRESHOLD` env var (parsed as an integer, falling back to the default `10` if unset or unparseable) — and, if it returns a non-null message, prints it to stdout via `console.log`. Prints nothing otherwise. Never throws past this point — the orchestrator's own `null`-on-failure contract means the CLI body has no error path left to handle.
 
-Threshold is fixed at **10 commits behind** (a `checkStaleness` parameter with that default, not read from any config file — YAGNI until a real need for per-project tuning appears).
+Default threshold is **10 commits behind**, overridable per-shell/per-project via `UNDERSTAND_STALENESS_THRESHOLD` (an env var, not a config file — cheap escape hatch for a project with a very different commit cadence than `~/.claude`, without building config-file plumbing for a single number).
 
 ## Data Flow
 
@@ -65,8 +65,8 @@ Every failure mode collapses to "the CLI entrypoint prints nothing":
 `hooks/understand-anything-staleness.test.js`, `node:test`, matching the style of `hooks/pre-skill-gate.test.js` and `docs-site/scripts/pull-skills.test.mjs` — real temp directories and real (tiny, local) git repos, no mocking of `git` or the filesystem:
 
 - `readMeta` returns `null` for a missing file, `null` for invalid JSON, and the parsed object for valid JSON.
-- `countCommitsBehind` returns the correct count against a real temp git repo with a few commits, and `null` against a non-git directory and against an unreachable commit hash.
-- `formatStalenessMessage` returns `null` at/under threshold, a message over it, and the message mentions the actual commit count.
+- `countCommitsBehind` returns the correct count against a real temp git repo with a few commits, and `null` against a non-git directory and against an unreachable commit hash (a fixed 40-character hex string that was never a real commit — git's "bad revision" error is identical whether a hash never existed or existed and was later rewritten out of history, so a fake hash exercises the same code path without needing to actually simulate a rebase).
+- `formatStalenessMessage` returns `null` at/under threshold, a message over it, the message mentions the actual commit count, and the message double-quotes a `cwd` containing a space.
 - `checkStaleness` end-to-end: a temp git repo with a `meta.json` pointing at an old commit and >10 newer commits produces a message; the same repo with a fresh `gitCommitHash` (HEAD itself) produces `null`; a repo with no `.understand-anything/` directory at all produces `null`.
 
 ## Out of Scope
