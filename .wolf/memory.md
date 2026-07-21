@@ -1181,3 +1181,7 @@
 | 18:14 | Created docs/superpowers/plans/2026-07-21-github-first-workflow.md | — | ~3159 |
 | 18:14 | Session end: 5 writes across 2 files (2026-07-21-github-first-workflow-design.md, 2026-07-21-github-first-workflow.md) | 2 reads | ~9020 tok |
 | 18:50 | Session end: 5 writes across 2 files (2026-07-21-github-first-workflow-design.md, 2026-07-21-github-first-workflow.md) | 4 reads | ~10927 tok |
+| 18:51 | Created .superpowers/sdd/task-1-report.md | — | ~1025 |
+| 18:53 | Edited .gitignore | 4→7 lines | ~47 |
+| 18:56 | Edited CLAUDE.md | inline fix | ~175 |
+| 18:58 | Edited .superpowers/sdd/task-3-report.md | modified porcelain() | ~747 |

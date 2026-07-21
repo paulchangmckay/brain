@@ -1,18 +1,18 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-07-21T22:14:30.917Z
+> Auto-maintained by OpenWolf. Last scanned: 2026-07-21T22:58:41.208Z
 > Files: 507 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
 - `.DS_Store` (~3275 tok)
-- `.gitignore` — Git ignore rules (~361 tok)
+- `.gitignore` — Git ignore rules (~376 tok)
 - `.gitleaks.toml` (~143 tok)
 - `.gitmodules` (~99 tok)
 - `.last-cleanup` (~7 tok)
 - `.last-update-result.json` (~46 tok)
 - `.shellcheckrc` — Companion enforcement for skills/senior-engineering-partner SKILL.md: (~81 tok)
-- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~3925 tok)
+- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~4010 tok)
 - `eslint.config.js` — ESLint flat configuration (~365 tok)
 - `history.jsonl` (~40 tok)
 - `mcp_servers.json` (~64 tok)
@@ -43,11 +43,11 @@
 - `review-bd77286..6564e28.diff` — Review package: bd77286b426cdbd1d0f78f51006b908b0e106ac9..HEAD (~3980 tok)
 - `review-dba8303..bd77286.diff` — Review package: dba83039bbb6b562dba43c032702f1620826590a..HEAD (~681 tok)
 - `task-1-brief.md` — Task 1: Create `claude-infra-reference` skill with moved content (~1907 tok)
-- `task-1-report.md` — Task 1 Report: Create `claude-infra-reference` Skill (~308 tok)
+- `task-1-report.md` — Task 1 Report: Land pre-existing accumulated learnings (~961 tok)
 - `task-2-brief.md` — Task 2: Create `model-routing` skill (~776 tok)
 - `task-2-report.md` — Task 2 Report: Create `model-routing` skill (~263 tok)
 - `task-3-brief.md` — Task 3: Trim CLAUDE.md — remove moved sections, condense Section 3 (+7), add pointers and model-routing bullet (~2979 tok)
-- `task-3-report.md` — Task 3 Report: Trim CLAUDE.md (~928 tok)
+- `task-3-report.md` — Task 3 Report: Fix CLAUDE.md §3 worktree merge pattern (~700 tok)
 - `task-5-brief.md` — Task 5: Add global permissions.deny (~1259 tok)
 - `task-5-report.md` — Task 5 Report: Add global permissions.deny (~375 tok)
 
