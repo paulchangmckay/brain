@@ -1,6 +1,6 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
-import { getWolfDir, ensureWolfDir, writeJSON, appendMarkdown, readJSON, timestamp, timeShort } from "./shared.js";
+import { getWolfDir, ensureWolfDir, writeJSON, appendMarkdown, readJSON, timestamp, timeShort, readStdin, getSessionFilePath } from "./shared.js";
 async function main() {
     ensureWolfDir();
     const wolfDir = getWolfDir();
@@ -17,10 +17,12 @@ async function main() {
         }
     }
     catch { }
-    const hooksDir = path.join(wolfDir, "hooks");
-    const sessionFile = path.join(hooksDir, "_session.json");
     const now = new Date();
-    const sessionId = `session-${now.toISOString().slice(0, 10)}-${String(now.getHours()).padStart(2, "0")}${String(now.getMinutes()).padStart(2, "0")}`;
+    const raw = await readStdin();
+    let hookInput = {};
+    try { hookInput = JSON.parse(raw); } catch { /* SessionStart may send no usable JSON on some triggers */ }
+    const sessionId = hookInput.session_id || `session-${now.toISOString().slice(0, 10)}-${String(now.getHours()).padStart(2, "0")}${String(now.getMinutes()).padStart(2, "0")}`;
+    const sessionFile = getSessionFilePath(wolfDir, hookInput.session_id);
     // Create fresh session state
     writeJSON(sessionFile, {
         session_id: sessionId,

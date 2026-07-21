@@ -6,6 +6,12 @@ export function getWolfDir() {
     const projectDir = process.env.CLAUDE_PROJECT_DIR || process.cwd();
     return path.join(projectDir, ".wolf");
 }
+const SAFE_SESSION_ID = /^[A-Za-z0-9._-]+$/;
+export function getSessionFilePath(wolfDir, sessionId) {
+    const hooksDir = path.join(wolfDir, "hooks");
+    const safe = typeof sessionId === "string" && SAFE_SESSION_ID.test(sessionId) ? sessionId : null;
+    return path.join(hooksDir, safe ? `_session-${safe}.json` : "_session.json");
+}
 /**
  * Bail out silently if .wolf/ directory doesn't exist in the current project.
  * Call this at the top of every hook to avoid crashes in non-OpenWolf projects.

@@ -1,12 +1,10 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import * as crypto from "node:crypto";
-import { getWolfDir, ensureWolfDir, readJSON, writeJSON, parseAnatomy, serializeAnatomy, extractDescription, estimateTokens, appendMarkdown, timeShort, readStdin, normalizePath } from "./shared.js";
+import { getWolfDir, ensureWolfDir, readJSON, writeJSON, parseAnatomy, serializeAnatomy, extractDescription, estimateTokens, appendMarkdown, timeShort, readStdin, normalizePath, getSessionFilePath } from "./shared.js";
 async function main() {
     ensureWolfDir();
     const wolfDir = getWolfDir();
-    const hooksDir = path.join(wolfDir, "hooks");
-    const sessionFile = path.join(hooksDir, "_session.json");
     const projectRoot = process.env.CLAUDE_PROJECT_DIR || process.cwd();
     const raw = await readStdin();
     let input;
@@ -17,6 +15,7 @@ async function main() {
         process.exit(0);
         return;
     }
+    const sessionFile = getSessionFilePath(wolfDir, input.session_id);
     const toolName = input.tool_name ?? "Write";
     const filePath = input.tool_input?.file_path ?? input.tool_input?.path ?? "";
     if (!filePath) {
