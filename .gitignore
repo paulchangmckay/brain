@@ -40,6 +40,9 @@ mcp-needs-auth-cache.json
 .wolf/suggestions.json
 .wolf/_skill-gate-*.json
 .wolf/_last-seen-head
+.wolf/_writecount-*.json
+.wolf/*.md.bak
+docs-site/.wolf/
 
 # understand-anything intermediates and scratch (keep graph outputs)
 .understand-anything/intermediate/assembled-graph.json
