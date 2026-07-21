@@ -13,9 +13,11 @@ NOW=$(date +%s)
 
 if [ -f "$GATE_FILE" ]; then
   LAST=$(cat "$GATE_FILE")
-  ELAPSED=$(( NOW - LAST ))
-  if [ "$ELAPSED" -lt 86400 ]; then
-    exit 0
+  if [[ "$LAST" =~ ^[0-9]+$ ]]; then
+    ELAPSED=$(( NOW - LAST ))
+    if [ "$ELAPSED" -lt 86400 ]; then
+      exit 0
+    fi
   fi
 fi
 
