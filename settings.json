@@ -109,6 +109,10 @@
           {
             "type": "command",
             "command": "node /Users/paulmckay/.claude/hooks/worktree-path-guard.js"
+          },
+          {
+            "type": "command",
+            "command": "node /Users/paulmckay/.claude/hooks/cerebrum-write-guard.js"
           }
         ]
       },
