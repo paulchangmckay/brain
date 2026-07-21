@@ -114,6 +114,39 @@ test('excludes .git and node_modules unconditionally', () => {
   });
 });
 
+test('excludes Claude Code self-referential directories unconditionally', () => {
+  withTmpRepo((cwd) => {
+    mkdirSync(join(cwd, '.wolf'));
+    writeFileSync(join(cwd, '.wolf', 'buglog.json'), `"${MARKER} naive scan, never"\n`);
+    mkdirSync(join(cwd, '.superpowers', 'sdd'), { recursive: true });
+    writeFileSync(
+      join(cwd, '.superpowers', 'sdd', 'review.diff'),
+      `// ${MARKER} noise, never\n`,
+    );
+    mkdirSync(join(cwd, 'file-history', 'abc123'), { recursive: true });
+    writeFileSync(
+      join(cwd, 'file-history', 'abc123', 'snapshot@v1'),
+      `// ${MARKER} noise, never\n`,
+    );
+    const markers = scanDebtMarkers(cwd);
+    assert.equal(markers.length, 0);
+  });
+});
+
+test('excludes .jsonl conversation transcripts by extension anywhere in the tree', () => {
+  withTmpRepo((cwd) => {
+    mkdirSync(join(cwd, 'projects', 'some-session'), { recursive: true });
+    writeFileSync(
+      join(cwd, 'projects', 'some-session', 'transcript.jsonl'),
+      `// ${MARKER} noise from a past conversation, never\n`,
+    );
+    writeFileSync(join(cwd, 'app.js'), `// ${MARKER} real one, real trigger\n`);
+    const markers = scanDebtMarkers(cwd);
+    assert.equal(markers.length, 1);
+    assert.match(markers[0].file, /app\.js$/);
+  });
+});
+
 test('formatReport reports a clean ledger when nothing found', () => {
   assert.equal(formatReport([]), `No ${MARKER} markers. Clean ledger.`);
 });

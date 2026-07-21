@@ -39,6 +39,14 @@ function grepMarkers(cwd) {
     '(#|//) ?wolf-debt:',
     '--exclude-dir=.git',
     '--exclude-dir=node_modules',
+    // Claude Code's own runtime state when this scanner is run against
+    // ~/.claude itself — conversation history, file snapshots, and SDD
+    // review artifacts, never source. Fixed top-level names, safe for
+    // basename exclusion like .git/node_modules above.
+    '--exclude-dir=.wolf',
+    '--exclude-dir=.superpowers',
+    '--exclude-dir=file-history',
+    '--exclude=*.jsonl',
     '.',
   ];
   try {
