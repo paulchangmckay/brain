@@ -108,3 +108,79 @@ test('countCommitsBehind returns null for an unreachable commit hash', () => {
     rmSync(cwd, { recursive: true, force: true });
   }
 });
+
+import { formatStalenessMessage } from './understand-anything-staleness.js';
+
+test('formatStalenessMessage returns null when commitsBehind is at or under threshold', () => {
+  assert.equal(formatStalenessMessage({ commitsBehind: 10, threshold: 10, cwd: '/x' }), null);
+  assert.equal(formatStalenessMessage({ commitsBehind: 3, threshold: 10, cwd: '/x' }), null);
+});
+
+test('formatStalenessMessage returns a message mentioning the commit count when over threshold', () => {
+  const msg = formatStalenessMessage({ commitsBehind: 14, threshold: 10, cwd: '/Users/paulmckay/.claude' });
+  assert.match(msg, /14 commits behind/);
+  assert.match(msg, /\/understand-anything:understand/);
+});
+
+test('formatStalenessMessage double-quotes a cwd containing spaces', () => {
+  const msg = formatStalenessMessage({
+    commitsBehind: 14,
+    threshold: 10,
+    cwd: '/Users/paulmckay/Desktop/NHL Stats Project',
+  });
+  assert.match(msg, /"\/Users\/paulmckay\/Desktop\/NHL Stats Project"/);
+});
+
+import { checkStaleness } from './understand-anything-staleness.js';
+
+test('checkStaleness returns null when there is no .understand-anything directory', () => {
+  const cwd = makeTempDir();
+  try {
+    initGitRepo(cwd);
+    writeFileSync(join(cwd, 'a.txt'), '1');
+    commitAll(cwd, 'only commit');
+    assert.equal(checkStaleness(cwd), null);
+  } finally {
+    rmSync(cwd, { recursive: true, force: true });
+  }
+});
+
+test('checkStaleness returns null when the graph is fresh (at or under threshold)', () => {
+  const cwd = makeTempDir();
+  try {
+    initGitRepo(cwd);
+    writeFileSync(join(cwd, 'a.txt'), '1');
+    const headHash = commitAll(cwd, 'only commit');
+    mkdirSync(join(cwd, '.understand-anything'));
+    writeFileSync(
+      join(cwd, '.understand-anything', 'meta.json'),
+      JSON.stringify({ gitCommitHash: headHash })
+    );
+    assert.equal(checkStaleness(cwd, 10), null);
+  } finally {
+    rmSync(cwd, { recursive: true, force: true });
+  }
+});
+
+test('checkStaleness returns a message when the graph is more than threshold commits behind', () => {
+  const cwd = makeTempDir();
+  try {
+    initGitRepo(cwd);
+    writeFileSync(join(cwd, 'a.txt'), '0');
+    const oldHash = commitAll(cwd, 'commit 0');
+    mkdirSync(join(cwd, '.understand-anything'));
+    writeFileSync(
+      join(cwd, '.understand-anything', 'meta.json'),
+      JSON.stringify({ gitCommitHash: oldHash })
+    );
+    for (let i = 1; i <= 5; i++) {
+      writeFileSync(join(cwd, 'a.txt'), String(i));
+      commitAll(cwd, `commit ${i}`);
+    }
+    // threshold of 3 with 5 new commits since oldHash — over threshold
+    const msg = checkStaleness(cwd, 3);
+    assert.match(msg, /5 commits behind/);
+  } finally {
+    rmSync(cwd, { recursive: true, force: true });
+  }
+});

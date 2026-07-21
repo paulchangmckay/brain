@@ -30,3 +30,27 @@ export function countCommitsBehind(cwd, commitHash) {
     return null;
   }
 }
+
+export function formatStalenessMessage({ commitsBehind, threshold, cwd }) {
+  if (commitsBehind <= threshold) return null;
+  return `Knowledge graph is ${commitsBehind} commits behind HEAD — consider running /understand-anything:understand "${cwd}"`;
+}
+
+export function checkStaleness(cwd, threshold = 10) {
+  const meta = readMeta(cwd);
+  if (!meta || !meta.gitCommitHash) return null;
+  const commitsBehind = countCommitsBehind(cwd, meta.gitCommitHash);
+  if (commitsBehind === null) return null;
+  return formatStalenessMessage({ commitsBehind, threshold, cwd });
+}
+
+const isMain = process.argv[1] && import.meta.url === `file://${process.argv[1]}`;
+if (isMain) {
+  const cwd = process.argv[2] || process.cwd();
+  const envThreshold = Number.parseInt(process.env.UNDERSTAND_STALENESS_THRESHOLD ?? '', 10);
+  const threshold = Number.isInteger(envThreshold) ? envThreshold : 10;
+  const message = checkStaleness(cwd, threshold);
+  if (message) {
+    console.log(message);
+  }
+}
