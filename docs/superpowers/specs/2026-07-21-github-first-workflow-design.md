@@ -25,16 +25,24 @@ Preflight already run during brainstorming:
 - Changing worktree creation mechanics (`EnterWorktree`, `git worktree add`) — unaffected, only the merge tail-end changes.
 - Retroactively filing GitHub issues for past work — `github-issue-first` applies going forward only.
 
-## 1. Remote Wiring
+## 1. Pre-Existing Working-Tree State (must land before push)
 
-```
-git remote add origin https://github.com/paulchangmckay/brain.git
-git push -u origin main
-```
+Grilling surfaced that the working tree already carries uncommitted changes unrelated to this spec: `CLAUDE.md` has a ~20-line diff (prior `session-reflect` Phase 2 learnings — e.g. the `CLAUDE_CWD` dead-variable note, submodule-transfer script reference), plus modified `.wolf/anatomy.md`, `buglog.json`, `cerebrum.md`, `memory.md`, `observations.md`. None of it touches the "Worktree merge pattern" bullet this spec rewrites, so there's no content conflict — but it must be resolved before this spec's own commits, so history stays separable and the initial push starts from a fully-committed tree:
 
-Both local and remote default branch are already `main` — no rename needed. `gh` is already authenticated with `repo` scope (confirmed), so no additional auth setup.
+1. Commit the existing accumulated-learnings diff (`CLAUDE.md` + `.wolf/*.md`) as its own commit, separate from this spec's changes.
+2. Add `.wolf/_writecount-*.json`, `.wolf/*.md.bak`, and `docs-site/.wolf/` to `.gitignore` — confirmed ephemeral per-session runtime state (same category as the already-gitignored `.wolf/_skill-gate-*.json` / `.wolf/_last-seen-head`), just missing from the existing pattern list. Commit the `.gitignore` addition; do not commit the stray files themselves.
 
-## 2. Branch Protection
+## 2. Remote Wiring, Doc Fix, and Push (bootstrapping order)
+
+Grilling also surfaced a bootstrapping paradox: if branch protection (§3, below) goes live *before* this spec's own CLAUDE.md fix is committed, that commit would need to go through the very worktree/PR flow the fix is meant to finish enabling — which doesn't exist yet. Resolution: do all local commits first, while `main` is still directly writable, and only apply protection once the repo is in its target end-state.
+
+Order:
+1. Add `origin` remote: `git remote add origin https://github.com/paulchangmckay/brain.git`.
+2. Make the CLAUDE.md §3 merge-pattern fix (below) as its own commit, directly on local `main` — this is setup work finishing the mechanism, not subject to the mechanism yet.
+3. Push everything in one go: `git push -u origin main`. Both local and remote default branch are already `main` — no rename needed. `gh` is already authenticated with `repo` scope, so no additional auth setup.
+4. Only then apply branch protection (§3).
+
+## 3. Branch Protection
 
 Run the existing script as-is (no modification needed):
 
@@ -42,9 +50,11 @@ Run the existing script as-is (no modification needed):
 scripts/setup-branch-protection.sh paulchangmckay brain main
 ```
 
-This applies `required_pull_request_reviews: { required_approving_review_count: 0 }` (solo maintainer — the gate is "went through a PR," not "got approved by a second person") and `enforce_admins: true`, so direct pushes to `main` — including from the repo owner — are rejected by GitHub. Confirmed idempotent per the script's existing test suite (`scripts/setup-branch-protection.test.js`).
+This applies `required_pull_request_reviews: { required_approving_review_count: 0 }` (solo maintainer — the gate is "went through a PR," not "got approved by a second person") and `enforce_admins: true`, so direct pushes to `main` — including from the repo owner — are rejected by GitHub from this point forward. Confirmed idempotent per the script's existing test suite (`scripts/setup-branch-protection.test.js`).
 
-## 3. CLAUDE.md §3 Merge-Pattern Fix
+Grilling also raised the script's hardcoded `required_status_checks: { strict: true, contexts: [] }` — with zero contexts, no CI check is actually required to merge, but `strict: true` still requires a PR branch to be up-to-date with `main` before merging, and this repo has no GitHub Actions workflow behind that constraint. **Decision: keep the script as-is, unmodified.** The friction (occasional rebase/update before merging a long-lived branch) is minor for a solo-maintainer repo with infrequent concurrent branches, and isn't worth diverging from the already-tested script.
+
+## 4. CLAUDE.md §3 Merge-Pattern Fix
 
 Current text (the bullet to replace):
 
@@ -60,15 +70,19 @@ No other CLAUDE.md sections reference the old local-merge pattern; §2's table a
 
 ## Files Changed
 
-| File | Change |
-|------|--------|
-| `~/.claude` (git config) | Add `origin` remote → `github.com/paulchangmckay/brain`, push full history |
-| GitHub (`paulchangmckay/brain`) | Branch protection applied to `main` via existing `scripts/setup-branch-protection.sh` |
-| `~/.claude/CLAUDE.md` | §3 "Worktree merge pattern" bullet rewritten: local `git merge` → push branch / `gh pr create` / explicit-approval wait / `gh pr merge --squash` / `git pull` |
+| File | Change | Commit |
+|------|--------|--------|
+| `~/.claude/CLAUDE.md`, `.wolf/anatomy.md`, `.wolf/buglog.json`, `.wolf/cerebrum.md`, `.wolf/memory.md`, `.wolf/observations.md` | Land pre-existing accumulated `session-reflect` learnings, unrelated to this spec | 1 (pre-existing state) |
+| `~/.claude/.gitignore` | Add `.wolf/_writecount-*.json`, `.wolf/*.md.bak`, `docs-site/.wolf/` | 2 (pre-existing state) |
+| `~/.claude/CLAUDE.md` | §3 "Worktree merge pattern" bullet rewritten: local `git merge` → push branch / `gh pr create` / explicit-approval wait / `gh pr merge --squash` / `git pull` | 3 (this spec) |
+| `~/.claude` (git config) | Add `origin` remote → `github.com/paulchangmckay/brain`, push all commits through #3 | — (`git remote add` + `git push`, not a commit) |
+| GitHub (`paulchangmckay/brain`) | Branch protection applied to `main` via existing `scripts/setup-branch-protection.sh`, run *after* the push above | — (API call, not a commit) |
 
 ## Verification
 
+- `git status --porcelain` is clean before the `origin` remote is added (confirms commits 1–3 landed and nothing was left stray).
+- `.gitignore` contains the three new patterns, and `git status --porcelain` no longer lists `_writecount-*`/`.bak`/`docs-site/.wolf/` as untracked.
 - `git remote -v` shows `origin` pointing at the correct URL.
-- `git ls-remote origin main` resolves after push, and `git log origin/main --oneline -1` matches local `main` HEAD.
+- `git ls-remote origin main` resolves after push, and `git log origin/main --oneline -1` matches local `main` HEAD (which must include the CLAUDE.md §3 fix commit).
 - `gh api repos/paulchangmckay/brain/branches/main/protection --jq .enforce_admins.enabled` returns `true` — this is sufficient evidence; no live-fire direct-push test against `main` (avoids a throwaway commit/reset cycle against a now-protected branch for no added certainty).
 - CLAUDE.md §3 no longer contains a `git -C ... merge` instruction; grep confirms.
