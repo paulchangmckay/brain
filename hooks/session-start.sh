@@ -45,7 +45,15 @@ else
     anatomy_context="\n\n<OPENWOLF_NOTICE>\nNo .wolf/ directory found in this project. Before any coding work, invoke the wolf-init skill to set up OpenWolf token tracking and file memory.\n</OPENWOLF_NOTICE>"
 fi
 
-combined_context="${superpowers_context}${global_anatomy_context}${anatomy_context}"
+# --- understand-anything staleness check ---
+staleness_msg=$(node "$HOME/.claude/hooks/understand-anything-staleness.js" "${CLAUDE_CWD:-.}" 2>/dev/null || true)
+staleness_context=""
+if [ -n "$staleness_msg" ]; then
+    staleness_escaped=$(escape_for_json "$staleness_msg")
+    staleness_context="\n\n<UNDERSTAND_ANYTHING_STALENESS>\n${staleness_escaped}\n</UNDERSTAND_ANYTHING_STALENESS>"
+fi
+
+combined_context="${superpowers_context}${global_anatomy_context}${anatomy_context}${staleness_context}"
 
 # Output in Claude Code format
 printf '{\n  "hookSpecificOutput": {\n    "hookEventName": "SessionStart",\n    "additionalContext": "%s"\n  }\n}\n' "$combined_context" | cat
