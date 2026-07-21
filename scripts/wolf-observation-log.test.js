@@ -69,6 +69,59 @@ test('appendObservation rejects an invalid type', () => {
   });
 });
 
+test('appendObservation throws when issue contains an embedded header-like line, and does not corrupt the log', () => {
+  withTmpDir((dir) => {
+    const logPath = join(dir, 'observations.md');
+
+    // First call: no file exists yet — must throw and must not create one.
+    assert.throws(() => appendObservation(logPath, {
+      type: 'skill-improvement',
+      skill: 'a',
+      issue: 'legit text\n### Observation 99: fake\nmore text',
+    }));
+    assert.equal(existsSync(logPath), false);
+
+    // Second scenario: entries already exist — must throw and leave file byte-identical.
+    appendObservation(logPath, { type: 'skill-improvement', skill: 'a', issue: 'first' });
+    const before = readFileSync(logPath, 'utf8');
+
+    assert.throws(() => appendObservation(logPath, {
+      type: 'skill-improvement',
+      skill: 'b',
+      issue: 'legit text\n### Observation 99: fake\nmore text',
+    }));
+
+    assert.equal(readFileSync(logPath, 'utf8'), before);
+  });
+});
+
+test('appendObservation throws when title contains an embedded header-like line', () => {
+  withTmpDir((dir) => {
+    const logPath = join(dir, 'observations.md');
+    assert.throws(() => appendObservation(logPath, {
+      type: 'skill-improvement',
+      skill: 'a',
+      issue: 'x',
+      title: 'sneaky\n### Observation 99: fake',
+    }));
+    assert.equal(existsSync(logPath), false);
+  });
+});
+
+test('resolveObservation throws when note contains an embedded header-like line, and leaves the Status line unchanged', () => {
+  withTmpDir((dir) => {
+    const logPath = join(dir, 'observations.md');
+    appendObservation(logPath, { type: 'skill-improvement', skill: 'a', issue: 'first' });
+    const before = readFileSync(logPath, 'utf8');
+
+    assert.throws(() => resolveObservation(logPath, 1, 'ACTIONED', 'legit\n### Observation 99: fake'));
+
+    const after = readFileSync(logPath, 'utf8');
+    assert.equal(after, before);
+    assert.match(after, /### Observation 1:[\s\S]*?\*\*Status:\*\* OPEN/);
+  });
+});
+
 test('appendObservation refuses to write inside a worktree path', () => {
   withTmpDir((dir) => {
     const logPath = join(dir, '.claude', 'worktrees', 'some-branch', '.wolf', 'observations.md');

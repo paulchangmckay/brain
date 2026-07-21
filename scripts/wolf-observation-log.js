@@ -29,6 +29,16 @@ const VALID_TYPES = new Set([
 ]);
 const VALID_STATUSES = new Set(['OPEN', 'ACTIONED', 'DECLINED']);
 
+const HEADER_LINE_RE = /^### Observation \d+:/m;
+
+function assertNoHeaderInjection(fields) {
+  for (const [name, value] of Object.entries(fields)) {
+    if (typeof value === 'string' && HEADER_LINE_RE.test(value)) {
+      throw new Error(`field "${name}" contains a line matching the observation header pattern (### Observation N:) — rejected to prevent log corruption`);
+    }
+  }
+}
+
 const DEFAULT_HEADER = `# Skill Observation Log
 
 Observations captured during task-oriented work. Separate from cerebrum.md
@@ -127,6 +137,7 @@ export function appendObservation(logPath, payload) {
   if (!VALID_STATUSES.has(status)) {
     throw new Error(`invalid observation status: ${status}`);
   }
+  assertNoHeaderInjection({ title, skill, issue, improvement, principle, session });
 
   return withLock(logPath, () => {
     backup(logPath);
@@ -146,6 +157,12 @@ export function appendObservation(logPath, payload) {
 **Suggested improvement:** ${improvement}
 **Principle:** ${principle}
 `;
+
+    const expectedCount = countHeadersInContent(content) + 1;
+    const actualCount = countHeadersInContent(content + entry);
+    if (actualCount !== expectedCount) {
+      throw new Error(`append would produce unexpected header count: expected ${expectedCount}, got ${actualCount}`);
+    }
 
     writeFileSync(logPath, content + entry);
     return number;
@@ -178,6 +195,7 @@ export function resolveObservation(logPath, number, status, note = '') {
   if (status !== 'ACTIONED' && status !== 'DECLINED') {
     throw new Error(`resolve status must be ACTIONED or DECLINED, got: ${status}`);
   }
+  assertNoHeaderInjection({ note });
   return withLock(logPath, () => {
     backup(logPath);
     const content = readLog(logPath);
@@ -201,12 +219,13 @@ export function resolveObservation(logPath, number, status, note = '') {
     const newBlock = entryBlock.replace(statusLineRe, `$1 ${status} (${todayISO()})${suffix}`);
 
     const newContent = content.slice(0, start) + newBlock + content.slice(end);
-    writeFileSync(logPath, newContent);
 
     const after = countHeadersInContent(newContent);
     if (after !== before) {
       throw new Error(`resolve mutated header count: ${before} -> ${after}`);
     }
+
+    writeFileSync(logPath, newContent);
     return true;
   });
 }
@@ -242,25 +261,28 @@ export function archiveObservations(logPath, archiveDir, today = todayISO()) {
       return { archivedCount: 0 };
     }
 
-    mkdirSync(archiveDir, { recursive: true });
     let archivedCount = 0;
+    for (const blocks of archivedByDate.values()) {
+      archivedCount += blocks.length;
+    }
+
+    const preamble = content.slice(0, matches[0].index);
+    const newContent = preamble + kept.join('');
+    const after = countHeadersInContent(newContent);
+    if (after !== before - archivedCount) {
+      throw new Error(`archive count mismatch: before=${before} archived=${archivedCount} after=${after}`);
+    }
+
+    mkdirSync(archiveDir, { recursive: true });
     for (const [date, blocks] of archivedByDate) {
       const archivePath = resolve(archiveDir, `log-${date}.md`);
       const existingArchive = existsSync(archivePath)
         ? readFileSync(archivePath, 'utf8')
         : DEFAULT_HEADER;
       writeFileSync(archivePath, existingArchive + blocks.join(''));
-      archivedCount += blocks.length;
     }
 
-    const preamble = content.slice(0, matches[0].index);
-    const newContent = preamble + kept.join('');
     writeFileSync(logPath, newContent);
-
-    const after = countHeadersInContent(newContent);
-    if (after !== before - archivedCount) {
-      throw new Error(`archive count mismatch: before=${before} archived=${archivedCount} after=${after}`);
-    }
 
     return { archivedCount };
   });
