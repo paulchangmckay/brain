@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { mkdtempSync, mkdirSync, writeFileSync, rmSync, utimesSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, writeFileSync, rmSync, utimesSync, existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -76,5 +76,13 @@ test('does not warn on this session\'s own sequential edits (the bug this fix pr
     // session's own first edit, already committed by the post-hook above.
     const second = run(cwd, { cwd, session_id: 'sess-1', tool_input: { file_path: cerebrumPath } });
     assert.equal(second.stdout.trim(), '', 'must not warn on the session\'s own prior edit');
+  });
+});
+
+test('the PreToolUse hook itself never writes the marker file (true regression guard for the post-edit-mtime fix)', () => {
+  withTmpRepo(({ cwd, cerebrumPath }) => {
+    const markerPath = join(cwd, '.wolf', '_cerebrum-guard-sess-1.json');
+    run(cwd, { cwd, session_id: 'sess-1', tool_input: { file_path: cerebrumPath } });
+    assert.ok(!existsSync(markerPath), 'PreToolUse hook must not create the marker file itself — only the PostToolUse companion (cerebrum-write-guard-post.js) should write it');
   });
 });
