@@ -1,11 +1,13 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
-import { getWolfDir, ensureWolfDir, readJSON, writeJSON, appendMarkdown, timeShort } from "./shared.js";
+import { getWolfDir, ensureWolfDir, readJSON, writeJSON, appendMarkdown, timeShort, readStdin, getSessionFilePath } from "./shared.js";
 async function main() {
     ensureWolfDir();
     const wolfDir = getWolfDir();
-    const hooksDir = path.join(wolfDir, "hooks");
-    const sessionFile = path.join(hooksDir, "_session.json");
+    const raw = await readStdin();
+    let input = {};
+    try { input = JSON.parse(raw); } catch { /* proceed with legacy fallback */ }
+    const sessionFile = getSessionFilePath(wolfDir, input.session_id);
     const session = readJSON(sessionFile, {
         session_id: "",
         started: "",
