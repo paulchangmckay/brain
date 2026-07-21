@@ -1,6 +1,6 @@
 # Skill Observation System (OpenWolf enhancement)
 
-**Status:** Approved, pending grilling
+**Status:** Approved, grilled
 **Date:** 2026-07-20
 
 ## Context
@@ -83,10 +83,34 @@ its ideas to be incorporated into the existing OpenWolf setup at `~/.claude`:
   to persist." Direct model for `wolf-observation-log.js`.
 - **No existing skill-candidate detection mechanism anywhere** (confirmed via
   search across `skills/`, `.wolf/`, CLAUDE.md).
-- **openwolf CLI/daemon is third-party and black-box** — global npm package
-  (`openwolf@1.0.4`), PM2-managed per-project daemon. Configurable around
-  (`.wolf/config.json`, PM2, CLI subcommands) but not a safe extension point
-  for our own logic — confirmed via package inspection, not assumed.
+- **openwolf CLI/daemon is third-party but not opaque — confirmed safe to add
+  files alongside it.** `openwolf@1.0.4`, PM2-managed per-project daemon.
+  `.wolf/config.json`'s `anatomy.exclude_patterns` includes `.wolf` itself, so
+  `openwolf scan` never walks into `.wolf/` at all. `cron-manifest.json`
+  defines all 5 cron jobs (`anatomy-rescan`, `memory-consolidation`,
+  `token-audit`, `cerebrum-reflection`, `project-suggestions`) with an
+  explicit, hardcoded `context_files` list per job — none glob `.wolf/*.md`
+  or discover files dynamically. So `observations.md` and
+  `cross-cutting-principles.md` are structurally invisible to openwolf: no
+  discovery mechanism will ever touch, contest, or manage them. Notably,
+  `cerebrum-reflection` (Sundays 3AM) ships the *entire* `cerebrum.md` to an
+  AI with the prompt "return the cleaned file content only" and replaces the
+  file wholesale — stronger confirmation than originally known that
+  restructuring `cerebrum.md` directly would fight the daemon. Also notable
+  but out of scope: `cron-manifest.json` turned out to be a plain declarative
+  file (`cron.use_claude_p: true` — shells out to local `claude -p`, no
+  separate API key) rather than a true black box; a cron-based review was
+  reconsidered and still rejected in favor of the in-session fallback (see
+  Decision 4) since it avoids depending on the daemon/PM2 staying up.
+- **`skills/wolf-init/SKILL.md`** — step 3 runs `openwolf init`, which is what
+  actually creates `anatomy.md`/`cerebrum.md`/`buglog.json`/`memory.md` (a
+  fixed, hardcoded set baked into the third-party CLI). Confirmed via
+  `openwolf` package inspection that `wolf-init` does no file-creation of its
+  own beyond invoking the CLI and (in later steps) reading the results — so
+  it cannot bootstrap files `openwolf init` doesn't know about without an
+  explicit added step.
+- **No `skill-creator` skill exists in this repo** (confirmed via repo-wide
+  grep) — earlier design language referencing it was speculative and wrong.
 
 ### Decisions locked in during brainstorming
 
@@ -107,6 +131,61 @@ its ideas to be incorporated into the existing OpenWolf setup at `~/.claude`:
    dependency on openwolf's black-box daemon cron. `session-reflect` checks a
    last-review-date marker and offers a one-line prompt when stale.
 
+### Decisions locked in during grilling
+
+5. **Bootstrap**: add an explicit file-creation step to `wolf-init/SKILL.md`
+   (after its existing `openwolf init` step) that creates `observations.md`,
+   `cross-cutting-principles.md`, and `observations-last-review.txt` directly
+   via Write if missing — `openwolf init` has no way to know about them.
+   Since `~/.claude` itself is already initialized and won't have `wolf-init`
+   re-run, the three files are also created directly as a one-time step
+   during implementation. No new SessionStart hook — a hook whose only job
+   is backfilling a gap this repo only ever has once is unneeded machinery.
+6. **`pre-principles-injection.js` retargeted**: fires on `PreToolUse` for
+   `Edit|Write|MultiEdit` filtered to file paths matching `**/SKILL.md`, not
+   on `Skill`-tool invocation of `writing-skills`. The two-tier design
+   explicitly allows small skill edits via a direct `Edit` with no skill
+   invoked at all (the common case, matching `session-reflect`'s own
+   CLAUDE.md-edit precedent) — a trigger gated on invoking `writing-skills`
+   would miss most real edits. A single file-path-based trigger covers direct
+   edits, edits following `writing-skills`, and new-skill creation
+   (`Write` to a fresh `SKILL.md`) without needing to enumerate every
+   meta-skill that might be involved. No dual-trigger — the file-path match
+   already fires at the same effective moment (first draft write) a
+   `Skill`-invocation trigger would.
+7. **`wolf-observation-log.js append` takes JSON via stdin**, not CLI flags —
+   `--issue "..."` style flags are fragile against embedded quotes/newlines
+   in free-form Issue/Improvement/Principle text, which is exactly the
+   content this command carries. `echo '{...}' | node wolf-observation-log.js
+   append` uses standard JSON escaping instead of shell-quoting rules.
+8. **`post-write-batch-nudge.js` marker schema corrected** to
+   `{ "writesSinceLastObservation": N, "lastKnownObservationCount": N }`
+   (the original spec referenced an undefined `countAtLastNudge` field — a
+   real inconsistency, not just imprecise wording). Logic: on each
+   `Write`/`Edit`/`MultiEdit`, count `### Observation` headers in
+   `observations.md`; if greater than `lastKnownObservationCount`, something
+   was logged since the last check — reset `writesSinceLastObservation` to 0
+   and update `lastKnownObservationCount`; otherwise increment
+   `writesSinceLastObservation`. At `>= 5`, inject the reminder and reset the
+   counter to 0 (nags every 5th untracked write, not every write after
+   threshold).
+9. **`post-compact-observation.js` dedupes per session, not per compaction
+   event**: before appending, check whether an OPEN `compaction-checkpoint`
+   entry already exists for this `session_id`; if so, do nothing. Directly
+   motivated by the existing evidence in `cerebrum.md` — two compactions 9
+   seconds apart in the same session — which would otherwise produce
+   duplicate placeholders asking the same question twice.
+10. **Archival added** for `observations.md`, piggybacking on the existing
+    review step rather than a new trigger: when the periodic review runs, it
+    first moves entries resolved on a *previous* day to
+    `.wolf/observations-archive/log-[YYYY-MM-DD-of-resolution].md` (preserving
+    the log header), before applying the day's updates. Entries resolved
+    *today* — no matter which session resolved them — stay in the active log
+    until the next review (grace period; avoids archiving something a
+    concurrent session just touched). Mirrors task-observer's own archival
+    reasoning, applied to the existing 7-day fallback instead of a new
+    schedule.
+
 ## Design
 
 ### File layout (new files)
@@ -114,12 +193,14 @@ its ideas to be incorporated into the existing OpenWolf setup at `~/.claude`:
 ```
 .wolf/
 ├── observations.md                  # new — numbered/status-tracked log
+├── observations-archive/
+│   └── log-[YYYY-MM-DD].md          # new — resolved entries, by resolution date
 ├── cross-cutting-principles.md      # new — checklist, starts empty
 ├── observations-last-review.txt     # new — "never" or ISO date
 └── _writecount-<session>.json       # new — ephemeral per-session marker
 
 scripts/
-└── wolf-observation-log.js          # new — append/resolve helper
+└── wolf-observation-log.js          # new — append/resolve/archive helper
 
 hooks/
 ├── post-compact-observation.js      # new
@@ -166,7 +247,14 @@ explicitly resolved, not left as-is.
 
 Two subcommands, both operating on `.wolf/observations.md`:
 
-- **`append --type T --skill S --issue "..." --improvement "..." --principle "..." [--status OPEN]`**
+- **`append`** — reads a JSON payload from stdin:
+  ```bash
+  echo '{"type":"skill-improvement","skill":"grilling","issue":"...","improvement":"...","principle":"...","status":"OPEN"}' \
+    | node wolf-observation-log.js append
+  ```
+  JSON via stdin instead of CLI flags — Issue/Improvement/Principle are
+  free-form prose likely to contain quotes or embedded newlines, and standard
+  JSON escaping handles that correctly where shell-flag-splitting doesn't.
   Implements the numbering discipline in code (mirrors `post-skill-record.js`'s
   deterministic approach rather than relying on Claude re-deriving a grep/awk
   dance each time):
@@ -186,40 +274,63 @@ Two subcommands, both operating on `.wolf/observations.md`:
   happening in production). Locates entry `N` by its literal header, updates
   only that entry's `**Status:**` line, verifies the total `### Observation`
   count is unchanged after the write.
+- **`archive`** — used by the review step (see `session-reflect` changes
+  below): finds entries whose `**Status:**` line is `ACTIONED (YYYY-MM-DD)` or
+  `DECLINED (YYYY-MM-DD)` with a date before today, moves them (verbatim,
+  preserving the entry text) to
+  `.wolf/observations-archive/log-[YYYY-MM-DD].md` grouped by resolution
+  date, and removes them from the active log. Entries resolved *today* —
+  regardless of which session resolved them — are left in place; the
+  resolution-date check is read from the file, not session memory, so the
+  grace period holds across parallel/subsequent sessions. Follows the same
+  backup-before-write, verify-count-after-write discipline as `append`.
 
-Both subcommands back up `observations.md` to `.observations.md.bak` before
-any write and are covered by unit tests, including a simulated concurrent-append
-test (two rapid appends against the same file, assert both survive with
-distinct numbers).
+All three subcommands back up `observations.md` to `.observations.md.bak`
+before any write and are covered by unit tests, including a simulated
+concurrent-append test (two rapid appends against the same file, assert both
+survive with distinct numbers).
 
 ### Hooks
 
-**`hooks/post-compact-observation.js`** — `PostCompact`. Calls
-`wolf-observation-log.js append --type compaction-checkpoint --skill
-"session" --issue "Compaction occurred; context may contain unlogged
-insights" --improvement "Review this session's work and either enrich this
-entry or resolve DECLINED if nothing generalizes" --principle "" --status
-OPEN`. Deterministic — runs regardless of whether Claude does anything with
-it. Fails open (logs a warning to stderr, doesn't block) if the script
-errors.
+**`hooks/post-compact-observation.js`** — `PostCompact`. Before writing,
+checks whether an OPEN `compaction-checkpoint` entry already exists for this
+`session_id` in `observations.md`; if so, no-ops (dedupes per session, not
+per compaction event — the existing evidence shows compactions can fire
+seconds apart in the same session, which would otherwise produce duplicate
+placeholders). Otherwise pipes a JSON payload to `wolf-observation-log.js
+append`: `{"type":"compaction-checkpoint","skill":"session","issue":"Compaction
+occurred; context may contain unlogged insights","improvement":"Review this
+session's work and either enrich this entry or resolve DECLINED if nothing
+generalizes","principle":"","status":"OPEN"}`. Deterministic — runs
+regardless of whether Claude does anything with it. Fails open (logs a
+warning to stderr, doesn't block) if the script errors.
 
 **`hooks/post-write-batch-nudge.js`** — `PostToolUse`, matcher
 `Write|Edit|MultiEdit`. Maintains `.wolf/_writecount-<session>.json`
-(`{count, lastObservationCount}`) — increments `count` on every matching
-call. After each call, compares current `### Observation` header count in
-`observations.md` against `lastObservationCount`; if unchanged and `count -
-countAtLastNudge >= 5`, injects a non-blocking `additionalContext` reminder
-("5 file changes since the last observation log entry — worth logging a
-correction, pattern, or skill gap?") and resets the threshold counter. This
-one stays reminder-based (not auto-write) since "is this insight-worthy" is
-a judgment call, but it's now tied to a real event count rather than a vague
-"remember to."
+(`{ "writesSinceLastObservation": N, "lastKnownObservationCount": N }`). On
+each matching call: count `### Observation` headers in `observations.md`; if
+greater than `lastKnownObservationCount`, something was logged since the last
+check — reset `writesSinceLastObservation` to 0 and update
+`lastKnownObservationCount`; otherwise increment `writesSinceLastObservation`.
+At `>= 5`, inject a non-blocking `additionalContext` reminder ("5 file changes
+since the last observation log entry — worth logging a correction, pattern,
+or skill gap?") and reset `writesSinceLastObservation` to 0 (nags every 5th
+untracked write, not every write past the threshold). Stays reminder-based
+(not auto-write) since "is this insight-worthy" is a judgment call, but it's
+now tied to a real event count rather than a vague "remember to."
 
-**`hooks/pre-principles-injection.js`** — `PreToolUse`, matcher `Skill`,
-filtered to skill name `writing-skills` (and `skill-creator` if invoked
-directly). Reads `.wolf/cross-cutting-principles.md` and injects its content
-as `additionalContext` — mirrors `subagent-thin-harness.js`'s injection
-pattern. No-ops silently if the file doesn't exist yet or is empty.
+**`hooks/pre-principles-injection.js`** — `PreToolUse`, matcher
+`Edit|Write|MultiEdit`, filtered to file paths matching `**/SKILL.md`. Reads
+`.wolf/cross-cutting-principles.md` and injects its content as
+`additionalContext` — mirrors `subagent-thin-harness.js`'s injection pattern.
+No-ops silently if the file doesn't exist yet or is empty. Triggers on the
+file being edited, not on which meta-skill (if any) is invoking the edit —
+covers direct small edits (the common case per the two-tier design), edits
+following `writing-skills`, and new-skill creation (`Write` to a fresh
+`SKILL.md`) with one mechanism. No separate `Skill`-invocation trigger: the
+file-path match already fires at the same effective moment (first draft
+write) a `Skill`-trigger would, so a second trigger would be redundant
+coverage of the same event, not complementary.
 
 All three follow existing conventions: session-ID validated against
 `/^[A-Za-z0-9._-]+$/` before path use, marker/state files cleaned up by the
@@ -258,44 +369,58 @@ Propagation/Status).
   resolve DECLINED via the script.
 - New-skill-candidate check: alongside the existing "1-3 high-signal
   patterns" question, explicitly ask "was there a repeating 3+-step manual
-  workflow this session that no skill covers?" — if yes, `append --type
-  new-skill-candidate` (flag only, never auto-create the skill, matching
-  task-observer's own "the observer doesn't modify your skills directly"
-  rule).
+  workflow this session that no skill covers?" — if yes, pipe a
+  `type: new-skill-candidate` payload to `wolf-observation-log.js append`
+  (flag only, never auto-create the skill, matching task-observer's own "the
+  observer doesn't modify your skills directly" rule).
 
 **New step (after existing Phase 2):**
 - Review-cadence fallback: read `.wolf/observations-last-review.txt`. If
   `never` or >7 days old AND there are OPEN entries in `observations.md`,
   offer one line: "The skill-observation backlog hasn't been reviewed [in N
   days / yet] — run it now, or wrap up?" Never gate on it.
-- If accepted: enumerate OPEN entries (all `### Observation N:` headers minus
-  ACTIONED/DECLINED — never filter by grepping the Status field alone, since
-  that silently drops statusless entries, another task-observer-documented
-  failure mode), cross-check each against the skill(s) it names. For each:
-  - **Small additive** (new rule, clarification, factual fix): show inline
-    diff, apply on approval, write live — identical shape to the existing
-    Phase-2 CLAUDE.md pattern.
-  - **Substantial** (restructuring, new capability, any new-skill-candidate
-    the user wants to build): hand off to `github-issue-first` to file the
-    issue, then the normal `using-git-worktrees → test-driven-development →
-    verification-before-completion → requesting-code-review` pipeline — no
-    new mechanism, reuse of what already exists.
-  - Mark each applied/declined observation via `resolve`, with today's date.
-  - Write today's date to `observations-last-review.txt`.
+- If accepted:
+  1. Run `wolf-observation-log.js archive` first — moves entries resolved
+     before today into `.wolf/observations-archive/log-[date].md`, so the
+     review works from a clean active log.
+  2. Enumerate OPEN entries (all `### Observation N:` headers minus
+     ACTIONED/DECLINED — never filter by grepping the Status field alone,
+     since that silently drops statusless entries, another
+     task-observer-documented failure mode), cross-check each against the
+     skill(s) it names. For each:
+     - **Small additive** (new rule, clarification, factual fix): show
+       inline diff, apply on approval, write live — identical shape to the
+       existing Phase-2 CLAUDE.md pattern.
+     - **Substantial** (restructuring, new capability, any
+       new-skill-candidate the user wants to build): hand off to
+       `github-issue-first` to file the issue, then the normal
+       `using-git-worktrees → test-driven-development →
+       verification-before-completion → requesting-code-review` pipeline —
+       no new mechanism, reuse of what already exists.
+     - Mark each applied/declined observation via `resolve`, with today's
+       date (load-bearing for the archival grace period — a dateless mark
+       would never archive).
+  3. Write today's date to `observations-last-review.txt`.
 
-`wolf-init` (or `session-start.sh`, whichever currently bootstraps `.wolf/`)
-gains creation of `observations.md`, `cross-cutting-principles.md`, and
-`observations-last-review.txt` (seeded `never`) if missing — same pattern as
-the existing bootstrap for `anatomy.md`/`cerebrum.md`/`buglog.json`.
+**Bootstrap**: `wolf-init/SKILL.md` gains a step after its existing
+`openwolf init` call that creates `observations.md`,
+`cross-cutting-principles.md`, and `observations-last-review.txt` (seeded
+`never`) directly via Write if missing — `openwolf init` only creates its own
+fixed file set and has no way to know about these. Since `~/.claude` is
+already initialized and won't have `wolf-init` re-run on it, these three
+files are created directly as a one-time step during implementation of this
+design, rather than waiting on a `wolf-init` re-run that will never happen
+here.
 
 ### CLAUDE.md changes
 
-Add one row to Section 3 (Infrastructure Layer) documenting: the two new
-files and their ownership boundary vs. `cerebrum.md`/`memory.md` (daemon-owned,
-do not restructure); the two-tier skill-edit rule (small→inline-approve-live,
-substantial→existing issue/worktree/PR pipeline); a pointer to
-`observations.md`'s numbering discipline being script-enforced, not
-prose-enforced.
+Add one row to Section 3 (Infrastructure Layer) documenting: the new files
+and their ownership boundary vs. `cerebrum.md`/`memory.md` (daemon-owned via
+`openwolf init`/the weekly `cerebrum-reflection` cron — do not restructure);
+the two-tier skill-edit rule (small→inline-approve-live, substantial→existing
+issue/worktree/PR pipeline); a pointer to `observations.md`'s numbering
+discipline being script-enforced (JSON-via-stdin `append`/`resolve`/`archive`),
+not prose-enforced.
 
 ## Error handling / edge cases
 
@@ -314,8 +439,16 @@ prose-enforced.
 - **Missing files on fresh clone**: bootstrap step covers this (see above).
 - **Stale ephemeral markers**: `_writecount-<session>.json` swept by the
   existing `session-start.sh` stale-marker cleanup, glob extended.
-- **openwolf daemon interaction**: none — the daemon never reads or writes
-  the new files, so no conflict is possible by construction.
+- **openwolf daemon interaction**: none — confirmed, not assumed.
+  `config.json`'s `anatomy.exclude_patterns` excludes `.wolf` from
+  `openwolf scan` entirely, and every `cron-manifest.json` job targets an
+  explicit hardcoded file list rather than discovering files dynamically, so
+  no existing openwolf mechanism can ever touch, contest, or rewrite
+  `observations.md`/`cross-cutting-principles.md`.
+- **Unbounded log growth**: handled by the `archive` subcommand, run at the
+  start of each periodic review — resolved entries older than today move to
+  dated archive files, keeping the active log to OPEN entries plus anything
+  resolved today.
 
 ## Testing
 
@@ -327,14 +460,18 @@ prose-enforced.
   simulated concurrent-append collision (two appends racing, assert both
   survive with distinct sequential numbers); `resolve` line-anchoring test
   (assert a status update to entry N never touches entry N+1's Status line,
-  and header count is unchanged before/after); worktree-path refusal test.
+  and header count is unchanged before/after); `archive` test (entries
+  resolved yesterday move out, entries resolved today stay, archive file
+  preserves entry text verbatim); worktree-path refusal test; malformed-JSON
+  stdin input to `append` fails loudly rather than corrupting the log.
 - Manual verification pass (per `verification-before-completion`): trigger an
-  actual context compaction and confirm a placeholder lands in
-  `observations.md`; make 5 real edits in a session and confirm the nudge
-  fires once; run `session-reflect` with a stale review marker and confirm
-  the one-line offer appears and, on accept, walks through both the
-  small-fix and substantial-change branches against a synthetic observation
-  of each type.
+  actual context compaction and confirm exactly one placeholder lands in
+  `observations.md` even if compaction fires more than once in the session;
+  make 5 real edits in a session and confirm the nudge fires once; run
+  `session-reflect` with a stale review marker and confirm the one-line offer
+  appears and, on accept, walks through both the small-fix and
+  substantial-change branches against a synthetic observation of each type,
+  and archives a back-dated resolved entry correctly.
 
 ## Out of scope
 
