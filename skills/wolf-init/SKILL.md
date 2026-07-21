@@ -32,29 +32,29 @@ Bootstrap OpenWolf for a new project. Run once per project root to activate toke
    don't already exist:
    ```bash
    [ -f .wolf/observations.md ] || cat > .wolf/observations.md <<'EOF'
-   # Skill Observation Log
+# Skill Observation Log
 
-   Observations captured during task-oriented work. Separate from cerebrum.md
-   (daemon-owned) — this file is owned by session-reflect and
-   hooks/post-compact-observation.js / hooks/post-write-batch-nudge.js.
+Observations captured during task-oriented work. Separate from cerebrum.md
+(daemon-owned) — this file is owned by session-reflect and
+hooks/post-compact-observation.js / hooks/post-write-batch-nudge.js.
 
-   **Status key:** OPEN = not yet actioned | ACTIONED (YYYY-MM-DD) = applied |
-   DECLINED (YYYY-MM-DD) = reviewed, not pursued
+**Status key:** OPEN = not yet actioned | ACTIONED (YYYY-MM-DD) = applied |
+DECLINED (YYYY-MM-DD) = reviewed, not pursued
 
-   ---
-   EOF
+---
+EOF
    [ -f .wolf/cross-cutting-principles.md ] || cat > .wolf/cross-cutting-principles.md <<'EOF'
-   # Cross-Cutting Principles
+# Cross-Cutting Principles
 
-   Principles that apply to all skills. Read as a mandatory checklist during
-   any skill creation or regeneration.
+Principles that apply to all skills. Read as a mandatory checklist during
+any skill creation or regeneration.
 
-   ---
+---
 
-   ## Active Principles
+## Active Principles
 
-   (none yet)
-   EOF
+(none yet)
+EOF
    [ -f .wolf/observations-last-review.txt ] || echo 'never' > .wolf/observations-last-review.txt
    ```
 

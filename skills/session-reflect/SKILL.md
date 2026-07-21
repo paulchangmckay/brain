@@ -85,7 +85,7 @@ End-of-session audit with three phases. Phase 1 (cerebrum) always runs automatic
    - Non-obvious code patterns or conventions?
    - Warnings or constraints that apply project-wide?
 
-   If none of the above: skip to step 13.
+   If none of the above: skip to step 11.
 
 9. **Find CLAUDE.md files**
    ```bash

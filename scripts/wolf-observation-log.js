@@ -51,6 +51,9 @@ DECLINED (YYYY-MM-DD) = reviewed, not pursued
 ---
 `;
 
+// Writing observation-log entries inside a feature worktree would entangle
+// session-log churn into feature-branch git history and cause merge
+// conflicts across concurrent worktrees working on different branches.
 function isEphemeralPath(logPath) {
   return logPath.includes('.claude/worktrees/');
 }
