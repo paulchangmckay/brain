@@ -1,3 +1,7 @@
+---
+title: "references / python-web-apis"
+---
+
 # Python Web API Standards (FastAPI / Uvicorn / psycopg)
 
 Companion reference for the senior-engineering-partner skill.

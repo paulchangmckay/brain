@@ -1,3 +1,7 @@
+---
+title: "references / macos-app-bundles"
+---
+
 # macOS App Bundle Standards
 
 Companion reference for the senior-engineering-partner skill.

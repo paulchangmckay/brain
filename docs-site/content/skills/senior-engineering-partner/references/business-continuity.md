@@ -1,3 +1,7 @@
+---
+title: "references / business-continuity"
+---
+
 # Business Continuity (BC)
 
 Companion reference for the senior-engineering-partner skill.

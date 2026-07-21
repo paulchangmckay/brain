@@ -1,3 +1,7 @@
+---
+title: "references / multi-agent-coordination"
+---
+
 # Multi-Agent & Shared-Repo Coordination
 
 Companion reference for the senior-engineering-partner skill. This is the CONCURRENCY OVERRIDE to the Definition of Done: it takes precedence the moment a second writer is in the tree.

@@ -1,3 +1,7 @@
+---
+title: "references / frontend-web-security"
+---
+
 # Frontend / Web-App Security
 
 Companion reference for the senior-engineering-partner skill.

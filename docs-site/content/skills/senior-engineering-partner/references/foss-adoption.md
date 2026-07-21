@@ -1,3 +1,7 @@
+---
+title: "references / foss-adoption"
+---
+
 # FOSS Adoption: The "Secure AND Tested" Gate
 
 Companion reference for the senior-engineering-partner skill.

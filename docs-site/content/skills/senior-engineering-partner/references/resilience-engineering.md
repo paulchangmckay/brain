@@ -1,3 +1,7 @@
+---
+title: "references / resilience-engineering"
+---
+
 # Resilience Engineering (designing software to degrade, not die)
 
 Companion reference for the senior-engineering-partner skill.

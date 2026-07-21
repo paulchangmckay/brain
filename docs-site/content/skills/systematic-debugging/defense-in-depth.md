@@ -1,3 +1,7 @@
+---
+title: "defense-in-depth"
+---
+
 # Defense-in-Depth Validation
 
 ## Overview

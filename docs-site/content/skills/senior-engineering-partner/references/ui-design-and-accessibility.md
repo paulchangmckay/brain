@@ -1,3 +1,7 @@
+---
+title: "references / ui-design-and-accessibility"
+---
+
 # UI Design & Accessibility
 
 Companion reference for the senior-engineering-partner skill.

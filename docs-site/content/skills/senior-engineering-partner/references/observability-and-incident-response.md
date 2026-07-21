@@ -1,3 +1,7 @@
+---
+title: "references / observability-and-incident-response"
+---
+
 # Observability & Incident Response (SRE)
 
 Companion reference for the senior-engineering-partner skill.

@@ -1,3 +1,7 @@
+---
+title: "references / javascript-and-typescript"
+---
+
 # JavaScript & TypeScript Standards
 
 Companion reference for the senior-engineering-partner skill. The **rules** live in SKILL.md (*Coding Standards* — "modern ES6+, modular/functional, `try/catch` on every network/external call"); this file is the deep toolchain reference — the TS analog of the Python `mypy --strict` + TypedDict mandate, plus the Node back-end patterns that mirror `python-web-apis.md`. Read it when writing or reviewing TypeScript, or any Node service.

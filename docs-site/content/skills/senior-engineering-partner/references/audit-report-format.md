@@ -1,3 +1,7 @@
+---
+title: "references / audit-report-format"
+---
+
 # Audit Report Format (the `AUDIT:` mode deliverable)
 
 A whole-codebase audit (SKILL.md `AUDIT:` mode) produces a **severity-ranked findings

@@ -1,3 +1,7 @@
+---
+title: "references / my-environment.template"
+---
+
 # My Environment Profile (template)
 
 > **This is the one file you customize when you adopt this skill.** Copy it to

@@ -28,6 +28,7 @@ function makeTempDir() {
 test('isDenylisted matches known OSS scaffolding filenames', () => {
   assert.equal(isDenylisted('CONTRIBUTING.md'), true);
   assert.equal(isDenylisted('CODE_OF_CONDUCT.md'), true);
+  assert.equal(isDenylisted('NOTICE'), true);
   assert.equal(isDenylisted('testing.md'), false);
 });
 
@@ -88,7 +89,7 @@ test('buildSkillPage escapes internal quotes in description frontmatter', () => 
 });
 
 import { existsSync, readFileSync, symlinkSync } from 'node:fs';
-import { syncSkills } from './pull-skills.mjs';
+import { syncSkills, delinkDeadReferences } from './pull-skills.mjs';
 
 test('syncSkills skips directories with no SKILL.md', () => {
   const skillsDir = makeTempDir();
@@ -158,7 +159,12 @@ test('syncSkills writes nested reference files as sub-pages, excluding denylist'
 
     syncSkills({ skillsDir, outputDir });
 
-    assert.equal(existsSync(join(outputDir, 'senior-engineering-partner.md')), true);
+    // A skill with nested reference files gets its top page written as
+    // index.md alongside them (not a flat sibling .md), so that relative
+    // links written in the original SKILL.md/nested files resolve correctly
+    // once synced — see the "resolves relative links" tests below.
+    assert.equal(existsSync(join(outputDir, 'senior-engineering-partner.md')), false);
+    assert.equal(existsSync(join(outputDir, 'senior-engineering-partner', 'index.md')), true);
     assert.equal(
       existsSync(join(outputDir, 'senior-engineering-partner', 'references', 'testing.md')),
       true
@@ -189,6 +195,206 @@ test('syncSkills follows symlinked skill directories (e.g. superpowers submodule
     rmSync(skillsDir, { recursive: true, force: true });
     rmSync(outputDir, { recursive: true, force: true });
     rmSync(realSkillDir, { recursive: true, force: true });
+  }
+});
+
+test('syncSkills writes a flat <skill>.md when the skill has no nested markdown files', () => {
+  const skillsDir = makeTempDir();
+  const outputDir = makeTempDir();
+  try {
+    const skillDir = join(skillsDir, 'no-refs');
+    mkdirSync(skillDir);
+    writeFileSync(
+      join(skillDir, 'SKILL.md'),
+      '---\nname: no-refs\ndescription: "No nested files"\n---\n\nBody\n'
+    );
+    syncSkills({ skillsDir, outputDir });
+    assert.equal(existsSync(join(outputDir, 'no-refs.md')), true);
+    assert.equal(existsSync(join(outputDir, 'no-refs', 'index.md')), false);
+  } finally {
+    rmSync(skillsDir, { recursive: true, force: true });
+    rmSync(outputDir, { recursive: true, force: true });
+  }
+});
+
+test('syncSkills resolves a top-page-to-nested-file link with no rewriting needed (same directory)', () => {
+  const skillsDir = makeTempDir();
+  const outputDir = makeTempDir();
+  try {
+    const skillDir = join(skillsDir, 'with-nested');
+    mkdirSync(skillDir);
+    writeFileSync(
+      join(skillDir, 'SKILL.md'),
+      '---\nname: with-nested\ndescription: "Has refs"\n---\n\nSee [REF.md](REF.md).\n'
+    );
+    writeFileSync(join(skillDir, 'REF.md'), 'Ref content.\n');
+
+    syncSkills({ skillsDir, outputDir });
+
+    const indexPage = readFileSync(join(outputDir, 'with-nested', 'index.md'), 'utf8');
+    assert.match(indexPage, /See \[REF\.md\]\(REF\.md\)\./);
+  } finally {
+    rmSync(skillsDir, { recursive: true, force: true });
+    rmSync(outputDir, { recursive: true, force: true });
+  }
+});
+
+test('syncSkills rewrites a nested file\'s link back to SKILL.md, since the top page is renamed to index.md', () => {
+  const skillsDir = makeTempDir();
+  const outputDir = makeTempDir();
+  try {
+    const skillDir = join(skillsDir, 'with-nested');
+    mkdirSync(skillDir);
+    writeFileSync(
+      join(skillDir, 'SKILL.md'),
+      '---\nname: with-nested\ndescription: "Has refs"\n---\n\nBody\n'
+    );
+    // Same-directory nested file: SKILL.md is a sibling of REF.md, so the
+    // rewritten link needs zero "../" segments.
+    writeFileSync(join(skillDir, 'REF.md'), 'Back to [SKILL.md](./SKILL.md) for the overview.\n');
+
+    syncSkills({ skillsDir, outputDir });
+
+    const refPage = readFileSync(join(outputDir, 'with-nested', 'REF.md'), 'utf8');
+    assert.match(refPage, /Back to \[SKILL\.md\]\(index\.md\) for the overview\./);
+  } finally {
+    rmSync(skillsDir, { recursive: true, force: true });
+    rmSync(outputDir, { recursive: true, force: true });
+  }
+});
+
+test('syncSkills rewrites a deeply-nested file\'s link back to SKILL.md with the right number of "../" segments', () => {
+  const skillsDir = makeTempDir();
+  const outputDir = makeTempDir();
+  try {
+    const skillDir = join(skillsDir, 'with-nested');
+    mkdirSync(join(skillDir, 'references'), { recursive: true });
+    writeFileSync(
+      join(skillDir, 'SKILL.md'),
+      '---\nname: with-nested\ndescription: "Has refs"\n---\n\nBody\n'
+    );
+    // One directory deeper than SKILL.md, so the rewritten link needs one
+    // "../" segment to escape back up to index.md.
+    writeFileSync(
+      join(skillDir, 'references', 'testing.md'),
+      'See [SKILL.md](SKILL.md) for the philosophy.\n'
+    );
+
+    syncSkills({ skillsDir, outputDir });
+
+    const nestedPage = readFileSync(
+      join(outputDir, 'with-nested', 'references', 'testing.md'),
+      'utf8'
+    );
+    assert.match(nestedPage, /See \[SKILL\.md\]\(\.\.\/index\.md\) for the philosophy\./);
+  } finally {
+    rmSync(skillsDir, { recursive: true, force: true });
+    rmSync(outputDir, { recursive: true, force: true });
+  }
+});
+
+test('syncSkills gives each nested file a distinct title so it cannot collide with the skill\'s own nav label', () => {
+  const skillsDir = makeTempDir();
+  const outputDir = makeTempDir();
+  try {
+    const skillDir = join(skillsDir, 'with-nested');
+    mkdirSync(skillDir);
+    writeFileSync(
+      join(skillDir, 'SKILL.md'),
+      '---\nname: with-nested\ndescription: "Has refs"\n---\n\nBody\n'
+    );
+    // Mirrors the real senior-engineering-partner/README.md case: an OSS
+    // README whose H1 heading repeats the skill's own name, which Blume
+    // would otherwise pick up as this page's nav label too.
+    writeFileSync(join(skillDir, 'README.md'), '# with-nested\n\nSome content.\n');
+
+    syncSkills({ skillsDir, outputDir });
+
+    const readmePage = readFileSync(join(outputDir, 'with-nested', 'README.md'), 'utf8');
+    assert.match(readmePage, /^---\ntitle: "README"\n---\n\n/);
+  } finally {
+    rmSync(skillsDir, { recursive: true, force: true });
+    rmSync(outputDir, { recursive: true, force: true });
+  }
+});
+
+test('delinkDeadReferences strips directory-style references (trailing slash) that have no single synced page', () => {
+  const input = 'See the [references/](references/) directory for detail.';
+  const output = delinkDeadReferences(input);
+  assert.equal(output, 'See the references/ directory for detail.');
+});
+
+test('syncSkills removes stale output before regenerating, so a layout change does not leave duplicate pages', () => {
+  const skillsDir = makeTempDir();
+  const outputDir = makeTempDir();
+  try {
+    // Simulate output left behind by a previous run under a different shape
+    // (e.g. a flat <skill>.md from before the skill grew nested files).
+    writeFileSync(join(outputDir, 'stale-flat.md'), 'stale content');
+
+    const skillDir = join(skillsDir, 'with-nested');
+    mkdirSync(skillDir);
+    writeFileSync(
+      join(skillDir, 'SKILL.md'),
+      '---\nname: with-nested\ndescription: "Has refs"\n---\n\nBody\n'
+    );
+    writeFileSync(join(skillDir, 'REF.md'), 'Ref body\n');
+
+    syncSkills({ skillsDir, outputDir });
+
+    assert.equal(existsSync(join(outputDir, 'stale-flat.md')), false);
+  } finally {
+    rmSync(skillsDir, { recursive: true, force: true });
+    rmSync(outputDir, { recursive: true, force: true });
+  }
+});
+
+test('delinkDeadReferences strips markdown links pointing at denylisted filenames, leaves other links untouched', () => {
+  const input = 'See [LICENSE](LICENSE) and [Docs](https://example.com) and [Ref](REF.md).';
+  const output = delinkDeadReferences(input);
+  assert.equal(output, 'See LICENSE and [Docs](https://example.com) and [Ref](REF.md).');
+});
+
+test('syncSkills strips links to denylisted sibling files so no dead links reach the synced page', () => {
+  const skillsDir = makeTempDir();
+  const outputDir = makeTempDir();
+  try {
+    const skillDir = join(skillsDir, 'licensed-skill');
+    mkdirSync(skillDir);
+    writeFileSync(
+      join(skillDir, 'SKILL.md'),
+      '---\nname: licensed-skill\ndescription: "Has a license"\n---\n\nSee [LICENSE](LICENSE) for terms.\n'
+    );
+    writeFileSync(join(skillDir, 'LICENSE'), 'MIT');
+
+    syncSkills({ skillsDir, outputDir });
+
+    const page = readFileSync(join(outputDir, 'licensed-skill.md'), 'utf8');
+    assert.match(page, /See LICENSE for terms\./);
+    assert.doesNotMatch(page, /\[LICENSE\]/);
+  } finally {
+    rmSync(skillsDir, { recursive: true, force: true });
+    rmSync(outputDir, { recursive: true, force: true });
+  }
+});
+
+test('syncSkills writes an index page for the skills section, since content/skills/** is wiped and fully regenerated', () => {
+  const skillsDir = makeTempDir();
+  const outputDir = makeTempDir();
+  try {
+    const skillDir = join(skillsDir, 'brainstorming');
+    mkdirSync(skillDir);
+    writeFileSync(
+      join(skillDir, 'SKILL.md'),
+      '---\nname: brainstorming\ndescription: "Explore before building"\n---\n\nBody\n'
+    );
+    syncSkills({ skillsDir, outputDir });
+    assert.equal(existsSync(join(outputDir, 'index.md')), true);
+    const indexContent = readFileSync(join(outputDir, 'index.md'), 'utf8');
+    assert.match(indexContent, /^---\ntitle: "Skills Reference"\n---\n\n/);
+  } finally {
+    rmSync(skillsDir, { recursive: true, force: true });
+    rmSync(outputDir, { recursive: true, force: true });
   }
 });
 

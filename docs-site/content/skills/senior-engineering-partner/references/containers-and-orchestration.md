@@ -1,3 +1,7 @@
+---
+title: "references / containers-and-orchestration"
+---
+
 # Docker & Kubernetes Standards
 
 Companion reference for the senior-engineering-partner skill.

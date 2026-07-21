@@ -1,3 +1,7 @@
+---
+title: "references / diagrams-and-visual-docs"
+---
+
 # Diagrams & Visual Documentation
 
 The discipline: a non-trivial system carries **diagrams-as-code**, **Mermaid-first**, living

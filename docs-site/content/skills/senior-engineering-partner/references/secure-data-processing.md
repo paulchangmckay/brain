@@ -1,3 +1,7 @@
+---
+title: "references / secure-data-processing"
+---
+
 # Secure Data Processing for Commercial / Multi-Tenant Apps
 
 Companion reference for the senior-engineering-partner skill.

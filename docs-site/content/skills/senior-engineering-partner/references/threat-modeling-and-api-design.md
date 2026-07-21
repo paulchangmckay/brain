@@ -1,3 +1,7 @@
+---
+title: "references / threat-modeling-and-api-design"
+---
+
 # Threat Modeling & API Design
 
 Companion reference for the senior-engineering-partner skill.

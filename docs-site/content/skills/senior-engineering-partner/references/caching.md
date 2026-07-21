@@ -1,3 +1,7 @@
+---
+title: "references / caching"
+---
+
 # Caching Strategy
 
 Companion reference for the senior-engineering-partner skill.

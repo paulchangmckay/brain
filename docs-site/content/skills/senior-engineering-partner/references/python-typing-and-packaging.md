@@ -1,3 +1,7 @@
+---
+title: "references / python-typing-and-packaging"
+---
+
 # Python Typing & Single-File→Package Layout
 
 Companion reference for the senior-engineering-partner skill. The **rules** live in SKILL.md (*Type Annotations and TypedDicts*, *Single-File vs. Package Architecture*); this file holds the worked examples and the target layout, kept out of the always-loaded core for token economy. Read it when adding TypedDicts or planning a single-file→package migration.

@@ -1,3 +1,7 @@
+---
+title: "references / engineering-workflow"
+---
+
 # Engineering Workflow (spec → plan → build → verify)
 
 Companion reference for the senior-engineering-partner skill.

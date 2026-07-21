@@ -1,3 +1,7 @@
+---
+title: "references / databases"
+---
+
 # Database Standards (Postgres / Supabase, BigQuery, SQLite)
 
 Companion reference for the senior-engineering-partner skill.

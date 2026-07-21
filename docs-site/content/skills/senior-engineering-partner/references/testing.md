@@ -1,3 +1,7 @@
+---
+title: "references / testing"
+---
+
 # Testing Strategy (strict, enforced gates)
 
 Companion reference for the senior-engineering-partner skill.

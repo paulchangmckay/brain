@@ -1,3 +1,7 @@
+---
+title: "references / package-managers"
+---
+
 # Package Manager Standards (Homebrew, npm, mas)
 
 Companion reference for the senior-engineering-partner skill.

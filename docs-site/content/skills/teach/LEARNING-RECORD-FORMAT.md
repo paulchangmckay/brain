@@ -1,3 +1,7 @@
+---
+title: "LEARNING-RECORD-FORMAT"
+---
+
 # Learning Record Format
 
 Learning records live in `./learning-records/` and use sequential numbering: `0001-slug.md`, `0002-slug.md`, etc. Create the directory lazily — only when the first record is written.

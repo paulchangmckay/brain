@@ -1,3 +1,7 @@
+---
+title: "references / local-and-agentic-ai-tools"
+---
+
 # Local & Agentic AI Tooling
 
 Companion reference for the senior-engineering-partner skill.

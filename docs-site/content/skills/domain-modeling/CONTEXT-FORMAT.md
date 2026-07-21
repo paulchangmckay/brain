@@ -1,3 +1,7 @@
+---
+title: "CONTEXT-FORMAT"
+---
+
 # CONTEXT.md Format
 
 ## Structure

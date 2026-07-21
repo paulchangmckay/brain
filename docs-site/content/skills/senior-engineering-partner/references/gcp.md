@@ -1,3 +1,7 @@
+---
+title: "references / gcp"
+---
+
 # Google Cloud Platform Standards
 
 Companion reference for the senior-engineering-partner skill.

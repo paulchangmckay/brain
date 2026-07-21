@@ -1,3 +1,7 @@
+---
+title: "references / secrets-and-key-rotation"
+---
+
 # Secrets & Key Rotation Lifecycle
 
 Companion reference for the senior-engineering-partner skill.

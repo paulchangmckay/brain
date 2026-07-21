@@ -370,8 +370,8 @@ The moment a second writer — agent or human — is in the tree, the solo-speed
 
 ### Changelog
 
-The changelog lives in [`CHANGELOG.md`](CHANGELOG.md) (Keep a Changelog format). Releases are
+The changelog lives in `CHANGELOG.md` (Keep a Changelog format). Releases are
 automated with [release-please](https://github.com/googleapis/release-please): the version bump
 and changelog entry are prepared from the [Conventional Commits](https://www.conventionalcommits.org/)
 on `main`, then a maintainer cuts the **signed** tag + GitHub Release
-(see [`MAINTAINERS.md`](MAINTAINERS.md) -> *Cutting a release*).
+(see `MAINTAINERS.md` -> *Cutting a release*).

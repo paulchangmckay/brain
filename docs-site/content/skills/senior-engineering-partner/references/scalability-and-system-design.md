@@ -1,3 +1,7 @@
+---
+title: "references / scalability-and-system-design"
+---
+
 # Scalability & System Design (the "-ilities")
 
 Companion reference for the senior-engineering-partner skill.

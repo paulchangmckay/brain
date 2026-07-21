@@ -1,3 +1,7 @@
+---
+title: "references / dev-environment-isolation"
+---
+
 # Dev-Environment Isolation & Sandboxing
 
 Companion reference for the senior-engineering-partner skill.

@@ -1,3 +1,7 @@
+---
+title: ".github / pull_request_template"
+---
+
 <!--
 Conventional-Commit PR title (it becomes the squash-merge history entry), e.g.
   feat: add a circuit-breaker pattern to resilience-engineering.md

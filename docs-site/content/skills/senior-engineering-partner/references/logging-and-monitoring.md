@@ -1,3 +1,7 @@
+---
+title: "references / logging-and-monitoring"
+---
+
 # Log Location, Rotation & Unattended-Job Monitoring
 
 Companion reference for the senior-engineering-partner skill. The **rules** live in SKILL.md (*Structured Logging & Failure Alerting*); this file holds the implementation detail — the rotation code, the launchd open-fd gotcha, and the monitor design — kept out of the always-loaded core. Read it before writing a log-rotating script, a structured logger, or a monitor for any scheduled/unattended job. The rotation/monitor detail is macOS-centric (the proving ground is the `team-handbook` fleet health-monitor); the *Structured logging in Python* section below is cross-platform.

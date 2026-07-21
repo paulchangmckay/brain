@@ -1,3 +1,7 @@
+---
+title: "references / github-teams"
+---
+
 # GitHub Team Workflows (solo + agents -> human team)
 
 Companion reference for the senior-engineering-partner skill.

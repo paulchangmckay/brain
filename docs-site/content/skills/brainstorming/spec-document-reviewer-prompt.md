@@ -1,3 +1,7 @@
+---
+title: "spec-document-reviewer-prompt"
+---
+
 # Spec Document Reviewer Prompt Template
 
 Use this template when dispatching a spec document reviewer subagent.

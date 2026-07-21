@@ -1,3 +1,7 @@
+---
+title: "evals / README"
+---
+
 # Evals for senior-engineering-partner
 
 Last updated: 2026-06-29 07:21 PM CDT

@@ -1,3 +1,7 @@
+---
+title: "references / data-protection"
+---
+
 # Data Protection & Privacy (GDPR / UK-GDPR / CCPA)
 
 Companion reference for the senior-engineering-partner skill.

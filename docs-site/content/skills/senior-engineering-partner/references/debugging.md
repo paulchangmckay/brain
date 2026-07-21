@@ -1,3 +1,7 @@
+---
+title: "references / debugging"
+---
+
 # Systematic Debugging (root cause, not symptom)
 
 Companion reference for the senior-engineering-partner skill — the method behind `DEBUG:` mode.

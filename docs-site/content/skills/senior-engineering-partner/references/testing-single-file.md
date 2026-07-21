@@ -1,3 +1,7 @@
+---
+title: "references / testing-single-file"
+---
+
 # Testing strategy for single-file scripts with module-level side effects
 
 Companion reference for the senior-engineering-partner skill (AUTOMATED QA & TESTING).

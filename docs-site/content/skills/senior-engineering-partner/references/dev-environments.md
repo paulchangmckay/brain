@@ -1,3 +1,7 @@
+---
+title: "references / dev-environments"
+---
+
 # IDE & Dev-Environment Standards (VS Code, Xcode, Google Antigravity)
 
 Companion reference for the senior-engineering-partner skill.

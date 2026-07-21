@@ -1,3 +1,7 @@
+---
+title: "code-reviewer"
+---
+
 # Code Reviewer Prompt Template
 
 Use this template when dispatching a code reviewer subagent.

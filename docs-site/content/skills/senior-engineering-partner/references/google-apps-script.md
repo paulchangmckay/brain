@@ -1,3 +1,7 @@
+---
+title: "references / google-apps-script"
+---
+
 # Google Apps Script Discipline
 
 Companion reference for the senior-engineering-partner skill.

@@ -1,5 +1,5 @@
-import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync, statSync } from 'node:fs';
-import { join, relative, dirname } from 'node:path';
+import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync, statSync, rmSync } from 'node:fs';
+import { join, relative, dirname, basename, sep } from 'node:path';
 
 export function parseFrontmatter(content) {
   const match = content.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
@@ -35,6 +35,7 @@ const DENYLIST = new Set([
   'LICENSE.md',
   'LICENSE.txt',
   'LICENSE',
+  'NOTICE',
 ]);
 
 export function isDenylisted(filename) {
@@ -68,7 +69,73 @@ export function buildSkillPage({ name, description, body }) {
   return `---\ntitle: ${JSON.stringify(name)}\n${descLine}---\n\n${body}`;
 }
 
+// Relative links inside SKILL.md/nested reference files sometimes point at
+// OSS-scaffolding siblings (LICENSE, CHANGELOG.md, ...) that the denylist
+// deliberately never syncs — those pages will never exist on this site, so
+// the link can never resolve. Strip the markdown link syntax and keep the
+// visible text rather than shipping a dead link.
+const LINK_PATTERN = /\[([^\]]+)\]\(([^)]+)\)/g;
+
+export function delinkDeadReferences(markdown) {
+  return markdown.replace(LINK_PATTERN, (match, text, target) => {
+    if (/^(https?:)?\/\//.test(target) || target.startsWith('/') || target.startsWith('#')) {
+      return match;
+    }
+    const withoutAnchor = target.split('#')[0];
+    // Directory-style reference (e.g. "references/") — no single synced page
+    // corresponds to a whole subdirectory, so there's nothing to link to.
+    if (withoutAnchor === '' || withoutAnchor.endsWith('/')) {
+      return text;
+    }
+    return isDenylisted(basename(withoutAnchor)) ? text : match;
+  });
+}
+
+// SKILL.md is renamed to index.md when a skill has nested files (see
+// syncSkills), so any nested file's link literally naming "SKILL.md" needs
+// rewriting to the new location, with enough "../" to escape back up from
+// wherever that nested file sits.
+export function rewriteSkillRootLinks(markdown, relPath) {
+  const dir = dirname(relPath);
+  const depth = dir === '.' ? 0 : dir.split(sep).length;
+  const upToIndex = `${'../'.repeat(depth)}index.md`;
+  return markdown.replace(LINK_PATTERN, (match, text, target) => {
+    if (/^(https?:)?\/\//.test(target) || target.startsWith('/') || target.startsWith('#')) {
+      return match;
+    }
+    const withoutAnchor = target.split('#')[0];
+    if (!/(^|\/)SKILL\.md$/.test(withoutAnchor)) {
+      return match;
+    }
+    const anchor = target.includes('#') ? `#${target.split('#')[1]}` : '';
+    return `[${text}](${upToIndex}${anchor})`;
+  });
+}
+
+function nestedPageTitle(relPath) {
+  return relPath.replace(/\.md$/, '').split(sep).join(' / ');
+}
+
+const SKILLS_INDEX_PAGE = `---
+title: "Skills Reference"
+---
+
+# Skills Reference
+
+One page per skill, auto-generated from each \`skills/*/SKILL.md\` (and its nested reference files, where present). Skills without a \`SKILL.md\` are silently skipped.
+
+Browse the sidebar for the full list.
+`;
+
 export function syncSkills({ skillsDir, outputDir }) {
+  // content/skills/** is entirely generated output (see docs-site/README.md) —
+  // wipe it before regenerating so a skill whose output shape changes (e.g.
+  // gains nested reference files) doesn't leave stale pages from a previous
+  // run's layout alongside the new ones.
+  rmSync(outputDir, { recursive: true, force: true });
+  mkdirSync(outputDir, { recursive: true });
+  writeFileSync(join(outputDir, 'index.md'), SKILLS_INDEX_PAGE);
+
   const warnings = [];
   const skillNames = readdirSync(skillsDir, { withFileTypes: true })
     .filter((entry) => statSync(join(skillsDir, entry.name)).isDirectory())
@@ -88,16 +155,29 @@ export function syncSkills({ skillsDir, outputDir }) {
       warnings.push(`${skillName}/SKILL.md is missing "name" or "description" frontmatter`);
     }
 
-    const page = buildSkillPage({ name: name ?? skillName, description, body });
-    const outFile = join(outputDir, `${skillName}.md`);
+    const nestedFiles = findNestedMarkdownFiles(skillDir);
+    const page = buildSkillPage({
+      name: name ?? skillName,
+      description,
+      body: delinkDeadReferences(body),
+    });
+    // A skill with nested reference files is written as an index.md
+    // alongside them, mirroring the source directory exactly, so relative
+    // links between the top page and its nested files resolve without any
+    // rewriting. A skill with no nested files stays a flat <skillName>.md.
+    const outFile = nestedFiles.length > 0
+      ? join(outputDir, skillName, 'index.md')
+      : join(outputDir, `${skillName}.md`);
     mkdirSync(dirname(outFile), { recursive: true });
     writeFileSync(outFile, page);
 
-    for (const relPath of findNestedMarkdownFiles(skillDir)) {
+    for (const relPath of nestedFiles) {
       const nestedRaw = readFileSync(join(skillDir, relPath), 'utf8');
+      const transformed = delinkDeadReferences(rewriteSkillRootLinks(nestedRaw, relPath));
+      const nestedPage = `---\ntitle: ${JSON.stringify(nestedPageTitle(relPath))}\n---\n\n${transformed}`;
       const nestedOutFile = join(outputDir, skillName, relPath);
       mkdirSync(dirname(nestedOutFile), { recursive: true });
-      writeFileSync(nestedOutFile, nestedRaw);
+      writeFileSync(nestedOutFile, nestedPage);
     }
   }
 

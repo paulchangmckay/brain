@@ -1,3 +1,7 @@
+---
+title: "scripts / self-review"
+---
+
 # Self-Review Checklist (verify before done)
 
 The copy-into-response checklist for the **verify-before-done gate** (`references/engineering-workflow.md` §4).

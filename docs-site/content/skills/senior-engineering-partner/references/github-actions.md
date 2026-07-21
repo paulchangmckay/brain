@@ -1,3 +1,7 @@
+---
+title: "references / github-actions"
+---
+
 # GitHub Actions CI/CD Standards
 
 Companion reference for the senior-engineering-partner skill.

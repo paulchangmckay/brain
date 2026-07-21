@@ -1,3 +1,7 @@
+---
+title: "references / standards-authoring"
+---
+
 # Standards Authoring: distill sprawling conventions into checkable rules
 
 Companion reference for the senior-engineering-partner skill.
