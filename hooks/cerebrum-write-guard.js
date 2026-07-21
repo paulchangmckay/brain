@@ -1,11 +1,15 @@
 #!/usr/bin/env node
 // PreToolUse hook (matcher: Edit|Write): warns if cerebrum.md changed on
-// disk since this session last touched it — signals another concurrent
-// session wrote to it in between. See
-// docs/superpowers/specs/2026-07-20-tooling-friction-hardening-design.md §2.
+// disk since this session last recorded touching it — signals another
+// concurrent session wrote to it in between. Read-only: the marker is
+// updated by the PostToolUse companion (cerebrum-write-guard-post.js)
+// AFTER a write actually lands, not here — a PreToolUse hook only ever
+// observes pre-edit state, so recording the marker here would compare
+// this session's own post-edit mtime against itself on the next call.
+// See docs/superpowers/specs/2026-07-20-tooling-friction-hardening-design.md §2.
 
-import { readFileSync, writeFileSync, existsSync, statSync, mkdirSync } from 'fs';
-import { resolve, dirname } from 'path';
+import { readFileSync, existsSync, statSync } from 'fs';
+import { resolve } from 'path';
 
 const SAFE_NAME = /^[A-Za-z0-9._-]+$/;
 
@@ -50,10 +54,5 @@ if (lastKnown !== null && currentMtime > lastKnown) {
     }
   }) + '\n');
 }
-
-try {
-  mkdirSync(dirname(markerPath), { recursive: true });
-  writeFileSync(markerPath, JSON.stringify({ mtime: currentMtime }));
-} catch (_) {}
 
 process.exit(0);

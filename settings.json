@@ -185,6 +185,15 @@
         ]
       },
       {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node /Users/paulmckay/.claude/hooks/cerebrum-write-guard-post.js"
+          }
+        ]
+      },
+      {
         "hooks": [
           {
             "type": "command",
