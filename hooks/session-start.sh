@@ -18,7 +18,7 @@ escape_for_json() {
 }
 
 # --- Superpowers bootstrap: minimal pointer (full SKILL.md was 84KB — injecting it burned context) ---
-superpowers_context="<EXTREMELY_IMPORTANT>\nYou have superpowers — specialized skills that unlock behaviors beyond your defaults.\n\nMANDATORY: If there is even a 1% chance a skill applies to your task, you MUST invoke it via the Skill tool. This is not optional.\n\nHow to use:\n- Invoke with the Skill tool: { \"skill\": \"<name>\" }\n- Available skills are listed in each turn's system-reminder under 'The following skills are available'\n- Never read skill files manually — always use the Skill tool\n- If a skill matches your task, invoke it BEFORE any other response, including clarifying questions\n\nInstruction priority: User instructions (CLAUDE.md/GEMINI.md/AGENTS.md) > Skills > Default behavior.\n</EXTREMELY_IMPORTANT>"
+superpowers_context="<EXTREMELY_IMPORTANT>\nYou have superpowers — specialized skills that unlock behaviors beyond your defaults.\n\nMANDATORY: If there is even a 1% chance a skill applies to your task, you MUST invoke it via the Skill tool. This is not optional.\n\nHow to use:\n- Invoke with the Skill tool: { \\\"skill\\\": \\\"<name>\\\" }\n- Available skills are listed in each turn's system-reminder under 'The following skills are available'\n- Never read skill files manually — always use the Skill tool\n- If a skill matches your task, invoke it BEFORE any other response, including clarifying questions\n\nInstruction priority: User instructions (CLAUDE.md/GEMINI.md/AGENTS.md) > Skills > Default behavior.\n</EXTREMELY_IMPORTANT>"
 
 # --- OpenWolf anatomy injection ---
 # Always inject global ~/.claude anatomy first
