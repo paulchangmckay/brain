@@ -54,6 +54,14 @@
             "timeout": 180
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /Users/paulmckay/.claude/hooks/plugin-health-check-gate.sh"
+          }
+        ]
       }
     ],
     "UserPromptSubmit": [
