@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-07-21T22:58:41.208Z
-> Files: 507 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-07-21T23:11:37.709Z
+> Files: 508 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -48,6 +48,7 @@
 - `task-2-report.md` — Task 2 Report: Create `model-routing` skill (~263 tok)
 - `task-3-brief.md` — Task 3: Trim CLAUDE.md — remove moved sections, condense Section 3 (+7), add pointers and model-routing bullet (~2979 tok)
 - `task-3-report.md` — Task 3 Report: Fix CLAUDE.md §3 worktree merge pattern (~700 tok)
+- `task-4-report.md` — Task 4 Report: Wire the GitHub remote and push (~1578 tok)
 - `task-5-brief.md` — Task 5: Add global permissions.deny (~1259 tok)
 - `task-5-report.md` — Task 5 Report: Add global permissions.deny (~375 tok)
 
@@ -363,7 +364,7 @@
 - `2026-07-20-skill-observation-system.md` — Skill Observation System Implementation Plan (~15927 tok)
 - `2026-07-20-tooling-friction-hardening-plan.md` — Tooling Friction Hardening Implementation Plan (~13795 tok)
 - `2026-07-20-understand-anything-staleness-check.md` — Understand-Anything Staleness Check Implementation Plan (~4461 tok)
-- `2026-07-21-github-first-workflow.md` — GitHub-First Workflow for `~/.claude` Implementation Plan (~2962 tok)
+- `2026-07-21-github-first-workflow.md` — GitHub-First Workflow for `~/.claude` Implementation Plan (~3493 tok)
 
 ## docs/superpowers/specs/
 
@@ -375,7 +376,7 @@
 - `2026-07-20-skill-observation-system-design.md` — Skill Observation System (OpenWolf enhancement) (~6910 tok)
 - `2026-07-20-tooling-friction-hardening-design.md` — Tooling Friction Hardening — Design (~3697 tok)
 - `2026-07-20-understand-anything-staleness-check-design.md` — Understand-Anything Staleness Check — Design (~2146 tok)
-- `2026-07-21-github-first-workflow-design.md` — GitHub-First Workflow for `~/.claude` — Design (~2418 tok)
+- `2026-07-21-github-first-workflow-design.md` — GitHub-First Workflow for `~/.claude` — Design (~2695 tok)
 
 ## file-history/
 

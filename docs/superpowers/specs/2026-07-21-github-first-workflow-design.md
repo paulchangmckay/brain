@@ -4,7 +4,9 @@
 
 `~/.claude` is git-tracked but has never had a remote — every commit so far (127 of them) landed straight on `main` from local sessions. CLAUDE.md §2 already documents a GitHub-integrated pipeline (`github-issue-first` before code touches, `requesting-code-review` before merge, explicit-approval-only merges) and §3 already references worktree/PR mechanics, but none of it has ever actually run: `github-issue-first` no-ops silently whenever `git remote get-url origin` fails to resolve, which it always has.
 
-The user has learned more about GitHub and wants `~/.claude` development to stop being local-first, using `https://github.com/paulchangmckay/brain` as the remote. That repo currently exists (public, empty, 0 commits) and is otherwise used as the storage root for the `gbrain` MCP server (a *separate* personal-knowledge system — people/companies/concepts/decisions — with its own local git repo, currently 0 commits, no remote). Scoping questions resolved this out: `brain` will host `~/.claude` only; the knowledge base stays untouched for now; the repo keeps its current name despite the mismatch.
+The user has learned more about GitHub and wants `~/.claude` development to stop being local-first, using `https://github.com/paulchangmckay/brain` as the remote. That repo is otherwise used as the storage root for the `gbrain` MCP server (a *separate* personal-knowledge system — people/companies/concepts/decisions — with its own local git repo, currently 0 commits, no remote). Scoping questions resolved this out: `brain` will host `~/.claude` only; the knowledge base stays untouched for now; the repo keeps its current name despite the mismatch.
+
+**Correction, discovered during Task 4 execution:** this doc originally stated the remote was "empty, 0 commits" — that was never actually verified against the remote (only the local `~/brain` directory, which is genuinely 0-commit, was checked; the two were conflated). The remote in fact has 3 commits from 2026-06-29 — "Initial commit", "Add files via upload" (a 220KB `claude-transfer.zip`, too small to be a full `~/.claude` backup), "Delete claude-transfer.zip" — leaving a trivial current tree (one `README.md`, "# brain"). Shares no history with `~/.claude`. User decision: force-push, after tagging the remote's current state locally as a recoverable backup first (see Task 4 in the plan for the exact sequence).
 
 Preflight already run during brainstorming:
 - `gitleaks detect --source . --log-opts="--all"` across the full 127-commit history: **no leaks found**. Safe to push to a public repo.
@@ -39,7 +41,7 @@ Grilling also surfaced a bootstrapping paradox: if branch protection (§3, below
 Order:
 1. Add `origin` remote: `git remote add origin https://github.com/paulchangmckay/brain.git`.
 2. Make the CLAUDE.md §3 merge-pattern fix (below) as its own commit, directly on local `main` — this is setup work finishing the mechanism, not subject to the mechanism yet.
-3. Push everything in one go: `git push -u origin main`. Both local and remote default branch are already `main` — no rename needed. `gh` is already authenticated with `repo` scope, so no additional auth setup.
+3. Fetch the remote and tag its current tip locally as `pre-claude-first-push-backup` (recoverable backup — see Context's "Correction" note: the remote is not actually empty), then push with `git push --force-with-lease -u origin main`. Both local and remote default branch are already `main` — no rename needed. `gh` is already authenticated with `repo` scope, so no additional auth setup.
 4. Only then apply branch protection (§3).
 
 ## 3. Branch Protection
@@ -75,7 +77,7 @@ No other CLAUDE.md sections reference the old local-merge pattern; §2's table a
 | `~/.claude/CLAUDE.md`, `.wolf/anatomy.md`, `.wolf/buglog.json`, `.wolf/cerebrum.md`, `.wolf/memory.md`, `.wolf/observations.md` | Land pre-existing accumulated `session-reflect` learnings, unrelated to this spec | 1 (pre-existing state) |
 | `~/.claude/.gitignore` | Add `.wolf/_writecount-*.json`, `.wolf/*.md.bak`, `docs-site/.wolf/` | 2 (pre-existing state) |
 | `~/.claude/CLAUDE.md` | §3 "Worktree merge pattern" bullet rewritten: local `git merge` → push branch / `gh pr create` / explicit-approval wait / `gh pr merge --squash` / `git pull` | 3 (this spec) |
-| `~/.claude` (git config) | Add `origin` remote → `github.com/paulchangmckay/brain`, push all commits through #3 | — (`git remote add` + `git push`, not a commit) |
+| `~/.claude` (git config) | Add `origin` remote → `github.com/paulchangmckay/brain`; tag its pre-existing tip as `pre-claude-first-push-backup`; force-push (`--force-with-lease`) all commits through #3 | — (`git remote add`/`git tag`/`git push`, not a commit) |
 | GitHub (`paulchangmckay/brain`) | Branch protection applied to `main` via existing `scripts/setup-branch-protection.sh`, run *after* the push above | — (API call, not a commit) |
 
 ## Verification
@@ -83,6 +85,7 @@ No other CLAUDE.md sections reference the old local-merge pattern; §2's table a
 - `git status --porcelain` is clean before the `origin` remote is added (confirms commits 1–3 landed and nothing was left stray).
 - `.gitignore` contains the three new patterns, and `git status --porcelain` no longer lists `_writecount-*`/`.bak`/`docs-site/.wolf/` as untracked.
 - `git remote -v` shows `origin` pointing at the correct URL.
+- `git log pre-claude-first-push-backup --oneline` shows the remote's 3 pre-existing commits, confirming the backup tag captured them before the force-push.
 - `git ls-remote origin main` resolves after push, and `git log origin/main --oneline -1` matches local `main` HEAD (which must include the CLAUDE.md §3 fix commit).
 - `gh api repos/paulchangmckay/brain/branches/main/protection --jq .enforce_admins.enabled` returns `true` — this is sufficient evidence; no live-fire direct-push test against `main` (avoids a throwaway commit/reset cycle against a now-protected branch for no added certainty).
 - CLAUDE.md §3 no longer contains a `git -C ... merge` instruction; grep confirms.
