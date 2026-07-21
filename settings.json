@@ -95,6 +95,15 @@
         ]
       },
       {
+        "matcher": "EnterWorktree",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node /Users/paulmckay/.claude/hooks/worktree-repo-guard.js"
+          }
+        ]
+      },
+      {
         "hooks": [
           {
             "type": "command",
