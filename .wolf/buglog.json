@@ -1426,6 +1426,182 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-07-18T19:39:42.406Z"
+    },
+    {
+      "id": "bug-089",
+      "timestamp": "2026-07-20T23:40:30.536Z",
+      "error_message": "Type error",
+      "file": "../Desktop/NHL Stats Project/.claude/worktrees/36-toolbar-components-mock-data/frontend/src/components/StatFilters.tsx",
+      "root_cause": "Missing or incorrect type annotation",
+      "fix": "Added type assertion/annotation",
+      "tags": [
+        "auto-detected",
+        "type-fix",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-20T23:40:30.536Z"
+    },
+    {
+      "id": "bug-090",
+      "timestamp": "2026-07-20T23:40:42.375Z",
+      "error_message": "CSS fix: null",
+      "file": "../Desktop/NHL Stats Project/.claude/worktrees/36-toolbar-components-mock-data/frontend/src/components/StatFilters.tsx",
+      "root_cause": "null: num → Number(raw)",
+      "fix": "Changed null: num → Number(raw)",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-20T23:40:42.375Z"
+    },
+    {
+      "id": "bug-091",
+      "timestamp": "2026-07-21T00:07:07.744Z",
+      "error_message": "Incorrect value in code",
+      "file": "../Desktop/NHL Stats Project/.claude/worktrees/36-toolbar-components-mock-data/frontend/src/components/Toolbar.tsx",
+      "root_cause": "Had \"@/components/ui/input\"",
+      "fix": "Changed to \"react\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-21T00:07:07.744Z"
+    },
+    {
+      "id": "bug-092",
+      "timestamp": "2026-07-21T00:07:11.903Z",
+      "error_message": "Significant refactor of ",
+      "file": "../Desktop/NHL Stats Project/.claude/worktrees/36-toolbar-components-mock-data/frontend/src/components/Toolbar.tsx",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 4→10 lines (2 removed) | Also: value={filters.search}; onChange={(e) => onFiltersChange({ ...filters, sea | Also: const [localSearch, setLocalSearch] = useState(fil; useEffect(() => {",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 3,
+      "last_seen": "2026-07-21T00:10:29.831Z"
+    },
+    {
+      "id": "bug-093",
+      "timestamp": "2026-07-21T00:08:35.279Z",
+      "error_message": "Function not marked async",
+      "file": "../Desktop/NHL Stats Project/.claude/worktrees/36-toolbar-components-mock-data/.wolf/buglog.json",
+      "root_cause": "Function uses await but wasn't declared async",
+      "fix": "Added async modifier",
+      "tags": [
+        "auto-detected",
+        "async-fix",
+        "json"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-21T00:08:35.279Z"
+    },
+    {
+      "id": "bug-094",
+      "timestamp": "2026-07-21T00:20:22.709Z",
+      "error_message": "Incorrect value in code",
+      "file": "../Desktop/NHL Stats Project/.claude/worktrees/36-toolbar-components-mock-data/frontend/_check_toggle_tmp.mjs",
+      "root_cause": "Had \"playwright\"",
+      "fix": "Changed to \"/Users/paulmckay/.npm/_npx/e41f203b7505f1fb/node_",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "mjs"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-21T00:20:22.709Z"
+    },
+    {
+      "id": "bug-095",
+      "timestamp": "2026-07-21T01:14:37.176Z",
+      "error_message": "Missing await",
+      "file": "../Desktop/NHL Stats Project/.claude/worktrees/37-playertable-real-data/frontend/src/App.test.tsx",
+      "root_cause": "Async call without await — returned Promise instead of value",
+      "fix": "Added await to async call",
+      "tags": [
+        "auto-detected",
+        "async-fix",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-21T01:14:37.176Z"
+    },
+    {
+      "id": "bug-096",
+      "timestamp": "2026-07-21T01:25:23.932Z",
+      "error_message": "Incorrect value in code",
+      "file": "../Desktop/NHL Stats Project/.claude/worktrees/37-playertable-real-data/frontend/src/App.tsx",
+      "root_cause": "Had \"max(200px, calc(100vh - var(--toolbar-height, 120",
+      "fix": "Changed to \"max(200px, calc(100vh - var(--toolbar-height, 57p",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-21T01:25:23.932Z"
+    },
+    {
+      "id": "bug-097",
+      "timestamp": "2026-07-21T01:27:04.198Z",
+      "error_message": "CSS fix: url",
+      "file": "../Desktop/NHL Stats Project/.claude/worktrees/37-playertable-real-data/frontend/src/App.test.tsx",
+      "root_cause": "url: string) => { → string) =>",
+      "fix": "Changed url: string) => { → string) =>",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-21T01:27:04.198Z"
+    },
+    {
+      "id": "bug-098",
+      "timestamp": "2026-07-21T01:38:39.770Z",
+      "error_message": "Incorrect value in code",
+      "file": "../Desktop/NHL Stats Project/.claude/worktrees/37-playertable-real-data/docs/superpowers/plans/2026-07-18-frontend-replatform.md",
+      "root_cause": "Had ` cases, the season-multi-select mutual-exclusivit",
+      "fix": "Changed to ` cases, the season-multi-select mutual-exclusivit",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-21T01:38:39.770Z"
+    },
+    {
+      "id": "bug-099",
+      "timestamp": "2026-07-21T01:40:09.384Z",
+      "error_message": "Incorrect value in code",
+      "file": "../Desktop/NHL Stats Project/.claude/worktrees/37-playertable-real-data/frontend/src/components/ui/table.tsx",
+      "root_cause": "Had \"relative w-full overflow-x-auto\"",
+      "fix": "Changed to \"relative w-full\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-07-21T01:41:27.375Z"
     }
   ]
 }

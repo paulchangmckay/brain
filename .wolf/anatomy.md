@@ -1,11 +1,109 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-07-20T04:03:43.057Z
-> Files: 517 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-07-21T01:42:34.838Z
+> Files: 571 tracked | Anatomy hits: 0 | Misses: 0
+
+## ../../../private/tmp/claude-501/-Users-paulmckay--claude/1b1d2759-d6b2-4e78-9cdd-9685d071dd98/scratchpad/export/
+
+- `ONBOARDING.md` — To the Claude Code agent receiving this bundle (~1663 tok)
+
+## ../../../private/tmp/claude-501/-Users-paulmckay--claude/1b1d2759-d6b2-4e78-9cdd-9685d071dd98/scratchpad/export/docs/
+
+- `AUDIT.md` — ~/.claude Configuration Audit — Paul McKay (Personal Machine) (~7612 tok)
+
+## ../../../private/tmp/claude-501/-Users-paulmckay--claude/7e0fd21e-f073-4893-904c-c4f16fbb1323/scratchpad/
+
+- `the-pipeline.html` — The Pipeline (~9841 tok)
+
+## ../../../private/tmp/claude-501/-Users-paulmckay--claude/f785aaf8-3907-49d5-8a3d-7b35c1dcdf96/scratchpad/
+
+- `check_toggle.mjs` — Declares browser (~220 tok)
+- `sticky-test.mjs` — Declares browser (~792 tok)
 
 ## ../Desktop/NHL Stats Project/.claude/worktrees/35-scaffold-react-frontend/
 
 - `README.md` — Project documentation (~851 tok)
+
+## ../Desktop/NHL Stats Project/.claude/worktrees/36-toolbar-components-mock-data/.github/workflows/
+
+- `ci.yml` — CI: CI (~481 tok)
+
+## ../Desktop/NHL Stats Project/.claude/worktrees/36-toolbar-components-mock-data/.superpowers/sdd/
+
+- `positiontoggle-color-fix-report.md` — PositionToggle active-color fix (~998 tok)
+- `progress.md` — Declares as (~947 tok)
+- `task-10-report.md` — Task 10 Report: `SeasonPicker` component (~1528 tok)
+- `task-11-report.md` — Task 11 Report: `Toolbar` composing search + pickers + filters (mock data) (~1451 tok)
+- `task-5-report.md` — Task 5: Port `lib/search.ts` + Vitest setup — Report (~1508 tok)
+- `task-6-report.md` — Task 6 Report: `lib/types.ts` + dev mock fixtures (~344 tok)
+- `task-7-buildfix-report.md` — Task 7 Build-Fix Report — PositionToggle Radix `type` prop (~1088 tok)
+- `task-7-report.md` — Task 7: PositionToggle Component - Report (~786 tok)
+- `task-8-report.md` — Task 8 Report: StatFilters Component (~1252 tok)
+- `task-9-report.md` — Task 9 Report: `TeamPicker` component (~2572 tok)
+
+## ../Desktop/NHL Stats Project/.claude/worktrees/36-toolbar-components-mock-data/.wolf/
+
+- `buglog.json` — Declares of (~6536 tok)
+- `memory.md` — Memory (~1890 tok)
+
+## ../Desktop/NHL Stats Project/.claude/worktrees/36-toolbar-components-mock-data/frontend/
+
+- `_check_toggle_tmp.mjs` — Declares browser (~238 tok)
+- `package.json` — Node.js package manifest (~276 tok)
+- `vitest.config.ts` (~99 tok)
+
+## ../Desktop/NHL Stats Project/.claude/worktrees/36-toolbar-components-mock-data/frontend/src/
+
+- `App.tsx` — App (~282 tok)
+- `test-setup.ts` — jsdom doesn't implement scrollIntoView — stub it so components that call it (~84 tok)
+
+## ../Desktop/NHL Stats Project/.claude/worktrees/36-toolbar-components-mock-data/frontend/src/components/
+
+- `PositionToggle.test.tsx` — onChange (~340 tok)
+- `PositionToggle.tsx` — POSITIONS (~366 tok)
+- `SeasonPicker.test.tsx` — onChange (~613 tok)
+- `SeasonPicker.tsx` — SEASONS (~662 tok)
+- `StatFilters.test.tsx` — EMPTY (~284 tok)
+- `StatFilters.tsx` — FIELDS (~313 tok)
+- `TeamPicker.test.tsx` — onChange (~446 tok)
+- `TeamPicker.tsx` — logoUrl (~542 tok)
+- `Toolbar.test.tsx` — EMPTY_MINS (~813 tok)
+- `Toolbar.tsx` — Toolbar (~854 tok)
+
+## ../Desktop/NHL Stats Project/.claude/worktrees/36-toolbar-components-mock-data/frontend/src/lib/
+
+- `mock-data.ts` — Exports MOCK_TEAMS, MOCK_PLAYERS, MOCK_STATS (~693 tok)
+- `search.test.ts` — Declares mackinnon (~672 tok)
+- `search.ts` — Exports SearchablePlayer, tokenize, playerSearchText, matchesQuery (~225 tok)
+- `types.ts` — Exports Team, Player, PlayerStats, SortDirection, StatMins (~337 tok)
+
+## ../Desktop/NHL Stats Project/.claude/worktrees/37-playertable-real-data/.superpowers/sdd/
+
+- `progress.md` (~913 tok)
+- `task-12-report.md` — Task 12 Report: PlayerTable Component (~1047 tok)
+- `task-13-report.md` — Task 13 Report: `App.tsx` real-data wiring + error handling (~2503 tok)
+- `task-14-report.md` — Task 14 Report: Sticky-header height offset (bug-008 regression guard) (~1276 tok)
+- `task-15-report.md` — Task 15 Report: Final Error-Handling Coverage (Teams + Stats Fetch Failures) (~1012 tok)
+
+## ../Desktop/NHL Stats Project/.claude/worktrees/37-playertable-real-data/docs/superpowers/plans/
+
+- `2026-07-18-frontend-replatform.md` — Frontend Replatform (React + Tailwind + shadcn/ui) Implementation Plan (~20094 tok)
+
+## ../Desktop/NHL Stats Project/.claude/worktrees/37-playertable-real-data/frontend/src/
+
+- `App.test.tsx` — mockFetchOnce (~1559 tok)
+- `App.tsx` — seasonsKey (~2175 tok)
+- `index.css` — Styles: 8 rules, 103 vars (~1293 tok)
+
+## ../Desktop/NHL Stats Project/.claude/worktrees/37-playertable-real-data/frontend/src/components/
+
+- `PlayerTable.test.tsx` — onSort (~438 tok)
+- `PlayerTable.tsx` — COLUMNS — renders table (~979 tok)
+- `Toolbar.tsx` — Toolbar (~919 tok)
+
+## ../Desktop/NHL Stats Project/.claude/worktrees/37-playertable-real-data/frontend/src/components/ui/
+
+- `table.tsx` — Table — renders table (~678 tok)
 
 ## ./
 
@@ -828,3 +926,10 @@
 - `2026-07-15-blume-docs-site-design.md` — Incorporate Blume: local harness docs site (~2334 tok)
 - `2026-07-15-ponytail-bloat-tooling-design.md` — Bloat/debt tooling inspired by ponytail (~2804 tok)
 - `2026-07-17-architecture-diagram-skill-design.md` — Architecture Diagram Generator skill (~3195 tok)
+- `2026-07-20-skill-observation-system-design.md` — Skill Observation System (OpenWolf enhancement) (~4601 tok)
+- `2026-07-20-tooling-friction-hardening-design.md` — Tooling Friction Hardening — Design (~2916 tok)
+
+## scripts/
+
+- `wolf-debt-scan.js` — Deterministic scanner for wolf-debt: markers, used by the debt-ledger skill. (~1069 tok)
+- `wolf-debt-scan.test.js` — Split so this test file's own source never contains the literal, (~1728 tok)
