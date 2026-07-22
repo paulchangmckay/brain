@@ -42,7 +42,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash /Users/paulmckay/.claude/hooks/session-start.sh"
+            "command": "bash $CLAUDE_PROJECT_DIR/hooks/session-start.sh"
           }
         ]
       },
@@ -50,7 +50,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash \"/Users/paulmckay/.claude/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/sg-python.sh\" \"/Users/paulmckay/.claude/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/ensure_agent_sdk.py\"",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/sg-python.sh\" \"$CLAUDE_PROJECT_DIR/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/ensure_agent_sdk.py\"",
             "timeout": 180
           }
         ]
@@ -59,7 +59,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash /Users/paulmckay/.claude/hooks/plugin-health-check-gate.sh"
+            "command": "bash $CLAUDE_PROJECT_DIR/hooks/plugin-health-check-gate.sh"
           }
         ]
       }
@@ -69,7 +69,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"/Users/paulmckay/.claude/langsmith-plugin/bundle/user-prompt-submit.js\"",
+            "command": "node \"$CLAUDE_PROJECT_DIR/langsmith-plugin/bundle/user-prompt-submit.js\"",
             "timeout": 30
           }
         ]
@@ -78,7 +78,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash \"/Users/paulmckay/.claude/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/sg-python.sh\" \"/Users/paulmckay/.claude/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/security_reminder_hook.py\""
+            "command": "bash \"$CLAUDE_PROJECT_DIR/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/sg-python.sh\" \"$CLAUDE_PROJECT_DIR/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/security_reminder_hook.py\""
           }
         ]
       }
@@ -89,7 +89,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node /Users/paulmckay/.claude/hooks/pre-read-check.js \"${TOOL_INPUT_PATH:-}\" \"${CLAUDE_CWD:-.}\""
+            "command": "node $CLAUDE_PROJECT_DIR/hooks/pre-read-check.js \"${TOOL_INPUT_PATH:-}\" \"${CLAUDE_CWD:-.}\""
           }
         ]
       },
@@ -98,7 +98,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node /Users/paulmckay/.claude/hooks/pre-skill-gate.js"
+            "command": "node $CLAUDE_PROJECT_DIR/hooks/pre-skill-gate.js"
           }
         ]
       },
@@ -107,7 +107,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node /Users/paulmckay/.claude/hooks/pre-principles-injection.js"
+            "command": "node $CLAUDE_PROJECT_DIR/hooks/pre-principles-injection.js"
           }
         ]
       },
@@ -116,7 +116,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node /Users/paulmckay/.claude/hooks/worktree-repo-guard.js"
+            "command": "node $CLAUDE_PROJECT_DIR/hooks/worktree-repo-guard.js"
           }
         ]
       },
@@ -125,11 +125,11 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node /Users/paulmckay/.claude/hooks/worktree-path-guard.js"
+            "command": "node $CLAUDE_PROJECT_DIR/hooks/worktree-path-guard.js"
           },
           {
             "type": "command",
-            "command": "node /Users/paulmckay/.claude/hooks/cerebrum-write-guard.js"
+            "command": "node $CLAUDE_PROJECT_DIR/hooks/cerebrum-write-guard.js"
           }
         ]
       },
@@ -137,7 +137,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"/Users/paulmckay/.claude/langsmith-plugin/bundle/pre-tool-use.js\"",
+            "command": "node \"$CLAUDE_PROJECT_DIR/langsmith-plugin/bundle/pre-tool-use.js\"",
             "timeout": 10
           }
         ]
@@ -149,7 +149,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node /Users/paulmckay/.claude/hooks/post-skill-record.js"
+            "command": "node $CLAUDE_PROJECT_DIR/hooks/post-skill-record.js"
           }
         ]
       },
@@ -158,7 +158,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node /Users/paulmckay/.claude/hooks/post-write-batch-nudge.js"
+            "command": "node $CLAUDE_PROJECT_DIR/hooks/post-write-batch-nudge.js"
           }
         ]
       },
@@ -167,7 +167,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash \"/Users/paulmckay/.claude/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/sg-python.sh\" \"/Users/paulmckay/.claude/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/security_reminder_hook.py\""
+            "command": "bash \"$CLAUDE_PROJECT_DIR/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/sg-python.sh\" \"$CLAUDE_PROJECT_DIR/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/security_reminder_hook.py\""
           }
         ]
       },
@@ -176,7 +176,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node /Users/paulmckay/.claude/hooks/post-bash-truncate.js"
+            "command": "node $CLAUDE_PROJECT_DIR/hooks/post-bash-truncate.js"
           }
         ]
       },
@@ -185,7 +185,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash \"/Users/paulmckay/.claude/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/sg-python.sh\" \"/Users/paulmckay/.claude/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/security_reminder_hook.py\"",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/sg-python.sh\" \"$CLAUDE_PROJECT_DIR/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/security_reminder_hook.py\"",
             "if": "Bash(git commit:*)",
             "asyncRewake": true,
             "rewakeMessage": "Background security review of commit — address or acknowledge the findings below, then continue with the user's original request or continue waiting for their reply:",
@@ -193,7 +193,7 @@
           },
           {
             "type": "command",
-            "command": "bash \"/Users/paulmckay/.claude/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/sg-python.sh\" \"/Users/paulmckay/.claude/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/security_reminder_hook.py\"",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/sg-python.sh\" \"$CLAUDE_PROJECT_DIR/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/security_reminder_hook.py\"",
             "if": "Bash(git push:*)",
             "asyncRewake": true,
             "rewakeMessage": "Background security review of pushed commits not yet reviewed — address or acknowledge the findings below, then continue with the user's original request or continue waiting for their reply:",
@@ -215,7 +215,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node /Users/paulmckay/.claude/hooks/cerebrum-write-guard-post.js"
+            "command": "node $CLAUDE_PROJECT_DIR/hooks/cerebrum-write-guard-post.js"
           }
         ]
       },
@@ -223,7 +223,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"/Users/paulmckay/.claude/langsmith-plugin/bundle/post-tool-use.js\"",
+            "command": "node \"$CLAUDE_PROJECT_DIR/langsmith-plugin/bundle/post-tool-use.js\"",
             "timeout": 30,
             "async": true
           }
@@ -235,7 +235,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"/Users/paulmckay/.claude/langsmith-plugin/bundle/stop.js\"",
+            "command": "node \"$CLAUDE_PROJECT_DIR/langsmith-plugin/bundle/stop.js\"",
             "timeout": 120
           },
           {
@@ -259,7 +259,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash \"/Users/paulmckay/.claude/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/sg-python.sh\" \"/Users/paulmckay/.claude/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/security_reminder_hook.py\"",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/sg-python.sh\" \"$CLAUDE_PROJECT_DIR/plugins/marketplaces/claude-plugins-official/plugins/security-guidance/hooks/security_reminder_hook.py\"",
             "asyncRewake": true,
             "rewakeMessage": "Background security review feedback — address or acknowledge the findings below, then continue with the user's original request or continue waiting for their reply. This is supplementary, not a replacement for your previous response:",
             "rewakeSummary": "Background security review found issues"
@@ -272,7 +272,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"/Users/paulmckay/.claude/langsmith-plugin/bundle/stop-failure.js\"",
+            "command": "node \"$CLAUDE_PROJECT_DIR/langsmith-plugin/bundle/stop-failure.js\"",
             "timeout": 30
           }
         ]
@@ -283,7 +283,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node /Users/paulmckay/.claude/hooks/subagent-thin-harness.js"
+            "command": "node $CLAUDE_PROJECT_DIR/hooks/subagent-thin-harness.js"
           }
         ]
       }
@@ -293,7 +293,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"/Users/paulmckay/.claude/langsmith-plugin/bundle/subagent-stop.js\"",
+            "command": "node \"$CLAUDE_PROJECT_DIR/langsmith-plugin/bundle/subagent-stop.js\"",
             "timeout": 60,
             "async": true
           }
@@ -305,7 +305,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash /Users/paulmckay/.claude/hooks/pre-compact-snapshot.sh"
+            "command": "bash $CLAUDE_PROJECT_DIR/hooks/pre-compact-snapshot.sh"
           }
         ]
       },
@@ -313,7 +313,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"/Users/paulmckay/.claude/langsmith-plugin/bundle/pre-compact.js\"",
+            "command": "node \"$CLAUDE_PROJECT_DIR/langsmith-plugin/bundle/pre-compact.js\"",
             "timeout": 10
           }
         ]
@@ -324,15 +324,15 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash /Users/paulmckay/.claude/hooks/post-compact-anatomy.sh"
+            "command": "bash $CLAUDE_PROJECT_DIR/hooks/post-compact-anatomy.sh"
           },
           {
             "type": "command",
-            "command": "node /Users/paulmckay/.claude/hooks/post-compact-observation.js"
+            "command": "node $CLAUDE_PROJECT_DIR/hooks/post-compact-observation.js"
           },
           {
             "type": "command",
-            "command": "node \"/Users/paulmckay/.claude/langsmith-plugin/bundle/post-compact.js\"",
+            "command": "node \"$CLAUDE_PROJECT_DIR/langsmith-plugin/bundle/post-compact.js\"",
             "timeout": 30,
             "async": true
           }
@@ -344,7 +344,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"/Users/paulmckay/.claude/langsmith-plugin/bundle/session-end.js\"",
+            "command": "node \"$CLAUDE_PROJECT_DIR/langsmith-plugin/bundle/session-end.js\"",
             "timeout": 10
           }
         ]

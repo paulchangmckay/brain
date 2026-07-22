@@ -1,7 +1,7 @@
 {
   "brain": {
     "command": "npx",
-    "args": ["-y", "@modelcontextprotocol/server-filesystem", "/Users/paulmckay/brain"]
+    "args": ["-y", "@modelcontextprotocol/server-filesystem", "/absolute/path/to/your/brain"]
   },
   "playwright": {
     "command": "npx",
