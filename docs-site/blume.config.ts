@@ -19,4 +19,8 @@ export default defineConfig({
     radius: "md",
     mode: "system",
   },
+  deployment: {
+    site: "https://paulchangmckay.github.io",
+    base: "/brain",
+  },
 });
