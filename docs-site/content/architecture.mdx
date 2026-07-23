@@ -1,0 +1,25 @@
+---
+title: "Architecture"
+description: "How skills, hooks, OpenWolf, Agents, and submodules fit together."
+---
+
+```mermaid
+graph TD
+    Dev["Developer"] -->|works through| CLI["Claude Code CLI"]
+    CLI -->|reads and enforces| ClaudeMd["CLAUDE.md"]
+    ClaudeMd -->|gates use of| Skills["skills/ (fat skills)"]
+    Skills -->|some vendored via| Submodules["git submodules\n(superpowers, senior-engineering-partner,\nlangsmith-plugin)"]
+    CLI -->|fires| Hooks["hooks/ (lifecycle hooks)"]
+    Hooks -->|enforce gates, write to| Wolf[".wolf/ (OpenWolf runtime)"]
+    Wolf -->|tracks| WolfFiles["anatomy · cerebrum · memory · buglog"]
+    CLI -->|can delegate to| Agents["Agents/ (isolated sub-environments)"]
+    Agents -->|each runs its own| AgentWolf[".wolf/ instance, scoped to that agent"]
+```
+
+- **`CLAUDE.md`** is the root instruction set — read as structured data, not a loose style guide.
+- **`skills/`** are the "fat" behavior modules `CLAUDE.md` gates access to. Some are authored directly in this repo; others are pulled in as git submodules from external projects and used as-is.
+- **`hooks/`** turn the process gates described in `CLAUDE.md` from prose into real enforcement — blocking actions, not just suggesting them.
+- **`.wolf/`** is OpenWolf's runtime: a per-project memory and tracking layer that hooks write to and skills read from, so decisions and learnings persist across sessions instead of resetting every conversation.
+- **`Agents/`** hold fully self-contained sub-environments — a custom agent gets its own `.wolf/` instance, isolated from the parent project's.
+
+See [Core Philosophy](/overview/core-philosophy) for why this split exists, and [Infrastructure Layer](/overview/infrastructure-layer) for how the enforcement mechanics work.
