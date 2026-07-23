@@ -7,7 +7,7 @@ The Process Layer is the part of `CLAUDE.md` that decides, at any given
 moment, which skill the agent is required to reach for. It's organized as a
 trigger table: specific points in a workflow — before any feature work,
 before touching code, when a bug or test failure appears, before merging or
-opening a pull request — each map to a required skill, rather than leaving
+opening a pull request — each maps to a required skill, rather than leaving
 the agent to decide case by case whether process applies. The table itself,
 and what each named skill actually does, lives on the
 [Skills Reference](/skills) page; this page is about the shape of the flow,
