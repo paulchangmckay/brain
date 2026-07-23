@@ -36,6 +36,10 @@ const DENYLIST = new Set([
   'LICENSE.txt',
   'LICENSE',
   'NOTICE',
+  // Personal/operational reference file (senior-engineering-partner) — contains
+  // real environment details, not OSS scaffolding. The sibling
+  // my-environment.template.md is generic and stays public.
+  'my-environment.md',
 ]);
 
 export function isDenylisted(filename) {

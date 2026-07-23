@@ -48,6 +48,7 @@ Skip any step = lying, not verifying
 | Regression test works | Red-green cycle verified | Test passes once |
 | Agent completed | VCS diff shows changes | Agent reports "success" |
 | Requirements met | Line-by-line checklist | Tests passing |
+| Push/merge landed as expected | `git fetch origin && git diff origin/<branch> HEAD` shows no unexpected divergence | Local push output alone, "should be merged by now" |
 
 ## Red Flags - STOP
 
@@ -103,6 +104,12 @@ Skip any step = lying, not verifying
 ```
 ✅ Agent reports success → Check VCS diff → Verify changes → Report actual state
 ❌ Trust agent report
+```
+
+**Push/merge claims:**
+```
+✅ [git push] → [git fetch origin && git diff origin/<branch> HEAD] → [no diff] → "Pushed and confirmed on origin"
+❌ "Pushed" (without fetching origin back to confirm nothing changed underneath — a repo with branch protection or automation watching it can merge or advance between your push and your claim)
 ```
 
 ## Why This Matters

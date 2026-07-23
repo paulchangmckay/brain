@@ -418,3 +418,43 @@ test('syncSkills is idempotent', () => {
     rmSync(outputDir, { recursive: true, force: true });
   }
 });
+
+test('isDenylisted excludes the personal my-environment.md reference file but keeps its template', () => {
+  assert.equal(isDenylisted('my-environment.md'), true);
+  assert.equal(isDenylisted('my-environment.template.md'), false);
+});
+
+test('syncSkills excludes my-environment.md (personal reference file) but keeps my-environment.template.md', () => {
+  const skillsDir = makeTempDir();
+  const outputDir = makeTempDir();
+  try {
+    const skillDir = join(skillsDir, 'senior-engineering-partner');
+    mkdirSync(join(skillDir, 'references'), { recursive: true });
+    writeFileSync(
+      join(skillDir, 'SKILL.md'),
+      '---\nname: senior-engineering-partner\ndescription: "A strict reviewer"\n---\n\nBody\n'
+    );
+    writeFileSync(
+      join(skillDir, 'references', 'my-environment.md'),
+      'Personal secrets-management approach and machine details.\n'
+    );
+    writeFileSync(
+      join(skillDir, 'references', 'my-environment.template.md'),
+      'Fill in your own environment here.\n'
+    );
+
+    syncSkills({ skillsDir, outputDir });
+
+    assert.equal(
+      existsSync(join(outputDir, 'senior-engineering-partner', 'references', 'my-environment.md')),
+      false
+    );
+    assert.equal(
+      existsSync(join(outputDir, 'senior-engineering-partner', 'references', 'my-environment.template.md')),
+      true
+    );
+  } finally {
+    rmSync(skillsDir, { recursive: true, force: true });
+    rmSync(outputDir, { recursive: true, force: true });
+  }
+});
