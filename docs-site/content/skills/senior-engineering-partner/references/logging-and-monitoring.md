@@ -13,18 +13,16 @@ Companion reference for the senior-engineering-partner skill. The **rules** live
 Every log a script or daemon writes **must** have a size/retention cap unless the user explicitly opts out — unbounded logs are a disk-exhaustion and log-noise liability.
 
 - **Location (macOS).** Write logs to `~/Library/Logs/` — the idiomatic macOS location (Console.app reads it; keeps `$HOME` clean). Do not scatter logs in `$HOME` root or invent `~/logs` / XDG-style dirs. One flat file per tool (`~/Library/Logs/<tool>.log`); the plist `StandardOutPath`/`StandardErrorPath` and the script's `$LOG` must agree on that path. Corollary: keep the log path out of any **compiled** launcher — hardcoding it there means a recompile + re-sign + re-grant FDA just to move a file. Do logging in the script the launcher `exec`s, so paths stay editable.
-- **Cap it — by size, not lines.** House default: **1 MB per log file**. Shell scripts truncate to the most recent bytes at the start of each run —
+- **Cap it.** House pattern for shell scripts: keep the most recent N lines at the start of each run (`N=500` is the default house value) —
   ```bash
-  readonly LOG_MAX_BYTES=$((1024 * 1024))   # 1 MB house default
-  if [[ -f "$LOG" && $(wc -c < "$LOG") -gt "$LOG_MAX_BYTES" ]]; then
-    tmp=$(mktemp) && tail -c "$LOG_MAX_BYTES" "$LOG" > "$tmp" && command mv -f "$tmp" "$LOG" || true
+  if [[ -f "$LOG" ]]; then
+    tmp=$(mktemp) && tail -n "$LOG_MAX_LINES" "$LOG" > "$tmp" && command mv -f "$tmp" "$LOG" || true
   fi
   ```
-  (The `wc -c` guard skips the copy while under the cap; `wc -c`/`tail -c` are portable where `stat -f%z` vs `stat -c%s` are not; after a truncation the first line may be partial — cosmetic.) For long-lived Python processes, prefer `logging.handlers.RotatingFileHandler(maxBytes=1_048_576, backupCount=1)`.
-  *Why bytes, not a line count:* both things the cap protects — disk and the incident-evidence window — are byte-denominated, and a line cap fails worst exactly when the log matters most: multi-line tracebacks burn a line-capped window fastest, so an incident evicts its own evidence. A 500-line cap is ~5 hours of history at a 15-minute polling cadence (less during a crash loop); 1 MB is weeks.
+  For long-lived Python processes, prefer `logging.handlers.RotatingFileHandler(maxBytes=…, backupCount=…)`.
 - **The launchd `StandardOutPath`/`StandardErrorPath` gotcha.** launchd holds an open fd to those files for the entire run, so a bare `mv` rotation leaves all subsequent writes going to the stale, unlinked inode (silently lost). Rotate at the very top, THEN rebind your own descriptors so they point at the fresh inode:
   ```bash
-  cap_log "$LOG"            # size-guarded tail -c + mv, as above
+  cap_log "$LOG"            # tail -n N + mv, as above
   exec >> "$LOG" 2>&1       # abandons the stale launchd fd; writes hit the new inode
   ```
 - **Permissions.** Create/keep logs `chmod 600` — they routinely capture hostnames, paths, package names, and occasionally tokens; never world-readable.
@@ -38,7 +36,7 @@ SKILL.md mandates JSON structured logs with a threaded correlation id; this is *
 - **Bind the correlation id with `contextvars`, not arguments.** Set the request/job id (and `tenant_id`) into a `ContextVar` (or `structlog.contextvars.bind_contextvars`) once at the API edge / job entry; a logging filter or structlog processor injects it into **every** subsequent line automatically. This is what makes "grep one id across the whole lifecycle" work without threading the id through every call. (Cross-ref the request→Job→model-call threading in `observability-and-incident-response.md`.)
 - **Timestamps: UTC, ISO-8601 / RFC-3339.** Emit timezone-aware UTC timestamps (`datetime.now(timezone.utc).isoformat()`, or the formatter's ISO option) — never naive local-time strings. Cloud Logging stamps its own `timestamp`, but a portable JSON line (a `~/Library/Logs` file, a non-GCP sink) must carry an unambiguous one of its own.
 - **Log exceptions with the traceback, scrubbed.** Use `logger.exception(...)` or `exc_info=True` so the stack trace is captured (Error Reporting groups on it) — never just `str(e)`, which discards the trace. But an exception's args/message can contain the very PII/secret the *Secrets Management* rule forbids; scrub or omit untrusted exception detail, and never return the trace to the client (cross-ref `compliance.md` A05/A10).
-- **Sanitize external fields against log forging (CWE-117).** Log injection is the same never-trust-external-data rule as SQL/shell/prompt injection, applied to the log sink. JSON encoding neutralizes CR/LF and control characters structurally — which is a second reason to prefer it over plain-text lines. If a plain-text sink is unavoidable, strip/replace `\r`, `\n`, and other control chars in any externally-influenced value first. (SKILL.md *Structured Logging* states the rule; this is the implementation.)
+- **Sanitize external fields against log forging (CWE-117).** JSON encoding neutralizes CR/LF and control characters structurally — which is a second reason to prefer it over plain-text lines. If a plain-text sink is unavoidable, strip/replace `\r`, `\n`, and other control chars in any externally-influenced value first. (SKILL.md *Structured Logging* states the rule; this is the implementation.)
 - **Level is env-configurable (12-factor).** Read the level from `LOG_LEVEL` (default `INFO`); production never runs at `DEBUG`, and there should be **no code path that logs full prompts/responses/content even at DEBUG** — prefer to not have that path rather than gate it (cross-ref `observability-and-incident-response.md`).
 
 ### Other stacks (use the native structured logger, same posture)

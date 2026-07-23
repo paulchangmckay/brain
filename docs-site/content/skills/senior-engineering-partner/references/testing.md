@@ -8,7 +8,7 @@ Companion reference for the senior-engineering-partner skill.
 
 > **Rigor tier:** this is **Tier-2 (production/commercial) posture** from SKILL.md's *Project Phase & Rigor Ladder*. At Tier 0/1 (prototype/MVP) apply the lean baseline (critical-path/smoke tests, basic CI) and defer these heavy gates with explicit `TODO`s + promotion triggers — the security floor still holds at every tier.
 
-This is the umbrella standard. The specifics live in siblings: `testing-single-file.md` (the conftest argv-patch harness), `databases.md` (pgTAP RLS, the seed→`SET LOCAL ROLE`→GUC→assert→`ROLLBACK` pattern), `python-web-apis.md` (httpx auth/contract tests), `github-actions.md`/`github-teams.md` (how these become *required, merge-blocking* checks), and `ui-design-and-accessibility.md`/`frontend-web-security.md` (the a11y gate and the browser-floor exemplars that §8 turns into tests). The proving ground is `example-org/example-saas` — a commercial multi-tenant SaaS — so the posture is **strict, not aspirational: gates that FAIL CI, not advice that gets skipped.** A green-but-untested merge is the failure mode this file exists to prevent.
+This is the umbrella standard. The specifics live in siblings: `testing-single-file.md` (the conftest argv-patch harness), `databases.md` (pgTAP RLS, the seed→`SET LOCAL ROLE`→GUC→assert→`ROLLBACK` pattern), `python-web-apis.md` (httpx auth/contract tests), and `github-actions.md`/`github-teams.md` (how these become *required, merge-blocking* checks). The proving ground is `example-org/example-saas` — a commercial multi-tenant SaaS — so the posture is **strict, not aspirational: gates that FAIL CI, not advice that gets skipped.** A green-but-untested merge is the failure mode this file exists to prevent.
 
 The governing rule (from SKILL.md, restated because it is load-bearing here): **when a test reveals real behavior differing from expectation, fix the test AND comment WHY. Never delete a failing test, never retry it to green, never `xfail` it to unblock a merge.**
 
@@ -24,7 +24,7 @@ Every change lands somewhere in this taxonomy. Know which layer you are writing,
 | **Integration** | Real Postgres in a per-test txn; real HTTP via `httpx.AsyncClient` | DB + ASGI | `pytest` + `httpx` + ephemeral PG | 10s–100s ms |
 | **Contract** | Responses validate against the Pydantic response models | ASGI | `pytest` + `model_validate` | fast |
 | **Tenant-isolation** | Cross-tenant denial at SQL (pgTAP) AND HTTP — incl. NEGATIVE asserts | DB + ASGI | `pg_prove` + `httpx` | medium |
-| **Security** | Auth bypass, injection (incl. taxonomy-driven prompt-injection red-team, §5), the malicious-file corpus | varies | `pytest` + corpus | medium |
+| **Security** | Auth bypass, injection, the malicious-file corpus | varies | `pytest` + corpus | medium |
 | **Property-based** | Parsers/regexes under generated input | none/light | `hypothesis` | medium |
 | **Fuzzing** | Hostile-input parsers — find the crash you didn't imagine | none | `atheris` / libFuzzer | slow (nightly/manual) |
 | **Mutation** | Tests the tests — do they actually catch a broken change? | none | mutation runner | slow (nightly) |
@@ -110,7 +110,7 @@ Security tests are first-class CI gates, not a manual pre-release pass.
 - **Auth bypass.** No token → 401; expired/garbage/wrong-issuer token → 401; valid token for tenant A on tenant B's resource → 403/404. Locally the dev HS256 verifier mints tokens; assert the **prod Firebase verifier rejects an HS256 token** so the dev shim can never satisfy prod (`python-web-apis.md`).
 - **Injection.** Every query path has a parameterized-query test with a `'; DROP`/`%`/`\x00` payload that must be treated as a literal, not SQL. Path-traversal payloads (`../`, absolute paths, Zip-Slip archive entries) must be refused before any write.
 - **Malicious-file corpus under resource limits.** Run the extractors against the bomb corpus inside a memory/CPU/wall-clock cap and assert they stay within budget — no OOM, no pinned CPU, no hang. The cost-as-security ceiling (capped `max_tokens`, bounded retry honoring `retry-after`, prompt-cache metering) is asserted too — an unbounded retry loop is a billing-DoS (`secure-data-processing.md` §2).
-- **Indirect prompt injection.** A document body containing "ignore your instructions…" must leave the structured `AnalysisResult` shape intact and the verdict un-flipped — the injection is treated as evidence, not obeyed (`secure-data-processing.md` §2). DI a fake model client so the per-commit case runs with no live API call. **Beyond that single gate, run a scheduled taxonomy-driven red-team tier** (nightly/manual, like fuzzing in §6): structure the injection corpus against a published taxonomy (Arcanum PI, CC BY 4.0) across intent × technique × evasion, scoped to the product's real input surfaces, each case asserting both fence invariants (schema-valid output AND unflipped verdict-with-finding). The corpus construction and surface-scoping rules are in `secure-data-processing.md` §2 ("Red-team the fence"). Any bypass found is promoted to a permanent regression, red-first.
+- **Indirect prompt injection.** A document body containing "ignore your instructions…" must leave the structured `AnalysisResult` shape intact and the verdict un-flipped — the injection is treated as evidence, not obeyed (`secure-data-processing.md` §2). DI a fake model client so this runs with no live API call.
 - **Static gates run alongside:** `bandit` (HIGH/MEDIUM fail), dependency/secret scanning, CodeQL — these are CI gates in `github-actions.md`, not part of the pytest run, but they gate the same merge.
 
 ---
@@ -132,64 +132,7 @@ Security tests are first-class CI gates, not a manual pre-release pass.
 
 ---
 
-## 8. Frontend testing — the browser half of the pyramid
-
-The taxonomy (§1) and the gates (§3) apply to the SPA/UI code in full — rebind §3a's coverage
-mechanics to your JS runner's threshold config, floor highest on the route-guard/decision
-modules; what changes is the tooling and the failure modes. Tool names below are example
-bindings (e.g. Vitest/Jest + Testing Library for components, Playwright for E2E; the example
-SaaS SPA targets SvelteKit per its re-platform plan) — swap per your framework, the
-discipline is identical.
-
-- **Test user-visible behavior, not implementation.** Query the DOM the way a user (or a
-  screen reader) finds things — by **role, label, and accessible name** (Testing Library
-  semantics), never by CSS class, tag structure, or component internals. This survives
-  refactors *and* doubles as an accessibility signal: an element your test can't find by role
-  is an element assistive tech can't identify or operate either
-  (`ui-design-and-accessibility.md`).
-- **Mock the API at the network boundary, with the producer's REAL responses.** The
-  consumer-mock rule (§1) bites hardest in UI code: stub at the HTTP layer (e.g. MSW or the
-  framework's fetch-mock) with the server's actual success shape **and its actual error
-  statuses** — a UI coded against an assumed `200`-with-empty dead-ends real users when the
-  server correctly returns `403` (the §1 textbook miss was exactly this). Every data-driven
-  view gets its **error and empty states tested first** — that's where the branch decisions
-  (§1 "test the decision") live. And **pin the mocks to the contract**: validate the fixtures
-  against the producer's response schema (§1's contract models / the OpenAPI spec) or keep one
-  thin integration test across the seam, so a producer change goes red instead of leaving
-  stale handlers green.
-- **E2E is a thin critical-path gate, not a second unit suite.** A handful of E2E journeys
-  (Playwright or equivalent) — sign in → the product's one core action → visible result, plus checkout/billing
-  if money moves — run headless in CI against an ephemeral stack (§4's throwaway-DB rule
-  extends to the whole stack; never E2E against prod). Everything else belongs lower in the
-  pyramid: an E2E suite that re-checks every component is slow, flaky, and soon ignored.
-- **Browser flakiness gets the same zero tolerance (§7), with its own root causes.** No
-  `sleep()`/fixed waits — wait on *conditions* (web-first assertions / explicit waits for a
-  visible state); disable or fast-forward animations in the test profile; pin the viewport;
-  seed all data. A UI test retried-to-green in CI is hiding a race exactly like a backend one.
-- **Assert the security- and UX-floor behaviors.** Two from this skill's own floor:
-  rendered model/markdown output must not execute (inject a script-bearing payload fixture,
-  assert it renders inert — `frontend-web-security.md`), and **a failed submit preserves the
-  user's input** (fill the form, force the API error, assert values and any file selection
-  survive — the SKILL.md preserve-input rule as a test, not a hope).
-- **Accessibility is a gate, not a review note.** Run axe (or an equivalent engine) in CI
-  against, at minimum, the states the critical-path E2E journeys visit, and fail on
-  violations; pair it with the manual keyboard +
-  screen-reader pass `ui-design-and-accessibility.md` mandates — automated checks cover only
-  a fraction of WCAG criteria (the honest-caveat numbers live there), so the manual pass is
-  load-bearing, not optional.
-- **Snapshot tests are a scalpel, not a default.** A full-page snapshot asserts everything
-  and therefore effectively nothing — every unrelated change diffs it, and "update snapshots"
-  becomes a reflex that rubber-stamps regressions. Snapshot small, stable units (a formatted
-  date, an icon choice) where the serialized output IS the contract; for layout/visual
-  claims, use targeted visual-regression screenshots on the few high-value pages, reviewed
-  like code — capturing their baselines in the same pinned browser/container the CI runs
-  (a baseline from a dev laptop is a flake generator). And remember what jsdom is:
-  **jsdom renders no pixels** — layout, overflow, contrast, and responsive claims need a
-  real browser (Playwright), not a unit-test DOM.
-
----
-
-## 9. The pre-merge checklist (Definition of Done for tests)
+## 8. The pre-merge checklist (Definition of Done for tests)
 
 A change is not done until, against the **real package** (not the shim) on a fresh ephemeral DB:
 
@@ -201,8 +144,6 @@ A change is not done until, against the **real package** (not the shim) on a fre
 - [ ] pgTAP RLS suite + HTTP isolation suite green (the un-skippable gate, §2).
 - [ ] `bandit`/secret-scan/dependency-scan green (`github-actions.md`).
 - [ ] No real PII/evidence in any fixture; no wall-clock/unseeded randomness; no quarantined test in the gating set.
-- [ ] UI change → behavior-level component tests (queried by role/label; error/empty states first), contract-pinned network-boundary mocks, a11y gate green; the critical-path E2E journey updated if the change touches a critical-path flow (§8).
-- [ ] New render-untrusted or form surface → the §8 floor asserts: hostile content renders inert; input survives a failed submit.
 - [ ] A human reviewed the PR (CODEOWNER on sensitive paths) — not a blind agent self-merge (`github-teams.md`).
 
 If any box is unchecked, the work is not delivered — it is at risk.
