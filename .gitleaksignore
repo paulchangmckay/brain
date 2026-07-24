@@ -1,0 +1,3 @@
+# RFC 6455 §4.2.2 example WebSocket handshake nonce, vendored verbatim from
+# upstream Superpowers' own test suite — not a credential.
+superpowers/tests/brainstorm-server/ws-protocol.test.js:generic-api-key:53
