@@ -1,14 +1,17 @@
 ---
 title: Introduction
-description: Personal reference docs for the thin-harness, fat-skills Claude Code setup in ~/.claude.
+description: A guided tour of the thin-harness, fat-skills Claude Code setup in ~/.claude.
 ---
 
 # ~/.claude Reference
 
-A local, personal-reference docs site for the "thin-harness, fat-skills" system in `~/.claude` — not published, no remote, browsed locally with `blume dev`.
+A guided tour of the "thin-harness, fat-skills" system in `~/.claude` — how a
+lightweight AI coding agent, a large library of structured skills, and a
+self-learning memory layer fit together.
+
+**Start here → [Architecture](/architecture)** for the system diagram and how
+the pieces relate.
 
 - **[Harness Overview](/overview/core-philosophy)** — one page per `CLAUDE.md` numbered section (Core Philosophy, Process Layer, Infrastructure Layer, New Project Bootstrap, Personal Knowledge Layer, Knowledge Graph, Reference Pointers).
 - **[OpenWolf Integration](/openwolf)** — the self-learning memory and enforcement layer.
-- **[Skills Reference](/skills/brainstorming)** — one auto-generated page per skill in `skills/`, kept in sync with `npm run sync`.
-
-Content here is authored three ways: auto-pulled from `SKILL.md` files (regenerate with `npm run sync`), hand-authored or Claude-drafted on instruction, and linked rather than duplicated where a source of truth already exists elsewhere in the repo. See `docs-site/README.md` for how to extend it.
+- **[Skills Reference](/skills)** — one auto-generated page per skill in `skills/`, kept in sync with `npm run sync`.

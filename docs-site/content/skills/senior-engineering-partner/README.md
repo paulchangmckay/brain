@@ -4,7 +4,16 @@ title: "README"
 
 # senior-engineering-partner
 
-Last updated: 2026-06-30 07:40 PM CDT
+Last updated: 2026-07-21 12:32 PM CDT
+
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+[![Latest release](https://img.shields.io/github/v/release/bjgreenberg/senior-engineering-partner?sort=semver&label=release)](https://github.com/bjgreenberg/senior-engineering-partner/releases)
+[![docs-render](https://github.com/bjgreenberg/senior-engineering-partner/actions/workflows/docs-render.yml/badge.svg?branch=main)](https://github.com/bjgreenberg/senior-engineering-partner/actions/workflows/docs-render.yml)
+[![leakage-guard](https://github.com/bjgreenberg/senior-engineering-partner/actions/workflows/leakage-guard.yml/badge.svg?branch=main)](https://github.com/bjgreenberg/senior-engineering-partner/actions/workflows/leakage-guard.yml)
+[![shellcheck](https://github.com/bjgreenberg/senior-engineering-partner/actions/workflows/shellcheck.yml/badge.svg?branch=main)](https://github.com/bjgreenberg/senior-engineering-partner/actions/workflows/shellcheck.yml)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/bjgreenberg/senior-engineering-partner/badge)](https://scorecard.dev/viewer/?uri=github.com/bjgreenberg/senior-engineering-partner)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/13458/badge)](https://www.bestpractices.dev/projects/13458)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://www.conventionalcommits.org/en/v1.0.0/)
 
 A custom Claude Code skill: a strict **code reviewer, pair programmer, debugger, and mentor** for
 Python, Bash, Google Apps Script, and JavaScript. It encodes a security-first,
@@ -23,6 +32,23 @@ any Claude Code session.
   [Releases](https://github.com/bjgreenberg/senior-engineering-partner/releases) page
 - **Invoke:** `/senior-engineering-partner` in Claude Code, optionally prefixed with a
   mode trigger word (see [Modes](#modes--triggers)).
+
+## Contents
+
+- [What it is](#what-it-is)
+- [What it governs](#what-it-governs)
+- [Architecture](#architecture)
+- [Modes & triggers](#modes--triggers)
+- [The rigor ladder](#the-rigor-ladder)
+- [Reference catalog](#reference-catalog)
+- [Shipped helpers & evals](#shipped-helpers--evals)
+- [Install](#install)
+- [Using it with other AI tools (Codex, Gemini CLI, …)](#using-it-with-other-ai-tools-codex-gemini-cli-)
+- [Customize for your environment (my-environment.md)](#customize-for-your-environment-my-environmentmd)
+- [Maintaining / contributing](#maintaining--contributing)
+- [Citing this repository](#citing-this-repository)
+- [License](#license)
+- [Disclaimer](#disclaimer)
 
 ---
 
@@ -44,6 +70,8 @@ Three ideas run through everything:
   before building it) → **plan** in verifiable steps → **tier-aware iron-law TDD** →
   **verify-before-done self-review**. Depth scales with the rigor tier; the loop does not.
 
+<sub>[↑ Back to contents](#contents)</sub>
+
 ---
 
 ## What it governs
@@ -51,17 +79,19 @@ Three ideas run through everything:
 The disciplines are stack-agnostic, but they bind to concrete tooling. At a glance, what the skill
 carries standards for:
 
-- **Languages:** Python · Bash · Google Apps Script · JavaScript / TypeScript
+- **Languages:** Python · Bash · Google Apps Script · JavaScript / TypeScript · Swift (macOS/iOS/watchOS/iPadOS)
 - **Source control & CI/CD:** GitHub · GitHub Actions · branch protection / rulesets · supply-chain gates (SBOM · SLSA · signing)
 - **Cloud & infra:** GCP / Cloud Run · Docker · Kubernetes · Terraform (IaC)
 - **Data:** Postgres / Supabase (RLS) · BigQuery · SQLite · caching
-- **App layer:** FastAPI / Python web APIs · front-end & browser security · responsive, accessible (WCAG 2.2 AA) UI
-- **Security & standards:** the security floor (secrets · injection · input validation · isolation · least privilege) · NIST CSF 2.0 + SSDF · OWASP Top 10 / **API Top 10** / **LLM Top 10** · STRIDE · SOC 2 · Well-Architected · PCI-DSS scope
+- **App layer:** FastAPI / Python web APIs · front-end & browser security · responsive, accessible (WCAG 2.2 AA) UI · LLM-app engineering (workflow/agent-loop patterns · stopping criteria · RAG · evals)
+- **Security & standards:** the security floor (secrets · injection · input validation · isolation · least privilege) · NIST CSF 2.0 + SSDF · OWASP Top 10 / **API Top 10** / **LLM Top 10** · STRIDE · SOC 2 · Well-Architected · PCI-DSS scope · crypto-agility / **post-quantum readiness** (FIPS 203–205, HNDL)
 - **Reliability & ops:** resilience engineering · disaster recovery & business continuity · scalability / system design · observability + incident response (DORA · SLOs)
 - **Platform-specific:** macOS app bundles / TCC · local & agentic AI tooling · diagrams-as-code (Mermaid)
 
 Each binds to a deep, **read-on-demand** reference (see the [catalog](#reference-catalog) below); your
 concrete hosts, projects, and stack live only in the private, un-committed `references/my-environment.md`.
+
+<sub>[↑ Back to contents](#contents)</sub>
 
 ---
 
@@ -78,14 +108,14 @@ flowchart TD
     U["/senior-engineering-partner"] --> C
     C["SKILL.md — universal core<br/>modes · epistemic discipline · engineering workflow · rigor ladder<br/>security floor · coding standards · toolchain triggers"]
     C -->|"progressive disclosure: read a reference only when relevant"| R[(references/)]
-    C -.->|"shipped helpers"| K["scripts/ (audit · render-diagrams · self-review)<br/>evals/ (27 regression scenarios)"]
+    C -.->|"shipped helpers"| K["scripts/ (audit · render-diagrams · validate-citation · run-evals · skill-lint · self-review · fixture tests)<br/>evals/ (regression scenarios)"]
     R --> P["Environment profile<br/>my-environment.md (swap to re-home the skill)"]
-    R --> W["Engineering process (4)<br/>engineering-workflow · debugging · audit-report-format · standards-authoring"]
+    R --> W["Engineering process (5)<br/>engineering-workflow · debugging · audit-report-format · standards-authoring · skill-self-improvement"]
     R --> S["Security, privacy and compliance (6)"]
     R --> T["Testing and QA (2)"]
     R --> I["Cloud, infra and ops (9) + data (2)"]
-    R --> A["App toolchains, CI and collaboration (11)"]
-    R --> X["UI, a11y, diagrams, AI tooling, macOS (4)"]
+    R --> A["App toolchains, CI and collaboration (12)"]
+    R --> X["UI, a11y, diagrams, AI tooling, macOS (5)"]
 ```
 
 `SKILL.md` carries the rules that must always be in context (the modes, the security
@@ -93,6 +123,8 @@ floor, the rigor ladder, the coding/documentation/logging/SCM standards, and a s
 trigger paragraph per toolchain). Each trigger paragraph states the non-negotiables and
 points at the reference to **read before** doing related work — so the expensive detail
 is loaded only when it earns its place in the context window.
+
+<sub>[↑ Back to contents](#contents)</sub>
 
 ---
 
@@ -108,6 +140,7 @@ flowchart TD
     Q -->|"EXPLAIN:"| E["Patient mentor<br/>teach the why, not just a copy-paste answer"]
     Q -->|"MVP: / PROTOTYPE:"| M["Lean-but-safe builder<br/>Tier 0/1, defer heavy gates, never the floor"]
     Q -->|"DEBUG:"| G["Systematic debugger<br/>reproduce, isolate, fix root cause, prove with a red-first test"]
+    Q -->|"AUDIT:"| A["Report-first codebase auditor<br/>severity-ranked findings report; fixes only after review"]
     Q -->|none| D["Collaborative pair programmer (default)<br/>clean, tested, documented, production-ready code"]
 ```
 
@@ -118,6 +151,9 @@ flowchart TD
 | `EXPLAIN:` | **Mentor** | Educate step-by-step, calibrate to an intermediate dev, prioritize understanding. |
 | `MVP:` / `PROTOTYPE:` | **Lean-but-safe builder** | Leanest version that still clears the security floor; defer heavy gates as explicit `TODO`s with promotion triggers. |
 | `DEBUG:` | **Systematic debugger** | Reproduce → hypothesize → isolate/bisect → fix the root cause (not the symptom) → prove with a regression test seen to fail red first. |
+| `AUDIT:` | **Report-first auditor** | Sweep a whole codebase/subsystem and deliver a severity-ranked findings report with `file:line` evidence — change nothing until the user picks what to fix. |
+
+<sub>[↑ Back to contents](#contents)</sub>
 
 ---
 
@@ -143,6 +179,8 @@ Crossing any promotion trigger (real customer/tenant data, money changing hands,
 multi-tenant isolation, regulated/PII data, a second contributor, public internet
 exposure) re-rates the project up a tier — it is not optional polish.
 
+<sub>[↑ Back to contents](#contents)</sub>
+
 ---
 
 ## Reference catalog
@@ -157,13 +195,14 @@ version-specific commands.
 | | `debugging.md` | Systematic root-cause method (the `DEBUG:` mode): reproduce → hypothesize → isolate → fix cause → red-first regression test |
 | | `audit-report-format.md` | The `AUDIT:` mode deliverable: a severity-ranked findings report (finding schema, severity taxonomy, mechanize-the-checkable, lead-with-verified-strengths) |
 | | `standards-authoring.md` | Distill sprawling project conventions into a checkable standards set (extract → filter → human-approve → classify floor-vs-overridable); prose-first, format-agnostic |
+| | `skill-self-improvement.md` | The consent-gated loop's full procedure: classify (pattern / one-off / irreversible-cost), the three-part proposal package (rule + guarding eval + origin story), ship-through-PR, never-relax, the non-maintainer path |
 | **Security, privacy & compliance** | `threat-modeling-and-api-design.md` | In-PR STRIDE threat models + attack-surface-shrinking API design |
-| | `secure-data-processing.md` | Hostile-file parsing, prompt-injection, multi-tenant data handling |
+| | `secure-data-processing.md` | Hostile-file parsing, prompt-injection fencing (two-zone worked example), RAG/vector-store isolation, multi-tenant data handling |
 | | `frontend-web-security.md` | Token storage, CSP, output sanitization, security headers |
 | | `secrets-and-key-rotation.md` | Rotation lifecycle, zero-downtime overlap, KMS key-version re-wrap |
 | | `data-protection.md` | GDPR/UK-GDPR/CCPA as code: DSAR, erasure cascade, retention, DPIA |
-| | `compliance.md` | NIST CSF 2.0 + **SSDF (800-218)** / OWASP / SOC 2 / **Well-Architected** as enforceable review checklists |
-| **Testing & QA** | `testing.md` | The enforced merge-gate taxonomy, tenant-isolation tests, coverage/mutation/load tiers |
+| | `compliance.md` | NIST CSF 2.0 + **SSDF (800-218)** / OWASP / SOC 2 / **Well-Architected** as enforceable review checklists, incl. crypto-agility + **post-quantum readiness** (FIPS 203–205, harvest-now-decrypt-later triage) |
+| **Testing & QA** | `testing.md` | The enforced merge-gate taxonomy, tenant-isolation tests, coverage/mutation/load tiers, frontend testing (behavior-not-implementation, network-boundary mocks, E2E/a11y gates) |
 | | `testing-single-file.md` | The `conftest.py` argv-patch pattern for single-file scripts |
 | **Cloud, infra & ops** | `gcp.md` | Cloud Run, GCS, BigQuery, Secret Manager, IAM (no SA keys → Workload Identity) |
 | | `iac-terraform.md` | Terraform on GCP, locked remote state, OIDC deployer, plan-as-gate |
@@ -177,7 +216,7 @@ version-specific commands.
 | **Data** | `databases.md` | Postgres/Supabase RLS (+ pgTAP), BigQuery, SQLite, migrations |
 | | `caching.md` | Cache-key-must-encode-the-tenant, invalidation, what-not-to-cache |
 | **App toolchains, CI & collaboration** | `python-web-apis.md` | FastAPI/Uvicorn/psycopg: lifespan, Pydantic, auth-as-`Depends`, RLS pipeline |
-| | `github-actions.md` | Least-priv `permissions`, SHA-pinned actions, multi-gate pipelines (audit/typecheck/lint), SBOM + build-provenance attestation, gated deploy + canary + release automation |
+| | `github-actions.md` | Least-priv `permissions`, SHA-pinned actions, multi-gate pipelines (audit/typecheck/lint), the Swift/Apple job shape (macOS runners, pinned resolution, ASC-API-key signing), SBOM + build-provenance attestation, gated deploy + canary + release automation |
 | | `github-teams.md` | Team-grade repo hygiene (required gates, CODEOWNERS, review every agent PR) |
 | | `package-managers.md` | Brewfile/npm/mas — reproducible pinned manifests, supply-chain vetting |
 | | `dev-environments.md` | VS Code/Xcode/Antigravity hygiene, extension vetting, signing |
@@ -187,10 +226,15 @@ version-specific commands.
 | | `python-typing-and-packaging.md` | The TypedDict worked example + the single-file→package target layout |
 | | `google-apps-script.md` | `clasp` + git over the editor, minimal `oauthScopes`, `PropertiesService` secrets/limits, `LockService`, trigger quotas + the 6-min wall, Advanced Services vs `UrlFetchApp`, `console`→Cloud Logging, pure-logic isolation for testing |
 | | `javascript-and-typescript.md` | TS strict mode (the `mypy --strict` analog) + the flags `strict` misses, runtime-validated typed boundaries (the Pydantic analog), Node `SIGTERM`/no-floating-promises patterns |
+| | `bash-scripting.md` | Strict mode's documented gaps (`-e` suspension, masked substitutions), traps/atomic output/locks, `curl -f`, stock-bash-3.2 portability, BATS + command stubs |
+| | `swift-apple-development.md` | XcodeGen `project.yml` as source of truth, SwiftPM pure-logic packages, headless provisioning, never-store-ticks state design, the `CKSyncEngine` hard rules, Swift 6 concurrency field notes, `log stream`/`.ips` diagnosis — plus the enforcement lane: SwiftLint/`swift format`/compiler gates, committed `Package.resolved` + `osv-scanner` audit, the Apple security-floor bindings (Keychain, sandbox/entitlements, ATS, privacy manifests, entry-surface validation), Swift Testing/XCTest + `xccov` coverage gate, CI wiring |
 | **UI, docs & AI tooling** | `ui-design-and-accessibility.md` | Responsive + light/dark + WCAG 2.2 AA + Claude Design handoff |
 | | `diagrams-and-visual-docs.md` | Diagrams-as-code, Mermaid-first; render-check before commit |
 | | `local-and-agentic-ai-tools.md` | Agentic assistants + self-hosted LLMs (Ollama/Open WebUI) |
+| | `llm-apps.md` | Building software that contains model calls: the five workflow patterns, evaluator-optimizer preconditions, the agent loop (verify every iteration), stopping criteria + cost budgets, RAG as architecture (retriever evals, index as derived cache), evals as the outer loop |
 | | `macos-app-bundles.md` | LaunchAgent `.app` bundles, TCC/FDA, the compiled-launcher requirement |
+
+<sub>[↑ Back to contents](#contents)</sub>
 
 ---
 
@@ -201,20 +245,54 @@ support directories:
 
 - **`scripts/`** — the utility scripts the disciplines reference, shipped so they're
   *executed*, not regenerated: `audit.sh` (manifest-level dependency-audit gate),
-  `render-diagrams.sh` (the `docs-render` Mermaid render-check), and `self-review.md` (the
-  verify-before-done checklist). Pin `render-diagrams.sh`'s `MMDC_IMAGE` to a digest before
-  relying on it.
+  `render-diagrams.sh` (the `docs-render` Mermaid render-check), `validate-citation.sh`
+  (the `citation-validate` CFF schema check), `run-evals.py` (the
+  eval-suite runner — below), and `self-review.md` (the verify-before-done checklist).
+  Pin `render-diagrams.sh`'s `MMDC_IMAGE` to a digest before relying on it.
 - **`evals/`** — a regression suite. Each `scenarios/*.json` encodes a real miss from the
   changelog as a checkable expectation, in Anthropic's evaluation shape. `evals/README.md`
-  documents the baseline-then-iterate (Claude-A authors / Claude-B tests) loop. **Add or
+  documents the baseline-then-iterate (Claude-A authors / Claude-B tests) loop, and
+  **`scripts/run-evals.py` executes the suite**: it runs each `query` headlessly through the
+  `claude` CLI (with the skill injected, or bare for a baseline) — or through any other agent
+  CLI via `--runner generic` — LLM-judges the response
+  against `expected_behavior`/`anti_behavior`, and writes per-scenario verdicts + a summary
+  (see *How to run* and *Cross-CLI runs* in `evals/README.md`). **Add or
   extend a scenario whenever a new changelog entry is written from a real miss** — a lesson
   without a guarding eval can silently regress.
+
+<sub>[↑ Back to contents](#contents)</sub>
 
 ---
 
 ## Install
 
-Claude Code loads skills from `~/.claude/skills/`. Install by cloning this repo into that
+Two ways into Claude Code — pick **one** (a side-by-side plugin install and skill clone
+would load the skill twice):
+
+### As a plugin (quickest)
+
+The repo doubles as its own single-plugin marketplace
+([`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json)), so two commands
+inside Claude Code install it:
+
+```
+/plugin marketplace add bjgreenberg/senior-engineering-partner
+/plugin install senior-engineering-partner@bjgreenberg
+```
+
+Updates track the versioned
+[Releases](https://github.com/bjgreenberg/senior-engineering-partner/releases): refresh
+with `/plugin marketplace update bjgreenberg` and Claude Code offers the new version.
+**Trade-off:** plugin installs are copied into Claude Code's plugin cache and replaced
+wholesale on every update, so the per-user environment profile
+(`references/my-environment.md`, [next section](#customize-for-your-environment-my-environmentmd))
+cannot persist there — a plugin install always runs the universal core against the assumed
+baseline (macOS, Bash, GitHub, a secret manager, a scale-to-zero cloud target). That is the
+right default for most users; to customize the profile, use the clone install instead.
+
+### As a skill clone (customizable)
+
+Claude Code also loads skills from `~/.claude/skills/`. Clone this repo into that
 directory under the skill's own name:
 
 ```bash
@@ -222,11 +300,64 @@ git clone https://github.com/bjgreenberg/senior-engineering-partner \
   ~/.claude/skills/senior-engineering-partner
 ```
 
-Then **customize it for your environment** (next section) and invoke it with
-`/senior-engineering-partner` (optionally prefixed with a mode trigger word). The universal
-core works out of the box against the assumed baseline (macOS, Bash, GitHub, a secret
-manager, a scale-to-zero cloud target); the profile is what makes its guidance specific to
-*you*.
+Then **customize it for your environment** (next section); update with a plain `git pull`
+in the clone.
+
+Either way, invoke it with `/senior-engineering-partner` (optionally prefixed with a mode
+trigger word). The universal core works out of the box against the assumed baseline; the
+profile is what makes its guidance specific to *you*.
+
+<sub>[↑ Back to contents](#contents)</sub>
+
+## Using it with other AI tools (Codex, Gemini CLI, …)
+
+None of this skill's *content* is Claude-specific (the few Claude-bound helpers are
+disclosed at the end of this section): the always-loaded core and every reference are
+plain Markdown, the mode triggers (`REVIEW:`, `DEBUG:`, …) are plain prompt conventions, and
+the packaging — a directory whose `SKILL.md` carries `name` + `description` frontmatter
+beside `references/` and `scripts/` — is the same **Agent Skills format** that OpenAI Codex
+and Google Gemini CLI (among a growing list of tools) now load natively. Portability tiers,
+most to least faithful:
+
+- **Agentic CLIs with native Agent Skills — drop-in.** Codex CLI and Gemini CLI both read
+  user-level skills from `~/.agents/skills/`, so one clone serves both:
+
+  ```bash
+  git clone https://github.com/bjgreenberg/senior-engineering-partner \
+    ~/.agents/skills/senior-engineering-partner
+  ```
+
+  Gemini CLI can also install straight from the repo URL (`gemini skills install …`), and
+  both tools offer explicit invocation (`/skills`; `$`-mention in Codex) or implicit
+  selection by the skill's `description`. Create `references/my-environment.md` from the
+  template exactly as in the next section — that step is tool-agnostic.
+
+- **Agentic tools without skills support — via the context file.** Any agent that reads
+  the [`AGENTS.md` standard](https://agents.md/) (Cursor, Zed, Aider, GitHub Copilot's coding agent, and
+  many others) or an equivalent (Gemini CLI's `GEMINI.md`) can carry the skill as standing
+  instructions: point the context file at `SKILL.md`'s body — copy it in, or a one-line
+  "read `SKILL.md` in this directory and follow it" — keeping `references/` adjacent so the
+  "Read `references/<topic>.md`" directives resolve against the working tree.
+
+- **Chat products (Custom GPTs, Gemini Gems) — partial fidelity; know the trade.**
+  Instruction fields cap far below the core's size (a Custom GPT allows 8,000 characters of
+  instructions plus 20 knowledge files), so the core can only ride along as uploaded
+  knowledge — *retrieved*, not always-loaded, which weakens the skill's central design
+  (non-negotiables guaranteed in context, detail read on demand). With no shell, the
+  enforced half (run the gates, TDD red-first, verify-before-asserting with real commands)
+  degrades to advice. Usable for `EXPLAIN:`-style consultation; not equivalent. A research
+  product without file or shell access (e.g. Perplexity) isn't a meaningful target.
+
+What stays Claude-specific, disclosed: the eval runner's **judge** drives the `claude` CLI
+(scenario responses are pluggable — `scripts/run-evals.py --runner generic` runs the same
+suite through any agent CLI via a command template + its instruction file; see *Cross-CLI
+runs* in `evals/README.md`); the repo's CI gates are GitHub Actions; and how reliably a
+given model *follows* ~80 KB of discipline varies **by model** — the recorded baselines in
+`evals/baselines/` measure it per swept Claude model (each records its
+own baseline-vs-with-skill gap), and this README makes no equivalent claim for any model
+the suite hasn't swept.
+
+<sub>[↑ Back to contents](#contents)</sub>
 
 ## Customize for your environment (`my-environment.md`)
 
@@ -244,11 +375,14 @@ you can keep your fork's core in sync with this repo (`git pull`) without ever e
 profile. The core instructs the assistant to **read `my-environment.md` early and for any
 environment-specific claim**, so the more complete it is, the more grounded the guidance.
 
+<sub>[↑ Back to contents](#contents)</sub>
+
 ## Maintaining / contributing
 
 - **Versioning + releases are automated** with
   [release-please](https://github.com/googleapis/release-please): it reads the Conventional
   Commits on `main`, opens a release PR that bumps the `Version` in `SKILL.md`'s metadata table
+  (and `version`/`date-released` in [`CITATION.cff`](CITATION.cff))
   and prepends the entry to `CHANGELOG.md`. A maintainer enriches that entry's
   narrative, then cuts the **signed** tag + GitHub Release — the repo's `tag-protection` ruleset
   requires signed tags, so that final step is a deliberate manual one (see
@@ -259,6 +393,9 @@ environment-specific claim**, so the more complete it is, the more grounded the 
   `@mermaid-js/mermaid-cli` (`mmdc`) — see
   [`references/diagrams-and-visual-docs.md`](references/diagrams-and-visual-docs.md). CI
   runs `scripts/render-diagrams.sh` (the `docs-render` gate) on every PR.
+- **Helper scripts are ShellCheck-clean:** a `shellcheck` gate lints `scripts/*.sh` on every PR
+  (the skill's own "zero warnings is the standard" applied to itself). A script that trips
+  ShellCheck is a broken deliverable and can't merge.
 - **No environment-specific leakage in the core:** a `leakage-guard` check greps the tree against
   a denylist of personal/host/repo identifiers. It's **two-tier**: generic class-patterns (a
   CGNAT/Tailscale IP range, Obsidian-style wiki-links) ship in `scripts/leakage-guard.sh` and run in CI,
@@ -267,10 +404,43 @@ environment-specific claim**, so the more complete it is, the more grounded the 
   the universal core universal; anything specific belongs in your (un-committed) `my-environment.md`.
 - **Add or extend an `evals/` scenario** whenever you add a load-bearing rule — a lesson
   without a guarding eval can silently regress.
+- **The skill improves itself — with consent.** `SKILL.md` carries the always-loaded trigger
+  of an active, consent-gated self-improvement loop (full procedure:
+  [`references/skill-self-improvement.md`](references/skill-self-improvement.md)): when a
+  session surfaces a rule-miss with real cost or a correction from the human, the model
+  running the skill *proposes* the codified rule (worded to the authoring tests, with its
+  guarding eval and origin story) and ships it only through this repo's normal PR +
+  human-approval flow. It may add or sharpen rules, never relax them — loosening a
+  discipline is human-initiated by definition.
+
+<sub>[↑ Back to contents](#contents)</sub>
+
+## Citing this repository
+
+The repo ships a [`CITATION.cff`](CITATION.cff)
+([Citation File Format](https://citation-file-format.github.io/) 1.2.0), so GitHub shows a
+**Cite this repository** button (APA/BibTeX) and the
+[Zenodo–GitHub integration](https://help.zenodo.org/docs/github/describe-software/citation-file/)
+can populate a DOI record from it on release. Two rules keep it honest — the same
+stale-claim discipline as the badge row:
+
+- **`version` and `date-released` are bumped by release-please, never by hand** — the
+  `x-release-please-version` / `x-release-please-date` annotations in the file mark the
+  lines it rewrites in each release PR (the same mechanism as `SKILL.md`'s version stamp).
+- **The file is schema-validated as a gate**: `scripts/validate-citation.sh` (digest-pinned
+  `cffconvert` container) runs verbatim locally and as the **required** `citation-validate`
+  CI check — an invalid citation file cannot merge.
+
+<sub>[↑ Back to contents](#contents)</sub>
 
 ## License
 
 Apache-2.0 © Brian Greenberg. See `LICENSE` and `NOTICE`.
+
+Privacy: the plugin collects no data — no telemetry, no network calls, no tracking. The
+full statement lives in [`PRIVACY.md`](PRIVACY.md).
+
+<sub>[↑ Back to contents](#contents)</sub>
 
 ## Disclaimer
 
@@ -279,3 +449,5 @@ see the *Disclaimer of Warranty* (§7) and *Limitation of Liability* (§8) secti
 `LICENSE`. It offers **engineering guidance, not professional security, legal, or
 compliance advice**. Review and validate any code, configuration, or security decision it
 influences before relying on it — you are responsible for what you ship.
+
+<sub>[↑ Back to contents](#contents)</sub>
