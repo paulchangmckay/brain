@@ -32,7 +32,6 @@ title: "references / my-environment.template"
 List the concrete tools the disciplines bind to. Examples in the references are generic; pin
 them to yours here.
 
-- **Host OS:** `<e.g. "macOS 15" / "Ubuntu 24.04" / "Windows 11 (WSL2, or native + a Shell override)". The universal core assumes macOS; OS-specific mechanics (paths, TCC/launchd) re-bind to this host's equivalents.>`
 - **Identity / SSO / MDM:** `<your SSO / identity provider; your MDM>`
 - **Productivity / collaboration:** `<e.g. Google Workspace / Microsoft 365; Slack / Zoom>`
 - **CRM / ERP / data:** `<e.g. your CRM, ERP, BI/analytics tools>`
@@ -40,7 +39,7 @@ them to yours here.
   secret (no hardcoded credentials, ever).
 - **Version control & CI:** `<e.g. GitHub + GitHub Actions>`
 - **Cloud / deploy target:** `<e.g. GCP Cloud Run + Cloud SQL/Postgres + object storage>`
-- **Shell:** `<your shell + any hard preference, e.g. "Bash only, never PowerShell" — or "PowerShell" on Windows. The universal core is Bash/POSIX by default; this is where a hard preference lives.>`
+- **Shell:** `<e.g. Bash only>`
 - **Primary languages:** `<e.g. Python, Bash, JavaScript>`
 
 ## Hosts & machine config (optional)
