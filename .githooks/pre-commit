@@ -10,11 +10,12 @@ fail=0
 staged() { git diff --cached --name-only --diff-filter=ACM; }
 
 # --- 1. ShellCheck on staged .sh files ---
-# Excludes superpowers/ — vendored third-party code (see .gitmodules history
-# and issue #13); we don't hand-patch upstream files just to satisfy our own
-# linter, since that only creates permanent drift from upstream.
+# Excludes superpowers/ and skills/senior-engineering-partner/ — vendored
+# third-party code (see .gitmodules history and issues #13/#15); we don't
+# hand-patch upstream files just to satisfy our own linter, since that only
+# creates permanent drift from upstream.
 sh_files=()
-while IFS= read -r f; do [ -n "$f" ] && sh_files+=("$f"); done < <(staged | grep -E '\.sh$' | grep -v -E '^superpowers/' || true)
+while IFS= read -r f; do [ -n "$f" ] && sh_files+=("$f"); done < <(staged | grep -E '\.sh$' | grep -v -E '^(superpowers|skills/senior-engineering-partner)/' || true)
 if [ "${#sh_files[@]}" -gt 0 ]; then
   if command -v shellcheck >/dev/null 2>&1; then
     echo "-> shellcheck: ${sh_files[*]}"

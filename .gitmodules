@@ -1,6 +1,3 @@
 [submodule "langsmith-plugin"]
 	path = langsmith-plugin
 	url = https://github.com/langchain-ai/langsmith-claude-code-plugins
-[submodule "skills/senior-engineering-partner"]
-	path = skills/senior-engineering-partner
-	url = https://github.com/bjgreenberg/senior-engineering-partner
