@@ -10,6 +10,10 @@ npm install     # first time only
 npm run dev     # runs `npm run sync` first, then `blume dev`
 ```
 
+The site's base path is configured for GitHub Pages deployment, so local
+`npm run dev` serves it at `http://localhost:4321/brain` — not the bare
+root `/`.
+
 ## How content is organized
 
 Three kinds of content coexist under `content/`, and each kind has a different update path:

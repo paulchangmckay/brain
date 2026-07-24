@@ -3,8 +3,20 @@ title: "Knowledge Graph"
 description: "understand-anything's knowledge graph over ~/.claude itself."
 ---
 
-- `~/.claude` is tracked in git, and its `understand-anything` knowledge graph is rebuilt incrementally after changes via `/understand-anything:understand ~.claude` — regular commits keep rebuilds cheap (a handful of batches instead of a full 32-batch rebuild).
-- `langsmith-plugin`, `superpowers`, and `skills/senior-engineering-partner` are git submodules — synced with `git submodule update`, never `git add`-ed directly.
-- Submodule remotes are third-party upstreams, not personal forks; local changes live on a `local-customizations` branch, re-fast-forwarded after each new submodule commit rather than pushed upstream.
+Alongside the memory layers described in the
+[Personal Knowledge Layer](/overview/personal-knowledge-layer) page, this
+repo maintains a structural knowledge graph of itself using the
+`understand-anything` tooling. It works by analyzing a codebase's file
+structure and the relationships between files — imports, references,
+groupings — and turning that into an interactive graph that's useful for
+onboarding someone new or exploring the architecture of a codebase that's
+grown too large to hold in your head at once.
+
+Because the graph is a snapshot, it needs periodic re-analysis as the
+codebase actually changes underneath it; a graph built once and never
+refreshed drifts from reality the same way any other stale documentation
+does. This is a supporting tool for navigating the repo, not part of how the
+harness enforces its own rules — the layers covered elsewhere in this
+overview do that work.
 
 Source of truth: `CLAUDE.md` § 6 Knowledge Graph.
