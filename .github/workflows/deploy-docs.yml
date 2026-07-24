@@ -21,6 +21,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Init docs-site submodules
+        # superpowers is vendored directly (see .gitmodules) so only the
+        # real remaining submodule needs init — not langsmith-plugin, whose
+        # pinned commit is a local-only branch never pushed upstream (see
+        # CLAUDE.md's submodule notes), so a blanket `submodules: recursive`
+        # checkout would fail to fetch it.
+        run: git submodule update --init skills/senior-engineering-partner
       - uses: actions/setup-node@v4
         with:
           node-version: "24"

@@ -458,3 +458,23 @@ test('syncSkills excludes my-environment.md (personal reference file) but keeps 
     rmSync(outputDir, { recursive: true, force: true });
   }
 });
+
+import { lstatSync, readlinkSync, readdirSync } from 'node:fs';
+import { isAbsolute } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+test('skill symlinks under ../skills use relative targets, not absolute local paths', () => {
+  const skillsDir = fileURLToPath(new URL('../../skills', import.meta.url));
+  const absoluteSymlinks = readdirSync(skillsDir)
+    .filter((entry) => lstatSync(join(skillsDir, entry)).isSymbolicLink())
+    .map((entry) => ({ entry, target: readlinkSync(join(skillsDir, entry)) }))
+    .filter(({ target }) => isAbsolute(target));
+
+  assert.deepEqual(
+    absoluteSymlinks,
+    [],
+    'skill symlinks must use relative targets (e.g. "../superpowers/skills/x") — an absolute ' +
+      'local-machine path (e.g. "/Users/x/.claude/superpowers/skills/x") resolves on the ' +
+      "author's machine but is dangling on any other checkout, including CI"
+  );
+});
