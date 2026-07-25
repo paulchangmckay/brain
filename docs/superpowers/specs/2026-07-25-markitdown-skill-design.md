@@ -82,31 +82,44 @@ uncommon case where intent is genuinely ambiguous.
 Verified against actual PyPI metadata during grilling (not assumed): the
 `[all]` extra pulls in PDF/Office/Azure/YouTube-transcript deps plus
 `speechrecognition` + `pydub` for audio — **not** `openai-whisper`/`torch`.
-There is therefore no Python-3.14 compatibility risk from `[all]` (this
-machine's only `PATH` Python is 3.14.5); an earlier draft of this spec
-assumed a torch dependency and a python3.11 pipx fallback for it, both
-dropped as unnecessary once the real dependency tree was checked.
+So there's no torch/whisper compatibility risk. However, a second,
+different Python-3.14 problem was found by actually running the install
+(not caught by reading dependency metadata alone):
 
-The one real environment gap: `pydub` needs `ffmpeg` to decode non-WAV
-audio, and `ffmpeg` isn't currently installed on this machine. Install
+**`pipx install 'markitdown[all]'` against this machine's default Python
+(3.14.5) does not error — it silently backtracks to `markitdown==0.0.2`**,
+an early release from long before most of today's format support and CLI
+flags existed. Root cause: two of `[all]`'s pinned sub-dependencies have no
+Python-3.14-compatible release (`xlrd`'s recent versions all declare
+`Requires-Python <3.14`; `youtube-transcript-api~=1.0.0`'s pin can't be
+satisfied against what's currently on PyPI). pip's resolver can't satisfy
+`markitdown[all]==0.1.6`'s (the actual latest) requirements on 3.14, so it
+silently tries older `markitdown` releases with looser extras until one
+resolves — landing on `0.0.2` without any error message. Confirmed by
+direct testing: `pipx install --python python3.11 'markitdown[all]'`
+installs the real `0.1.6` cleanly (python3.11 is already on this machine
+via Homebrew, used by the existing `open-webui` pipx install).
+
+This means the python3.11 install path (raised, then dropped during
+grilling as speculative insurance against a *different*, incorrect torch
+concern) is required after all — for this real, confirmed reason. Install
 order:
 
 ```bash
 brew install ffmpeg
-pipx install 'markitdown[all]'
+pipx install --python python3.11 'markitdown[all]'
 ```
 
-If `pipx install` still fails after that, surface the actual error rather
-than guessing at a workaround — no speculative fallback for a problem not
-observed in practice.
-
-`SKILL.md` documents a verify-then-install pattern matching `html-export`:
+Verify the version actually installed, not just that the command exits 0
+(a silent-backtrack install still exits 0):
 
 ```bash
-markitdown --version   # verify
+markitdown --version   # must print "markitdown 0.1.6" (or newer), not 0.0.x
 ```
 
-If this errors, run the two install commands above.
+If the version is wrong or the install errors outright, surface the actual
+error/version mismatch rather than guessing at a further workaround — no
+speculative fallback beyond the one already confirmed necessary.
 
 **Known limitations, documented in `SKILL.md`:**
 - LLM-based image captioning (markitdown's optional feature that passes an
