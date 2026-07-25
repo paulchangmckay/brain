@@ -10,12 +10,13 @@ fail=0
 staged() { git diff --cached --name-only --diff-filter=ACM; }
 
 # --- 1. ShellCheck on staged .sh files ---
-# Excludes superpowers/ and skills/senior-engineering-partner/ — vendored
-# third-party code (see .gitmodules history and issues #13/#15); we don't
-# hand-patch upstream files just to satisfy our own linter, since that only
-# creates permanent drift from upstream.
+# Allowlists our own first-party script roots (mirrors eslint.config.js's
+# files:[...] allowlist shape and the eslint step's own hooks/-only match
+# below) rather than denylisting vendored ones by name — a new vendored
+# directory then never needs a config edit here, since it's simply not
+# under a listed root. See issues #13/#15/#19.
 sh_files=()
-while IFS= read -r f; do [ -n "$f" ] && sh_files+=("$f"); done < <(staged | grep -E '\.sh$' | grep -v -E '^(superpowers|skills/senior-engineering-partner)/' || true)
+while IFS= read -r f; do [ -n "$f" ] && sh_files+=("$f"); done < <(staged | grep -E '\.sh$' | grep -E '^(hooks|scripts)/' || true)
 if [ "${#sh_files[@]}" -gt 0 ]; then
   if command -v shellcheck >/dev/null 2>&1; then
     echo "-> shellcheck: ${sh_files[*]}"
