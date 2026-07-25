@@ -1,0 +1,13 @@
+{
+  "enabledPlugins": {
+    "superpowers@superpowers-dev": true
+  },
+  "extraKnownMarketplaces": {
+    "superpowers-dev": {
+      "source": {
+        "source": "directory",
+        "path": "/absolute/path/to/your/checkout/of/this/repo/superpowers"
+      }
+    }
+  }
+}

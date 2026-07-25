@@ -33,6 +33,7 @@ chrome/chrome-native-host
 # Machine-specific config — real values are gitignored, mcp_servers.example.json
 # is the committed template (see .claude/rules/portable-repo.md)
 mcp_servers.json
+settings.local.json
 
 # OpenWolf runtime state (keep knowledge files, exclude metrics/state)
 .wolf/token-ledger.json
