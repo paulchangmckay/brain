@@ -74,12 +74,13 @@ for f in *.pdf; do markitdown "$f" > "${f%.pdf}.md" 2>"${f%.pdf}.err"; done
 
 Swap `*.pdf` for whatever extension(s) the folder actually contains. A
 failed conversion does **not** stop the loop — a plain `for` loop (no
-`set -e`) continues to the next file, producing an empty `.md` and a
-`.err` file with the traceback for that one file. After the loop, check
-for failures:
+`set -e`) continues to the next file. Every file gets a `.err` sibling
+(empty for a successful conversion, a traceback for a failed one) since
+the redirect applies unconditionally; only a failed file also leaves an
+empty `.md`. After the loop, check for failures:
 
 ```bash
-find . -name '*.md' -empty
+find . -maxdepth 1 -name '*.md' -empty
 ```
 
 Any file listed there failed to convert — check its matching `.err` file
