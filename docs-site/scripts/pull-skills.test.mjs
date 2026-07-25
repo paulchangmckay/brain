@@ -88,7 +88,7 @@ test('buildSkillPage escapes internal quotes in description frontmatter', () => 
   assert.match(page, /description: "Use when the user says \\"give me ideas\\"/);
 });
 
-import { existsSync, readFileSync, symlinkSync } from 'node:fs';
+import { existsSync, readFileSync, symlinkSync, lstatSync, readlinkSync, readdirSync } from 'node:fs';
 import { syncSkills, delinkDeadReferences } from './pull-skills.mjs';
 
 test('syncSkills skips directories with no SKILL.md', () => {
@@ -459,7 +459,6 @@ test('syncSkills excludes my-environment.md (personal reference file) but keeps 
   }
 });
 
-import { lstatSync, readlinkSync, readdirSync } from 'node:fs';
 import { isAbsolute } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
