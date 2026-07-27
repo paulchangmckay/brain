@@ -1,9 +1,38 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-07-27T02:22:24.793Z
-> Files: 491 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-07-27T21:17:43.253Z
+> Files: 514 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
+
+- `.DS_Store` (~3275 tok)
+- `.gitignore` — Git ignore rules (~436 tok)
+- `.gitleaks.toml` (~232 tok)
+- `.gitmodules` (~34 tok)
+- `.last-cleanup` (~7 tok)
+- `.last-update-result.json` (~46 tok)
+- `.shellcheckrc` — Companion enforcement for skills/senior-engineering-partner SKILL.md: (~81 tok)
+- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~5131 tok)
+- `eslint.config.js` — ESLint flat configuration (~365 tok)
+- `mcp_servers.example.json` (~65 tok)
+- `mcp-needs-auth-cache.json` (~52 tok)
+- `package-lock.json` — npm lock file (~9251 tok)
+- `package.json` — Node.js package manifest (~106 tok)
+- `README.md` — Project documentation (~120 tok)
+- `settings.json` (~3477 tok)
+- `settings.local.json` (~71 tok)
+- `settings.local.json.example` (~72 tok)
+
+## .claude/
+
+- `settings.json` (~504 tok)
+
+## .claude/rules/
+
+- `openwolf.md` (~375 tok)
+- `portable-repo.md` — Portable-Repo & Generated-File Hygiene (~496 tok)
+
+## .claude/worktrees/add-make-interfaces-feel-better-skill/
 
 - `.gitignore` — Git ignore rules (~436 tok)
 - `.gitleaks.toml` (~232 tok)
@@ -18,38 +47,38 @@
 - `settings.json` (~3477 tok)
 - `settings.local.json.example` (~72 tok)
 
-## .claude/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/.claude/
 
 - `settings.json` (~504 tok)
 
-## .claude/rules/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/.claude/rules/
 
 - `openwolf.md` (~375 tok)
 
-## .githooks/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/.githooks/
 
 - `pre-commit` — Local pre-commit lint/secret-scan gate — enforcement counterpart to (~553 tok)
 
-## .github/workflows/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/.github/workflows/
 
 - `deploy-docs.yml` — CI: Deploy docs site (~299 tok)
 
-## .understand-anything/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/.understand-anything/
 
 - `.understandignore` — # **/*Test.java (~256 tok)
 - `fingerprints.json` (~116279 tok)
 - `knowledge-graph.json` (~127512 tok)
 - `meta.json` (~45 tok)
 
-## .understand-anything/intermediate/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/.understand-anything/intermediate/
 
 - `scan-result.json` (~18834 tok)
 
-## brand/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/brand/
 
 - `brand-guide.md` — Paul McKay — Personal Brand Guide (~4040 tok)
 
-## docs-site/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/docs-site/
 
 - `.gitignore` — Git ignore rules (~8 tok)
 - `blume.config.ts` (~179 tok)
@@ -57,13 +86,13 @@
 - `package.json` — Node.js package manifest (~105 tok)
 - `README.md` — Project documentation (~804 tok)
 
-## docs-site/content/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/docs-site/content/
 
 - `architecture.mdx` (~471 tok)
 - `index.mdx` — ~/.claude Reference (~235 tok)
 - `openwolf.md` (~713 tok)
 
-## docs-site/content/overview/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/docs-site/content/overview/
 
 - `core-philosophy.md` (~273 tok)
 - `index.md` — Overview (~137 tok)
@@ -74,7 +103,7 @@
 - `process-layer.md` — Declares with (~793 tok)
 - `reference-pointers.md` (~239 tok)
 
-## docs-site/content/skills/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/docs-site/content/skills/
 
 - `architecture-diagram.md` — Architecture Diagram Skill (~2478 tok)
 - `ba.md` — ba (~6228 tok)
@@ -99,43 +128,43 @@
 - `verification-before-completion.md` — Verification Before Completion (~1166 tok)
 - `wolf-init.md` — Wolf Init Skill (~765 tok)
 
-## docs-site/content/skills/brainstorming/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/docs-site/content/skills/brainstorming/
 
 - `index.md` — Brainstorming Ideas Into Designs (~3045 tok)
 - `spec-document-reviewer-prompt.md` — Spec Document Reviewer Prompt Template (~448 tok)
 - `visual-companion.md` — Visual Companion Guide (~3314 tok)
 
-## docs-site/content/skills/codebase-design/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/docs-site/content/skills/codebase-design/
 
 - `DEEPENING.md` — Deepening (~645 tok)
 - `DESIGN-IT-TWICE.md` — Design It Twice (~682 tok)
 - `index.md` — Codebase Design (~1522 tok)
 
-## docs-site/content/skills/domain-modeling/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/docs-site/content/skills/domain-modeling/
 
 - `ADR-FORMAT.md` — ADR Format (~694 tok)
 - `CONTEXT-FORMAT.md` — CONTEXT.md Format (~580 tok)
 - `index.md` — Domain Modeling (~822 tok)
 
-## docs-site/content/skills/requesting-code-review/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/docs-site/content/skills/requesting-code-review/
 
 - `code-reviewer.md` — Code Reviewer Prompt Template (~1309 tok)
 - `index.md` — Requesting Code Review (~731 tok)
 
-## docs-site/content/skills/senior-engineering-partner/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/docs-site/content/skills/senior-engineering-partner/
 
 - `index.md` — ROLE AND CONTEXT (~21942 tok)
 - `README.md` — Project documentation (~4499 tok)
 
-## docs-site/content/skills/senior-engineering-partner/.github/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/docs-site/content/skills/senior-engineering-partner/.github/
 
 - `pull_request_template.md` — What changed (~331 tok)
 
-## docs-site/content/skills/senior-engineering-partner/evals/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/docs-site/content/skills/senior-engineering-partner/evals/
 
 - `README.md` — Project documentation (~836 tok)
 
-## docs-site/content/skills/senior-engineering-partner/references/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/docs-site/content/skills/senior-engineering-partner/references/
 
 - `audit-report-format.md` — Audit Report Format (the `AUDIT:` mode deliverable) (~1287 tok)
 - `business-continuity.md` — Business Continuity (BC) (~1625 tok)
@@ -177,11 +206,11 @@
 - `threat-modeling-and-api-design.md` — Threat Modeling & API Design (~3564 tok)
 - `ui-design-and-accessibility.md` — UI Design & Accessibility (~3322 tok)
 
-## docs-site/content/skills/senior-engineering-partner/scripts/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/docs-site/content/skills/senior-engineering-partner/scripts/
 
 - `self-review.md` — Self-Review Checklist (verify before done) (~753 tok)
 
-## docs-site/content/skills/systematic-debugging/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/docs-site/content/skills/systematic-debugging/
 
 - `condition-based-waiting.md` — Condition-Based Waiting (~885 tok)
 - `CREATION-LOG.md` — Creation Log: Systematic Debugging Skill (~1066 tok)
@@ -193,7 +222,7 @@
 - `test-pressure-2.md` — Pressure Test 2: Sunk Cost + Exhaustion (~580 tok)
 - `test-pressure-3.md` — Pressure Test 3: Authority + Social Pressure (~682 tok)
 
-## docs-site/content/skills/teach/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/docs-site/content/skills/teach/
 
 - `GLOSSARY-FORMAT.md` — GLOSSARY.md Format (~540 tok)
 - `index.md` — Teaching Workspace (~2421 tok)
@@ -201,22 +230,22 @@
 - `MISSION-FORMAT.md` — MISSION.md Format (~394 tok)
 - `RESOURCES-FORMAT.md` — RESOURCES.md Format (~489 tok)
 
-## docs-site/content/skills/test-driven-development/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/docs-site/content/skills/test-driven-development/
 
 - `index.md` — Test-Driven Development (TDD) (~2473 tok)
 - `testing-anti-patterns.md` — Testing Anti-Patterns (~2066 tok)
 
-## docs-site/content/skills/writing-plans/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/docs-site/content/skills/writing-plans/
 
 - `index.md` — Writing Plans (~1815 tok)
 - `plan-document-reviewer-prompt.md` — Plan Document Reviewer Prompt Template (~440 tok)
 
-## docs-site/scripts/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/docs-site/scripts/
 
 - `pull-skills.mjs` — is entirely generated output (see docs-site/README.md) — (~1971 tok)
 - `pull-skills.test.mjs` — content: makeTempDir (~5128 tok)
 
-## docs/superpowers/specs/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/docs/superpowers/specs/
 
 - `2026-07-14-issue-backlog-cycle-design.md` — Issue Backlog Cycle — Design (~2685 tok)
 - `2026-07-14-token-optimization-design.md` — Token Optimization Pass — Design (~1979 tok)
@@ -230,7 +259,7 @@
 - `2026-07-21-github-first-workflow-design.md` — GitHub-First Workflow for `~/.claude` — Design (~2695 tok)
 - `2026-07-25-markitdown-skill-design.md` — markitdown skill (~2327 tok)
 
-## hooks/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/hooks/
 
 - `cerebrum-write-guard-post.js` — PostToolUse hook (matcher: Edit|Write): records cerebrum.md's mtime (~463 tok)
 - `cerebrum-write-guard-post.test.js` — SCRIPT: run, withTmpRepo (~573 tok)
@@ -264,7 +293,7 @@
 - `worktree-repo-guard.js` — PreToolUse hook (matcher: EnterWorktree): blocks EnterWorktree unless the (~288 tok)
 - `worktree-repo-guard.test.js` — SCRIPT: run (~323 tok)
 
-## scripts/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/scripts/
 
 - `plugin-health-check.js` — Deterministic check for plugin/submodule registration drift: compares (~840 tok)
 - `plugin-health-check.test.js` — git: setupFakeClaudeHome (~1292 tok)
@@ -277,140 +306,144 @@
 - `wolf-observation-log.js` — /*.js is eslint-banned from child_process. (~3029 tok)
 - `wolf-observation-log.test.js` — SCRIPT: runCli, withTmpDir (~3672 tok)
 
-## skills/architecture-diagram/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/architecture-diagram/
 
 - `LICENSE` — Project license (~285 tok)
 - `SKILL.md` — Architecture Diagram Skill (~2477 tok)
 
-## skills/architecture-diagram/examples/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/architecture-diagram/examples/
 
 - `web-app-example.html` — Web App Architecture Diagram (~3488 tok)
 
-## skills/architecture-diagram/resources/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/architecture-diagram/resources/
 
 - `template.html` — [PROJECT NAME] Architecture Diagram (~4976 tok)
 
-## skills/ba-agent/.claude-plugin/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/ba-agent/.claude-plugin/
 
 - `plugin.json` (~109 tok)
 
-## skills/ba/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/ba-agent/agents/
+
+- `ba.md` — Invocation (~1249 tok)
+
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/ba/
 
 - `SKILL.md` — ba (~6233 tok)
 
-## skills/bloat-audit/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/bloat-audit/
 
 - `SKILL.md` — Tags (~553 tok)
 
-## skills/brand/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/brand/
 
 - `SKILL.md` — Brand Skill — Paul McKay Personal Brand (~1167 tok)
 
-## skills/brand/.claude-plugin/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/brand/.claude-plugin/
 
 - `plugin.json` (~108 tok)
 
-## skills/brandkit/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/brandkit/
 
 - `SKILL.md` — BRANDKIT IMAGE GENERATION SKILL (~3992 tok)
 
-## skills/claude-infra-reference/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/claude-infra-reference/
 
 - `SKILL.md` — Claude Infra Reference (~3227 tok)
 
-## skills/codebase-design/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/codebase-design/
 
 - `DEEPENING.md` — Deepening (~638 tok)
 - `DESIGN-IT-TWICE.md` — Design It Twice (~673 tok)
 - `SKILL.md` — Codebase Design (~1520 tok)
 
-## skills/dataviz/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/dataviz/
 
 - `SKILL.md` — DataViz Skill — Executive Data Visualization (~1996 tok)
 
-## skills/debt-ledger/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/debt-ledger/
 
 - `SKILL.md` — Scan (~294 tok)
 
-## skills/design-taste-frontend-v1/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/design-taste-frontend-v1/
 
 - `SKILL.md` — High-Agency Frontend Skill (~5298 tok)
 
-## skills/design-taste-frontend/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/design-taste-frontend/
 
 - `SKILL.md` — tasteskill: Anti-Slop Frontend Skill (~21782 tok)
 
-## skills/divergent-ideation/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/divergent-ideation/
 
 - `SKILL.md` — Divergent Ideation (~729 tok)
 
-## skills/domain-modeling/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/domain-modeling/
 
 - `ADR-FORMAT.md` — ADR Format (~686 tok)
 - `CONTEXT-FORMAT.md` — CONTEXT.md Format (~572 tok)
 - `SKILL.md` — Domain Modeling (~821 tok)
 
-## skills/exec-dashboard/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/exec-dashboard/
 
 - `SKILL.md` — Executive Dashboard Skill (~5489 tok)
 
-## skills/full-output-enforcement/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/full-output-enforcement/
 
 - `SKILL.md` — Full-Output Enforcement (~646 tok)
 
-## skills/github-issue-first/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/github-issue-first/
 
 - `SKILL.md` — GitHub Issue First (~1072 tok)
 
-## skills/gpt-taste/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/gpt-taste/
 
 - `SKILL.md` — CORE DIRECTIVE: AWWWARDS-LEVEL DESIGN ENGINEERING (~1965 tok)
 
-## skills/grill-me/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/grill-me/
 
 - `SKILL.md` (~37 tok)
 
-## skills/grilling/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/grilling/
 
 - `SKILL.md` (~167 tok)
 
-## skills/handoff/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/handoff/
 
 - `SKILL.md` (~262 tok)
 
-## skills/high-end-visual-design/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/high-end-visual-design/
 
 - `SKILL.md` — Agent Skill: Principal UI/UX Architect & Motion Choreographer (Awwwards-Tier) (~2637 tok)
 
-## skills/html-export/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/html-export/
 
 - `SKILL.md` — HTML Export Skill — Playwright Screenshot & PDF (~725 tok)
 
-## skills/html-export/scripts/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/html-export/scripts/
 
 - `html-export.js` — Usage: node html-export.js <input.html|url> [output-dir] [--wait <ms>] (~652 tok)
 
-## skills/image-to-code/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/image-to-code/
 
 - `SKILL.md` — CORE DIRECTIVE: IMAGE-FIRST WEBSITE DESIGN TO CODE (~9091 tok)
 
-## skills/imagegen-frontend-mobile/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/imagegen-frontend-mobile/
 
 - `SKILL.md` — CORE DIRECTIVE: PREMIUM MOBILE APP IMAGE DIRECTION (~10072 tok)
 
-## skills/imagegen-frontend-web/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/imagegen-frontend-web/
 
 - `SKILL.md` — HARD OUTPUT RULE — READ FIRST (~9195 tok)
 
-## skills/industrial-brutalist-ui/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/industrial-brutalist-ui/
 
 - `SKILL.md` — SKILL: Industrial Brutalism & Tactical Telemetry UI (~2113 tok)
 
-## skills/issue-backlog-cycle/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/issue-backlog-cycle/
 
 - `SKILL.md` — Issue Backlog Cycle (~1729 tok)
 
-## skills/make-interfaces-feel-better/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/make-interfaces-feel-better/
 
 - `animations.md` — Animations (~3163 tok)
 - `icons.md` — Icons (~568 tok)
@@ -419,27 +452,27 @@
 - `surfaces.md` — Surfaces (~1801 tok)
 - `typography.md` — Typography (~1164 tok)
 
-## skills/make-interfaces-feel-better/agents/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/make-interfaces-feel-better/agents/
 
 - `openai.yaml` (~38 tok)
 
-## skills/markitdown/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/markitdown/
 
 - `SKILL.md` — markitdown Skill — Convert Files & URLs to Markdown (~1033 tok)
 
-## skills/minimalist-ui/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/minimalist-ui/
 
 - `SKILL.md` — Protocol: Premium Utilitarian Minimalism UI Architect (~1974 tok)
 
-## skills/model-routing/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/model-routing/
 
 - `SKILL.md` — Model Routing (~515 tok)
 
-## skills/redesign-existing-projects/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/redesign-existing-projects/
 
 - `SKILL.md` — Redesign Skill (~3758 tok)
 
-## skills/senior-engineering-partner/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/senior-engineering-partner/
 
 - `.gitignore` — Git ignore rules (~110 tok)
 - `.release-please-manifest.json` (~6 tok)
@@ -454,28 +487,28 @@
 - `SECURITY.md` — Security Policy (~367 tok)
 - `SKILL.md` — ROLE AND CONTEXT (~21949 tok)
 
-## skills/senior-engineering-partner/.github/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/senior-engineering-partner/.github/
 
 - `CODEOWNERS` — CODEOWNERS — documents who owns each part of the skill, and (when branch protection's (~243 tok)
 - `dependabot.yml` (~109 tok)
 - `pull_request_template.md` — What changed (~318 tok)
 
-## skills/senior-engineering-partner/.github/ISSUE_TEMPLATE/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/senior-engineering-partner/.github/ISSUE_TEMPLATE/
 
 - `bug_report.yml` (~495 tok)
 - `config.yml` (~149 tok)
 
-## skills/senior-engineering-partner/.github/workflows/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/senior-engineering-partner/.github/workflows/
 
 - `docs-render.yml` — CI: docs-render (~237 tok)
 - `leakage-guard.yml` — CI: leakage-guard (~167 tok)
 - `release-please.yml` — CI: release-please (~423 tok)
 
-## skills/senior-engineering-partner/evals/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/senior-engineering-partner/evals/
 
 - `README.md` — Project documentation (~828 tok)
 
-## skills/senior-engineering-partner/evals/scenarios/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/senior-engineering-partner/evals/scenarios/
 
 - `adr-must-name-overridden-discipline.json` (~393 tok)
 - `adversarial-review-green-but-insufficient.json` (~778 tok)
@@ -505,7 +538,7 @@
 - `typecheck-gate-required.json` — Declares checking (~340 tok)
 - `yagni-no-speculative-abstraction.json` (~364 tok)
 
-## skills/senior-engineering-partner/references/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/senior-engineering-partner/references/
 
 - `audit-report-format.md` — Audit Report Format (the `AUDIT:` mode deliverable) (~1274 tok)
 - `business-continuity.md` — Business Continuity (BC) (~1612 tok)
@@ -548,23 +581,23 @@
 - `threat-modeling-and-api-design.md` — Threat Modeling & API Design (~3548 tok)
 - `ui-design-and-accessibility.md` — UI Design & Accessibility (~3308 tok)
 
-## skills/senior-engineering-partner/scripts/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/senior-engineering-partner/scripts/
 
 - `audit.sh` — audit.sh — manifest-level dependency audit gate (the SKILL.md "Dependency-audit gate"). (~659 tok)
 - `leakage-guard.sh` — leakage-guard.sh — fail if any environment-specific / personal identifier leaks into the (~1308 tok)
 - `render-diagrams.sh` — render-diagrams.sh — render-check every ```mermaid block in the given Markdown files. (~741 tok)
 - `self-review.md` — Self-Review Checklist (verify before done) (~743 tok)
 
-## skills/session-reflect/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/session-reflect/
 
 - `SKILL.md` — Session Reflect Skill (~1596 tok)
 
-## skills/stitch-design-taste/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/stitch-design-taste/
 
 - `DESIGN.md` — Design System: Taste Standard (~2991 tok)
 - `SKILL.md` — Stitch Design Taste — Semantic Design System Skill (~2933 tok)
 
-## skills/teach/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/teach/
 
 - `GLOSSARY-FORMAT.md` — GLOSSARY.md Format (~531 tok)
 - `LEARNING-RECORD-FORMAT.md` — Learning Record Format (~690 tok)
@@ -572,11 +605,11 @@
 - `RESOURCES-FORMAT.md` — RESOURCES.md Format (~481 tok)
 - `SKILL.md` — Teaching Workspace (~2441 tok)
 
-## skills/wolf-init/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/skills/wolf-init/
 
 - `SKILL.md` — Wolf Init Skill (~763 tok)
 
-## superpowers/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/
 
 - `.gitattributes` — Git attributes (~100 tok)
 - `.gitignore` — Git ignore rules (~101 tok)
@@ -591,51 +624,51 @@
 - `README.md` — Project documentation (~2740 tok)
 - `RELEASE-NOTES.md` — Superpowers Release Notes (~20043 tok)
 
-## superpowers/.claude-plugin/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/.claude-plugin/
 
 - `marketplace.json` (~147 tok)
 - `plugin.json` (~142 tok)
 
-## superpowers/.codex-plugin/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/.codex-plugin/
 
 - `plugin.json` (~499 tok)
 
-## superpowers/.cursor-plugin/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/.cursor-plugin/
 
 - `plugin.json` (~166 tok)
 
-## superpowers/.github/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/.github/
 
 - `FUNDING.yml` — These are supported funding model platforms (~18 tok)
 - `PULL_REQUEST_TEMPLATE.md` — Who is submitting this PR? (required) (~1451 tok)
 
-## superpowers/.github/ISSUE_TEMPLATE/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/.github/ISSUE_TEMPLATE/
 
 - `bug_report.md` — Environment (required) (~398 tok)
 - `config.yml` (~69 tok)
 - `feature_request.md` — What problem does this solve? (~400 tok)
 - `platform_support.md` — Which IDE or platform? (~244 tok)
 
-## superpowers/.kimi-plugin/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/.kimi-plugin/
 
 - `plugin.json` (~883 tok)
 
-## superpowers/.opencode/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/.opencode/
 
 - `INSTALL.md` — Installing Superpowers for OpenCode (~832 tok)
 
-## superpowers/.pi/extensions/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/.pi/extensions/
 
 - `superpowers.ts` — Exports superpowersPiExtension (~1224 tok)
 
-## superpowers/docs/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/docs/
 
 - `porting-to-a-new-harness.md` — Porting Superpowers to a New Harness (~12580 tok)
 - `README.kimi.md` — Superpowers for Kimi Code (~673 tok)
 - `README.opencode.md` — Superpowers for OpenCode (~1141 tok)
 - `testing.md` — Testing Superpowers (~549 tok)
 
-## superpowers/docs/superpowers/specs/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/docs/superpowers/specs/
 
 - `2026-01-22-document-review-system-design.md` — Document Review System Design (~1181 tok)
 - `2026-02-19-visual-brainstorming-refactor-design.md` — Visual Brainstorming Refactor: Browser Displays, Terminal Commands (~2347 tok)
@@ -652,11 +685,11 @@
 - `2026-06-10-visual-companion-auth-hardening-design.md` — Visual Companion Auth Hardening Design (~2079 tok)
 - `2026-06-11-visual-companion-final-hardening-fixup-design.md` — Visual Companion Final Hardening Fixup Design (~3239 tok)
 
-## superpowers/docs/windows/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/docs/windows/
 
 - `polyglot-hooks.md` — Cross-Platform Polyglot Hooks for Claude Code (~1479 tok)
 
-## superpowers/hooks/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/hooks/
 
 - `hooks-codex.json` (~87 tok)
 - `hooks-cursor.json` (~40 tok)
@@ -665,19 +698,19 @@
 - `session-start` — SessionStart hook for superpowers plugin (~606 tok)
 - `session-start-codex` — Codex SessionStart hook for superpowers plugin (~277 tok)
 
-## superpowers/scripts/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/scripts/
 
 - `bump-version.sh` — bump-version.sh — bump version numbers across all declared files, (~1750 tok)
 - `lint-shell.sh` — Lint shell scripts in this repository. (~1168 tok)
 - `sync-to-codex-plugin.sh` — sync-to-codex-plugin.sh (~4271 tok)
 
-## superpowers/skills/brainstorming/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/skills/brainstorming/
 
 - `SKILL.md` — Brainstorming Ideas Into Designs (~3044 tok)
 - `spec-document-reviewer-prompt.md` — Spec Document Reviewer Prompt Template (~436 tok)
 - `visual-companion.md` — Visual Companion Guide (~3305 tok)
 
-## superpowers/skills/brainstorming/scripts/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/skills/brainstorming/scripts/
 
 - `frame-template.html` — Superpowers Brainstorming (~2158 tok)
 - `helper.js` — MIN_RECONNECT_MS: nextReconnectDelay, sessionKey, websocketUrl + 5 more (~1602 tok)
@@ -685,40 +718,40 @@
 - `start-server.sh` — Start the brainstorm server and output connection info (~1973 tok)
 - `stop-server.sh` — Stop the brainstorm server and clean up (~933 tok)
 
-## superpowers/skills/dispatching-parallel-agents/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/skills/dispatching-parallel-agents/
 
 - `SKILL.md` — Dispatching Parallel Agents (~1655 tok)
 
-## superpowers/skills/executing-plans/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/skills/executing-plans/
 
 - `SKILL.md` — Executing Plans (~650 tok)
 
-## superpowers/skills/finishing-a-development-branch/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/skills/finishing-a-development-branch/
 
 - `SKILL.md` — Finishing a Development Branch (~1806 tok)
 
-## superpowers/skills/receiving-code-review/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/skills/receiving-code-review/
 
 - `SKILL.md` — Code Review Reception (~1586 tok)
 
-## superpowers/skills/requesting-code-review/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/skills/requesting-code-review/
 
 - `code-reviewer.md` — Code Reviewer Prompt Template (~1301 tok)
 - `SKILL.md` — Requesting Code Review (~730 tok)
 
-## superpowers/skills/subagent-driven-development/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/skills/subagent-driven-development/
 
 - `implementer-prompt.md` — Implementer Subagent Prompt Template (~1378 tok)
 - `SKILL.md` — Subagent-Driven Development (~5385 tok)
 - `task-reviewer-prompt.md` — Task Reviewer Prompt Template (~1963 tok)
 
-## superpowers/skills/subagent-driven-development/scripts/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/skills/subagent-driven-development/scripts/
 
 - `review-package` — Generate a review package: commit list, stat summary, and the net (~360 tok)
 - `sdd-workspace` — Resolve and ensure the working-tree directory SDD uses for its short-lived (~237 tok)
 - `task-brief` — Extract one task's full text from an implementation plan into a file the (~294 tok)
 
-## superpowers/skills/systematic-debugging/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/skills/systematic-debugging/
 
 - `condition-based-waiting-example.ts` — Wait for a specific event type to appear in thread (~1444 tok)
 - `condition-based-waiting.md` — Condition-Based Waiting (~875 tok)
@@ -732,20 +765,20 @@
 - `test-pressure-2.md` — Pressure Test 2: Sunk Cost + Exhaustion (~571 tok)
 - `test-pressure-3.md` — Pressure Test 3: Authority + Social Pressure (~673 tok)
 
-## superpowers/skills/test-driven-development/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/skills/test-driven-development/
 
 - `SKILL.md` — Test-Driven Development (TDD) (~2471 tok)
 - `testing-anti-patterns.md` — Testing Anti-Patterns (~2056 tok)
 
-## superpowers/skills/using-git-worktrees/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/skills/using-git-worktrees/
 
 - `SKILL.md` — Using Git Worktrees (~1867 tok)
 
-## superpowers/skills/using-superpowers/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/skills/using-superpowers/
 
 - `SKILL.md` — Instruction Priority (~1471 tok)
 
-## superpowers/skills/using-superpowers/references/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/skills/using-superpowers/references/
 
 - `antigravity-tools.md` — Antigravity CLI (`agy`) Tool Mapping (~1416 tok)
 - `claude-code-tools.md` — Claude Code Tool Mapping (~738 tok)
@@ -754,16 +787,16 @@
 - `gemini-tools.md` — Gemini CLI Tool Mapping (~1149 tok)
 - `pi-tools.md` — Pi Tool Mapping (~509 tok)
 
-## superpowers/skills/verification-before-completion/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/skills/verification-before-completion/
 
 - `SKILL.md` — Verification Before Completion (~1165 tok)
 
-## superpowers/skills/writing-plans/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/skills/writing-plans/
 
 - `plan-document-reviewer-prompt.md` — Plan Document Reviewer Prompt Template (~428 tok)
 - `SKILL.md` — Writing Plans (~1814 tok)
 
-## superpowers/skills/writing-skills/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/skills/writing-skills/
 
 - `anthropic-best-practices.md` — Skill authoring best practices (~11514 tok)
 - `graphviz-conventions.dot` — Declares examples (~1592 tok)
@@ -772,16 +805,16 @@
 - `SKILL.md` — Writing Skills (~6931 tok)
 - `testing-skills-with-subagents.md` — Testing Skills With Subagents (~3133 tok)
 
-## superpowers/skills/writing-skills/examples/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/skills/writing-skills/examples/
 
 - `CLAUDE_MD_TESTING.md` — Testing CLAUDE.md Skills Documentation (~1356 tok)
 
-## superpowers/tests/antigravity/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/tests/antigravity/
 
 - `run-tests.sh` — Run all Antigravity (agy) integration tests. (~92 tok)
 - `test-antigravity-tools.sh` — Validate the Antigravity (agy) integration. agy installs the existing plugin (~732 tok)
 
-## superpowers/tests/brainstorm-server/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/tests/brainstorm-server/
 
 - `auth.test.js` — Security tests for the brainstorm server's per-session key. (~3453 tok)
 - `branding.test.js` — Tests for the visual companion's Superpowers/Prime Radiant branding. (~3489 tok)
@@ -796,7 +829,7 @@
 - `windows-lifecycle.test.sh` — Windows lifecycle tests for the brainstorm server. (~3441 tok)
 - `ws-protocol.test.js` — Unit tests for the zero-dependency WebSocket protocol implementation. (~4285 tok)
 
-## superpowers/tests/claude-code/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/tests/claude-code/
 
 - `analyze-token-usage.py` — analyze_main_session, format_tokens, calculate_cost, main (~1924 tok)
 - `README.md` — Project documentation (~1180 tok)
@@ -808,11 +841,11 @@
 - `test-worktree-native-preference.sh` — Test: Does the agent prefer native worktree tools (EnterWorktree) over git worktree add? (~1907 tok)
 - `test-worktree-path-policy.sh` — Regression check: Superpowers should not route new worktrees through the old (~728 tok)
 
-## superpowers/tests/codex-plugin-sync/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/tests/codex-plugin-sync/
 
 - `test-sync-to-codex-plugin.sh` (~6863 tok)
 
-## superpowers/tests/explicit-skill-requests/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/tests/explicit-skill-requests/
 
 - `run-all.sh` — Run all explicit skill request tests (~565 tok)
 - `run-extended-multiturn-test.sh` — Extended multi-turn test with more conversation history (~974 tok)
@@ -820,7 +853,7 @@
 - `run-multiturn-test.sh` — Test explicit skill requests in multi-turn conversations (~1304 tok)
 - `run-test.sh` — Test explicit skill requests (user names a skill directly) (~1237 tok)
 
-## superpowers/tests/explicit-skill-requests/prompts/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/tests/explicit-skill-requests/prompts/
 
 - `action-oriented.txt` (~44 tok)
 - `after-planning-flow.txt` (~138 tok)
@@ -832,16 +865,16 @@
 - `subagent-driven-development-please.txt` (~9 tok)
 - `use-systematic-debugging.txt` (~13 tok)
 
-## superpowers/tests/hooks/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/tests/hooks/
 
 - `test-session-start.sh` — fs: hasOwn, fail (~1906 tok)
 
-## superpowers/tests/kimi/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/tests/kimi/
 
 - `run-tests.sh` (~37 tok)
 - `test-plugin-manifest.sh` (~658 tok)
 
-## superpowers/tests/opencode/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/tests/opencode/
 
 - `run-tests.sh` — Main test runner for OpenCode plugin test suite (~1236 tok)
 - `setup.sh` — Setup script for OpenCode plugin tests (~816 tok)
@@ -851,14 +884,22 @@
 - `test-priority.sh` — Test: Skill Priority Resolution (~1999 tok)
 - `test-tools.sh` — Test: Native Skill Tool Functionality (~967 tok)
 
-## superpowers/tests/pi/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/tests/pi/
 
 - `test-pi-extension.mjs` — API routes: GET (1 endpoints) (~1452 tok)
 
-## superpowers/tests/shell-lint/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/superpowers/tests/shell-lint/
 
 - `test-lint-shell.sh` (~1349 tok)
 
-## telemetry/
+## .claude/worktrees/add-make-interfaces-feel-better-skill/telemetry/
 
 - `1p_failed_events.badaa411-a4e1-4cd7-a546-2de2859f0617.0bbe5eb5-1508-486a-beed-7e99ab30461f.json` (~103164 tok)
+
+## .githooks/
+
+- `pre-commit` — Local pre-commit lint/secret-scan gate — enforcement counterpart to (~553 tok)
+
+## .github/workflows/
+
+- `deploy-docs.yml` — CI: Deploy docs site (~299 tok)
