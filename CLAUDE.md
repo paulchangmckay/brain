@@ -10,6 +10,7 @@
 | When | Invoke |
 |------|--------|
 | Before creating any output (PDF, slides, doc, PRD, image, email, diagram) | `brand` (HARD-GATE: brand specs before creating; exempt: `teach` skill's personal lesson HTML output — not a branded deliverable) |
+| Writing or restyling frontend UI (landing page, portfolio, dashboard, any web/app visual design) | taste-skill family — see `claude-infra-reference`'s routing table for which of the 13 installed variants fits (greenfield vs redesign vs a named aesthetic vs another agent/tool); never stack more than one frontend-aesthetic skill on the same task |
 | Before any feature work or new task | `brainstorming` (HARD-GATE: no code until design approved) |
 | After brainstorm approval, before writing-plans | `grilling` (HARD-GATE within brainstorming: mandatory pass on the approved spec, not conditional on spotting a soft spot yourself — scale depth to complexity but never skip it) |
 | After the grilling pass | `writing-plans` |
