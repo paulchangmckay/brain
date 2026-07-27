@@ -1192,3 +1192,13 @@
 | 19:10 | Edited docs/superpowers/plans/2026-07-21-github-first-workflow.md | 2→3 lines | ~239 |
 | 19:11 | Edited docs/superpowers/specs/2026-07-21-github-first-workflow-design.md | 5→5 lines | ~189 |
 | 19:11 | Edited docs/superpowers/specs/2026-07-21-github-first-workflow-design.md | 9→10 lines | ~300 |
+
+## Session: 2026-07-26 (worktree: add-make-interfaces-feel-better-skill)
+> Manual entry — worktree session, hook-driven auto-logging targets the main checkout's CLAUDE_PROJECT_DIR, not this worktree.
+
+| Time | Action | Detail | Tokens |
+|------|--------|--------|--------|
+| — | Installed skill | `skills/make-interfaces-feel-better/` via `npx skills@latest add jakubkrehel/make-interfaces-feel-better --global --copy -y`, relocated from main checkout after --global home-anchoring | — |
+| — | Edited skills/claude-infra-reference/SKILL.md | added "External Skill Integration (make-interfaces-feel-better / jakubkrehel)" section, positioned as a detail-level review pass complementary to the taste-skill family, not part of its routing table | — |
+| — | Edited CLAUDE.md | added Process Layer row: run `make-interfaces-feel-better` after a frontend UI build/edit is otherwise done | — |
+| — | Ran `openwolf scan` | regenerated .wolf/anatomy.md to index the new skill directory | — |

@@ -13,7 +13,7 @@ statsig/
 ide/
 plans/
 security/
-Agents/
+/Agents/
 
 # JS lint tooling
 node_modules/
