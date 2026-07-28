@@ -125,3 +125,45 @@ If an existing global skill already covers what a role needs (e.g. a QA
 agent that just needs `senior-engineering-partner`'s REVIEW: mode), point
 the generated agent at that skill instead of generating a redundant
 project-local copy.
+
+## Phase 5 — Orchestration doc
+
+Write (or update, per the Phase 0 matrix) a standalone
+`.claude/ORCHESTRATION.md` in the target project. Never append this to
+the target's own `CLAUDE.md` — a standalone file stays self-contained and
+diffable regardless of what else that `CLAUDE.md` contains. Document:
+- Dispatch order and dependencies between agents
+- Which Phase 2 pattern governs each phase of work
+- Which phases (if any) delegate to `subagent-driven-development` rather
+  than being self-contained
+
+Template and worked examples: `references/dispatch-sequencing.md` and
+`references/team-examples.md`.
+
+**Pause here before Phase 6.** Show what was generated — agent count,
+roles, model assignments, which skills were newly created vs. referenced
+from the global library — and ask before running Phase 6. Generating
+files is free; dry-run validation is not.
+
+## Phase 6 — Validation (only on explicit go-ahead)
+
+Follow `references/validation-checklist.md`:
+- Confirm each generated skill's `description` triggers on its intended
+  phrasing, and does not trigger on a plausible near-miss
+- Dry-run dispatch one `Agent` call per generated agent definition,
+  confirm it runs without error
+- For QA-role agents specifically, confirm they read both sides of an
+  interface/boundary rather than just checking that files exist
+  (`references/qa-agent-guide.md`'s boundary-crossing comparison)
+
+## What this skill deliberately does not do
+
+- Does not use Agent Teams (`TeamCreate`/`SendMessage`-to-team/
+  `TaskCreate`, `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS`) — everything
+  above is `Agent`-tool dispatch.
+- Does not assign a blanket `model: opus` — every agent's model comes
+  from `model-routing`.
+- Does not manage the target project's `.wolf/` setup — that's
+  `wolf-init`'s job, invoked separately if wanted.
+- Does not require brainstorming/grilling/writing-plans to invoke —
+  scaffolding, like `wolf-init`.
