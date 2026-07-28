@@ -31,6 +31,7 @@
 | Pinning down domain terminology or recording a hard-to-reverse decision | `domain-modeling` (writes `CONTEXT.md` + `docs/adr/`) — NOT `understand-anything:understand-domain` (read-only: analyzes existing code into a graph, never writes) |
 | Compacting live task context for a fresh agent to pick up mid-task | `/handoff` (writes to `.wolf/handoffs/`) — distinct from `session-reflect`, which is a durable project-cerebrum update at session end, not a task baton-pass |
 | Teaching the user a new skill/concept over multiple sessions (non-code) | `/teach` — only from a dedicated learning directory, never from `~/.claude` itself |
+| Before a Bash command or WebFetch call expected to return >~15KB of output | `context-tools` — routes large exec/fetch output through context-mode's sandboxed MCP tools instead of raw `Bash`/`WebFetch`, keeping the raw payload out of context |
 
 ### Project Tier (scale rigor to maturity)
 | Tier | State | Gates active |
