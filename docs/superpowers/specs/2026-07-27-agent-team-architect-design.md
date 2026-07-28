@@ -136,7 +136,9 @@ description: "Designs a domain-specific team of specialized subagents and the sk
    - *Producer-reviewer* → implementer dispatch → reviewer dispatch,
      matching `subagent-driven-development`'s existing loop.
    - *Supervisor* → a controlling Claude session (not a spawned agent)
-     dispatches and re-dispatches based on intermediate results.
+     dispatches and re-dispatches based on intermediate results. No
+     `.claude/agents/*.md` file is generated for the supervisor role
+     itself in Phase 3 — only for the agents it dispatches.
    - *Hierarchical delegation* → a top-level agent's prompt instructs it to
      itself dispatch further `Agent` calls (nested delegation).
    A hybrid (different patterns per phase of a larger task) is allowed,
@@ -154,11 +156,14 @@ description: "Designs a domain-specific team of specialized subagents and the sk
    `description`, <500-line body, `references/` for detail, size-budget
    checklist in `references/skill-writing-checklist.md`). Check for
    overlap with existing skills first (Phase 4-0 concern, kept).
-6. **Phase 5 — Orchestration doc.** Write a short `ORCHESTRATION.md` (or a
-   section appended to the target project's own `CLAUDE.md` if one exists)
-   documenting dispatch order, dependencies, and which pattern from Phase 2
-   governs it — replacing harness's live-team orchestrator-template, since
-   there's no running team to configure, only a documented call sequence.
+6. **Phase 5 — Orchestration doc.** Always write a standalone
+   `.claude/ORCHESTRATION.md` in the target project — never conditionally
+   appended to the target's `CLAUDE.md` — documenting dispatch order,
+   dependencies, and which pattern from Phase 2 governs it. A standalone
+   file keeps this skill's output self-contained and diffable independent
+   of whatever the target project's `CLAUDE.md` already contains; this
+   replaces harness's live-team orchestrator-template, since there's no
+   running team to configure, only a documented call sequence.
 7. **Phase 6 — Validation.** Per `references/validation-checklist.md`:
    confirm each generated skill's `description` actually triggers on its
    intended phrasing (ask in a scratch conversation, compare against a
