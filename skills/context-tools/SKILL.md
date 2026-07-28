@@ -52,6 +52,12 @@ hasn't been verified against this environment's local-only expectations.
 
 ## Uninstall / Rollback
 
+Installation unconditionally deploys a self-heal SessionStart hook
+(`context-mode-cache-heal.mjs`) into `~/.claude/hooks/` on first boot, with
+no config flag to suppress it — see the design spec's "documented
+exception" section for why this happens and why it's confirmed inert. It's
+included in the removal commands below.
+
 ```bash
 claude mcp remove context-mode
 npm uninstall -g context-mode
