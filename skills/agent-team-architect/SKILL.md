@@ -77,12 +77,9 @@ Pick a dispatch pattern per phase of work using the decision tree in
 A larger task can mix patterns by phase — apply the tree separately to
 each phase rather than forcing one pattern over the whole thing.
 
-None of this uses Claude Code's Agent Teams primitives
-(`TeamCreate`/`SendMessage`-to-team/`TaskCreate`). Every pattern above is
-expressed as `Agent`-tool dispatches — sequential calls, parallel calls
-in one message, `run_in_background` fans — because that's this repo's
-proven mechanism (see `subagent-driven-development`), and Agent Teams
-requires an experimental flag this repo doesn't otherwise use.
+Every pattern above is expressed as `Agent`-tool dispatches — sequential
+calls, parallel calls in one message, `run_in_background` fans — using the
+proven mechanism from `subagent-driven-development`.
 
 ## Phase 3 — Agent definitions
 
@@ -155,15 +152,3 @@ Follow `references/validation-checklist.md`:
 - For QA-role agents specifically, confirm they read both sides of an
   interface/boundary rather than just checking that files exist
   (`references/qa-agent-guide.md`'s boundary-crossing comparison)
-
-## What this skill deliberately does not do
-
-- Does not use Agent Teams (`TeamCreate`/`SendMessage`-to-team/
-  `TaskCreate`, `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS`) — everything
-  above is `Agent`-tool dispatch.
-- Does not assign a blanket `model: opus` — every agent's model comes
-  from `model-routing`.
-- Does not manage the target project's `.wolf/` setup — that's
-  `wolf-init`'s job, invoked separately if wanted.
-- Does not require brainstorming/grilling/writing-plans to invoke —
-  scaffolding, like `wolf-init`.
