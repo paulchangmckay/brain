@@ -21,7 +21,7 @@ against this project to extend, or to audit for drift.
 ## Dispatch sequence
 
 ### Phase: <name>
-**Pattern:** <Pipeline / Fan-out-fan-in / Expert pool / Producer-reviewer / Supervisor / Hierarchical delegation>
+**Pattern:** <Pipeline / Fan-out/fan-in / Expert pool / Producer-reviewer / Supervisor / Hierarchical delegation>
 **Delegates to:** <"subagent-driven-development" if producer-reviewer, else "none — self-contained">
 
 1. Dispatch `<agent-name>` with: <what it receives>

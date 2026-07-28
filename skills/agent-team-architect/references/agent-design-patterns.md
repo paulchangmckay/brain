@@ -36,7 +36,7 @@ result_b = Agent(prompt=f"Given: {result_a}. Now...", subagent_type="...")
 Use when: task B literally cannot start until task A's output exists
 (e.g. "extract requirements" → "design schema" → "write migration").
 
-## Fan-out / fan-in
+## Fan-out/fan-in
 
 Multiple `Agent` calls issued in a single message (parallel), or with
 `run_in_background: true` when a caller wants to keep working while they
