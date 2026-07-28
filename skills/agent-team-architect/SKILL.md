@@ -83,3 +83,45 @@ expressed as `Agent`-tool dispatches — sequential calls, parallel calls
 in one message, `run_in_background` fans — because that's this repo's
 proven mechanism (see `subagent-driven-development`), and Agent Teams
 requires an experimental flag this repo doesn't otherwise use.
+
+## Phase 3 — Agent definitions
+
+Generate `.claude/agents/<name>.md` per role in the target project.
+Check existing agents there first (Phase 0 output) so roles don't
+accumulate as near-duplicates under different names.
+
+Every agent gets an explicit `model:`, chosen by applying
+`model-routing`'s table exactly as written — no separate heuristic for
+this skill:
+- Mechanical/retrieval role (log inspection, single-file lookup,
+  grep-and-report) → `haiku`
+- Default, or genuinely in doubt → `sonnet`
+- Complex multi-file architecture or ambiguous-reasoning role → `opus`
+
+A QA/reviewer role is judged by what the review itself requires —
+usually real judgment about correctness, not retrieval — not by how
+mechanical the surrounding pipeline looks. That's model-routing's
+existing test applied correctly, not a new rule. See
+`references/qa-agent-guide.md` for the specific QA-agent template.
+
+Each agent definition needs: role, principles, input/output contract,
+error handling, and — when the role participates in a multi-agent phase
+— a short note on what it hands off and to whom.
+
+## Phase 4 — Skill generation
+
+Generate the skill(s) each agent uses under `.claude/skills/`, following
+this repo's own Progressive Disclosure convention: YAML frontmatter with
+an actively-worded `description` (state what triggers it, not just what
+it does — see `references/skill-writing-checklist.md`), a body under 500
+lines, detail pushed to `references/` when the body would otherwise grow
+past budget.
+
+Before generating anything, check for overlap in **both** scopes:
+1. The target project's own `.claude/skills/`
+2. This repo's global `~/.claude/skills/` library
+
+If an existing global skill already covers what a role needs (e.g. a QA
+agent that just needs `senior-engineering-partner`'s REVIEW: mode), point
+the generated agent at that skill instead of generating a redundant
+project-local copy.
