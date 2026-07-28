@@ -1192,9 +1192,501 @@
 | 19:10 | Edited docs/superpowers/plans/2026-07-21-github-first-workflow.md | 2→3 lines | ~239 |
 | 19:11 | Edited docs/superpowers/specs/2026-07-21-github-first-workflow-design.md | 5→5 lines | ~189 |
 | 19:11 | Edited docs/superpowers/specs/2026-07-21-github-first-workflow-design.md | 9→10 lines | ~300 |
+| 19:16 | Created .superpowers/sdd/task-4-report.md | — | ~1298 |
+| 19:25 | Created .superpowers/sdd/task-5-report.md | — | ~561 |
+| 19:31 | Edited docs/superpowers/plans/2026-07-21-github-first-workflow.md | modified note() | ~234 |
+| 19:32 | Session end: 19 writes across 8 files (2026-07-21-github-first-workflow-design.md, 2026-07-21-github-first-workflow.md, task-1-report.md, .gitignore, CLAUDE.md) | 23 reads | ~36259 tok |
+| 19:40 | Session end: 19 writes across 8 files (2026-07-21-github-first-workflow-design.md, 2026-07-21-github-first-workflow.md, task-1-report.md, .gitignore, CLAUDE.md) | 30 reads | ~45489 tok |
+| 19:42 | Created ../Desktop/learning/github/lessons/0005-portable-repos-paths-and-generated-files.html | — | ~2372 |
+| 19:42 | Edited ../Desktop/learning/github/lessons/0004-vscode-and-third-party-remotes.html | 4→4 lines | ~58 |
+| 19:43 | Edited ../Desktop/learning/github/RESOURCES.md | 1→6 lines | ~181 |
+| 19:43 | Edited ../Desktop/learning/github/NOTES.md | modified repo() | ~575 |
+| 19:52 | Session end: 19 writes across 8 files (2026-07-21-github-first-workflow-design.md, 2026-07-21-github-first-workflow.md, task-1-report.md, .gitignore, CLAUDE.md) | 31 reads | ~45489 tok |
+| 20:14 | Created .claude/rules/portable-repo.md | — | ~530 |
+| 20:14 | Edited CLAUDE.md | 1→2 lines | ~215 |
+| 20:15 | Created ../Desktop/learning/github/reference/portable-repo-cleanup.html | — | ~740 |
+| 20:16 | Edited ../Desktop/learning/github/NOTES.md | 1→2 lines | ~319 |
+| 20:20 | Edited .claude/worktrees/fix+1-portable-repo-cleanup/.gitignore | expanded (+6 lines) | ~80 |
 
-## Session: 2026-07-26 (worktree: add-make-interfaces-feel-better-skill)
-> Manual entry — worktree session, hook-driven auto-logging targets the main checkout's CLAUDE_PROJECT_DIR, not this worktree.
+## Session: 2026-07-22 20:26
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 20:31 | Verified `$CLAUDE_PROJECT_DIR` hook substitution (PR #2 test-plan item) in a genuinely fresh session (PID 9426, started 20:26:57, after merge) | settings.json, hooks/session-start.sh, hooks/pre-skill-gate.js | PASS — `.wolf/_last-seen-head` already at 08cf8e4, no restart-needed warning, SessionStart hook produced full anatomy dump, PreToolUse/PostToolUse hooks fired cleanly on every tool call, manual invoke of pre-skill-gate.js with CLAUDE_PROJECT_DIR set exited 0 | ~120 |
+
+## Session: 2026-07-22 20:33
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 20:52 | Created docs/superpowers/specs/2026-07-21-docs-site-public-launch-design.md | — | ~1835 |
+| 20:53 | Edited docs/superpowers/specs/2026-07-21-docs-site-public-launch-design.md | inline fix | ~161 |
+
+## Session: 2026-07-22 19:52
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 20:09 | Edited docs/superpowers/specs/2026-07-21-docs-site-public-launch-design.md | "s own " → "s existing built-in Merma" | ~95 |
+| 20:09 | Edited docs/superpowers/specs/2026-07-21-docs-site-public-launch-design.md | 2→4 lines | ~254 |
+| 20:09 | Edited docs/superpowers/specs/2026-07-21-docs-site-public-launch-design.md | 2→5 lines | ~512 |
+| 20:09 | Edited docs/superpowers/specs/2026-07-21-docs-site-public-launch-design.md | inline fix | ~215 |
+| 20:11 | Edited docs/superpowers/specs/2026-07-21-docs-site-public-launch-design.md | inline fix | ~220 |
+| 20:12 | Edited docs/superpowers/specs/2026-07-21-docs-site-public-launch-design.md | inline fix | ~127 |
+| 20:18 | Created ../Desktop/NHL Stats Project/docs/superpowers/specs/2026-07-22-advanced-analytics-design.md | — | ~3661 |
+| 20:19 | Created docs/superpowers/plans/2026-07-22-docs-site-public-launch.md | — | ~7729 |
+| 20:20 | Edited ../Desktop/NHL Stats Project/docs/superpowers/specs/2026-07-22-advanced-analytics-design.md | 6→10 lines | ~203 |
+| 20:20 | Edited ../Desktop/NHL Stats Project/docs/superpowers/specs/2026-07-22-advanced-analytics-design.md | modified user() | ~212 |
+| 20:20 | Session end: 3 writes across 1 files (2026-07-22-advanced-analytics-design.md) | 7 reads | ~4366 tok |
+| 20:22 | Session end: 3 writes across 1 files (2026-07-22-advanced-analytics-design.md) | 7 reads | ~4366 tok |
+| 20:26 | Session end: 3 writes across 1 files (2026-07-22-advanced-analytics-design.md) | 7 reads | ~4366 tok |
+| 20:27 | Session end: 3 writes across 1 files (2026-07-22-advanced-analytics-design.md) | 7 reads | ~4366 tok |
+| 20:28 | Session end: 3 writes across 1 files (2026-07-22-advanced-analytics-design.md) | 7 reads | ~4366 tok |
+| 20:29 | Session end: 3 writes across 1 files (2026-07-22-advanced-analytics-design.md) | 7 reads | ~4366 tok |
+| 20:30 | Session end: 9 writes across 2 files (2026-07-21-docs-site-public-launch-design.md, 2026-07-22-docs-site-public-launch.md) | 13 reads | ~24202 tok |
+| 20:31 | Edited .claude/worktrees/feature+3-plus-4-more-docs-site-public-launch/docs-site/scripts/pull-skills.test.mjs | expanded (+40 lines) | ~597 |
+| 20:31 | Session end: 3 writes across 1 files (2026-07-22-advanced-analytics-design.md) | 7 reads | ~4366 tok |
+| 20:31 | Edited .claude/worktrees/feature+3-plus-4-more-docs-site-public-launch/docs-site/scripts/pull-skills.mjs | 11→15 lines | ~112 |
+| 20:32 | Created .claude/worktrees/feature+3-plus-4-more-docs-site-public-launch/.superpowers/sdd/task-1-report.md | — | ~1522 |
+| 20:32 | Edited ../Desktop/NHL Stats Project/docs/superpowers/specs/2026-07-22-advanced-analytics-design.md | expanded (+11 lines) | ~315 |
+| 20:32 | Edited ../Desktop/NHL Stats Project/docs/superpowers/specs/2026-07-22-advanced-analytics-design.md | breakdown() → counts() | ~116 |
+| 20:32 | Edited ../Desktop/NHL Stats Project/docs/superpowers/specs/2026-07-22-advanced-analytics-design.md | modified sweep() | ~302 |
+| 20:33 | Session end: 12 writes across 5 files (2026-07-21-docs-site-public-launch-design.md, 2026-07-22-docs-site-public-launch.md, pull-skills.test.mjs, pull-skills.mjs, task-1-report.md) | 16 reads | ~33495 tok |
+| 20:33 | Edited ../Desktop/NHL Stats Project/docs/superpowers/specs/2026-07-22-advanced-analytics-design.md | modified table() | ~285 |
+| 20:33 | Edited ../Desktop/NHL Stats Project/docs/superpowers/specs/2026-07-22-advanced-analytics-design.md | 13→18 lines | ~299 |
+| 20:34 | Edited ../Desktop/NHL Stats Project/docs/superpowers/specs/2026-07-22-advanced-analytics-design.md | expanded (+6 lines) | ~226 |
+| 20:34 | Edited ../Desktop/NHL Stats Project/docs/superpowers/specs/2026-07-22-advanced-analytics-design.md | modified 0() | ~1058 |
+| 20:34 | Edited ../Desktop/NHL Stats Project/docs/superpowers/specs/2026-07-22-advanced-analytics-design.md | 10→14 lines | ~286 |
+| 20:34 | Edited ../Desktop/NHL Stats Project/docs/superpowers/specs/2026-07-22-advanced-analytics-design.md | data() → computation() | ~365 |
+| 20:35 | Edited ../Desktop/NHL Stats Project/docs/superpowers/specs/2026-07-22-advanced-analytics-design.md | codes() → fetch() | ~247 |
+| 20:35 | Edited ../Desktop/NHL Stats Project/docs/superpowers/specs/2026-07-22-advanced-analytics-design.md | 3→7 lines | ~133 |
+| 20:41 | Session end: 12 writes across 5 files (2026-07-21-docs-site-public-launch-design.md, 2026-07-22-docs-site-public-launch.md, pull-skills.test.mjs, pull-skills.mjs, task-1-report.md) | 17 reads | ~34983 tok |
+| 20:43 | Session end: 12 writes across 5 files (2026-07-21-docs-site-public-launch-design.md, 2026-07-22-docs-site-public-launch.md, pull-skills.test.mjs, pull-skills.mjs, task-1-report.md) | 19 reads | ~35303 tok |
+| 20:44 | Created .claude/worktrees/feature+3-plus-4-more-docs-site-public-launch/.superpowers/sdd/task-2-report.md | — | ~1278 |
+| 20:45 | Session end: 13 writes across 6 files (2026-07-21-docs-site-public-launch-design.md, 2026-07-22-docs-site-public-launch.md, pull-skills.test.mjs, pull-skills.mjs, task-1-report.md) | 25 reads | ~36672 tok |
+| 20:46 | Created ../Desktop/NHL Stats Project/docs/superpowers/plans/2026-07-22-advanced-analytics-tier1-plan.md | — | ~11739 |
+| 20:48 | Session end: 13 writes across 6 files (2026-07-21-docs-site-public-launch-design.md, 2026-07-22-docs-site-public-launch.md, pull-skills.test.mjs, pull-skills.mjs, task-1-report.md) | 26 reads | ~37870 tok |
+| 20:49 | Created .claude/worktrees/feature+3-plus-4-more-docs-site-public-launch/docs-site/content/overview/core-philosophy.md | — | ~292 |
+| 20:49 | Session end: 15 writes across 2 files (2026-07-22-advanced-analytics-design.md, 2026-07-22-advanced-analytics-tier1-plan.md) | 10 reads | ~20835 tok |
+| 20:49 | Created .claude/worktrees/feature+3-plus-4-more-docs-site-public-launch/docs-site/content/overview/process-layer.md | — | ~846 |
+| 20:49 | Created .claude/worktrees/feature+3-plus-4-more-docs-site-public-launch/docs-site/content/overview/infrastructure-layer.md | — | ~949 |
+| 20:50 | Created .claude/worktrees/feature+3-plus-4-more-docs-site-public-launch/docs-site/content/overview/new-project-bootstrap.md | — | ~442 |
+| 20:50 | Created .claude/worktrees/feature+3-plus-4-more-docs-site-public-launch/docs-site/content/overview/personal-knowledge-layer.md | — | ~615 |
+| 20:50 | Edited .claude/worktrees/feature+3-plus-4-more-docs-site-public-launch/docs-site/content/overview/personal-knowledge-layer.md | 8→6 lines | ~109 |
+| 20:50 | Created .claude/worktrees/feature+3-plus-4-more-docs-site-public-launch/docs-site/content/overview/knowledge-graph.md | — | ~283 |
+| 20:51 | Created .claude/worktrees/feature+3-plus-4-more-docs-site-public-launch/docs-site/content/overview/reference-pointers.md | — | ~255 |
+| 20:53 | Created .claude/worktrees/feature+3-plus-4-more-docs-site-public-launch/.superpowers/sdd/task-3-report.md | — | ~1649 |
+| 20:53 | Session end: 22 writes across 14 files (2026-07-21-docs-site-public-launch-design.md, 2026-07-22-docs-site-public-launch.md, pull-skills.test.mjs, pull-skills.mjs, task-1-report.md) | 34 reads | ~45573 tok |
+| 20:57 | Session end: 22 writes across 14 files (2026-07-21-docs-site-public-launch-design.md, 2026-07-22-docs-site-public-launch.md, pull-skills.test.mjs, pull-skills.mjs, task-1-report.md) | 36 reads | ~49295 tok |
+| 20:57 | Edited .claude/worktrees/feature+3-plus-4-more-docs-site-public-launch/docs-site/content/overview/process-layer.md | 9→9 lines | ~163 |
+| 20:57 | Edited .claude/worktrees/feature+3-plus-4-more-docs-site-public-launch/docs-site/content/overview/new-project-bootstrap.md | 4→1 lines | ~60 |
+| 20:58 | Session end: 24 writes across 14 files (2026-07-21-docs-site-public-launch-design.md, 2026-07-22-docs-site-public-launch.md, pull-skills.test.mjs, pull-skills.mjs, task-1-report.md) | 36 reads | ~49534 tok |
+| 21:01 | Session end: 24 writes across 14 files (2026-07-21-docs-site-public-launch-design.md, 2026-07-22-docs-site-public-launch.md, pull-skills.test.mjs, pull-skills.mjs, task-1-report.md) | 38 reads | ~50277 tok |
+| 21:01 | Created .claude/worktrees/feature+3-plus-4-more-docs-site-public-launch/docs-site/content/architecture.md | — | ~475 |
+| 21:01 | Edited .claude/worktrees/feature+3-plus-4-more-docs-site-public-launch/docs-site/content/index.mdx | 14→17 lines | ~235 |
+| 21:08 | Edited .claude/worktrees/feature+3-plus-4-more-docs-site-public-launch/docs-site/content/architecture.mdx | 5→3 lines | ~4 |
+| 21:11 | Created .claude/worktrees/feature+3-plus-4-more-docs-site-public-launch/.superpowers/sdd/task-4-report.md | — | ~2077 |
+| 21:12 | Session end: 28 writes across 18 files (2026-07-21-docs-site-public-launch-design.md, 2026-07-22-docs-site-public-launch.md, pull-skills.test.mjs, pull-skills.mjs, task-1-report.md) | 42 reads | ~53268 tok |
+| 21:17 | Session end: 28 writes across 18 files (2026-07-21-docs-site-public-launch-design.md, 2026-07-22-docs-site-public-launch.md, pull-skills.test.mjs, pull-skills.mjs, task-1-report.md) | 45 reads | ~56288 tok |
+| 21:17 | Edited .claude/worktrees/feature+3-plus-4-more-docs-site-public-launch/docs-site/blume.config.ts | expanded (+13 lines) | ~154 |
+| 21:18 | Created .claude/worktrees/feature+3-plus-4-more-docs-site-public-launch/.superpowers/sdd/task-5-report.md | — | ~591 |
+| 21:19 | Session end: 30 writes across 20 files (2026-07-21-docs-site-public-launch-design.md, 2026-07-22-docs-site-public-launch.md, pull-skills.test.mjs, pull-skills.mjs, task-1-report.md) | 48 reads | ~57550 tok |
+| 21:42 | Session end: 30 writes across 20 files (2026-07-21-docs-site-public-launch-design.md, 2026-07-22-docs-site-public-launch.md, pull-skills.test.mjs, pull-skills.mjs, task-1-report.md) | 50 reads | ~58190 tok |
+| 21:42 | Created .claude/worktrees/feature+3-plus-4-more-docs-site-public-launch/docs-site/content/overview/index.md | — | ~147 |
+| 21:43 | Session end: 31 writes across 21 files (2026-07-21-docs-site-public-launch-design.md, 2026-07-22-docs-site-public-launch.md, pull-skills.test.mjs, pull-skills.mjs, task-1-report.md) | 50 reads | ~58347 tok |
+| 21:45 | Session end: 31 writes across 21 files (2026-07-21-docs-site-public-launch-design.md, 2026-07-22-docs-site-public-launch.md, pull-skills.test.mjs, pull-skills.mjs, task-1-report.md) | 51 reads | ~58347 tok |
+| 21:45 | Created .claude/worktrees/feature+3-plus-4-more-docs-site-public-launch/README.md | — | ~128 |
+| 21:45 | Created .claude/worktrees/feature+3-plus-4-more-docs-site-public-launch/.superpowers/sdd/task-6-report.md | — | ~291 |
+| 21:46 | Session end: 33 writes across 23 files (2026-07-21-docs-site-public-launch-design.md, 2026-07-22-docs-site-public-launch.md, pull-skills.test.mjs, pull-skills.mjs, task-1-report.md) | 52 reads | ~58796 tok |
+| 21:47 | Session end: 33 writes across 23 files (2026-07-21-docs-site-public-launch-design.md, 2026-07-22-docs-site-public-launch.md, pull-skills.test.mjs, pull-skills.mjs, task-1-report.md) | 54 reads | ~59069 tok |
+| 21:47 | Edited .claude/worktrees/feature+3-plus-4-more-docs-site-public-launch/docs-site/blume.config.ts | 6→10 lines | ~47 |
+| 21:48 | Created .claude/worktrees/feature+3-plus-4-more-docs-site-public-launch/.superpowers/sdd/task-7-report.md | — | ~1204 |
+| 21:49 | Session end: 35 writes across 24 files (2026-07-21-docs-site-public-launch-design.md, 2026-07-22-docs-site-public-launch.md, pull-skills.test.mjs, pull-skills.mjs, task-1-report.md) | 55 reads | ~60406 tok |
+| 21:52 | Session end: 35 writes across 24 files (2026-07-21-docs-site-public-launch-design.md, 2026-07-22-docs-site-public-launch.md, pull-skills.test.mjs, pull-skills.mjs, task-1-report.md) | 57 reads | ~61534 tok |
+| 21:53 | Created .claude/worktrees/feature+3-plus-4-more-docs-site-public-launch/.github/workflows/deploy-docs.yml | — | ~299 |
+| 21:53 | Created .claude/worktrees/feature+3-plus-4-more-docs-site-public-launch/.superpowers/sdd/task-8-report.md | — | ~538 |
+| 21:54 | Session end: 37 writes across 26 files (2026-07-21-docs-site-public-launch-design.md, 2026-07-22-docs-site-public-launch.md, pull-skills.test.mjs, pull-skills.mjs, task-1-report.md) | 58 reads | ~62410 tok |
+| 21:56 | Session end: 37 writes across 26 files (2026-07-21-docs-site-public-launch-design.md, 2026-07-22-docs-site-public-launch.md, pull-skills.test.mjs, pull-skills.mjs, task-1-report.md) | 61 reads | ~62915 tok |
+| 21:59 | Session end: 37 writes across 26 files (2026-07-21-docs-site-public-launch-design.md, 2026-07-22-docs-site-public-launch.md, pull-skills.test.mjs, pull-skills.mjs, task-1-report.md) | 65 reads | ~64292 tok |
+| 22:00 | Created .claude/worktrees/feature+3-plus-4-more-docs-site-public-launch/docs-site/content/openwolf.md | — | ~761 |
+| 22:00 | Edited .claude/worktrees/feature+3-plus-4-more-docs-site-public-launch/docs-site/README.md | 5→9 lines | ~74 |
+| 22:00 | Edited .claude/worktrees/feature+3-plus-4-more-docs-site-public-launch/docs-site/content/overview/new-project-bootstrap.md | 1→4 lines | ~60 |
+| 22:01 | Session end: 40 writes across 27 files (2026-07-21-docs-site-public-launch-design.md, 2026-07-22-docs-site-public-launch.md, pull-skills.test.mjs, pull-skills.mjs, task-1-report.md) | 67 reads | ~66122 tok |
+
+## Session: 2026-07-24 22:33
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-07-24 22:33
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-07-24 22:33
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-07-24 22:34
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-07-24 22:34
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-07-24 22:34
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-07-24 22:34
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-07-24 22:34
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 23:11 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/tests/test_load_play_by_play.py | modified test_extract_event_sparse_details_event_type() | ~365 |
+| 23:11 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/etl/load_play_by_play.py | 4→5 lines | ~70 |
+| 23:11 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/src/database.py | 2→6 lines | ~48 |
+| 23:11 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/src/database.py | modified run_migrations() | ~66 |
+| 23:12 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/src/database.py | modified insert_game_event() | ~581 |
+| 23:13 | Created ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/tests/test_backfill_defending_side.py | — | ~942 |
+| 23:13 | Created ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/etl/backfill_defending_side.py | — | ~425 |
+| 23:14 | Created ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/tests/test_decoding.py | — | ~606 |
+| 23:14 | Created ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/etl/advanced_stats/decoding.py | — | ~509 |
+| 23:14 | Edited .claude/worktrees/fix+11-docs-site-deploy-portability/.github/workflows/deploy-docs.yml | expanded (+9 lines) | ~173 |
+| 23:15 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/tests/test_database.py | modified test_upsert_player_game_advanced_stats_is_idempotent() | ~808 |
+| 23:16 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/src/database.py | expanded (+142 lines) | ~1656 |
+| 23:16 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/src/database.py | modified create_all_tables() | ~240 |
+| 23:16 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/src/database.py | modified upsert_player_game_advanced_stats() | ~740 |
+| 23:17 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/tests/test_database.py | modified test_upsert_player_game_advanced_stats_is_idempotent() | ~44 |
+| 23:17 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/tests/test_database.py | modified test_upsert_player_game_advanced_stats_updates_on_conflict() | ~46 |
+| 23:17 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/tests/test_database.py | modified test_upsert_team_game_advanced_stats_is_idempotent() | ~39 |
+| 23:18 | Created ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/tests/test_sweep.py | — | ~1663 |
+| 23:20 | Created ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/etl/advanced_stats/sweep.py | — | ~2374 |
+| 23:20 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/tests/test_sweep.py | 3→6 lines | ~130 |
+| 23:24 | Session end: 19 writes across 10 files (test_load_play_by_play.py, load_play_by_play.py, database.py, test_backfill_defending_side.py, backfill_defending_side.py) | 4 reads | ~11352 tok |
+| 23:28 | Session end: 1 writes across 1 files (deploy-docs.yml) | 2 reads | ~173 tok |
+| 23:30 | Created ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/tests/test_compute_advanced_stats.py | — | ~1584 |
+| 23:30 | Created ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/etl/compute_advanced_stats.py | — | ~1906 |
+| 23:31 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/tests/test_compute_advanced_stats.py | modified _seed_game() | ~161 |
+| 23:31 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/tests/test_compute_advanced_stats.py | player() → skaters() | ~112 |
+| 23:32 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/etl/compute_advanced_stats.py | modified _pct_of() | ~365 |
+| 23:32 | Session end: 1 writes across 1 files (deploy-docs.yml) | 2 reads | ~173 tok |
+| 23:33 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/scripts/run_all_etl.py | 20→21 lines | ~231 |
+| 23:33 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/README.md | expanded (+20 lines) | ~317 |
+| 23:46 | Edited .claude/worktrees/fix+13-vendor-superpowers/.gitmodules | 4→1 lines | ~13 |
+| 23:47 | Edited .claude/worktrees/fix+13-vendor-superpowers/.github/workflows/deploy-docs.yml | from() → directly() | ~141 |
+| 23:50 | Edited .claude/worktrees/fix+13-vendor-superpowers/.gitleaks.toml | expanded (+6 lines) | ~184 |
+| 23:50 | Created ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/tests/test_app_advanced_stats.py | — | ~1349 |
+| 23:50 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/app.py | modified _pct() | ~1177 |
+| 23:50 | Edited .claude/worktrees/fix+13-vendor-superpowers/.gitleaks.toml | — | ~0 |
+| 23:50 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/app.py | modified api_player_advanced() | ~398 |
+
+## Session: 2026-07-24 23:50
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 23:52 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/frontend/src/lib/types.ts | expanded (+30 lines) | ~222 |
+| 23:52 | Edited .claude/worktrees/fix+13-vendor-superpowers/.githooks/pre-commit | 3→6 lines | ~108 |
+| 23:53 | Created ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/frontend/src/components/PlayerAdvancedPanel.test.tsx | — | ~586 |
+| 23:53 | Edited .githooks/pre-commit | 3→6 lines | ~108 |
+| 23:53 | Created ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/frontend/src/components/PlayerAdvancedPanel.tsx | — | ~1317 |
+| 23:54 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/frontend/src/lib/types.ts | 3→4 lines | ~23 |
+| 23:54 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/frontend/src/lib/types.ts | 4→4 lines | ~23 |
+| 23:54 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/frontend/src/components/PlayerTable.test.tsx | expanded (+16 lines) | ~209 |
+| 23:54 | Session end: 7 writes across 4 files (deploy-docs.yml, .gitmodules, .gitleaks.toml, pre-commit) | 6 reads | ~999 tok |
+| 23:54 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/frontend/src/components/PlayerTable.tsx | CSS: skaterOnly, playerId | ~287 |
+| 23:54 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/frontend/src/components/PlayerTable.tsx | modified onOpenAdvanced() | ~341 |
+| 23:55 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/frontend/src/components/PlayerTable.tsx | 28→26 lines | ~322 |
+| 23:55 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/frontend/src/App.tsx | added 1 import(s) | ~37 |
+| 23:55 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/frontend/src/App.tsx | 2→3 lines | ~57 |
+| 23:55 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/frontend/src/App.tsx | added 1 condition(s) | ~207 |
+| 23:56 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/frontend/vite.config.ts | inline fix | ~11 |
+| 23:58 | Session end: 7 writes across 4 files (deploy-docs.yml, .gitmodules, .gitleaks.toml, pre-commit) | 6 reads | ~999 tok |
+| 00:18 | Session end: 7 writes across 4 files (deploy-docs.yml, .gitmodules, .gitleaks.toml, pre-commit) | 7 reads | ~999 tok |
+| 00:18 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/frontend/vite.config.ts | inline fix | ~11 |
+| 00:20 | Session end: 7 writes across 4 files (deploy-docs.yml, .gitmodules, .gitleaks.toml, pre-commit) | 7 reads | ~999 tok |
+| 00:20 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/etl/backfill_defending_side.py | 4→5 lines | ~80 |
+| 00:21 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/etl/compute_advanced_stats.py | 6→7 lines | ~96 |
+| 00:26 | Edited .claude/worktrees/fix+15-vendor-senior-engineering-partner/.gitmodules | 6→3 lines | ~34 |
+| 00:26 | Edited .claude/worktrees/fix+15-vendor-senior-engineering-partner/.github/workflows/deploy-docs.yml | removed 9 lines | ~20 |
+| 00:26 | Session end: 45 writes across 23 files (test_load_play_by_play.py, load_play_by_play.py, database.py, test_backfill_defending_side.py, backfill_defending_side.py) | 14 reads | ~22803 tok |
+| 00:26 | Edited .claude/worktrees/fix+15-vendor-senior-engineering-partner/.githooks/pre-commit | 6→7 lines | ~130 |
+| 00:27 | Edited .githooks/pre-commit | 6→7 lines | ~130 |
+| 00:27 | Edited .claude/worktrees/fix+15-vendor-senior-engineering-partner/.gitleaksignore | expanded (+7 lines) | ~185 |
+| 00:29 | Session end: 12 writes across 5 files (deploy-docs.yml, .gitmodules, .gitleaks.toml, pre-commit, .gitleaksignore) | 10 reads | ~1630 tok |
+| 00:30 | Session end: 12 writes across 5 files (deploy-docs.yml, .gitmodules, .gitleaks.toml, pre-commit, .gitleaksignore) | 10 reads | ~1630 tok |
+| 00:33 | Session end: 12 writes across 5 files (deploy-docs.yml, .gitmodules, .gitleaks.toml, pre-commit, .gitleaksignore) | 11 reads | ~1630 tok |
+| 20:00 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/tests/test_sweep.py | modified _shift() | ~220 |
+| 20:00 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/tests/test_sweep.py | modified test_shootout_period_excluded_entirely_for_regular_season_game() | ~402 |
+| 20:01 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/etl/advanced_stats/sweep.py | modified _is_shootout() | ~477 |
+| 20:01 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/etl/advanced_stats/decoding.py | modified period_offset_seconds() | ~309 |
+| 20:01 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/etl/advanced_stats/sweep.py | modified get() | ~161 |
+| 20:02 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/tests/test_decoding.py | modified test_period_offset_regulation_periods_fixed_1200s() | ~214 |
+| 20:02 | Session end: 12 writes across 5 files (deploy-docs.yml, .gitmodules, .gitleaks.toml, pre-commit, .gitleaksignore) | 11 reads | ~1630 tok |
+| 20:02 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/tests/test_compute_advanced_stats.py | modified test_run_invokes_season_aggregation_and_percentiles_automatically() | ~384 |
+| 20:03 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/etl/compute_advanced_stats.py | modified _run_aggregation_and_percentiles() | ~435 |
+| 20:04 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/tests/test_compute_advanced_stats.py | modified test_compute_season_aggregates_scopes_team_abbrevs_to_the_season() | ~454 |
+| 20:04 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/etl/compute_advanced_stats.py | 4→6 lines | ~104 |
+| 20:05 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/tests/test_app_advanced_stats.py | added 1 import(s) | ~37 |
+| 20:05 | Session end: 12 writes across 5 files (deploy-docs.yml, .gitmodules, .gitleaks.toml, pre-commit, .gitleaksignore) | 11 reads | ~1630 tok |
+| 20:05 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/tests/test_app_advanced_stats.py | modified test_fetch_team_advanced_returns_per_strength_state_breakdown() | ~669 |
+| 20:06 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/app.py | 10→14 lines | ~268 |
+| 20:06 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/app.py | expanded (+6 lines) | ~150 |
+| 20:07 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/app.py | 7→4 lines | ~9 |
+| 20:10 | Session end: 12 writes across 5 files (deploy-docs.yml, .gitmodules, .gitleaks.toml, pre-commit, .gitleaksignore) | 11 reads | ~1630 tok |
+| 20:14 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/feature-50-plus-9-more-advanced-analytics-tier1/etl/compute_advanced_stats.py | 9→10 lines | ~221 |
+| 20:15 | Edited .claude/worktrees/fix+17-settings-hardcoded-path/settings.json | reduced (-7 lines) | ~102 |
+| 20:16 | Created .claude/worktrees/fix+17-settings-hardcoded-path/settings.local.json.example | — | ~72 |
+| 20:16 | Edited .claude/worktrees/fix+17-settings-hardcoded-path/.gitignore | 3→4 lines | ~49 |
+| 20:16 | Session end: 15 writes across 8 files (deploy-docs.yml, .gitmodules, .gitleaks.toml, pre-commit, .gitleaksignore) | 13 reads | ~5822 tok |
+| 20:19 | Session end: 61 writes across 23 files (test_load_play_by_play.py, load_play_by_play.py, database.py, test_backfill_defending_side.py, backfill_defending_side.py) | 25 reads | ~27317 tok |
+| 20:19 | Created settings.local.json | — | ~71 |
+| 20:19 | Session end: 16 writes across 9 files (deploy-docs.yml, .gitmodules, .gitleaks.toml, pre-commit, .gitleaksignore) | 14 reads | ~5893 tok |
+| 20:21 | Session end: 61 writes across 23 files (test_load_play_by_play.py, load_play_by_play.py, database.py, test_backfill_defending_side.py, backfill_defending_side.py) | 25 reads | ~27317 tok |
+| 20:24 | Session end: 61 writes across 23 files (test_load_play_by_play.py, load_play_by_play.py, database.py, test_backfill_defending_side.py, backfill_defending_side.py) | 25 reads | ~27317 tok |
+| 20:26 | Session end: 16 writes across 9 files (deploy-docs.yml, .gitmodules, .gitleaks.toml, pre-commit, .gitleaksignore) | 23 reads | ~10720 tok |
+| 20:27 | Session end: 16 writes across 9 files (deploy-docs.yml, .gitmodules, .gitleaks.toml, pre-commit, .gitleaksignore) | 23 reads | ~10720 tok |
+| 20:27 | Session end: 16 writes across 9 files (deploy-docs.yml, .gitmodules, .gitleaks.toml, pre-commit, .gitleaksignore) | 23 reads | ~10720 tok |
+| 20:29 | Edited .claude/worktrees/simplify+19-vendored-path-dedup/.githooks/pre-commit | code() → roots() | ~140 |
+| 20:29 | Edited .claude/worktrees/simplify+19-vendored-path-dedup/.gitleaks.toml | expanded (+8 lines) | ~198 |
+| 20:31 | Edited .claude/worktrees/simplify+19-vendored-path-dedup/docs-site/scripts/pull-skills.test.mjs | 2→2 lines | ~46 |
+| 20:31 | Edited .claude/worktrees/simplify+19-vendored-path-dedup/docs-site/scripts/pull-skills.test.mjs | 5→4 lines | ~47 |
+| 20:34 | Session end: 20 writes across 10 files (deploy-docs.yml, .gitmodules, .gitleaks.toml, pre-commit, .gitleaksignore) | 26 reads | ~17014 tok |
+| 20:38 | Session end: 20 writes across 10 files (deploy-docs.yml, .gitmodules, .gitleaks.toml, pre-commit, .gitleaksignore) | 26 reads | ~17014 tok |
+
+## Session: 2026-07-25 21:38
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-07-25 21:52
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 22:23 | Created ../Desktop/GMAT/docs/superpowers/specs/2026-07-24-gmat-learning-app-design.md | — | ~1442 |
+| 22:23 | Created ../Desktop/GMAT/DECISIONS.md | — | ~894 |
+| 22:24 | Created ../Desktop/GMAT/ROADMAP.md | — | ~482 |
+| 22:24 | Edited ../Desktop/GMAT/docs/superpowers/specs/2026-07-24-gmat-learning-app-design.md | expanded (+11 lines) | ~247 |
+| 22:24 | Edited ../Desktop/GMAT/DECISIONS.md | expanded (+8 lines) | ~130 |
+| 22:25 | Session end: 5 writes across 3 files (2026-07-24-gmat-learning-app-design.md, DECISIONS.md, ROADMAP.md) | 0 reads | ~3423 tok |
+| 22:26 | Session end: 5 writes across 3 files (2026-07-24-gmat-learning-app-design.md, DECISIONS.md, ROADMAP.md) | 0 reads | ~3423 tok |
+| 22:28 | Session end: 5 writes across 3 files (2026-07-24-gmat-learning-app-design.md, DECISIONS.md, ROADMAP.md) | 0 reads | ~3423 tok |
+| 01:00 | Edited ../Desktop/GMAT/docs/superpowers/specs/2026-07-24-gmat-learning-app-design.md | expanded (+9 lines) | ~209 |
+| 01:00 | Session end: 6 writes across 3 files (2026-07-24-gmat-learning-app-design.md, DECISIONS.md, ROADMAP.md) | 0 reads | ~3647 tok |
+| 01:01 | Edited ../Desktop/GMAT/docs/superpowers/specs/2026-07-24-gmat-learning-app-design.md | 3→7 lines | ~122 |
+| 01:01 | Session end: 7 writes across 3 files (2026-07-24-gmat-learning-app-design.md, DECISIONS.md, ROADMAP.md) | 0 reads | ~3778 tok |
+| 01:03 | Edited ../Desktop/GMAT/docs/superpowers/specs/2026-07-24-gmat-learning-app-design.md | 2→6 lines | ~111 |
+| 01:03 | Session end: 8 writes across 3 files (2026-07-24-gmat-learning-app-design.md, DECISIONS.md, ROADMAP.md) | 0 reads | ~3897 tok |
+| 01:05 | Edited ../Desktop/GMAT/docs/superpowers/specs/2026-07-24-gmat-learning-app-design.md | 3→7 lines | ~95 |
+| 01:05 | Session end: 9 writes across 3 files (2026-07-24-gmat-learning-app-design.md, DECISIONS.md, ROADMAP.md) | 0 reads | ~3999 tok |
+| 01:14 | Session end: 9 writes across 3 files (2026-07-24-gmat-learning-app-design.md, DECISIONS.md, ROADMAP.md) | 0 reads | ~3999 tok |
+| 01:15 | Edited ../Desktop/GMAT/docs/superpowers/specs/2026-07-24-gmat-learning-app-design.md | 8→12 lines | ~222 |
+| 01:15 | Edited ../Desktop/GMAT/docs/superpowers/specs/2026-07-24-gmat-learning-app-design.md | modified pipeline() | ~149 |
+| 01:16 | Edited ../Desktop/GMAT/DECISIONS.md | expanded (+34 lines) | ~509 |
+| 01:16 | Session end: 12 writes across 3 files (2026-07-24-gmat-learning-app-design.md, DECISIONS.md, ROADMAP.md) | 2 reads | ~4940 tok |
+| 01:25 | Edited ../Desktop/GMAT/docs/superpowers/specs/2026-07-24-gmat-learning-app-design.md | 2→5 lines | ~93 |
+| 01:26 | Session end: 13 writes across 3 files (2026-07-24-gmat-learning-app-design.md, DECISIONS.md, ROADMAP.md) | 2 reads | ~5040 tok |
+| 01:26 | Created ../Desktop/NHL Stats Project/docs/superpowers/specs/2026-07-25-player-profile-overlay-design.md | — | ~1878 |
+| 01:26 | Edited ../Desktop/NHL Stats Project/docs/superpowers/specs/2026-07-25-player-profile-overlay-design.md | background() → bar() | ~137 |
+| 01:26 | Session end: 2 writes across 1 files (2026-07-25-player-profile-overlay-design.md) | 16 reads | ~2159 tok |
+| 01:32 | Edited ../Desktop/GMAT/docs/superpowers/specs/2026-07-24-gmat-learning-app-design.md | modified guideline() | ~171 |
+| 01:33 | Session end: 14 writes across 3 files (2026-07-24-gmat-learning-app-design.md, DECISIONS.md, ROADMAP.md) | 2 reads | ~5223 tok |
+| 01:34 | Edited ../Desktop/GMAT/docs/superpowers/specs/2026-07-24-gmat-learning-app-design.md | expanded (+7 lines) | ~183 |
+| 01:34 | Edited ../Desktop/GMAT/DECISIONS.md | expanded (+19 lines) | ~283 |
+| 01:34 | Edited ../Desktop/GMAT/docs/superpowers/specs/2026-07-24-gmat-learning-app-design.md | Approved() → grilled() | ~15 |
+| 02:09 | Created ../Desktop/GMAT/.gitignore | — | ~55 |
+| 02:10 | Edited ../Desktop/GMAT/DECISIONS.md | expanded (+9 lines) | ~151 |
+
+## Session: 2026-07-25 02:21
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 02:35 | Created docs/superpowers/specs/2026-07-25-markitdown-skill-design.md | — | ~1614 |
+| 02:36 | Session end: 1 writes across 1 files (2026-07-25-markitdown-skill-design.md) | 3 reads | ~4925 tok |
+| 02:39 | Created ../Desktop/GMAT/docs/superpowers/plans/2026-07-25-gmat-v1-implementation.md | — | ~26288 |
+| 02:40 | Session end: 20 writes across 5 files (2026-07-24-gmat-learning-app-design.md, DECISIONS.md, ROADMAP.md, .gitignore, 2026-07-25-gmat-v1-implementation.md) | 6 reads | ~34231 tok |
+| 02:46 | Edited ../Desktop/NHL Stats Project/docs/superpowers/specs/2026-07-25-player-profile-overlay-design.md | expanded (+11 lines) | ~257 |
+| 02:46 | Session end: 20 writes across 5 files (2026-07-24-gmat-learning-app-design.md, DECISIONS.md, ROADMAP.md, .gitignore, 2026-07-25-gmat-v1-implementation.md) | 6 reads | ~34231 tok |
+| 02:46 | Edited ../Desktop/NHL Stats Project/docs/superpowers/specs/2026-07-25-player-profile-overlay-design.md | expanded (+6 lines) | ~155 |
+| 02:46 | Edited ../Desktop/NHL Stats Project/docs/superpowers/specs/2026-07-25-player-profile-overlay-design.md | applied() → value() | ~91 |
+| 02:56 | Edited docs/superpowers/specs/2026-07-25-markitdown-skill-design.md | 4→4 lines | ~19 |
+| 02:56 | Edited docs/superpowers/specs/2026-07-25-markitdown-skill-design.md | modified grilling() | ~814 |
+| 02:56 | Created ../Desktop/NHL Stats Project/docs/superpowers/plans/2026-07-25-player-profile-overlay.md | — | ~12821 |
+| 02:56 | Edited docs/superpowers/specs/2026-07-25-markitdown-skill-design.md | 10→13 lines | ~205 |
+| 02:57 | Edited docs/superpowers/specs/2026-07-25-markitdown-skill-design.md | 9→13 lines | ~195 |
+| 02:58 | Session end: 6 writes across 2 files (2026-07-25-player-profile-overlay-design.md, 2026-07-25-player-profile-overlay.md) | 24 reads | ~16435 tok |
+| 03:06 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/73-player-profile-overlay/tests/test_app_helpers.py | modified test_fetch_players_includes_photo_bio_and_draft_fields() | ~623 |
+| 03:07 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/73-player-profile-overlay/app.py | modified _fetch_players() | ~620 |
+| 04:42 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/73-player-profile-overlay/frontend/src/lib/types.ts | expanded (+8 lines) | ~167 |
+| 04:58 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/73-player-profile-overlay/frontend/src/lib/mock-data.ts | expanded (+9 lines) | ~456 |
+| 05:27 | Session end: 10 writes across 6 files (2026-07-25-player-profile-overlay-design.md, 2026-07-25-player-profile-overlay.md, test_app_helpers.py, app.py, types.ts) | 30 reads | ~18301 tok |
+| 18:13 | Edited docs/superpowers/specs/2026-07-25-markitdown-skill-design.md | modified grilling() | ~556 |
+| 18:17 | Created ../Desktop/NHL Stats Project/.claude/worktrees/73-player-profile-overlay/frontend/src/lib/teamBranding.test.ts | — | ~351 |
+
+## Session: 2026-07-25 18:17
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 18:17 | Created ../Desktop/NHL Stats Project/.claude/worktrees/73-player-profile-overlay/frontend/src/lib/teamBranding.ts | — | ~638 |
+| 18:19 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/73-player-profile-overlay/frontend/src/components/PlayerTable.test.tsx | expanded (+22 lines) | ~353 |
+| 18:19 | Created ../Desktop/NHL Stats Project/.claude/worktrees/73-player-profile-overlay/frontend/src/components/PlayerTable.tsx | — | ~1228 |
+| 18:22 | Created ../Desktop/NHL Stats Project/.claude/worktrees/73-player-profile-overlay/frontend/src/components/PlayerProfilePanel.test.tsx | — | ~1402 |
+| 18:23 | Created ../Desktop/NHL Stats Project/.claude/worktrees/73-player-profile-overlay/frontend/src/components/PlayerProfilePanel.tsx | — | ~2918 |
+| 18:24 | Created docs/superpowers/plans/2026-07-25-markitdown-skill.md | — | ~4151 |
+| 18:25 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/73-player-profile-overlay/frontend/src/App.test.tsx | added 1 condition(s) | ~261 |
+| 18:25 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/73-player-profile-overlay/frontend/src/App.tsx | "@/components/PlayerAdvanc" → "@/components/PlayerProfil" | ~20 |
+| 18:25 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/73-player-profile-overlay/frontend/src/App.tsx | inline fix | ~23 |
+| 18:25 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/73-player-profile-overlay/frontend/src/App.tsx | inline fix | ~14 |
+| 18:25 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/73-player-profile-overlay/frontend/src/App.tsx | setAdvancedPlayerId() → setProfilePlayerId() | ~145 |
+| 18:28 | Session end: 7 writes across 2 files (2026-07-25-markitdown-skill-design.md, 2026-07-25-markitdown-skill.md) | 6 reads | ~27406 tok |
+| 18:32 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/73-player-profile-overlay/.wolf/memory.md | expanded (+18 lines) | ~513 |
+| 18:34 | Session end: 7 writes across 2 files (2026-07-25-markitdown-skill-design.md, 2026-07-25-markitdown-skill.md) | 10 reads | ~28001 tok |
+| 18:34 | Created .claude/worktrees/feature+21-markitdown-skill/.superpowers/sdd/task-1-report.md | — | ~258 |
+| 18:35 | Session end: 8 writes across 3 files (2026-07-25-markitdown-skill-design.md, 2026-07-25-markitdown-skill.md, task-1-report.md) | 11 reads | ~28597 tok |
+| 18:36 | Created .claude/worktrees/feature+21-markitdown-skill/skills/markitdown/SKILL.md | — | ~1070 |
+| 18:36 | Created .claude/worktrees/feature+21-markitdown-skill/.superpowers/sdd/task-2-report.md | — | ~576 |
+| 18:37 | Session end: 10 writes across 5 files (2026-07-25-markitdown-skill-design.md, 2026-07-25-markitdown-skill.md, task-1-report.md, SKILL.md, task-2-report.md) | 12 reads | ~30360 tok |
+| 18:37 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/73-player-profile-overlay/frontend/src/components/PlayerProfilePanel.tsx | modified draftLabel() | ~79 |
+| 18:38 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/73-player-profile-overlay/frontend/src/components/PlayerProfilePanel.tsx | 7→9 lines | ~80 |
+| 18:38 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/73-player-profile-overlay/frontend/src/components/PlayerProfilePanel.tsx | 3→8 lines | ~80 |
+| 18:39 | Session end: 10 writes across 5 files (2026-07-25-markitdown-skill-design.md, 2026-07-25-markitdown-skill.md, task-1-report.md, SKILL.md, task-2-report.md) | 15 reads | ~31538 tok |
+| 18:39 | Session end: 25 writes across 15 files (2026-07-25-player-profile-overlay-design.md, 2026-07-25-player-profile-overlay.md, test_app_helpers.py, app.py, types.ts) | 46 reads | ~26443 tok |
+| 18:42 | Created .claude/worktrees/feature+21-markitdown-skill/.superpowers/sdd/task-3-report.md | — | ~2274 |
+| 18:43 | Session end: 11 writes across 6 files (2026-07-25-markitdown-skill-design.md, 2026-07-25-markitdown-skill.md, task-1-report.md, SKILL.md, task-2-report.md) | 19 reads | ~41196 tok |
+| 18:44 | Edited .claude/worktrees/feature+21-markitdown-skill/skills/markitdown/SKILL.md | 9→10 lines | ~122 |
+| 18:44 | Session end: 25 writes across 15 files (2026-07-25-player-profile-overlay-design.md, 2026-07-25-player-profile-overlay.md, test_app_helpers.py, app.py, types.ts) | 46 reads | ~26443 tok |
+| 18:46 | Session end: 12 writes across 6 files (2026-07-25-markitdown-skill-design.md, 2026-07-25-markitdown-skill.md, task-1-report.md, SKILL.md, task-2-report.md) | 22 reads | ~43700 tok |
+| 18:48 | Session end: 12 writes across 6 files (2026-07-25-markitdown-skill-design.md, 2026-07-25-markitdown-skill.md, task-1-report.md, SKILL.md, task-2-report.md) | 22 reads | ~43700 tok |
+| 18:50 | Session end: 12 writes across 6 files (2026-07-25-markitdown-skill-design.md, 2026-07-25-markitdown-skill.md, task-1-report.md, SKILL.md, task-2-report.md) | 22 reads | ~43700 tok |
+| 18:57 | Edited CLAUDE.md | 1→2 lines | ~463 |
+| 18:57 | Edited CLAUDE.md | 1→2 lines | ~191 |
+| 18:57 | Session end: 14 writes across 7 files (2026-07-25-markitdown-skill-design.md, 2026-07-25-markitdown-skill.md, task-1-report.md, SKILL.md, task-2-report.md) | 22 reads | ~44400 tok |
+| 18:58 | Session end: 25 writes across 15 files (2026-07-25-player-profile-overlay-design.md, 2026-07-25-player-profile-overlay.md, test_app_helpers.py, app.py, types.ts) | 46 reads | ~26443 tok |
+
+## Session: 2026-07-25 18:58
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 19:08 | Created ../Desktop/GMAT/docs/superpowers/specs/2026-07-25-gmat-reference-rag-design.md | — | ~1655 |
+| 19:09 | Session end: 1 writes across 1 files (2026-07-25-gmat-reference-rag-design.md) | 2 reads | ~4101 tok |
+| 19:17 | Edited ../Desktop/GMAT/docs/superpowers/specs/2026-07-25-gmat-reference-rag-design.md | expanded (+19 lines) | ~547 |
+| 19:17 | Edited ../Desktop/GMAT/docs/superpowers/specs/2026-07-25-gmat-reference-rag-design.md | modified venv() | ~634 |
+| 19:17 | Edited ../Desktop/GMAT/docs/superpowers/specs/2026-07-25-gmat-reference-rag-design.md | 3→3 lines | ~49 |
+| 19:17 | Edited ../Desktop/GMAT/docs/superpowers/specs/2026-07-25-gmat-reference-rag-design.md | 4→6 lines | ~106 |
+| 19:23 | Created ../Desktop/GMAT/docs/superpowers/plans/2026-07-25-gmat-reference-rag-implementation.md | — | ~5855 |
+| 19:24 | Session end: 6 writes across 2 files (2026-07-25-gmat-reference-rag-design.md, 2026-07-25-gmat-reference-rag-implementation.md) | 3 reads | ~11805 tok |
+| 19:26 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/session-reflect-2026-07-25/.wolf/cerebrum.md | expanded (+7 lines) | ~751 |
+| 19:26 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/session-reflect-2026-07-25/.wolf/cerebrum.md | inline fix | ~7 |
+| 19:28 | Edited ../Desktop/GMAT/.gitignore | 2→5 lines | ~19 |
+| 19:29 | Session end: 27 writes across 16 files (2026-07-25-player-profile-overlay-design.md, 2026-07-25-player-profile-overlay.md, test_app_helpers.py, app.py, types.ts) | 46 reads | ~27256 tok |
+| 19:29 | Session end: 7 writes across 3 files (2026-07-25-gmat-reference-rag-design.md, 2026-07-25-gmat-reference-rag-implementation.md, .gitignore) | 7 reads | ~12261 tok |
+| 19:30 | Edited ../Desktop/GMAT/.worktrees/gmat-reference-rag/.gitignore | 2→5 lines | ~26 |
+| 19:31 | Created ../Desktop/GMAT/.worktrees/gmat-reference-rag/.superpowers/sdd/task-1-report.md | — | ~641 |
+| 19:31 | Session end: 9 writes across 4 files (2026-07-25-gmat-reference-rag-design.md, 2026-07-25-gmat-reference-rag-implementation.md, .gitignore, task-1-report.md) | 9 reads | ~13901 tok |
+| 19:33 | Session end: 9 writes across 4 files (2026-07-25-gmat-reference-rag-design.md, 2026-07-25-gmat-reference-rag-implementation.md, .gitignore, task-1-report.md) | 11 reads | ~14862 tok |
+| 19:33 | Created ../Desktop/GMAT/.worktrees/gmat-reference-rag/scripts/test_chunker.py | — | ~695 |
+| 19:34 | Created ../Desktop/GMAT/.worktrees/gmat-reference-rag/scripts/chunker.py | — | ~753 |
+| 19:34 | Edited ../Desktop/GMAT/.worktrees/gmat-reference-rag/scripts/chunker.py | modified _split_oversized() | ~174 |
+| 19:35 | Created ../Desktop/GMAT/.worktrees/gmat-reference-rag/.superpowers/sdd/task-2-report.md | — | ~1222 |
+| 19:37 | Session end: 13 writes across 7 files (2026-07-25-gmat-reference-rag-design.md, 2026-07-25-gmat-reference-rag-implementation.md, .gitignore, task-1-report.md, test_chunker.py) | 13 reads | ~18734 tok |
+| 19:40 | Session end: 13 writes across 7 files (2026-07-25-gmat-reference-rag-design.md, 2026-07-25-gmat-reference-rag-implementation.md, .gitignore, task-1-report.md, test_chunker.py) | 14 reads | ~18734 tok |
+| 19:40 | Created ../Desktop/GMAT/.worktrees/gmat-reference-rag/scripts/chunker.py | — | ~904 |
+| 19:40 | Edited ../Desktop/GMAT/.worktrees/gmat-reference-rag/scripts/test_chunker.py | modified test_source_file_propagated_to_every_chunk() | ~162 |
+
+## Session: 2026-07-25 19:41
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 19:41 | Edited ../Desktop/GMAT/.worktrees/gmat-reference-rag/.superpowers/sdd/task-2-report.md | expanded (+45 lines) | ~697 |
+| 19:42 | Session end: 16 writes across 7 files (2026-07-25-gmat-reference-rag-design.md, 2026-07-25-gmat-reference-rag-implementation.md, .gitignore, task-1-report.md, test_chunker.py) | 16 reads | ~20547 tok |
+| 21:30 | Session end: 16 writes across 7 files (2026-07-25-gmat-reference-rag-design.md, 2026-07-25-gmat-reference-rag-implementation.md, .gitignore, task-1-report.md, test_chunker.py) | 17 reads | ~20547 tok |
+| 21:31 | Created ../Desktop/GMAT/.worktrees/gmat-reference-rag/scripts/test_ingest_reference_pdfs.py | — | ~278 |
+| 21:31 | Created ../Desktop/GMAT/.worktrees/gmat-reference-rag/scripts/ingest_reference_pdfs.py | — | ~1094 |
+| 21:32 | Created ../Desktop/GMAT/.worktrees/gmat-reference-rag/.superpowers/sdd/task-3-report.md | — | ~1125 |
+| 21:33 | Session end: 19 writes across 10 files (2026-07-25-gmat-reference-rag-design.md, 2026-07-25-gmat-reference-rag-implementation.md, .gitignore, task-1-report.md, test_chunker.py) | 18 reads | ~23762 tok |
+| 21:35 | Session end: 19 writes across 10 files (2026-07-25-gmat-reference-rag-design.md, 2026-07-25-gmat-reference-rag-implementation.md, .gitignore, task-1-report.md, test_chunker.py) | 21 reads | ~24462 tok |
+| 21:35 | Edited ../Desktop/GMAT/.worktrees/gmat-reference-rag/scripts/ingest_reference_pdfs.py | 4→7 lines | ~79 |
+| 21:36 | Edited ../Desktop/GMAT/.worktrees/gmat-reference-rag/.superpowers/sdd/task-3-report.md | added error handling | ~562 |
+| 21:36 | Session end: 21 writes across 10 files (2026-07-25-gmat-reference-rag-design.md, 2026-07-25-gmat-reference-rag-implementation.md, .gitignore, task-1-report.md, test_chunker.py) | 21 reads | ~25143 tok |
+| 21:38 | Session end: 21 writes across 10 files (2026-07-25-gmat-reference-rag-design.md, 2026-07-25-gmat-reference-rag-implementation.md, .gitignore, task-1-report.md, test_chunker.py) | 22 reads | ~25143 tok |
+| 21:41 | Session end: 21 writes across 10 files (2026-07-25-gmat-reference-rag-design.md, 2026-07-25-gmat-reference-rag-implementation.md, .gitignore, task-1-report.md, test_chunker.py) | 22 reads | ~25143 tok |
+
+## Session: 2026-07-27 21:42
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 21:42 | Created ../Desktop/NHL Stats Project/docs/superpowers/specs/2026-07-26-launcher-auto-sync-design.md | — | ~1783 |
+| 21:42 | Session end: 1 writes across 1 files (2026-07-26-launcher-auto-sync-design.md) | 1 reads | ~1910 tok |
+| 21:43 | Session end: 21 writes across 10 files (2026-07-25-gmat-reference-rag-design.md, 2026-07-25-gmat-reference-rag-implementation.md, .gitignore, task-1-report.md, test_chunker.py) | 23 reads | ~25143 tok |
+| 21:43 | Edited ../Desktop/GMAT/.worktrees/gmat-reference-rag/scripts/ingest_reference_pdfs.py | added 1 import(s) | ~31 |
+| 21:43 | Edited ../Desktop/GMAT/.worktrees/gmat-reference-rag/scripts/ingest_reference_pdfs.py | 5→7 lines | ~107 |
+| 21:43 | Edited ../Desktop/GMAT/.worktrees/gmat-reference-rag/.superpowers/sdd/task-3-report.md | added error handling | ~643 |
+| 21:44 | Session end: 24 writes across 10 files (2026-07-25-gmat-reference-rag-design.md, 2026-07-25-gmat-reference-rag-implementation.md, .gitignore, task-1-report.md, test_chunker.py) | 23 reads | ~25970 tok |
+| 21:45 | Session end: 24 writes across 10 files (2026-07-25-gmat-reference-rag-design.md, 2026-07-25-gmat-reference-rag-implementation.md, .gitignore, task-1-report.md, test_chunker.py) | 24 reads | ~25970 tok |
+| 21:51 | Edited ../Desktop/NHL Stats Project/docs/superpowers/specs/2026-07-26-launcher-auto-sync-design.md | 7→10 lines | ~160 |
+| 21:53 | Session end: 24 writes across 10 files (2026-07-25-gmat-reference-rag-design.md, 2026-07-25-gmat-reference-rag-implementation.md, .gitignore, task-1-report.md, test_chunker.py) | 25 reads | ~25970 tok |
+| 21:53 | Edited ../Desktop/GMAT/.worktrees/gmat-reference-rag/scripts/ingest_reference_pdfs.py | added 1 import(s) | ~21 |
+| 21:53 | Edited ../Desktop/GMAT/.worktrees/gmat-reference-rag/scripts/ingest_reference_pdfs.py | inline fix | ~21 |
+| 21:53 | Edited ../Desktop/GMAT/.worktrees/gmat-reference-rag/scripts/ingest_reference_pdfs.py | 4→5 lines | ~36 |
+| 21:53 | Edited ../Desktop/GMAT/.worktrees/gmat-reference-rag/scripts/ingest_reference_pdfs.py | modified _upsert_batch_with_retry() | ~302 |
+| 21:53 | Edited ../Desktop/GMAT/.worktrees/gmat-reference-rag/scripts/ingest_reference_pdfs.py | modified _upsert_batch_with_retry() | ~63 |
+| 21:54 | Edited ../Desktop/GMAT/.worktrees/gmat-reference-rag/.superpowers/sdd/task-3-report.md | modified with() | ~965 |
+| 21:54 | Created ../Desktop/NHL Stats Project/docs/superpowers/plans/2026-07-26-launcher-auto-sync.md | — | ~3961 |
+| 21:55 | Session end: 30 writes across 10 files (2026-07-25-gmat-reference-rag-design.md, 2026-07-25-gmat-reference-rag-implementation.md, .gitignore, task-1-report.md, test_chunker.py) | 25 reads | ~27447 tok |
+| 21:55 | Edited .claude/worktrees/add-taste-skill-uiux/skills/claude-infra-reference/SKILL.md | modified repo() | ~1331 |
+| 21:55 | Edited .claude/worktrees/add-taste-skill-uiux/CLAUDE.md | 2→3 lines | ~176 |
+| 21:56 | Session end: 30 writes across 10 files (2026-07-25-gmat-reference-rag-design.md, 2026-07-25-gmat-reference-rag-implementation.md, .gitignore, task-1-report.md, test_chunker.py) | 26 reads | ~27447 tok |
+| 21:57 | Session end: 2 writes across 2 files (SKILL.md, CLAUDE.md) | 2 reads | ~6170 tok |
+| 21:58 | Session end: 3 writes across 2 files (2026-07-26-launcher-auto-sync-design.md, 2026-07-26-launcher-auto-sync.md) | 2 reads | ~6325 tok |
+| 21:59 | Created ../Desktop/NHL Stats Project/.claude/worktrees/76-launcher-auto-sync/scripts/launch_app.sh | — | ~1177 |
+| 22:00 | Session end: 2 writes across 2 files (SKILL.md, CLAUDE.md) | 2 reads | ~6170 tok |
+| 22:06 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/76-launcher-auto-sync/scripts/launch_app.sh | modified alert() | ~44 |
+| 22:06 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/76-launcher-auto-sync/scripts/launch_app.sh | inline fix | ~42 |
+| 22:08 | Session end: 30 writes across 10 files (2026-07-25-gmat-reference-rag-design.md, 2026-07-25-gmat-reference-rag-implementation.md, .gitignore, task-1-report.md, test_chunker.py) | 28 reads | ~27447 tok |
+| 22:08 | Created ../Desktop/NHL Stats Project/.claude/worktrees/76-launcher-auto-sync/.superpowers/sdd/task-1-report.md | — | ~808 |
+| 22:09 | Session end: 7 writes across 4 files (2026-07-26-launcher-auto-sync-design.md, 2026-07-26-launcher-auto-sync.md, launch_app.sh, task-1-report.md) | 4 reads | ~8544 tok |
+| 22:10 | Session end: 2 writes across 2 files (SKILL.md, CLAUDE.md) | 2 reads | ~6170 tok |
+| 22:11 | Edited CLAUDE.md | 2→3 lines | ~219 |
+| 22:11 | Session end: 3 writes across 2 files (SKILL.md, CLAUDE.md) | 3 reads | ~10959 tok |
+
+## Session: 2026-07-27 22:12
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 22:13 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/76-launcher-auto-sync/scripts/launch_app.sh | 11→11 lines | ~66 |
+| 22:14 | Edited ../Desktop/GMAT/docs/superpowers/specs/2026-07-25-gmat-reference-rag-design.md | 2→6 lines | ~102 |
+| 22:15 | Session end: 8 writes across 4 files (2026-07-26-launcher-auto-sync-design.md, 2026-07-26-launcher-auto-sync.md, launch_app.sh, task-1-report.md) | 7 reads | ~10064 tok |
+| 22:15 | Edited ../Desktop/GMAT/.worktrees/gmat-reference-rag/docs/superpowers/specs/2026-07-25-gmat-reference-rag-design.md | 2→6 lines | ~102 |
+| 22:16 | Edited ../Desktop/GMAT/.worktrees/gmat-reference-rag/.gitignore | 2→3 lines | ~15 |
+| 22:16 | Session end: 33 writes across 10 files (2026-07-25-gmat-reference-rag-design.md, 2026-07-25-gmat-reference-rag-implementation.md, .gitignore, task-1-report.md, test_chunker.py) | 35 reads | ~29082 tok |
+| 22:21 | Edited .claude/worktrees/add-make-interfaces-feel-better-skill/skills/claude-infra-reference/SKILL.md | expanded (+6 lines) | ~678 |
+| 22:21 | Edited .claude/worktrees/add-make-interfaces-feel-better-skill/CLAUDE.md | 1→2 lines | ~206 |
+| 22:23 | Edited .claude/worktrees/add-make-interfaces-feel-better-skill/.wolf/memory.md | expanded (+10 lines) | ~291 |
+| 22:24 | Edited .claude/worktrees/add-make-interfaces-feel-better-skill/.gitignore | inline fix | ~3 |
+| 22:24 | Session end: 33 writes across 10 files (2026-07-25-gmat-reference-rag-design.md, 2026-07-25-gmat-reference-rag-implementation.md, .gitignore, task-1-report.md, test_chunker.py) | 35 reads | ~29082 tok |
+| 22:26 | Edited ../Desktop/GMAT/.worktrees/gmat-reference-rag/scripts/test_ingest_reference_pdfs.py | modified __init__() | ~182 |
+| 22:26 | Edited ../Desktop/GMAT/.worktrees/gmat-reference-rag/scripts/test_ingest_reference_pdfs.py | modified test_chunk_id_differs_by_source_file_and_index() | ~552 |
+| 22:29 | Edited ../Desktop/NHL Stats Project/.claude/worktrees/76-launcher-auto-sync/scripts/launch_app.sh | inline fix | ~22 |
+| 17:08 | Edited ../Desktop/GMAT/scripts/requirements.txt | 2→3 lines | ~15 |
+| 17:09 | Session end: 36 writes across 11 files (2026-07-25-gmat-reference-rag-design.md, 2026-07-25-gmat-reference-rag-implementation.md, .gitignore, task-1-report.md, test_chunker.py) | 39 reads | ~29832 tok |
+| 17:10 | Session end: 9 writes across 4 files (2026-07-26-launcher-auto-sync-design.md, 2026-07-26-launcher-auto-sync.md, launch_app.sh, task-1-report.md) | 8 reads | ~10407 tok |
+
+## Session: 2026-07-27 17:13
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 17:14 | Session end: 4 writes across 4 files (SKILL.md, CLAUDE.md, memory.md, .gitignore) | 5 reads | ~6478 tok |
+| 17:16 | Edited CLAUDE.md | 1→2 lines | ~355 |
+
+## Session: 2026-07-26/27 (worktree: add-make-interfaces-feel-better-skill)
+> Manual entry — worktree session, hook-driven auto-logging targets the main checkout's CLAUDE_PROJECT_DIR, not this worktree (see the 2026-07-27 17:13 session above, which is the automated log of this same work from the main-checkout side).
 
 | Time | Action | Detail | Tokens |
 |------|--------|--------|--------|
@@ -1202,3 +1694,6 @@
 | — | Edited skills/claude-infra-reference/SKILL.md | added "External Skill Integration (make-interfaces-feel-better / jakubkrehel)" section, positioned as a detail-level review pass complementary to the taste-skill family, not part of its routing table | — |
 | — | Edited CLAUDE.md | added Process Layer row: run `make-interfaces-feel-better` after a frontend UI build/edit is otherwise done | — |
 | — | Ran `openwolf scan` | regenerated .wolf/anatomy.md to index the new skill directory | — |
+| — | Fixed .gitignore | anchored unanchored `Agents/` pattern to `/Agents/` (was silently ignoring nested `agents/` dirs, case-insensitively) | — |
+| — | Recovered skills/ba-agent/agents/ba.md | orphaned by the same gitignore bug, found via code review, never previously tracked | — |
+| — | PR #24 merged into main | code-reviewer subagent verdict: ready to merge | — |
