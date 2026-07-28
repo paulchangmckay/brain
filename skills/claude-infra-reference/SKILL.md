@@ -11,6 +11,7 @@ Lookup-style reference detail moved out of the global `CLAUDE.md` (which now onl
 - **Location:** `~/.claude/Agents/<agent-name>/` — each has its own CLAUDE.md, skills/, templates/, outputs/, scripts/
 - **Open with:** `claude ~/.claude/Agents/<agent-name>/`
 - **Gitignore note:** `Agents/` is gitignored — edit files there directly (no worktree needed). Only `skills/` and `hooks/` under `~/.claude` are git-tracked.
+- **Project-local teams are a different convention:** the `agent-team-architect` skill generates `.claude/agents/` + `.claude/skills/` inside a *target project* (not under `~/.claude/Agents/`), for repeatable domain-specific subagent teams that travel with the project they serve. It does not use this centralized convention and is not opened via `claude ~/.claude/Agents/<name>/` — it's invoked from within the target project itself.
 
 ## Custom Plugin Registration
 - **Local plugins** (no upstream git repo): `claude plugins init <name> --with agents` → scaffolds at `~/.claude/skills/<name>/`, auto-loads as `<name>@skills-dir` — no marketplace or install step needed
