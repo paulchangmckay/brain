@@ -108,3 +108,46 @@ test('archives fully-consolidated old sessions when memory.md still exceeds thre
     assert.ok(elapsedMs < 10000, `expected archival of 2000 blocks to complete in <10s, took ${elapsedMs}ms`);
   });
 });
+
+test('cerebrum: no-ops when cerebrum.md does not exist', () => {
+  withTmpProject((cwd) => {
+    const result = run('cerebrum-reflection', cwd, { WOLF_CRON_CMD: makeFakeCron(cwd, 0) });
+    assert.equal(result.status, 0);
+    assert.equal(existsSync(join(cwd, '.wolf', '_gate-cerebrum-reflection.json')), false);
+  });
+});
+
+test('cerebrum: triggers reflection and writes marker when oversized', () => {
+  withTmpProject((cwd) => {
+    const big = '# Cerebrum\n\n' + '- learning entry filler text\n'.repeat(2000);
+    writeFileSync(join(cwd, '.wolf', 'cerebrum.md'), big);
+    const fakeCron = makeFakeCron(cwd, 0);
+    const result = run('cerebrum-reflection', cwd, { WOLF_CRON_CMD: fakeCron });
+    assert.equal(result.status, 0);
+    const markerPath = join(cwd, '.wolf', '_gate-cerebrum-reflection.json');
+    assert.equal(existsSync(markerPath), true);
+  });
+});
+
+test('cerebrum: does not trigger when fresh and under the token cap', () => {
+  withTmpProject((cwd) => {
+    writeFileSync(join(cwd, '.wolf', 'cerebrum.md'), '# Cerebrum\n\nshort\n');
+    writeFileSync(join(cwd, '.wolf', '_gate-cerebrum-reflection.json'), JSON.stringify({ lastRun: new Date().toISOString() }));
+    const before = readFileSync(join(cwd, '.wolf', '_gate-cerebrum-reflection.json'), 'utf8');
+    run('cerebrum-reflection', cwd, { WOLF_CRON_CMD: makeFakeCron(cwd, 0) });
+    const after = readFileSync(join(cwd, '.wolf', '_gate-cerebrum-reflection.json'), 'utf8');
+    assert.equal(before, after);
+  });
+});
+
+test('memory and cerebrum checks do not interfere with each other in the same invocation', () => {
+  withTmpProject((cwd) => {
+    writeFileSync(join(cwd, '.wolf', 'memory.md'), 'tiny\n');
+    writeFileSync(join(cwd, '.wolf', 'cerebrum.md'), 'tiny\n');
+    const fakeCron = makeFakeCron(cwd, 0);
+    run('memory-consolidation', cwd, { WOLF_CRON_CMD: fakeCron });
+    run('cerebrum-reflection', cwd, { WOLF_CRON_CMD: fakeCron });
+    assert.equal(existsSync(join(cwd, '.wolf', '_gate-memory-consolidation.json')), true);
+    assert.equal(existsSync(join(cwd, '.wolf', '_gate-cerebrum-reflection.json')), true);
+  });
+});

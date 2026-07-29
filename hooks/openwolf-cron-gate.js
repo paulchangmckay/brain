@@ -123,6 +123,36 @@ export function checkMemoryConsolidation(wolfDir) {
   }
 }
 
+export function checkCerebrumReflection(wolfDir) {
+  const markerPath = path.join(wolfDir, '_gate-cerebrum-reflection.json');
+  const cerebrumPath = path.join(wolfDir, 'cerebrum.md');
+  const lockPath = path.join(wolfDir, '_cron-gate.lock');
+
+  let cerebrumContent;
+  try {
+    cerebrumContent = readFileSync(cerebrumPath, 'utf8');
+  } catch (_) {
+    return; // no cerebrum.md yet — nothing to do
+  }
+
+  const stale = isStale(markerPath, CEREBRUM_MAX_AGE_MS);
+  const oversized = estimateTokens(cerebrumContent) > CEREBRUM_MAX_TOKENS;
+  if (!stale && !oversized) return;
+
+  if (!acquireLock(lockPath)) return; // another session is already handling a gate
+
+  try {
+    const ok = runOpenwolfCron('cerebrum-reflection');
+    if (!ok) {
+      console.error('[openwolf-cron-gate] cerebrum-reflection failed — will retry next session');
+      return; // fail open — retry next session
+    }
+    writeMarker(markerPath, { lastRun: new Date().toISOString() });
+  } finally {
+    releaseLock(lockPath);
+  }
+}
+
 function main() {
   try {
     const mode = process.argv[2];
@@ -134,6 +164,8 @@ function main() {
     }
     if (mode === 'memory-consolidation') {
       checkMemoryConsolidation(wolfDir);
+    } else if (mode === 'cerebrum-reflection') {
+      checkCerebrumReflection(wolfDir);
     }
   } catch (_) {
     // fail open — never let this hook block a session
