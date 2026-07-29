@@ -281,6 +281,14 @@
             "command": "node $CLAUDE_PROJECT_DIR/hooks/openwolf-cron-gate.js cerebrum-reflection \"${CLAUDE_CWD:-.}\""
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node $CLAUDE_PROJECT_DIR/hooks/prune-token-ledger.js \"${CLAUDE_CWD:-.}\""
+          }
+        ]
       }
     ],
     "StopFailure": [
