@@ -62,6 +62,14 @@
             "command": "bash $CLAUDE_PROJECT_DIR/hooks/plugin-health-check-gate.sh"
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node $CLAUDE_PROJECT_DIR/hooks/openwolf-cron-gate.js memory-consolidation \"${CLAUDE_CWD:-.}\""
+          }
+        ]
       }
     ],
     "UserPromptSubmit": [
@@ -263,6 +271,14 @@
             "asyncRewake": true,
             "rewakeMessage": "Background security review feedback — address or acknowledge the findings below, then continue with the user's original request or continue waiting for their reply. This is supplementary, not a replacement for your previous response:",
             "rewakeSummary": "Background security review found issues"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node $CLAUDE_PROJECT_DIR/hooks/openwolf-cron-gate.js cerebrum-reflection \"${CLAUDE_CWD:-.}\""
           }
         ]
       }
