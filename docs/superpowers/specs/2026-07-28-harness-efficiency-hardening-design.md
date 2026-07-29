@@ -78,7 +78,14 @@ unclean shutdown — no live process currently holds it.
 
 ## 1. Cron Reliability Gate
 
-New file: `hooks/openwolf-cron-gate.js`.
+New file: `hooks/openwolf-cron-gate.js`. Registered in the **top-level**
+`~/.claude/settings.json` (not the project-tier `.claude/settings.json`),
+so it fires for every Claude Code session in any project — not just
+`~/.claude`. It resolves `.wolf/` relative to `CLAUDE_CWD` and no-ops
+immediately (same pattern as `session-start.sh`'s existing anatomy-file
+check) when the active project has no `.wolf/` directory. This fixes the
+same root-cause scheduler bug (OpenWolf's daemon reliably running only its
+6-hourly task) in every OpenWolf-initialized project, not just this one.
 
 Two independent checks, each backed by a small JSON marker file (following
 the existing `.wolf/_cerebrum-guard-*.json` / `.wolf/_writecount-*.json`
@@ -92,22 +99,55 @@ convention):
   - more than 24h have passed since `lastRun`, or
   - `.wolf/memory.md`'s token count (via Component 2) exceeds 15,000 tokens.
 
+  After a successful consolidation run, re-measure `memory.md`. If it still
+  exceeds the threshold (consolidation only collapses old sessions into
+  one-line summaries — it never removes anything, so the file still grows
+  unboundedly over a long enough timescale), move the oldest already-
+  consolidated one-line summary entries into `.wolf/memory-archive.md`,
+  automating the same "not auto-loaded, read on demand only" archival a
+  past session already did manually on 2026-07-01 (that file and its
+  convention already exist; this just stops it from needing to be redone
+  by hand).
+
   Updates the marker file after a successful run.
 
-- **Cerebrum reflection** — registered on `Stop`, with `async: true` (matches
-  the existing async-hook pattern already in `settings.json`, e.g. the
-  langsmith stop hook). Reads `.wolf/_gate-cerebrum-reflection.json`.
-  Triggers `openwolf cron run cerebrum-reflection` when either:
+- **Cerebrum reflection** — registered on `Stop`, **synchronous** (not
+  `async` — see rationale below). Reads
+  `.wolf/_gate-cerebrum-reflection.json`. Triggers
+  `openwolf cron run cerebrum-reflection` when either:
   - more than 8 days have passed since `lastRun`, or
   - `.wolf/cerebrum.md`'s token count exceeds 2,200 tokens (buffer above the
     2,000 true cap to avoid thrashing on measurement noise).
 
-  This action shells out to `claude -p` internally (up to 120s) — it must
-  never run synchronously in a path that blocks the interactive session,
-  hence `Stop` + `async: true` rather than `SessionStart`.
+  This action shells out to `claude -p` internally (up to 120s). The
+  original design used `async: true` on `Stop` to avoid blocking session
+  end, but Claude Code's own hooks documentation does not guarantee an
+  async hook survives past CLI exit (confirmed via research: `asyncRewake`
+  exists as a separate mechanism specifically to "wake" Claude after an
+  async background task, which implies plain `async` has no completion
+  guarantee — a real risk that a Stop-triggered async task gets orphaned
+  when the session closes). Since the entire point of this component is
+  "don't let a scheduled task silently fail to run," it uses a **synchronous**
+  Stop hook instead, accepting an occasional up-to-120s delay at session end
+  (only once every ~8 days, only when the file is actually oversized) —
+  directly precedented by the existing langsmith Stop hook (`stop.js`,
+  timeout 120), which already blocks synchronously on every session close.
+
+**Cross-session lock.** Both checks are gated by an atomic lock file
+(`.wolf/_cron-gate.lock`, created via the `wx` flag — fails if another
+session already holds it) before triggering. This matters because
+`openwolf cron run <id>` first tries the project's daemon over HTTP
+(serialized safely, single-threaded) but falls back to spawning its own
+in-process `CronEngine` if the daemon is unreachable — so two concurrent
+Claude Code sessions hitting a stale gate at the same time could otherwise
+run two independent processes read-modify-writing the same file
+concurrently. The lock is released (file removed) once the triggered run
+completes, whether it succeeded or failed.
 
 Both checks fail open: if `openwolf cron run <id>` errors (e.g. `claude` CLI
-not on PATH, non-zero exit), log to stderr and leave the marker file
+not on PATH, non-zero exit — confirmed via `openwolf`'s own `cron-cmd.js`
+that this is a reliable, distinguishable exit code, not something we have to
+infer from parsing output), log to stderr and leave the marker file
 untouched so the next session retries — never throw and never block the
 hook's own exit.
 
@@ -170,8 +210,8 @@ corrupt write.
 - `hooks/lib/token-count.js` (new) + `hooks/lib/token-count.test.js` (new)
 - `hooks/prune-token-ledger.js` (new) + `hooks/prune-token-ledger.test.js` (new)
 - `hooks/package.json` — add `js-tiktoken` dependency
-- `settings.json` — register the two new hook entry points (`SessionStart`,
-  `Stop` with `async: true`)
+- `settings.json` (top-level, user config) — register the two new hook
+  entry points (`SessionStart`, synchronous `Stop`)
 - `CLAUDE.md` — §5 rewrite
 - `~/.gbrain/postmaster.pid` / `.gbrain-lock/` — cleared if confirmed stale
   (outside the `~/.claude` repo, not committed)
@@ -187,10 +227,21 @@ corrupt write.
 ## Open Questions for the Plan Stage
 
 - Exact `js-tiktoken` package name/version pin.
-- Whether `openwolf cron run <id>`'s exit code/output reliably distinguishes
-  "ran successfully" from "OpenWolf CLI itself errored" for the fail-open
-  logic in Component 1.
 - Whether clearing the gbrain PGLite lock should happen automatically as
   part of Component 4's implementation, or be called out as a manual step
   for the user to run themselves given it touches a live personal database
   outside this repo.
+- Test strategy for Component 1's shell-out and time-based gating: existing
+  hook tests (e.g. `pre-skill-gate.test.js`) spawn the real script against a
+  real temp directory rather than mocking `fs`. The plan should follow that
+  convention — staleness is tested by seeding marker files with genuinely
+  past timestamps (no clock mocking needed), and the `openwolf` invocation
+  should be overridable via an env var (same pattern as
+  `WOLF_SUBAGENT_DIGEST_PATH` in `subagent-thin-harness.js`) so tests point
+  it at a fake executable instead of shelling out to the real global CLI.
+
+**Resolved during grilling** (see inline in the sections above, not
+repeated here): exit-code reliability for `openwolf cron run <id>` (confirmed
+via its own `cron-cmd.js` source), cross-session locking, automatic
+memory-archive rollover, generic vs. `~/.claude`-only scope, and
+sync-vs-async for the cerebrum Stop hook.
