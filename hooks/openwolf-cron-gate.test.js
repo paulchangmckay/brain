@@ -95,10 +95,16 @@ test('archives fully-consolidated old sessions when memory.md still exceeds thre
     }
     writeFileSync(join(cwd, '.wolf', 'memory.md'), `# Memory\n\n${body}`);
     const fakeCron = makeFakeCron(cwd, 0); // no-op cron; file is already "consolidated" in fixture form
+    const start = Date.now();
     run('memory-consolidation', cwd, { WOLF_CRON_CMD: fakeCron });
+    const elapsedMs = Date.now() - start;
     const archivePath = join(cwd, '.wolf', 'memory-archive.md');
     assert.equal(existsSync(archivePath), true);
     const archived = readFileSync(archivePath, 'utf8');
     assert.match(archived, /Consolidated session \(3 actions\)/);
+    // Sanity guard against an O(n^2) re-tokenization regression: this took ~55s
+    // pre-fix on this 2000-block fixture; post-fix it runs in well under 1s.
+    // 10s leaves generous headroom for slow CI while still catching a regression.
+    assert.ok(elapsedMs < 10000, `expected archival of 2000 blocks to complete in <10s, took ${elapsedMs}ms`);
   });
 });

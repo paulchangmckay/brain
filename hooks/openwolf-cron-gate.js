@@ -59,7 +59,8 @@ export function archiveOldMemoryEntries(memoryPath, archivePath, maxTokens) {
   } catch (_) {
     return;
   }
-  if (estimateTokens(content) <= maxTokens) return;
+  let remainingTokens = estimateTokens(content);
+  if (remainingTokens <= maxTokens) return;
 
   const blocks = splitIntoBlocks(content);
   const consolidated = blocks
@@ -71,9 +72,8 @@ export function archiveOldMemoryEntries(memoryPath, archivePath, maxTokens) {
   for (const block of consolidated) {
     archived.push(block);
     remainingBlocks.delete(block);
-    const remainingContent = [...blocks].filter((b) => remainingBlocks.has(b))
-      .map((b) => b.lines.join('\n')).join('\n');
-    if (estimateTokens(remainingContent) <= maxTokens) break;
+    remainingTokens -= estimateTokens(block.lines.join('\n'));
+    if (remainingTokens <= maxTokens) break;
   }
 
   if (archived.length === 0) return;
@@ -112,7 +112,10 @@ export function checkMemoryConsolidation(wolfDir) {
 
   try {
     const ok = runOpenwolfCron('memory-consolidation');
-    if (!ok) return; // fail open — retry next session
+    if (!ok) {
+      console.error('[openwolf-cron-gate] memory-consolidation failed — will retry next session');
+      return; // fail open — retry next session
+    }
     writeMarker(markerPath, { lastRun: new Date().toISOString() });
     archiveOldMemoryEntries(memoryPath, archivePath, MEMORY_MAX_TOKENS);
   } finally {
