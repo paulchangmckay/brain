@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync, existsSync, chmodSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync, existsSync, chmodSync, utimesSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -149,5 +149,31 @@ test('memory and cerebrum checks do not interfere with each other in the same in
     run('cerebrum-reflection', cwd, { WOLF_CRON_CMD: fakeCron });
     assert.equal(existsSync(join(cwd, '.wolf', '_gate-memory-consolidation.json')), true);
     assert.equal(existsSync(join(cwd, '.wolf', '_gate-cerebrum-reflection.json')), true);
+  });
+});
+
+test('a stale lock from a crashed prior run self-heals instead of wedging the gate shut', () => {
+  withTmpProject((cwd) => {
+    writeFileSync(join(cwd, '.wolf', 'memory.md'), '# Memory\n\nold\n');
+    const lockPath = join(cwd, '.wolf', '_cron-gate.lock');
+    writeFileSync(lockPath, '');
+    const staleTime = new Date(Date.now() - 20 * 60 * 1000);
+    utimesSync(lockPath, staleTime, staleTime);
+    const fakeCron = makeFakeCron(cwd, 0);
+    run('memory-consolidation', cwd, { WOLF_CRON_CMD: fakeCron });
+    assert.equal(existsSync(join(cwd, '.wolf', '_gate-memory-consolidation.json')), true);
+    assert.equal(existsSync(lockPath), false);
+  });
+});
+
+test('a fresh lock (a session genuinely in flight) still blocks the gate', () => {
+  withTmpProject((cwd) => {
+    writeFileSync(join(cwd, '.wolf', 'memory.md'), '# Memory\n\nold\n');
+    const lockPath = join(cwd, '.wolf', '_cron-gate.lock');
+    writeFileSync(lockPath, '');
+    const fakeCron = makeFakeCron(cwd, 0);
+    run('memory-consolidation', cwd, { WOLF_CRON_CMD: fakeCron });
+    assert.equal(existsSync(join(cwd, '.wolf', '_gate-memory-consolidation.json')), false);
+    assert.equal(existsSync(lockPath), true);
   });
 });

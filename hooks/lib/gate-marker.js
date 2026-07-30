@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, existsSync, openSync, closeSync, unlinkSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, openSync, closeSync, unlinkSync, statSync } from 'node:fs';
 
 export function readMarker(markerPath) {
   if (!existsSync(markerPath)) return null;
@@ -36,5 +36,16 @@ export function releaseLock(lockPath) {
     unlinkSync(lockPath);
   } catch (_) {
     // already gone — nothing to do
+  }
+}
+
+export function reapStaleLock(lockPath, maxAgeMs, now = Date.now()) {
+  try {
+    const stat = statSync(lockPath);
+    if (now - stat.mtimeMs > maxAgeMs) {
+      unlinkSync(lockPath);
+    }
+  } catch (_) {
+    // missing or unstat-able — nothing to reap
   }
 }

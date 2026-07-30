@@ -3,12 +3,14 @@ import path from 'node:path';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { estimateTokens } from './lib/token-count.js';
-import { isStale, writeMarker, acquireLock, releaseLock } from './lib/gate-marker.js';
+import { isStale, writeMarker, acquireLock, releaseLock, reapStaleLock } from './lib/gate-marker.js';
 
 const MEMORY_MAX_AGE_MS = 24 * 60 * 60 * 1000;
 const MEMORY_MAX_TOKENS = 15000;
 const CEREBRUM_MAX_AGE_MS = 8 * 24 * 60 * 60 * 1000;
 const CEREBRUM_MAX_TOKENS = 2200;
+const LOCK_STALE_MS = 10 * 60 * 1000; // longer than either gate's own openwolf cron run can take — a lock older than this means a crashed/killed prior run, not one still in flight
+const CRON_RUN_TIMEOUT_MS = 125 * 1000;
 
 const SESSION_HEADER_RE = /^## Session: (\S+)/;
 const CONSOLIDATED_RE = /^> Consolidated session \(\d+ actions\)$/;
@@ -23,7 +25,7 @@ function readStdin() {
 
 export function runOpenwolfCron(id) {
   const cmd = process.env.WOLF_CRON_CMD || 'openwolf';
-  const result = spawnSync(cmd, ['cron', 'run', id], { encoding: 'utf8' });
+  const result = spawnSync(cmd, ['cron', 'run', id], { encoding: 'utf8', timeout: CRON_RUN_TIMEOUT_MS });
   return result.status === 0;
 }
 
@@ -108,6 +110,7 @@ export function checkMemoryConsolidation(wolfDir) {
   const oversized = estimateTokens(memoryContent) > MEMORY_MAX_TOKENS;
   if (!stale && !oversized) return;
 
+  reapStaleLock(lockPath, LOCK_STALE_MS);
   if (!acquireLock(lockPath)) return; // another session is already handling a gate
 
   try {
@@ -139,6 +142,7 @@ export function checkCerebrumReflection(wolfDir) {
   const oversized = estimateTokens(cerebrumContent) > CEREBRUM_MAX_TOKENS;
   if (!stale && !oversized) return;
 
+  reapStaleLock(lockPath, LOCK_STALE_MS);
   if (!acquireLock(lockPath)) return; // another session is already handling a gate
 
   try {

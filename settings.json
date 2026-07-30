@@ -67,7 +67,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node $CLAUDE_PROJECT_DIR/hooks/openwolf-cron-gate.js memory-consolidation \"${CLAUDE_CWD:-.}\""
+            "command": "node $CLAUDE_PROJECT_DIR/hooks/openwolf-cron-gate.js memory-consolidation \"${CLAUDE_CWD:-.}\"",
+            "timeout": 130
           }
         ]
       },
@@ -75,7 +76,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node $CLAUDE_PROJECT_DIR/hooks/prune-token-ledger.js \"${CLAUDE_CWD:-.}\""
+            "command": "node $CLAUDE_PROJECT_DIR/hooks/prune-token-ledger.js \"${CLAUDE_CWD:-.}\"",
+            "timeout": 30
           }
         ]
       }
@@ -286,7 +288,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node $CLAUDE_PROJECT_DIR/hooks/openwolf-cron-gate.js cerebrum-reflection \"${CLAUDE_CWD:-.}\""
+            "command": "node $CLAUDE_PROJECT_DIR/hooks/openwolf-cron-gate.js cerebrum-reflection \"${CLAUDE_CWD:-.}\"",
+            "timeout": 130
           }
         ]
       }
