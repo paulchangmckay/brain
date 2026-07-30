@@ -80,6 +80,14 @@
             "timeout": 30
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/paulmckay/.claude/hooks/context-mode-cache-heal.mjs\""
+          }
+        ]
       }
     ],
     "UserPromptSubmit": [
@@ -385,7 +393,8 @@
     "claude-plugins-official@feature-dev": true,
     "claude-plugins-official@plugin-dev": true,
     "claude-plugins-official@ba-agent": true,
-    "document-skills@anthropic-agent-skills": true
+    "document-skills@anthropic-agent-skills": true,
+    "context-mode@context-mode": true
   },
   "extraKnownMarketplaces": {
     "understand-anything": {

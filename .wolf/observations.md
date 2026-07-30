@@ -184,3 +184,25 @@ DECLINED (YYYY-MM-DD) = reviewed, not pursued
 **Issue:** This session repeatedly needed to verify real third-party SDK behavior (the Pinecone Python client) before committing exact code into a spec/plan/implementation: exception class hierarchy and attributes (NotFoundException, PineconeApiException.status_code), current-vs-deprecated API surface (pc.indexes.create with IntegratedSpec/EmbedConfig vs the deprecated create_index_for_model), and a genuine upstream packaging bug (pinecone==9.1.0 imports typing_extensions at runtime but never declares it in its own wheel metadata). Each check followed the same ad-hoc pattern: create a throwaway venv, pip install the exact pinned version, introspect via inspect.signature/inspect.getdoc or by grepping the dist-info METADATA, then discard the venv. No existing skill packages this workflow -- it was reinvented from scratch each time.
 **Suggested improvement:** A lightweight skill that: (1) spins up an ephemeral install (venv for Python, a scratch npm install for JS) of a pinned package version, (2) introspects the actual installed signatures/exception hierarchy/declared-dependency metadata for whatever symbols a task needs, (3) tears down the ephemeral environment, (4) hands back verified facts to fold into a spec, plan, or implementation. Should generalize beyond Python/Pinecone -- the same need arises for any SDK whose docs or training-data knowledge might be stale or version-specific.
 **Principle:** Documentation and model training-data knowledge of a library's API can be stale, wrong, or version-specific. A live ephemeral install-and-introspect is cheap insurance before committing exact code into a plan, and directly supports the deterministic-first, verify-before-asserting discipline this environment already values elsewhere.
+
+### Observation 17: write-batch-checkpoint: session-reflect
+
+**Status:** DECLINED (2026-07-27) — routine session-reflect writes already captured in cerebrum.md/buglog.json/CLAUDE.md this session; no additional skill-gap beyond those
+**Date:** 2026-07-27
+**Type:** write-batch-checkpoint
+**Session:** 
+**Skill:** session-reflect
+**Issue:** 5-file write batch during end-of-session cerebrum/buglog/CLAUDE.md/openwolf.md updates for the make-interfaces-feel-better skill install task
+**Suggested improvement:** n/a - routine session-reflect Phase 1/2 writes (buglog.json, cerebrum.md, openwolf.md rule qualifier, CLAUDE.md stash-conflict pattern)
+**Principle:** checkpoint only, resolve at next session-reflect pass if a real skill-gap surfaces
+
+### Observation 18: Source-reading during grilling isn't sufficient for third-party installer side effects — verify the actual post-run diff
+
+**Status:** OPEN
+**Date:** 2026-07-28
+**Type:** skill-improvement
+**Session:** context-mode MCP integration, Task 1 execution
+**Skill:** grilling
+**Issue:** 
+**Suggested improvement:** During the context-mode MCP integration (docs/superpowers/specs/2026-07-27-context-mode-integration-design.md), grilling correctly predicted one settings.json side effect by reading start.mjs's source (a SessionStart cache-heal hook). Running the real install produced a second, unpredicted side effect (an enabledPlugins flag) that source-reading alone missed. For any design/grilling pass covering a third-party installer or self-heal/auto-registration script, add an explicit step: after the real command runs, diff the actual config file it touches rather than relying solely on source-reading predictions.
+**Principle:** 

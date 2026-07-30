@@ -6,6 +6,7 @@ globs: **/*
 - Check .wolf/anatomy.md before reading any project file
 - Check .wolf/cerebrum.md Do-Not-Repeat list before generating code
 - After writing or editing files, update .wolf/anatomy.md and append to .wolf/memory.md
+- In a worktree session, the memory.md append happens automatically via hooks (CLAUDE_PROJECT_DIR always targets the main checkout, not the worktree cwd) — only add a manual entry for descriptive detail the terse auto-log line doesn't capture
 - After receiving a user correction, update .wolf/cerebrum.md immediately (Preferences, Learnings, or Do-Not-Repeat)
 - LEARN from every interaction: if you discover a convention, user preference, or project pattern, add it to .wolf/cerebrum.md. Low threshold — when in doubt, log it.
 - BEFORE fixing any bug or error: read .wolf/buglog.json for known fixes
