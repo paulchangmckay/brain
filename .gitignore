@@ -46,6 +46,8 @@ settings.local.json
 .wolf/designqc-report.json
 .wolf/suggestions.json
 .wolf/_skill-gate-*.json
+.wolf/_gate-*.json
+.wolf/_cron-gate.lock
 .wolf/_last-seen-head
 .wolf/_writecount-*.json
 .wolf/*.md.bak
