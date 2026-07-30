@@ -4,81 +4,6 @@
 > Old sessions are consolidated by the daemon weekly.
 > Sessions before 2026-07-02 archived to `.wolf/memory-archive.md`.
 
-## Session: 2026-07-02 22:01
-> Consolidated session (17 actions)
-
-## Session: 2026-07-02 23:04
-> Consolidated session (4 actions)
-
-## Session: 2026-07-02 23:32
-> Consolidated session (0 actions)
-
-## Session: 2026-07-02 23:37
-> Consolidated session (0 actions)
-
-## Session: 2026-07-02 23:37
-> Consolidated session (0 actions)
-
-## Session: 2026-07-02 23:37
-> Consolidated session (0 actions)
-
-## Session: 2026-07-02 23:39
-> Consolidated session (0 actions)
-
-## Session: 2026-07-02 23:47
-> Consolidated session (20 actions)
-
-## Session: 2026-07-02 01:39
-> Consolidated session (11 actions)
-
-## Session: 2026-07-02 02:04
-> Consolidated session (7 actions)
-
-## Session: 2026-07-02 02:09
-> Consolidated session (20 actions)
-
-## Session: 2026-07-03 21:26
-> Consolidated session (0 actions)
-
-## Session: 2026-07-03 21:31
-> Consolidated session (7 actions)
-
-## Session: 2026-07-03 21:36
-> Consolidated session (18 actions)
-
-## Session: 2026-07-03 21:55
-> Consolidated session (6 actions)
-
-## Session: 2026-07-03 22:18
-> Consolidated session (0 actions)
-
-## Session: 2026-07-03 22:18
-> Consolidated session (0 actions)
-
-## Session: 2026-07-03 22:19
-> Consolidated session (5 actions)
-
-## Session: 2026-07-03 22:27
-> Consolidated session (60 actions)
-
-## Session: 2026-07-03 16:01
-> Consolidated session (22 actions)
-
-## Session: 2026-07-12 00:19
-> Consolidated session (2 actions)
-
-## Session: 2026-07-12 00:50
-> Consolidated session (10 actions)
-
-## Session: 2026-07-13 23:26
-> Consolidated session (0 actions)
-
-## Session: 2026-07-13 23:29
-> Consolidated session (15 actions)
-
-## Session: 2026-07-13 00:11
-> Consolidated session (3 actions)
-
 ## Session: 2026-07-15 22:11 (docs-site scaffold, worktree blume-docs-site)
 
 | Time | Action | File(s) | Outcome | ~Tokens |
@@ -102,30 +27,6 @@
 | 00:00 | Wrote 7 overview stub pages, openwolf.md stub, updated index.mdx home page, wrote README.md, set blume.config.ts title | content/overview/*.md, content/openwolf.md, content/index.mdx, README.md, blume.config.ts | — | ~1500 |
 | 00:00 | Ran `blume dev`, fetched every route (home, 7 overview pages, openwolf, several skill pages incl. nested, ba-agent) to verify | (no files changed) | All content routes 200; /skills/ba-agent and /skills/nonexistent-skill correctly 404 | ~300 |
 | 00:00 | Re-ran `npm run sync`, diffed hand-authored pages before/after | content/overview/*.md md5sums | Confirmed unchanged — sync only touches content/skills/ | ~50 |
-
-## Session: 2026-07-13 00:11 (continued — restored from pre-merge stash)
-> Consolidated session (2 actions)
-
-## Session: 2026-07-13 00:23
-> Consolidated session (35 actions)
-
-## Session: 2026-07-13 00:46
-> Consolidated session (0 actions)
-
-## Session: 2026-07-13 00:46
-> Consolidated session (8 actions)
-
-## Session: 2026-07-14 21:25
-> Consolidated session (0 actions)
-
-## Session: 2026-07-14 21:27
-> Consolidated session (9 actions)
-
-## Session: 2026-07-14 21:49
-> Consolidated session (17 actions)
-
-## Session: 2026-07-14 22:07
-> Consolidated session (74 actions)
 
 ## Session: 2026-07-15 21:14
 
