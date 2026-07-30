@@ -31,6 +31,7 @@ export function pruneTokenLedger(ledgerPath) {
   try {
     ledger = JSON.parse(readFileSync(ledgerPath, 'utf8'));
   } catch (_) {
+    console.error('[prune-token-ledger] token-ledger.json missing or corrupt — skipping this run');
     return; // missing or corrupt — skip rather than risk a bad write
   }
 
