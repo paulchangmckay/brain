@@ -85,13 +85,14 @@ openwolf daemon start  # Starts background self-learning crons (PM2 required —
 openwolf status      # Confirm health
 ```
 
-## 5. Personal Knowledge Layer (brain MCP)
-- **MCP server:** `brain` — filesystem server rooted at `~/brain/` (people/, companies/, concepts/, decisions/)
-- **Before answering questions about people, companies, or past decisions:** use `list_directory` + `read_file` on the relevant brain subdirectory first
-- **Write decisions back:** after any significant decision in a session, use `write_file` to persist it to the appropriate brain directory with context
-- **For synthesis questions** (e.g. "what do I know about X?"): list the relevant directory, read matching files, then synthesize
-- **Cross-reference with cerebrum:** brain = cross-project / personal knowledge; `.wolf/cerebrum.md` = project-specific patterns — both complement each other
-- **Native Claude Code auto-memory** (`~/.claude/projects/*/memory/`) is a third, distinct layer: user/feedback/project/reference facts about working *with Claude Code itself*, persisted across all projects. It is not project-specific implementation patterns (that's cerebrum's job) and not long-lived personal/company knowledge (that's brain's job) — keep facts in the layer they belong to rather than duplicating across two.
+## 5. Personal Knowledge Layer (gbrain)
+- **MCP server:** `gbrain` — a PGLite-backed personal-knowledge tool (`gbrain get/put/search/query/ask`), registered in `~/.claude.json`'s `mcpServers`. Its content lives in the git-backed `~/brain/` directory (people/, companies/, concepts/, decisions/), which an autopilot background process (`gbrain autopilot --repo ~/brain`, PM2-managed) continuously enriches — embedding, linking, backfilling — from that git history.
+- **Before answering questions about people, companies, or past decisions:** use `gbrain query`/`gbrain search` (or the MCP tool surface) against the relevant content first.
+- **Write decisions back:** after any significant decision in a session, use `gbrain put <slug>` to persist it with context.
+- **For synthesis questions** (e.g. "what do I know about X?"): search/query, read matching pages, then synthesize.
+- **Cross-reference with cerebrum:** gbrain = cross-project / personal knowledge; `.wolf/cerebrum.md` = project-specific patterns — both complement each other.
+- **Native Claude Code auto-memory** (`~/.claude/projects/*/memory/`) is a third, distinct layer: user/feedback/project/reference facts about working *with Claude Code itself*, persisted across all projects. It is not project-specific implementation patterns (that's cerebrum's job) and not long-lived personal/company knowledge (that's gbrain's job) — keep facts in the layer they belong to rather than duplicating across two.
+- **Known history:** an earlier version of this file described a "brain" filesystem MCP server that was never actually registered (`~/brain/` and a template `mcp_servers.example.json` existed, but no real `mcp_servers.json` or `mcpServers` entry ever did) — `gbrain` is the system that's actually been serving this role.
 
 ## 6. Knowledge Graph (`understand-anything`)
 - `~/.claude` is tracked in git (baseline `b354ad3`) — commit regularly for incremental updates (1-5 batches vs. 32 for a full rebuild).
