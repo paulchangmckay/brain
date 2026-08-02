@@ -64,37 +64,55 @@ improvised bash each time.
 
 ## Script Behavior
 
-### `scripts/verify-python.sh install <pip-requirement-spec> [--python <version>]`
+### `scripts/verify-python.sh install <pip-requirement-spec> [--python <version>] [--timeout <seconds>]`
 
 1. `mktemp -d` for an ephemeral venv location (never inside a git repo).
-2. `python<version|3> -m venv <tmpdir>/venv`, activate.
-3. `pip install <requirement-spec>` (spec may include extras, e.g.
-   `'markitdown[all]'`, or an exact pin, e.g. `pinecone==9.1.0`).
-4. Report: the **actually-resolved** installed version (`pip show
-   <top-level-pkg-name>`, parsed from the spec) vs. what was requested —
-   loudly flag a mismatch. Report that version's declared `Requires-Dist`.
-5. `trap cleanup EXIT` removes the tmpdir venv unconditionally, including
-   on failure/interrupt.
+2. `python<version|3> -m venv <tmpdir>/venv` — no `activate`/`deactivate`;
+   every subsequent step invokes `<tmpdir>/venv/bin/pip`/`bin/python3`
+   directly by absolute path (verified this works identically to an
+   activated shell, and makes cleanup a bare `rm -rf` with no shell-state
+   concerns).
+3. `timeout <seconds|180> <tmpdir>/venv/bin/pip install <requirement-spec>`
+   (spec may include extras, e.g. `'markitdown[all]'`, or an exact pin,
+   e.g. `pinecone==9.1.0`). Default 180s, overridable via `--timeout` for
+   known-heavy packages (torch etc.) — a timeout exits clearly (124) with
+   an explicit message rather than the caller waiting indefinitely.
+4. Parse the top-level distribution name from the spec via a simple
+   delimiter split on `[=<>!~; ` (verified this correctly extracts
+   `pinecone`, `markitdown`, `scikit-learn`, etc. from every realistic
+   spec shape). Report the **actually-resolved** installed version and
+   declared dependencies via `<tmpdir>/venv/bin/python3 -c "import
+   importlib.metadata as md; ..."` (`md.version(name)`, `md.requires(name)`
+   — verified cleaner and more robust than parsing `pip show`'s
+   human-readable text output) vs. what was requested — loudly flag a
+   version mismatch.
+5. `trap cleanup EXIT` removes the tmpdir unconditionally, including on
+   failure, interrupt, or timeout.
 
-### `scripts/verify-python.sh inspect <pip-requirement-spec> <dotted.symbol.path> [...]`
+### `scripts/verify-python.sh inspect <pip-requirement-spec> <dotted.symbol.path> [...] [--timeout <seconds>]`
 
-1. Same ephemeral venv + install as above.
-2. For each symbol path: import the module, resolve the attribute chain.
-   If it's a class, report MRO/bases, `__init__` signature
-   (`inspect.signature`), docstring (`inspect.getdoc`), and public
-   attributes. If it's a function/method, report signature + docstring.
+1. Same ephemeral venv + timed install as above.
+2. For each symbol path: import the module via `<tmpdir>/venv/bin/python3`,
+   resolve the attribute chain. If it's a class, report MRO/bases,
+   `__init__` signature (`inspect.signature`), docstring
+   (`inspect.getdoc`), and public attributes. If it's a function/method,
+   report signature + docstring. A wrong/nonexistent symbol path surfaces
+   Python's own `AttributeError`/`ModuleNotFoundError` traceback directly
+   — already informative enough, no custom wrapping needed.
 3. Same unconditional cleanup.
 
-### `scripts/verify-js.sh install <pkg>@<version>`
+### `scripts/verify-js.sh install <pkg>@<version> [--timeout <seconds>]`
 
-Scratch `npm install` into a temp dir (never inside a git repo), then
-compares the resolved version in `node_modules/<pkg>/package.json`
-against what was requested — same silent-downgrade check as Python.
+Scratch `timeout <seconds|180> npm install <pkg>@<version>` into a temp
+dir (never inside a git repo), then compares the resolved version in
+`node_modules/<pkg>/package.json` against what was requested (verified
+this file's `version` field correctly reflects the actually-resolved
+version, not a stale cache) — same silent-downgrade check as Python.
 Unconditional cleanup.
 
-### `scripts/verify-js.sh inspect <pkg>@<version> <exportName> [...]`
+### `scripts/verify-js.sh inspect <pkg>@<version> <exportName> [...] [--timeout <seconds>]`
 
-Same scratch install. JS has no universal runtime signature reflection
+Same timed scratch install. JS has no universal runtime signature reflection
 equivalent to Python's `inspect` module, so this check is **necessarily
 weaker** and the skill documents that honestly rather than overpromising:
 
@@ -146,10 +164,13 @@ replacing the surrounding process scaffolding. The plan produced by
 - Private/scoped packages requiring registry auth — out of scope; the
   script fails loudly with a clear message rather than hanging waiting
   for credentials.
-- Large packages (e.g. `torch`) — ephemeral install may be slow.
-  `SKILL.md` warns Claude this can take a while for heavy packages,
-  rather than the script silently appearing stuck with no explanation.
-- Cleanup on script failure or interrupt (Ctrl-C, timeout) — handled
+- Large packages (e.g. `torch`) — ephemeral install may be slow. Both
+  install steps are wrapped in `timeout <seconds|180>` (overridable via
+  `--timeout`) so a stuck resolver or genuinely heavy package fails
+  loudly and quickly (exit 124) instead of hanging the calling session
+  indefinitely with no signal. `SKILL.md` also documents raising
+  `--timeout` proactively for known-heavy packages.
+- Cleanup on script failure, interrupt (Ctrl-C), or timeout — handled
   generically by `trap cleanup EXIT` in both scripts, not just on the
   success path.
 
