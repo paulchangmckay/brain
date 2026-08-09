@@ -394,7 +394,9 @@
     "claude-plugins-official@plugin-dev": true,
     "claude-plugins-official@ba-agent": true,
     "document-skills@anthropic-agent-skills": true,
-    "context-mode@context-mode": true
+    "context-mode@context-mode": true,
+    "i-have-adhd@i-have-adhd": true,
+    "superpowers@superpowers-dev": true
   },
   "extraKnownMarketplaces": {
     "understand-anything": {
@@ -407,6 +409,12 @@
       "source": {
         "source": "github",
         "repo": "anthropics/skills"
+      }
+    },
+    "i-have-adhd": {
+      "source": {
+        "source": "github",
+        "repo": "ayghri/i-have-adhd"
       }
     }
   },
