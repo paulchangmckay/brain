@@ -75,4 +75,35 @@ if [ "$MODE" = "install" ]; then
   exit 0
 fi
 
+if [ "$MODE" = "inspect" ]; then
+  for EXP in "${EXPORTS[@]}"; do
+    echo "=== $EXP ==="
+    (cd "$TMPDIR" && node -e "
+      const mod = require(process.argv[1]);
+      const name = process.argv[2];
+      const val = mod[name];
+      if (val === undefined) {
+        console.log('Export \"' + name + '\" not found. Available exports: ' + Object.keys(mod).join(', '));
+      } else if (typeof val === 'function') {
+        console.log('Type: function');
+        console.log('Arity (fn.length): ' + val.length);
+        console.log('Source (fn.toString(), first 500 chars):');
+        console.log(val.toString().slice(0, 500));
+      } else {
+        console.log('Type: ' + typeof val);
+        console.log('Value: ' + JSON.stringify(val, null, 2).slice(0, 500));
+      }
+    " "$PKG_NAME" "$EXP")
+    DTS_FILES=$(find "$TMPDIR/node_modules/$PKG_NAME" -name "*.d.ts" 2>/dev/null)
+    if [ -n "$DTS_FILES" ]; then
+      MATCH=$(grep -h "\\b$EXP\\b" $DTS_FILES 2>/dev/null | head -3)
+      if [ -n "$MATCH" ]; then
+        echo "Declared .d.ts signature (best-effort grep):"
+        echo "$MATCH"
+      fi
+    fi
+  done
+  exit 0
+fi
+
 usage

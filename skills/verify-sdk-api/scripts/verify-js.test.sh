@@ -54,6 +54,22 @@ OUT=$("$SCRIPT" install "@babel/runtime@7.20.0" 2>&1)
 assert_contains "$OUT" "Requested spec: @babel/runtime@7.20.0" "reports requested spec for scoped package"
 assert_contains "$OUT" "Resolved version: 7.20.0" "reports resolved version for scoped package"
 
+echo "--- inspect: reports a real function's type, arity, and source ---"
+OUT=$("$SCRIPT" inspect "lodash@4.17.20" "chunk" 2>&1)
+assert_contains "$OUT" "=== chunk ===" "prints the export header"
+assert_contains "$OUT" "Type: function" "reports type"
+assert_contains "$OUT" "Arity (fn.length):" "reports arity"
+assert_contains "$OUT" "Source (fn.toString()" "reports source"
+
+echo "--- inspect: reports a not-found export clearly ---"
+OUT=$("$SCRIPT" inspect "lodash@4.17.20" "thisExportDoesNotExist" 2>&1)
+assert_contains "$OUT" 'not found' "reports a missing export clearly"
+
+echo "--- inspect: multiple exports in one invocation ---"
+OUT=$("$SCRIPT" inspect "lodash@4.17.20" "chunk" "flatten" 2>&1)
+assert_contains "$OUT" "=== chunk ===" "first export present"
+assert_contains "$OUT" "=== flatten ===" "second export present"
+
 echo ""
 if [ "$FAILURES" -eq 0 ]; then
   echo "ALL PASS"
