@@ -80,4 +80,51 @@ PYEOF
   exit 0
 fi
 
+if [ "$MODE" = "inspect" ]; then
+  for SYM in "${SYMBOLS[@]}"; do
+    "$VENV_PY" - "$SYM" <<'PYEOF'
+import importlib
+import inspect
+import sys
+
+dotted = sys.argv[1]
+parts = dotted.split(".")
+
+obj = None
+remaining = []
+for i in range(len(parts), 0, -1):
+    mod_name = ".".join(parts[:i])
+    try:
+        obj = importlib.import_module(mod_name)
+        remaining = parts[i:]
+        break
+    except ModuleNotFoundError:
+        continue
+else:
+    raise ModuleNotFoundError(f"Could not import any module prefix of '{dotted}'")
+
+for attr in remaining:
+    obj = getattr(obj, attr)
+
+print(f"=== {dotted} ===")
+if inspect.isclass(obj):
+    print(f"MRO: {[c.__name__ for c in obj.__mro__]}")
+    try:
+        print(f"__init__ signature: {inspect.signature(obj.__init__)}")
+    except (TypeError, ValueError):
+        print("__init__ signature: (unavailable)")
+    print(f"Public attributes: {[a for a in dir(obj) if not a.startswith('_')]}")
+elif inspect.isfunction(obj) or inspect.ismethod(obj):
+    print(f"Signature: {inspect.signature(obj)}")
+else:
+    print(f"Type: {type(obj)}")
+    print(f"Value repr: {obj!r}")
+
+doc = inspect.getdoc(obj)
+print(f"Docstring: {doc if doc else '(none)'}")
+PYEOF
+  done
+  exit 0
+fi
+
 usage

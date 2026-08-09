@@ -50,6 +50,24 @@ else
   FAILURES=$((FAILURES + 1))
 fi
 
+echo "--- inspect: reports a real class's MRO and __init__ signature ---"
+OUT=$("$SCRIPT" inspect "requests==2.31.0" "requests.exceptions.HTTPError" 2>&1)
+assert_contains "$OUT" "=== requests.exceptions.HTTPError ===" "prints the symbol header"
+assert_contains "$OUT" "MRO:" "reports MRO for a class"
+assert_contains "$OUT" "HTTPError" "MRO includes the class itself"
+assert_contains "$OUT" "__init__ signature:" "reports __init__ signature"
+
+echo "--- inspect: reports a real function's signature ---"
+OUT=$("$SCRIPT" inspect "requests==2.31.0" "requests.get" 2>&1)
+assert_contains "$OUT" "=== requests.get ===" "prints the symbol header"
+assert_contains "$OUT" "Signature:" "reports function signature"
+assert_contains "$OUT" "url" "signature mentions the url parameter"
+
+echo "--- inspect: multiple symbols in one invocation ---"
+OUT=$("$SCRIPT" inspect "requests==2.31.0" "requests.get" "requests.post" 2>&1)
+assert_contains "$OUT" "=== requests.get ===" "first symbol present"
+assert_contains "$OUT" "=== requests.post ===" "second symbol present"
+
 echo ""
 if [ "$FAILURES" -eq 0 ]; then
   echo "ALL PASS"
