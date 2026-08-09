@@ -49,6 +49,11 @@ else
   FAILURES=$((FAILURES + 1))
 fi
 
+echo "--- install: correctly parses a scoped package name (last @ is the separator) ---"
+OUT=$("$SCRIPT" install "@babel/runtime@7.20.0" 2>&1)
+assert_contains "$OUT" "Requested spec: @babel/runtime@7.20.0" "reports requested spec for scoped package"
+assert_contains "$OUT" "Resolved version: 7.20.0" "reports resolved version for scoped package"
+
 echo ""
 if [ "$FAILURES" -eq 0 ]; then
   echo "ALL PASS"
