@@ -33,6 +33,12 @@ const at = spec.lastIndexOf('@');
 console.log(at > 0 ? spec.slice(0, at) : spec);
 " "$SPEC")
 
+TIMEOUT_BIN=$(command -v timeout || command -v gtimeout || true)
+if [ -z "$TIMEOUT_BIN" ]; then
+  echo "Error: neither 'timeout' nor 'gtimeout' found. Install GNU coreutils (e.g. 'brew install coreutils' on macOS) and retry." >&2
+  exit 1
+fi
+
 TMPDIR=$(mktemp -d)
 cleanup() { rm -rf "$TMPDIR"; }
 trap cleanup EXIT
@@ -41,7 +47,7 @@ trap cleanup EXIT
 
 echo "Scratch npm install of '$SPEC' in $TMPDIR (timeout ${TIMEOUT}s)..." >&2
 set +e
-(cd "$TMPDIR" && timeout "$TIMEOUT" npm install --no-audit --no-fund -q "$SPEC")
+(cd "$TMPDIR" && "$TIMEOUT_BIN" "$TIMEOUT" npm install --no-audit --no-fund -q "$SPEC")
 INSTALL_STATUS=$?
 set -e
 if [ "$INSTALL_STATUS" -ne 0 ]; then
@@ -96,7 +102,8 @@ if [ "$MODE" = "inspect" ]; then
     " "$PKG_NAME" "$EXP")
     DTS_FILES=$(find "$TMPDIR/node_modules/$PKG_NAME" -name "*.d.ts" 2>/dev/null)
     if [ -n "$DTS_FILES" ]; then
-      MATCH=$(grep -h "\\b$EXP\\b" $DTS_FILES 2>/dev/null | head -3)
+      # shellcheck disable=SC2086 # intentional word-splitting of DTS_FILES: paths come from mktemp -d, so spaces/globs aren't a realistic risk
+      MATCH=$(grep -h "\\b$EXP\\b" $DTS_FILES 2>/dev/null | head -3 || true)
       if [ -n "$MATCH" ]; then
         echo "Declared .d.ts signature (best-effort grep):"
         echo "$MATCH"

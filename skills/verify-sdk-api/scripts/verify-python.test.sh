@@ -21,6 +21,16 @@ assert_contains "$OUT" "Requested spec: requests==2.31.0" "reports requested spe
 assert_contains "$OUT" "Resolved version: 2.31.0" "reports resolved version"
 assert_contains "$OUT" "charset-normalizer" "reports a real declared dependency"
 
+echo "--- install: unpinned/range spec resolves to a real, specific version ---"
+OUT=$("$SCRIPT" install "requests>=2.25,<3" 2>&1)
+assert_contains "$OUT" "Requested spec: requests>=2.25,<3" "reports requested (range) spec"
+if [[ "$OUT" =~ Resolved\ version:\ 2\.[0-9]+\.[0-9]+ ]]; then
+  echo "PASS: reports a real resolved 2.x.x version for the range spec (not a placeholder)"
+else
+  echo "FAIL: expected a real resolved 2.x.x version in output, got: $OUT"
+  FAILURES=$((FAILURES + 1))
+fi
+
 echo "--- install: fails loudly on a nonexistent package ---"
 "$SCRIPT" install "this-package-does-not-exist-xyz123==1.0.0" >/tmp/verify-python-fail-out.txt 2>&1
 FAIL_STATUS=$?
@@ -32,7 +42,7 @@ else
 fi
 
 echo "--- install: pip invocation is wrapped in timeout (static check) ---"
-if grep -q 'timeout "\$TIMEOUT" "\$VENV_PIP" install' "$SCRIPT"; then
+if grep -q '"\$TIMEOUT_BIN" "\$TIMEOUT" "\$VENV_PIP" install' "$SCRIPT"; then
   echo "PASS: pip install call is wrapped in timeout"
 else
   echo "FAIL: pip install call is not wrapped in timeout — grep the script source"

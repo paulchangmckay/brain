@@ -9,6 +9,10 @@ description: Use before writing exact code against a third-party package, SDK, o
 
 Spin up an ephemeral, throwaway install of a pinned package version, check what actually resolved and what a named symbol's real signature/docstring/exception hierarchy is, then discard the install. Verified facts, not documentation guesses, go into your spec/plan/code.
 
+## Safety Note
+
+These scripts perform a **real install** of the given spec and execute the package's install-time code (pip's `setup.py`/PEP 517 build backends for sdists; npm's `preinstall`/`install`/`postinstall` lifecycle scripts by default) with the user's own privileges, unsandboxed. Only pass a spec that came from the user, a lockfile, or an already-declared project dependency — never a package name typed from memory — since a typosquatted name is exactly the surface this executes against. When only version resolution needs checking (not symbol shape), prefer `install` over `inspect`: it's the cheaper, lower-blast-radius check.
+
 ## When to Use
 
 - About to write code against a specific exception class, and you're not certain it exists with that name in the pinned version
@@ -20,19 +24,19 @@ Spin up an ephemeral, throwaway install of a pinned package version, check what 
 
 | Task | Command |
 |---|---|
-| Does this pip spec actually resolve to what I asked for? | `scripts/verify-python.sh install '<spec>'` |
-| What's the real signature/MRO/docstring of a Python symbol? | `scripts/verify-python.sh inspect '<spec>' <dotted.path> [...]` |
-| Does this npm spec actually resolve to what I asked for? | `scripts/verify-js.sh install '<pkg>@<version>'` |
-| What's the real export shape of a JS symbol? | `scripts/verify-js.sh inspect '<pkg>@<version>' <exportName> [...]` |
+| Does this pip spec actually resolve to what I asked for? | `~/.claude/skills/verify-sdk-api/scripts/verify-python.sh install '<spec>'` |
+| What's the real signature/MRO/docstring of a Python symbol? | `~/.claude/skills/verify-sdk-api/scripts/verify-python.sh inspect '<spec>' <dotted.path> [...]` |
+| Does this npm spec actually resolve to what I asked for? | `~/.claude/skills/verify-sdk-api/scripts/verify-js.sh install '<pkg>@<version>'` |
+| What's the real export shape of a JS symbol? | `~/.claude/skills/verify-sdk-api/scripts/verify-js.sh inspect '<pkg>@<version>' <exportName> [...]` |
 
-Both scripts accept `--timeout <seconds>` (default 180) — raise it for known-heavy packages (torch, etc.) rather than letting the default trip early.
+Both scripts accept `--timeout <seconds>` (default 180) — raise it for known-heavy packages (torch, etc.) rather than letting the default trip early. `verify-python.sh` also accepts `--python <python-binary>` (default `python3`) to build the ephemeral venv against a specific interpreter, e.g. `--python python3.11`.
 
 ## Implementation
 
 **Python example** — verifying an exception class before catching it:
 
 ```bash
-scripts/verify-python.sh inspect "pinecone==9.1.0" "pinecone.exceptions.NotFoundException"
+~/.claude/skills/verify-sdk-api/scripts/verify-python.sh inspect "pinecone==9.1.0" "pinecone.exceptions.NotFoundException"
 ```
 
 Reports the real MRO, `__init__` signature, public attributes, and docstring — confirms the class exists under that exact name and how to construct/catch it, instead of trusting training-data memory of the library's shape.
@@ -40,7 +44,7 @@ Reports the real MRO, `__init__` signature, public attributes, and docstring —
 **JS example** — checking a package's actually-resolved version before pinning it:
 
 ```bash
-scripts/verify-js.sh install "some-pkg@^2.0.0"
+~/.claude/skills/verify-sdk-api/scripts/verify-js.sh install "some-pkg@^2.0.0"
 ```
 
 Reports the real resolved version and declared dependencies — catches a resolver silently landing on an unexpected release.
@@ -50,5 +54,6 @@ Reports the real resolved version and declared dependencies — catches a resolv
 ## Common Mistakes
 
 - **Treating a docs/metadata read as equivalent to running the real install.** Reading a package's declared dependencies (PyPI `requires_dist`, npm `package.json`) confirms what it depends on, not whether the installer can actually resolve those pins on the current interpreter/runtime version — a resolver can silently backtrack to an old, broken release with no error. Run the real (or ephemeral) install before treating a metadata-based conclusion as final.
+- **Expecting the script to flag a version mismatch for you.** Both scripts print the requested spec and the resolved version as two adjacent lines; they don't diff them. For an exact pin (`==1.2.3` / `@1.2.3`) a mismatch is impossible by construction — the installer fails outright rather than silently downgrading, so there's nothing to flag. For a range/unpinned spec (e.g. `some-pkg~=1.0`, `lodash@^3.0.0`) there is no single "requested version" to diff against — the reported resolved-version line **is** the check. Read it yourself.
 - **Skipping cleanup verification.** Both scripts clean up their own ephemeral directory via `trap cleanup EXIT` — you don't need to `rm -rf` anything yourself after calling them.
 - **Assuming JS introspection is as strong as Python's.** It isn't (see above) — don't report a `fn.toString()` read with the same confidence as a Python `inspect.signature()` result.

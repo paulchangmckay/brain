@@ -3,7 +3,7 @@ set -euo pipefail
 
 usage() {
   echo "Usage:" >&2
-  echo "  verify-python.sh install <pip-requirement-spec> [--python <version>] [--timeout <seconds>]" >&2
+  echo "  verify-python.sh install <pip-requirement-spec> [--python <python-binary>] [--timeout <seconds>]" >&2
   echo "  verify-python.sh inspect <pip-requirement-spec> <dotted.symbol.path> [<dotted.symbol.path> ...] [--timeout <seconds>]" >&2
   exit 2
 }
@@ -29,6 +29,12 @@ if [ "$MODE" = "inspect" ] && [ ${#SYMBOLS[@]} -eq 0 ]; then
   usage
 fi
 
+TIMEOUT_BIN=$(command -v timeout || command -v gtimeout || true)
+if [ -z "$TIMEOUT_BIN" ]; then
+  echo "Error: neither 'timeout' nor 'gtimeout' found. Install GNU coreutils (e.g. 'brew install coreutils' on macOS) and retry." >&2
+  exit 1
+fi
+
 TMPDIR=$(mktemp -d)
 cleanup() { rm -rf "$TMPDIR"; }
 trap cleanup EXIT
@@ -41,7 +47,7 @@ VENV_PIP="$TMPDIR/venv/bin/pip"
 
 echo "Installing '$SPEC' (timeout ${TIMEOUT}s)..." >&2
 set +e
-timeout "$TIMEOUT" "$VENV_PIP" install -q "$SPEC"
+"$TIMEOUT_BIN" "$TIMEOUT" "$VENV_PIP" install -q "$SPEC"
 INSTALL_STATUS=$?
 set -e
 if [ "$INSTALL_STATUS" -ne 0 ]; then

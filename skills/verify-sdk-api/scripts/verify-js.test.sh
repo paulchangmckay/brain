@@ -31,7 +31,7 @@ else
 fi
 
 echo "--- install: npm invocation is wrapped in timeout (static check) ---"
-if grep -q 'timeout "\$TIMEOUT" npm install' "$SCRIPT"; then
+if grep -q '"\$TIMEOUT_BIN" "\$TIMEOUT" npm install' "$SCRIPT"; then
   echo "PASS: npm install call is wrapped in timeout"
 else
   echo "FAIL: npm install call is not wrapped in timeout — grep the script source"
@@ -69,6 +69,19 @@ echo "--- inspect: multiple exports in one invocation ---"
 OUT=$("$SCRIPT" inspect "lodash@4.17.20" "chunk" "flatten" 2>&1)
 assert_contains "$OUT" "=== chunk ===" "first export present"
 assert_contains "$OUT" "=== flatten ===" "second export present"
+
+echo "--- inspect: a not-found export followed by a found one doesn't die mid-loop (regression for grep|head under pipefail) ---"
+OUT=$("$SCRIPT" inspect "chalk@5.3.0" "zzQqNoSuchThing" "Chalk" 2>&1)
+INSPECT_STATUS=$?
+assert_contains "$OUT" "=== zzQqNoSuchThing ===" "first (not-found) export section printed"
+assert_contains "$OUT" "not found" "first export reported as not found"
+assert_contains "$OUT" "=== Chalk ===" "second export section printed (script did not die after the first)"
+if [ "$INSPECT_STATUS" -eq 0 ]; then
+  echo "PASS: exits 0 despite a not-found export earlier in the list"
+else
+  echo "FAIL: expected exit 0, got $INSPECT_STATUS"
+  FAILURES=$((FAILURES + 1))
+fi
 
 echo ""
 if [ "$FAILURES" -eq 0 ]; then
