@@ -3572,6 +3572,102 @@
       "related_bugs": [],
       "occurrences": 2,
       "last_seen": "2026-07-30T02:18:44.956Z"
+    },
+    {
+      "id": "bug-222",
+      "timestamp": "2026-08-09T02:20:00.000Z",
+      "error_message": "claude plugin list showed superpowers@superpowers-dev as disabled despite settings.local.json having \"superpowers@superpowers-dev\": true",
+      "file": "settings.local.json",
+      "root_cause": "Plugin user-scope enable state is read exclusively from settings.json enabledPlugins; settings.local.json is not consulted for that key, so a true flag placed there is silently inert.",
+      "fix": "Ran claude plugin enable superpowers@superpowers-dev, which correctly wrote the key into settings.json enabledPlugins. Verified via claude plugin list showing status enabled.",
+      "tags": [
+        "plugins",
+        "settings",
+        "config-drift"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-08-09T02:20:00.000Z"
+    },
+    {
+      "id": "bug-223",
+      "timestamp": "2026-08-10T01:37:52.312Z",
+      "error_message": "Incorrect value in code",
+      "file": ".claude/worktrees/feature+34-verify-sdk-api-skill/skills/verify-sdk-api/scripts/verify-python.sh",
+      "root_cause": "Had \"$TIMEOUT\"",
+      "fix": "Changed to \"$TIMEOUT_BIN\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "sh"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-08-10T01:38:26.919Z"
+    },
+    {
+      "id": "bug-224",
+      "timestamp": "2026-08-10T01:38:00.693Z",
+      "error_message": "Incorrect value in code",
+      "file": ".claude/worktrees/feature+34-verify-sdk-api-skill/skills/verify-sdk-api/scripts/verify-js.test.sh",
+      "root_cause": "Had 'timeout \"",
+      "fix": "Changed to \"\\$TIMEOUT_BIN\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "sh"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-08-10T01:38:00.693Z"
+    },
+    {
+      "id": "bug-225",
+      "timestamp": "2026-08-10T01:38:06.910Z",
+      "error_message": "Incorrect value in code",
+      "file": ".claude/worktrees/feature+34-verify-sdk-api-skill/skills/verify-sdk-api/scripts/verify-python.test.sh",
+      "root_cause": "Had 'timeout \"",
+      "fix": "Changed to \"\\$TIMEOUT_BIN\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "sh"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-08-10T01:38:06.910Z"
+    },
+    {
+      "id": "bug-226",
+      "timestamp": "2026-08-10T01:47:43.029Z",
+      "error_message": "Wrong return value",
+      "file": "superpowers/skills/brainstorming/SKILL.md",
+      "root_cause": "Was returning: before asking clarifying questions. Supplement wit",
+      "fix": "Now returns: before asking clarifying questions. Supplement wit",
+      "tags": [
+        "auto-detected",
+        "return-value",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-08-10T01:47:43.029Z"
+    },
+    {
+      "id": "bug-227",
+      "timestamp": "2026-08-10T01:48:54.974Z",
+      "error_message": "Incorrect value in code",
+      "file": "CLAUDE.md",
+      "root_cause": "Had `superpowers`",
+      "fix": "Changed to `git add`",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-08-10T01:48:54.974Z"
     }
   ]
 }

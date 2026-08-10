@@ -151,6 +151,8 @@ After writing the complete plan, look at the spec with fresh eyes and check the 
 
 **3. Type consistency:** Do the types, method signatures, and property names you used in later tasks match what you defined in earlier tasks? A function called `clearLayers()` in Task 3 but `clearFullLayers()` in Task 7 is a bug.
 
+**4. Pattern verification:** For any new component explicitly modeled on an existing one ("mirror the existing X pattern"), read the actual current definition of every sibling in that lineage, not just the nearest one — siblings that look parallel (e.g. a game→season→career aggregation chain) can each have evolved their own convention independently.
+
 If you find issues, fix them inline. No need to re-review — just fix and move on. If you find a spec requirement with no task, add the task.
 
 ## Execution Handoff

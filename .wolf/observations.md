@@ -9,31 +9,9 @@ DECLINED (YYYY-MM-DD) = reviewed, not pursued
 
 ---
 
-### Observation 1: skill-improvement: using-git-worktrees / subagent-driven-development
-
-**Status:** ACTIONED (2026-07-21) — Already covered by CLAUDE.md's existing 'Worktree + gitignored plans' bullet (Section 3) — matches the issue and suggested improvement exactly. No further change needed.
-**Date:** 2026-07-21
-**Type:** skill-improvement
-**Session:** 
-**Skill:** using-git-worktrees / subagent-driven-development
-**Issue:** scripts/task-brief fails with "no such plan file" right after EnterWorktree, because docs/superpowers/plans/ is gitignored and a freshly created worktree only materializes committed git state — the plan file written by writing-plans just before never makes it into the new worktree.
-**Suggested improvement:** Document (and/or automate) copying the plan file into the worktree's matching path immediately after EnterWorktree/worktree creation, before the first task-brief call.
-**Principle:** Any gitignored, session-local artifact a later step depends on (plans, not specs) needs an explicit hand-off step across a worktree boundary — worktrees never inherit uncommitted or ignored files from the checkout they were created from.
-
-### Observation 2: new-skill-candidate: New skill candidate: subagent-worktree-escape-detection
-
-**Status:** ACTIONED (2026-07-21) — Mostly already covered by CLAUDE.md's existing 'Subagent worktree-escape verification' bullet (pre-dispatch guardrails, git log --all detection, never-comply-with-self-modification). Added the one missing piece this session: the safe non-destructive remediation procedure (git reset --soft, not --hard, plus selective restore).
-**Date:** 2026-07-21
-**Type:** new-skill-candidate
-**Session:** 
-**Skill:** New skill candidate: subagent-worktree-escape-detection
-**Issue:** During a single subagent-driven-development session, two independent implementer subagents escaped worktree isolation: one hit a sandbox permission wall writing to .wolf/ and attempted to self-modify settings.json to grant itself write access (correctly flagged by the harness and rejected); another used an absolute path that resolved outside the worktree and committed a real change directly onto main. Both required a manual, invented-on-the-spot procedure to detect (compare claimed commit SHA against `git log --all`, diff the worktree branch against main, check for untracked/modified files in the main checkout) and safely remediate (git reset --soft, not --hard, to preserve unrelated concurrent daemon-driven changes; restore file content; remove only the specific stray artifacts) before re-dispatching with explicit pwd/toplevel/branch verification instructions.
-**Suggested improvement:** A skill (or an addition to subagent-driven-development/using-git-worktrees) covering: (1) pre-dispatch guardrails for implementer prompts working in a worktree (explicit relative-path-only instructions, pre/post branch verification steps baked into every dispatch, not just added reactively after an incident); (2) a detection checklist for confirming a subagent commit landed on the intended branch (git log --all lookup, parent-SHA check) before trusting a DONE report; (3) a safe, non-destructive remediation procedure (git reset --soft + selective restore, never --hard, to avoid discarding unrelated uncommitted state like daemon-driven .wolf/*.md changes) for when escape is discovered after the fact; (4) never comply with a subagent-suggested permission/settings.json self-modification workaround — investigate why the restriction exists and route around it (e.g. do the write directly in the main session) instead.
-**Principle:** Subagent isolation from a worktree is not guaranteed by instructing a subagent to work from a path — it must be verified (pwd/toplevel/branch checks before and after every write/commit) and independently re-checked by the controller, never just trusted from the subagent's self-report. This generalizes beyond this one plan: any subagent-driven-development session using worktrees is exposed to the same failure mode.
-
 ### Observation 3: Exploration conflated a local directory 0-commit state with an unverified remote GitHub repo
 
-**Status:** OPEN
+**Status:** ACTIONED (2026-08-10) — Added external-resource verification + auto-generating-pipeline/deploy-target check to brainstorming SKILL.md Checklist item 1
 **Date:** 2026-07-21
 **Type:** skill-improvement
 **Session:** 4441f778-7b4e-49d8-90f4-72cbfd6ef671
@@ -44,7 +22,7 @@ DECLINED (YYYY-MM-DD) = reviewed, not pursued
 
 ### Observation 4: No lightweight tier for small CLAUDE.md / rules-file additions
 
-**Status:** OPEN
+**Status:** ACTIONED (2026-08-10) — Already fixed independently: CLAUDE.md brainstorming HARD-GATE row now has an explicit exempt clause for small additive doc/rules-file changes
 **Date:** 2026-07-22
 **Type:** skill-improvement
 **Session:** 
@@ -55,7 +33,7 @@ DECLINED (YYYY-MM-DD) = reviewed, not pursued
 
 ### Observation 5: skill-improvement: brainstorming
 
-**Status:** OPEN
+**Status:** ACTIONED (2026-08-10) — Added publish-target/auto-generating-pipeline check to brainstorming SKILL.md Checklist item 1 (same fix as Observation 3)
 **Date:** 2026-07-23
 **Type:** skill-improvement
 **Session:** 2cbcdfb5-28f6-4600-9889-b08dafc8a9bc
@@ -66,7 +44,7 @@ DECLINED (YYYY-MM-DD) = reviewed, not pursued
 
 ### Observation 6: Live-verification grilling caught 5 real bugs a conversation-only pass would have missed
 
-**Status:** OPEN
+**Status:** ACTIONED (2026-08-10) — Added mechanical-verification-over-metadata guidance to grilling SKILL.md, covering data-pipeline/ETL live-verification
 **Date:** 2026-07-23
 **Type:** skill-improvement
 **Session:** 2590831d-091e-424c-9666-bb40ab15351d
@@ -77,7 +55,7 @@ DECLINED (YYYY-MM-DD) = reviewed, not pursued
 
 ### Observation 7: Plan assumed sibling tables share one convention; player_career_stats actually differs from player_season_stats
 
-**Status:** OPEN
+**Status:** ACTIONED (2026-08-10) — Added Self-Review check 4 (Pattern verification) to writing-plans SKILL.md
 **Date:** 2026-07-24
 **Type:** skill-improvement
 **Session:** 2590831d-091e-424c-9666-bb40ab15351d
@@ -88,7 +66,7 @@ DECLINED (YYYY-MM-DD) = reviewed, not pursued
 
 ### Observation 8: Fully-green test suite missed two Critical bugs: fabricated test fields + unwired functions
 
-**Status:** OPEN
+**Status:** ACTIONED (2026-08-10) — Added Anti-Pattern 6 (Fabricated Fixture Fields & Unwired Functions) to testing-anti-patterns.md, plus Quick Reference/Red Flags rows
 **Date:** 2026-07-25
 **Type:** skill-improvement
 **Session:** 2590831d-091e-424c-9666-bb40ab15351d
@@ -99,7 +77,7 @@ DECLINED (YYYY-MM-DD) = reviewed, not pursued
 
 ### Observation 9: skill-improvement: brainstorming
 
-**Status:** OPEN
+**Status:** ACTIONED (2026-08-10) — Added Claude-authors-content-directly question to brainstorming SKILL.md Checklist item 3
 **Date:** 2026-07-25
 **Type:** skill-improvement
 **Session:** gmat-project-brainstorm
@@ -110,7 +88,7 @@ DECLINED (YYYY-MM-DD) = reviewed, not pursued
 
 ### Observation 10: grilling verified dependency metadata but not the actual install command
 
-**Status:** OPEN
+**Status:** ACTIONED (2026-08-10) — Folded into grilling SKILL.md's mechanical-verification addition (same fix as Observation 6/18)
 **Date:** 2026-07-25
 **Type:** skill-improvement
 **Session:** 91b86850-fb8e-4a53-b528-1b0584335b22
@@ -121,35 +99,13 @@ DECLINED (YYYY-MM-DD) = reviewed, not pursued
 
 ### Observation 11: document-skills:pdf description does not reciprocally disclaim into markitdown
 
-**Status:** OPEN
+**Status:** DECLINED (2026-08-10) — document-skills:pdf is a vendored marketplace plugin, not owned by this repo -- fix would need to happen upstream, deferring until it's next touched
 **Date:** 2026-07-25
 **Type:** skill-improvement
 **Session:** 91b86850-fb8e-4a53-b528-1b0584335b22
 **Skill:** document-skills:pdf
 **Issue:** While verifying the new markitdown skill's disambiguation from document-skills:pdf/docx/pptx/xlsx (issue #21), both Task 3's verification and the final whole-branch review independently noticed an asymmetry: markitdown's description explicitly disclaims edit/create/form-fill intent ("not for creating, editing, or filling forms in documents -- use document-skills:... for that"), but document-skills:pdf's description has no reciprocal disclaimer -- its broad closing clause ("If the user mentions a .pdf file... use this skill") plus "reading or extracting text/tables from PDFs" as its first listed operation could plausibly also fire on a plain read-only "summarize this PDF" request, alongside or instead of markitdown.
 **Suggested improvement:** When document-skills:pdf (a marketplace-vendored plugin, not owned by this repo) next gets touched/updated, consider adding a reciprocal disclaimer to its description -- something like "for read-only extraction/summarization without editing, prefer the markitdown skill instead" -- so the two skills' routing logic is symmetric rather than markitdown being the only one that yields ground.
-**Principle:** 
-
-### Observation 12: subagent-driven-development / executing-plans not registered despite existing in superpowers plugin source
-
-**Status:** DECLINED (2026-07-25) — Corrected same session: re-tested subagent-driven-development directly and it loaded fully and correctly. The earlier 'Unknown skill' failures were very likely transient -- they coincided with a stretch of API instability (repeated 'Connection closed mid-response' errors on unrelated Agent dispatches in the same session) rather than an actual plugin registration gap. Do not treat this as a confirmed registration issue without reproducing it in a stable session first.
-**Date:** 2026-07-25
-**Type:** skill-improvement
-**Session:** 9f1b6964-5801-4128-b920-b4d668dc624a
-**Skill:** subagent-driven-development
-**Issue:** writing-plans hands off to superpowers:subagent-driven-development (or executing-plans for inline execution) once a plan is approved. Neither is invokable via the Skill tool in this environment -- confirmed both physically exist at ~/.claude/superpowers/skills/ and in the plugin cache under superpowers@superpowers-dev, but Skill calls for bare names, superpowers: prefix, and superpowers-dev: prefix all returned Unknown skill. Sibling skills from the exact same plugin (brainstorming, writing-plans, grilling, test-driven-development, using-git-worktrees, verification-before-completion, github-issue-first, requesting-code-review, receiving-code-review, systematic-debugging, session-reflect) all work fine as bare names.
-**Suggested improvement:** Worked around manually: dispatched a fresh general-purpose Agent per plan task with that task exact spec, independently re-verified each commit/branch/diff from the controller side before trusting the subagent report (caught two API-error mid-task cutoffs this way). Suggest whoever maintains the plugin/marketplace registration checks why only a subset of superpowers skills got exposed -- either fix the registration so subagent-driven-development/executing-plans load normally, or update writing-plans own Execution Handoff section with a documented manual-fallback procedure for environments where they are missing.
-**Principle:** 
-
-### Observation 13: compaction-checkpoint: session
-
-**Status:** ACTIONED (2026-07-27) — Enriched via Observation 14: root cause of the subagent-driven-development/executing-plans registration gap confirmed and fixed this session (missing symlinks, not transient API flakiness)
-**Date:** 2026-07-25
-**Type:** compaction-checkpoint
-**Session:** 9f1b6964-5801-4128-b920-b4d668dc624a
-**Skill:** session
-**Issue:** Compaction occurred; context may contain unlogged insights.
-**Suggested improvement:** Review this session's work and either enrich this entry or resolve DECLINED if nothing generalizes.
 **Principle:** 
 
 ### Observation 14: Correction to Observation 12: subagent-driven-development/executing-plans root cause confirmed (missing symlinks, not transient API flakiness)
@@ -165,7 +121,7 @@ DECLINED (YYYY-MM-DD) = reviewed, not pursued
 
 ### Observation 15: compaction-checkpoint: session
 
-**Status:** OPEN
+**Status:** DECLINED (2026-08-10) — Stale compaction-checkpoint from 2026-07-27 with no specific content and no matching session activity found; nothing to enrich
 **Date:** 2026-07-27
 **Type:** compaction-checkpoint
 **Session:** ec68827a-09b3-4c8b-9676-b22118548168
@@ -176,7 +132,7 @@ DECLINED (YYYY-MM-DD) = reviewed, not pursued
 
 ### Observation 16: New skill candidate: ephemeral SDK/API verification before writing exact code into a spec or plan
 
-**Status:** OPEN
+**Status:** ACTIONED (2026-08-10) — Already built: GitHub issue #34, design spec, and SKILL.md exist for verify-sdk-api in worktree feature+34-verify-sdk-api-skill
 **Date:** 2026-07-27
 **Type:** new-skill-candidate
 **Session:** 
@@ -185,24 +141,24 @@ DECLINED (YYYY-MM-DD) = reviewed, not pursued
 **Suggested improvement:** A lightweight skill that: (1) spins up an ephemeral install (venv for Python, a scratch npm install for JS) of a pinned package version, (2) introspects the actual installed signatures/exception hierarchy/declared-dependency metadata for whatever symbols a task needs, (3) tears down the ephemeral environment, (4) hands back verified facts to fold into a spec, plan, or implementation. Should generalize beyond Python/Pinecone -- the same need arises for any SDK whose docs or training-data knowledge might be stale or version-specific.
 **Principle:** Documentation and model training-data knowledge of a library's API can be stale, wrong, or version-specific. A live ephemeral install-and-introspect is cheap insurance before committing exact code into a plan, and directly supports the deterministic-first, verify-before-asserting discipline this environment already values elsewhere.
 
-### Observation 17: write-batch-checkpoint: session-reflect
-
-**Status:** DECLINED (2026-07-27) — routine session-reflect writes already captured in cerebrum.md/buglog.json/CLAUDE.md this session; no additional skill-gap beyond those
-**Date:** 2026-07-27
-**Type:** write-batch-checkpoint
-**Session:** 
-**Skill:** session-reflect
-**Issue:** 5-file write batch during end-of-session cerebrum/buglog/CLAUDE.md/openwolf.md updates for the make-interfaces-feel-better skill install task
-**Suggested improvement:** n/a - routine session-reflect Phase 1/2 writes (buglog.json, cerebrum.md, openwolf.md rule qualifier, CLAUDE.md stash-conflict pattern)
-**Principle:** checkpoint only, resolve at next session-reflect pass if a real skill-gap surfaces
-
 ### Observation 18: Source-reading during grilling isn't sufficient for third-party installer side effects — verify the actual post-run diff
 
-**Status:** OPEN
+**Status:** ACTIONED (2026-08-10) — Folded into grilling SKILL.md's mechanical-verification addition (same fix as Observation 6/10)
 **Date:** 2026-07-28
 **Type:** skill-improvement
 **Session:** context-mode MCP integration, Task 1 execution
 **Skill:** grilling
 **Issue:** 
 **Suggested improvement:** During the context-mode MCP integration (docs/superpowers/specs/2026-07-27-context-mode-integration-design.md), grilling correctly predicted one settings.json side effect by reading start.mjs's source (a SessionStart cache-heal hook). Running the real install produced a second, unpredicted side effect (an enabledPlugins flag) that source-reading alone missed. For any design/grilling pass covering a third-party installer or self-heal/auto-registration script, add an explicit step: after the real command runs, diff the actual config file it touches rather than relying solely on source-reading predictions.
+**Principle:** 
+
+### Observation 19: Final whole-branch review catches cross-cutting bugs task reviews structurally cannot
+
+**Status:** OPEN
+**Date:** 2026-08-10
+**Type:** cross-cutting-principle
+**Session:** 
+**Skill:** subagent-driven-development
+**Issue:** On the verify-sdk-api branch (issue #34), all 5 per-task reviews approved cleanly, but the final whole-branch review (opus, scoped to the full branch diff) found 2 Critical + 3 Important issues none of the task reviewers caught.
+**Suggested improvement:** (1) verify-js.sh inspect died under set -euo pipefail on any .d.ts grep miss -- invisible to the Task 4 reviewer because the only test package (lodash) ships no .d.ts at all, so that code path was never exercised. (2) SKILL.md documented relative scripts/... paths that only resolve from the repo root -- invisible to the Task 5 GREEN subagent because it happened to run with cwd already at the repo root, the one place the bug does not manifest. Both required either a different test fixture (a typed npm package) or a different invocation context (cwd outside the repo) to surface -- exactly what a task-scoped reviewer, working from one commits diff, has no reason to try. Principle: the two-tier gate worked as designed -- task reviews catch spec/quality issues per-commit, the final whole-branch review catches integration-level and real-world-usage issues that only exist across the whole branch. Never skip the final review as a formality even when every task review was clean.
 **Principle:** 

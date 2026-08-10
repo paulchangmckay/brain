@@ -248,6 +248,61 @@ TDD cycle:
 4. THEN claim complete
 ```
 
+## Anti-Pattern 6: Fabricated Fixture Fields & Unwired Functions
+
+**The violation:**
+```python
+# ❌ BAD: test fixture invents a field the real extraction path never produces
+def _event(period_type="REG", **kw):
+    return {"period_type": period_type, **kw}  # no such column exists in the DB
+
+def test_sweep_excludes_shootout():
+    events = [_event(period_type="SO")]
+    assert sweep(events) == []  # passes, but only because the fixture lied
+```
+```python
+# ❌ BAD: a fully-tested function with zero production callers
+def compute_percentiles(rows):  # covered by test_compute_percentiles(), passes
+    ...
+# grep -rn "compute_percentiles(" --include=*.py | grep -v test_
+# → zero matches outside the test file. Never actually wired into run() or the CLI.
+```
+
+**Why this is wrong:**
+- A fixture that fabricates a field never produced by the real DB-row/API extraction path can make a test pass while the production code path (which falls back to a default when the field is absent) does the opposite of what the test claims to verify
+- A function with a passing isolated unit test but no non-test caller gives false confidence that a feature is live in production when it's actually dead code
+- Both slip through because each function/module was tested in isolation and passed — the tests never validated the seam between layers (real extracted-row shape, and real production wiring)
+
+**The fix:**
+```python
+# ✅ GOOD: derive fixtures from the real extraction path, not hand-authored dicts
+events = _load_events_for_sweep(seed_db_rows())  # exercises the real row→dict shape
+
+# ✅ GOOD: at least one true end-to-end test per feature exercises the full real path
+def test_run_excludes_shootout_e2e():
+    seed_db(SHOOTOUT_GAME_FIXTURE)
+    run()  # the real top-level entrypoint, not a unit under test in isolation
+    assert_no_shootout_attempts_in(season_advanced_stats_table())
+```
+
+### Gate Function
+
+```
+BEFORE trusting a fixture that hand-authors a dict for a DB-row/API-derived object:
+  Ask: "Does the real extraction path actually produce this field?"
+  IF unsure: grep the real query/extraction function for the field name
+  IF the field doesn't appear there: STOP - the fixture is fabricated, fix it
+
+AFTER writing any function meant to run automatically in production:
+  grep for its call sites outside test files
+  IF zero non-test callers: STOP - wire it in, or it's dead code with false test coverage
+
+For ETL/pipeline-style code specifically:
+  Add at least one true end-to-end test (seed real DB rows → call the real
+  top-level entrypoint → assert on final output) in addition to, not instead
+  of, fast isolated unit tests with synthetic fixtures.
+```
+
 ## When Mocks Become Too Complex
 
 **Warning signs:**
@@ -280,6 +335,7 @@ TDD cycle:
 | Incomplete mocks | Mirror real API completely |
 | Tests as afterthought | TDD - tests first |
 | Over-complex mocks | Consider integration tests |
+| Fabricated fixture fields / unwired functions | Derive fixtures from the real extraction path; add an E2E test; grep for non-test callers |
 
 ## Red Flags
 
@@ -289,6 +345,8 @@ TDD cycle:
 - Test fails when you remove mock
 - Can't explain why mock is needed
 - Mocking "just to be safe"
+- A fixture field you can't find in the real extraction/query function
+- A tested function with zero non-test callers
 
 ## The Bottom Line
 

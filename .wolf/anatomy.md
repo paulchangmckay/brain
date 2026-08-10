@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-07-30T03:20:46.491Z
-> Files: 517 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-08-10T01:48:54.958Z
+> Files: 529 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -12,14 +12,14 @@
 - `.last-cleanup` (~7 tok)
 - `.last-update-result.json` (~46 tok)
 - `.shellcheckrc` — Companion enforcement for skills/senior-engineering-partner SKILL.md: (~81 tok)
-- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~5610 tok)
+- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~5915 tok)
 - `eslint.config.js` — ESLint flat configuration (~365 tok)
 - `mcp_servers.example.json` (~65 tok)
 - `mcp-needs-auth-cache.json` (~25 tok)
 - `package-lock.json` — npm lock file (~9547 tok)
 - `package.json` — Node.js package manifest (~121 tok)
 - `README.md` — Project documentation (~120 tok)
-- `settings.json` (~3749 tok)
+- `settings.json` (~3815 tok)
 - `settings.local.json` (~71 tok)
 - `settings.local.json.example` (~72 tok)
 
@@ -888,3 +888,36 @@
 - `lifecycle.test.js` — Tests for the brainstorm server's lifecycle (idle timeout + shutdown). (~6595 tok)
 - `package-lock.json` — npm lock file (~246 tok)
 - `package.json` — Node.js package manifest (~107 tok)
+
+## .claude/worktrees/feature+34-verify-sdk-api-skill/.superpowers/sdd/
+
+- `progress.md` (~383 tok)
+- `task-4-report.md` — Task 4 Implementation Report: `verify-js.sh` inspect subcommand (~1383 tok)
+- `task-5-report.md` — Task 5 Report: Author SKILL.md for verify-sdk-api (~1641 tok)
+
+## .claude/worktrees/feature+34-verify-sdk-api-skill/skills/verify-sdk-api/
+
+- `SKILL.md` — Verify SDK/API Behavior (~1365 tok)
+
+## .claude/worktrees/feature+34-verify-sdk-api-skill/skills/verify-sdk-api/scripts/
+
+- `verify-js.sh` — Declares spec (~961 tok)
+- `verify-js.test.sh` — Test suite for verify-js.sh. Run: bash verify-js.test.sh (~1027 tok)
+- `verify-python.sh` (~954 tok)
+- `verify-python.test.sh` — Test suite for verify-python.sh. Run: bash verify-python.test.sh (~972 tok)
+
+## skills/grilling/
+
+- `SKILL.md` — Declares values (~292 tok)
+
+## superpowers/skills/brainstorming/
+
+- `SKILL.md` — Brainstorming Ideas Into Designs (~3228 tok)
+
+## superpowers/skills/test-driven-development/
+
+- `testing-anti-patterns.md` — Testing Anti-Patterns (~2788 tok)
+
+## superpowers/skills/writing-plans/
+
+- `SKILL.md` — Writing Plans (~1902 tok)

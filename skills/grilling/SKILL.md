@@ -8,3 +8,5 @@ Interview me relentlessly about every aspect of this plan until we reach a share
 Ask the questions one at a time, waiting for feedback on each question before continuing. Asking multiple questions at once is bewildering.
 
 If a question can be answered by exploring the codebase, explore the codebase instead.
+
+For claims that can be checked mechanically instead of argued about — a data pipeline's real schema/enum values, whether a package actually installs cleanly on the pinned Python/Node version, a third-party installer or self-heal script's actual file-system side effects — verify by running the real (or ephemeral) command and reading its output or diff. Don't resolve these from documentation, package metadata, or source-reading alone; treat that as a hypothesis until the real command has been run.
