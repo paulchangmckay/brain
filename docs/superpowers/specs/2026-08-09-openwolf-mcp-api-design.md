@@ -130,35 +130,73 @@ mcp.mount()
 the app's route table at mount time). This exposes the MCP endpoint at
 `/mcp` on the same ASGI app — no separate process for the MCP layer.
 
+**Verified via an ephemeral venv install (not assumed from docs):**
+`fastapi-mcp==0.4.0` installs cleanly on Python 3.14 (matches system
+`python3`) alongside `fastapi==0.141.1` and `uvicorn==0.52.1` — these are
+the versions `requirements.txt` should pin. `FastApiMCP.__init__` and
+`.mount()` both exist with the signatures shown above.
+`FastApiMCP.mount()`'s own signature is `transport: Literal['sse'] = 'sse'`
+— **the library serves classic SSE, not the newer streamable-HTTP MCP
+transport**, despite the constructor param being named generically. This
+directly determines the MCP registration transport below.
+
 ## Process Management
 
-Served by `uvicorn app:app --host 127.0.0.1 --port 8765` (port checked free
-during exploration). Kept running via PM2:
+Served by the venv's own `uvicorn` (not a global/PATH `uvicorn`, to avoid
+version drift):
 
 ```
-pm2 start "uvicorn app:app --host 127.0.0.1 --port 8765" \
+pm2 start ".venv/bin/uvicorn app:app --host 127.0.0.1 --port 8765" \
   --name openwolf-mcp-api --cwd mcp-services/openwolf-api
 ```
 
 No checked-in `ecosystem.config.js` — none exists elsewhere in the repo as
 a precedent (OpenWolf's own daemon is started via its CLI, not a committed
 PM2 config file), so this follows the same direct-`pm2 start` pattern
-rather than introducing a new convention.
+rather than introducing a new convention. **Verified mechanically** (real
+`pm2 start "<cmd>" --name --cwd` test, confirmed via `pm2 logs`): PM2
+executes the quoted string via `/bin/bash -c`, and `--cwd` genuinely sets
+the process's working directory — both despite `pm2 start --help` in this
+installed version (7.0.1) omitting `--cwd` from its listed options
+entirely (the flag works; the help text is just incomplete).
+
+**PM2 reboot persistence (scope expanded per user decision during
+grilling):** discovered while inspecting `pm2 startup` that no launchd
+startup script is installed system-wide — meaning PM2 itself, and
+everything currently under it (the OpenWolf daemon, gbrain autopilot, and
+this new service), does not survive a machine reboot today. Originally
+scoped as "match existing behavior, note as a known gap," but the user
+opted to fix it as part of this build. Implementation must run:
+
+```
+sudo env PATH=$PATH:<node-bin-dir> <pm2-bin-path> startup launchd -u paulmckay --hp /Users/paulmckay
+pm2 save
+```
+
+(exact `PATH`/binary values from `pm2 startup`'s own printed output,
+captured during exploration: node `v24.17.0` via nvm). The `sudo`
+`pm2 startup` step installs a system launchd daemon — per this session's
+risk posture for hard-to-reverse/system-level actions, confirm the exact
+command with the user immediately before running it during
+implementation, rather than running it unattended.
 
 ## MCP Registration
 
-New repo-root `.mcp.json` (does not currently exist):
+Via Claude Code's own CLI rather than hand-authoring `.mcp.json` — reduces
+schema-guessing risk, and `claude mcp add --help` confirms `-s/--scope
+project` is what writes to a project-root `.mcp.json`:
 
-```json
-{
-  "mcpServers": {
-    "openwolf-api": {
-      "type": "http",
-      "url": "http://127.0.0.1:8765/mcp"
-    }
-  }
-}
 ```
+claude mcp add --transport sse --scope project openwolf-api http://127.0.0.1:8765/mcp
+```
+
+**Transport corrected during grilling:** the spec originally drafted
+`--transport http` (copied from the `hf-mcp-server` entry already in
+`~/.claude.json`), but `claude mcp add --help` lists `stdio`, `sse`, and
+`http` as three distinct transport types, and fastapi_mcp's `mount()` (see
+above) only serves `sse`. Using `http` against an SSE-only server would
+likely fail silently or reject the connection — `sse` is the verified
+correct choice.
 
 Chosen over adding an entry to the global `~/.claude.json` `mcpServers` map
 (which already lists gbrain/playwright/pinecone/context-mode/hf-mcp-server)
@@ -168,7 +206,9 @@ auto-mode classifier (per CLAUDE.md §3) — a new tracked file avoids that
 entirely. Per the "Skill symlinks / MCP registration are not live
 mid-session" lesson already in CLAUDE.md, this server will not be callable
 in the session that creates it — it becomes available starting the next
-session.
+session. Additionally, `claude mcp get`'s own help text notes new
+`.mcp.json` servers show as "⏸ Pending approval" until approved once in
+Claude Code — expect a one-time approval step, not a bug.
 
 ## Security
 
