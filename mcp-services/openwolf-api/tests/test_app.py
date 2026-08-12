@@ -90,3 +90,19 @@ def test_query_cerebrum_no_filter_returns_all_types():
     assert len(body) == 6
     types = {b["type"] for b in body}
     assert types == {"preferences", "learnings", "do-not-repeat", "decisions", "compaction"}
+
+
+def test_list_anatomy_reconstructs_full_paths():
+    response = client.get("/anatomy")
+    assert response.status_code == 200
+    body = response.json()
+    paths = {e["path"] for e in body}
+    assert ".claude/rules/openwolf.md" in paths
+    assert "./CLAUDE.md" in paths
+
+
+def test_list_anatomy_filters_by_path_prefix():
+    response = client.get("/anatomy", params={"path_prefix": ".claude/rules/"})
+    body = response.json()
+    assert len(body) == 2
+    assert all(e["path"].startswith(".claude/rules/") for e in body)

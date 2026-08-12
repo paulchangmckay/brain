@@ -182,3 +182,47 @@ def query_cerebrum(type: Optional[str] = None, limit: int = 10) -> List[Cerebrum
     if type:
         blocks = [b for b in blocks if b.type == type]
     return list(reversed(blocks[-limit:])) if limit > 0 else []
+
+
+class AnatomyEntry(BaseModel):
+    path: str
+    description: str
+
+
+ANATOMY_DIR_HEADER_RE = re.compile(r"^## (.+)$")
+ANATOMY_BULLET_RE = re.compile(r"^- `([^`]+)`\s*(.*)$")
+
+
+def parse_anatomy(text: str) -> List[AnatomyEntry]:
+    entries: List[AnatomyEntry] = []
+    current_dir: Optional[str] = None
+    for line in text.splitlines():
+        stripped = line.strip()
+        header_match = ANATOMY_DIR_HEADER_RE.match(stripped)
+        if header_match:
+            current_dir = header_match.group(1).strip()
+            continue
+        bullet_match = ANATOMY_BULLET_RE.match(stripped)
+        if bullet_match and current_dir is not None:
+            filename, description = bullet_match.groups()
+            entries.append(AnatomyEntry(
+                path=current_dir + filename,
+                description=description.lstrip("— ").strip(),
+            ))
+    return entries
+
+
+def load_anatomy() -> List[AnatomyEntry]:
+    path = get_wolf_dir() / "anatomy.md"
+    return parse_anatomy(path.read_text(encoding="utf-8"))
+
+
+@app.get("/anatomy", response_model=List[AnatomyEntry], operation_id="list_anatomy")
+def list_anatomy(path_prefix: Optional[str] = None) -> List[AnatomyEntry]:
+    """List files from OpenWolf's anatomy.md file map. Each entry's full
+    repo-relative path is reconstructed from its directory header plus
+    filename. `path_prefix` filters to paths starting with that prefix."""
+    entries = load_anatomy()
+    if path_prefix:
+        entries = [e for e in entries if e.path.startswith(path_prefix)]
+    return entries
