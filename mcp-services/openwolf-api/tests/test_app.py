@@ -106,3 +106,8 @@ def test_list_anatomy_filters_by_path_prefix():
     body = response.json()
     assert len(body) == 2
     assert all(e["path"].startswith(".claude/rules/") for e in body)
+
+
+def test_mcp_server_mounted():
+    route_paths = {route.path for route in app.routes}
+    assert any(path.startswith("/mcp") for path in route_paths)

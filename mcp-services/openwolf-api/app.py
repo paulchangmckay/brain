@@ -226,3 +226,9 @@ def list_anatomy(path_prefix: Optional[str] = None) -> List[AnatomyEntry]:
     if path_prefix:
         entries = [e for e in entries if e.path.startswith(path_prefix)]
     return entries
+
+
+from fastapi_mcp import FastApiMCP
+
+mcp = FastApiMCP(app)
+mcp.mount()
