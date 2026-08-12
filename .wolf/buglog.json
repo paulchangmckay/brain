@@ -3668,6 +3668,21 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-08-10T01:48:54.974Z"
+    },
+    {
+      "id": "bug-231",
+      "timestamp": "2026-08-12T02:16:01.609509Z",
+      "error_message": "[Grilling Gate] writing-plans requires a grilling pass first this session",
+      "file": "hooks/pre-skill-gate.js",
+      "root_cause": "Grilling-gate marker files (.wolf/_skill-gate-<session>--<skill>.json) are pure existence checks keyed on session_id with no TTL, written by hooks/post-skill-record.js on each Skill tool call. A genuine grilling pass ran and (per manual hook test) should have written its marker, but by the time writing-plans was invoked later in the same long-running, multi-day conversation, zero _skill-gate-* files existed in .wolf/ at all. Most likely cause: the harness session_id rotated across the conversation span (spanning 2026-08-09 through 2026-08-11, implying compaction/resumption events), so the marker written under an earlier session_id is invisible to a gate check running under a later one.",
+      "fix": "Re-invoked the grilling skill under the current session_id to write a fresh marker (confirmed via direct file check afterward), then proceeded to writing-plans. No code fix applied — the underlying gap (no cross-session-id carryover, no marker TTL/cleanup visibility) is a known limitation of the session-scoped marker design, not something patched here.",
+      "tags": [
+        "hooks",
+        "skill-gate",
+        "grilling",
+        "session-id",
+        "workaround-not-fixed"
+      ]
     }
   ]
 }
