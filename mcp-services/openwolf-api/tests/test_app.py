@@ -74,3 +74,19 @@ def test_recent_memory_limit_zero_returns_empty():
     response = client.get("/memory", params={"limit": 0})
     assert response.status_code == 200
     assert response.json() == []
+
+
+def test_query_cerebrum_filters_by_type():
+    response = client.get("/cerebrum", params={"type": "do-not-repeat"})
+    assert response.status_code == 200
+    body = response.json()
+    assert len(body) == 1
+    assert "mcpServers" in body[0]["content"]
+
+
+def test_query_cerebrum_no_filter_returns_all_types():
+    response = client.get("/cerebrum", params={"limit": 100})
+    body = response.json()
+    assert len(body) == 6
+    types = {b["type"] for b in body}
+    assert types == {"preferences", "learnings", "do-not-repeat", "decisions", "compaction"}

@@ -117,3 +117,68 @@ def recent_memory(limit: int = 20) -> List[MemoryEntry]:
     skipped entirely."""
     entries = load_memory()
     return list(reversed(entries[-limit:])) if limit > 0 else []
+
+
+class CerebrumBlock(BaseModel):
+    header: str
+    type: str
+    content: str
+
+
+CEREBRUM_HEADER_RE = re.compile(r"^## (.+)$")
+
+CEREBRUM_TYPE_PREFIXES = {
+    "preferences": "User Preferences",
+    "learnings": "Key Learnings",
+    "do-not-repeat": "Do-Not-Repeat",
+    "decisions": "Decision Log",
+    "compaction": "Compaction event",
+}
+
+
+def classify_cerebrum_header(header_text: str) -> str:
+    for type_key, prefix in CEREBRUM_TYPE_PREFIXES.items():
+        if header_text.startswith(prefix):
+            return type_key
+    return "other"
+
+
+def parse_cerebrum(text: str) -> List[CerebrumBlock]:
+    blocks: List[CerebrumBlock] = []
+    current_header: Optional[str] = None
+    current_lines: List[str] = []
+
+    def flush() -> None:
+        if current_header is not None:
+            blocks.append(CerebrumBlock(
+                header=current_header,
+                type=classify_cerebrum_header(current_header),
+                content="\n".join(current_lines).strip(),
+            ))
+
+    for line in text.splitlines():
+        match = CEREBRUM_HEADER_RE.match(line.strip())
+        if match:
+            flush()
+            current_header = match.group(1).strip()
+            current_lines = []
+        elif current_header is not None:
+            current_lines.append(line)
+    flush()
+    return blocks
+
+
+def load_cerebrum() -> List[CerebrumBlock]:
+    path = get_wolf_dir() / "cerebrum.md"
+    return parse_cerebrum(path.read_text(encoding="utf-8"))
+
+
+@app.get("/cerebrum", response_model=List[CerebrumBlock], operation_id="query_cerebrum")
+def query_cerebrum(type: Optional[str] = None, limit: int = 10) -> List[CerebrumBlock]:
+    """Return OpenWolf cerebrum.md learning-log blocks, most recent first.
+    `type` filters to one of: preferences, learnings, do-not-repeat,
+    decisions, compaction. No `type` returns blocks of every type."""
+    blocks = load_cerebrum()
+    if type:
+        blocks = [b for b in blocks if b.type == type]
+    return list(reversed(blocks[-limit:])) if limit > 0 else []
