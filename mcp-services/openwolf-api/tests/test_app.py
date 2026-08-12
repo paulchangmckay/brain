@@ -68,3 +68,9 @@ def test_recent_memory_skips_empty_consolidated_sessions():
     assert len(body) == 3
     sessions = {entry["session"] for entry in body}
     assert "2026-07-15 21:14" not in sessions
+
+
+def test_recent_memory_limit_zero_returns_empty():
+    response = client.get("/memory", params={"limit": 0})
+    assert response.status_code == 200
+    assert response.json() == []

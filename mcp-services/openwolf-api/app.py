@@ -116,4 +116,4 @@ def recent_memory(limit: int = 20) -> List[MemoryEntry]:
     recent first. Empty "Consolidated session" blocks (no action rows) are
     skipped entirely."""
     entries = load_memory()
-    return list(reversed(entries[-limit:]))
+    return list(reversed(entries[-limit:])) if limit > 0 else []
