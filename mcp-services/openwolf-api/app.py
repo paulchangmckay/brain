@@ -231,4 +231,4 @@ def list_anatomy(path_prefix: Optional[str] = None) -> List[AnatomyEntry]:
 from fastapi_mcp import FastApiMCP
 
 mcp = FastApiMCP(app)
-mcp.mount()
+mcp.mount_http()
