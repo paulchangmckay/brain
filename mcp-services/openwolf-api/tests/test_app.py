@@ -92,6 +92,12 @@ def test_query_cerebrum_no_filter_returns_all_types():
     assert types == {"preferences", "learnings", "do-not-repeat", "decisions", "compaction"}
 
 
+def test_query_cerebrum_limit_zero_returns_empty():
+    response = client.get("/cerebrum", params={"limit": 0})
+    assert response.status_code == 200
+    assert response.json() == []
+
+
 def test_list_anatomy_reconstructs_full_paths():
     response = client.get("/anatomy")
     assert response.status_code == 200

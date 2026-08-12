@@ -43,6 +43,7 @@ def load_bugs() -> List[Bug]:
     return [Bug(**b) for b in data.get("bugs", [])]
 
 
+# wolf-debt: no pagination on /bugs (currently ~230 records, full list returned) — add limit/offset if the bug log grows large enough that returning everything in one MCP response becomes a problem
 @app.get("/bugs", response_model=List[Bug], operation_id="search_bugs")
 def search_bugs(
     q: Optional[str] = None,
@@ -175,9 +176,9 @@ def load_cerebrum() -> List[CerebrumBlock]:
 
 @app.get("/cerebrum", response_model=List[CerebrumBlock], operation_id="query_cerebrum")
 def query_cerebrum(type: Optional[str] = None, limit: int = 10) -> List[CerebrumBlock]:
-    """Return OpenWolf cerebrum.md learning-log blocks, most recent first.
-    `type` filters to one of: preferences, learnings, do-not-repeat,
-    decisions, compaction. No `type` returns blocks of every type."""
+    """Return the `limit` most recent OpenWolf cerebrum.md learning-log blocks,
+    most recent first. `type` filters to one of: preferences, learnings,
+    do-not-repeat, decisions, compaction. No `type` returns blocks of every type."""
     blocks = load_cerebrum()
     if type:
         blocks = [b for b in blocks if b.type == type]
