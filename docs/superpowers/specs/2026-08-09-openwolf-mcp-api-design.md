@@ -112,8 +112,14 @@ assumption about where `.claude` lives.
 OpenWolf's own append convention (each memory entry is a distinct
 timestamped block; cerebrum sections are markdown `##` headers) — exact
 parsing rules confirmed against the real files during implementation, not
-guessed here. `anatomy.md` listing is parsed from its existing
-`` `path` — description (~N tok) `` bullet format.
+guessed here. `anatomy.md` listing is parsed from its real, verified format: bullets
+(`` - `filename` — description (~N tok) ``) are grouped under `## <dir>/`
+headers, and the bullet text itself is a bare filename, not a full path
+(e.g. header `## .claude/rules/` + bullet `` `openwolf.md` `` →
+real path `.claude/rules/openwolf.md`). The parser must join the current
+header with each bullet to reconstruct the full path before applying
+`path_prefix` — filtering on bullet text alone would silently match
+nothing for any prefix longer than a bare filename.
 
 ## fastapi_mcp Wiring
 
