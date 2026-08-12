@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 from typing import List, Optional
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
 
@@ -67,3 +67,12 @@ def search_bugs(
         needle = file.lower()
         bugs = [b for b in bugs if needle in (b.file or "").lower()]
     return bugs
+
+
+@app.get("/bugs/{bug_id}", response_model=Bug, operation_id="get_bug")
+def get_bug(bug_id: str) -> Bug:
+    """Look up a single OpenWolf bug log entry by its id (e.g. "bug-001")."""
+    for bug in load_bugs():
+        if bug.id == bug_id:
+            return bug
+    raise HTTPException(status_code=404, detail=f"No bug with id {bug_id!r}")

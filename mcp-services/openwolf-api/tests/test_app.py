@@ -39,3 +39,14 @@ def test_search_bugs_filters_by_tag():
     body = response.json()
     assert len(body) == 1
     assert body[0]["id"] == "bug-001"
+
+
+def test_get_bug_by_id_found():
+    response = client.get("/bugs/bug-002")
+    assert response.status_code == 200
+    assert response.json()["fix"] == "Removed empty allowlist table"
+
+
+def test_get_bug_by_id_not_found():
+    response = client.get("/bugs/bug-999")
+    assert response.status_code == 404
