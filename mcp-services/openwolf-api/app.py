@@ -1,5 +1,6 @@
 import json
 import os
+import re
 from pathlib import Path
 from typing import List, Optional
 
@@ -76,3 +77,43 @@ def get_bug(bug_id: str) -> Bug:
         if bug.id == bug_id:
             return bug
     raise HTTPException(status_code=404, detail=f"No bug with id {bug_id!r}")
+
+
+class MemoryEntry(BaseModel):
+    session: str
+    cells: List[str]
+
+
+SESSION_RE = re.compile(r"^## Session: (.+)$")
+
+
+def parse_memory(text: str) -> List[MemoryEntry]:
+    entries: List[MemoryEntry] = []
+    current_session: Optional[str] = None
+    for line in text.splitlines():
+        session_match = SESSION_RE.match(line.strip())
+        if session_match:
+            current_session = session_match.group(1).strip()
+            continue
+        stripped = line.strip()
+        if not stripped.startswith("|") or current_session is None:
+            continue
+        cells = [c.strip() for c in stripped.strip("|").split("|")]
+        if not cells or cells[0] == "Time" or set(cells[0]) <= {"-"}:
+            continue
+        entries.append(MemoryEntry(session=current_session, cells=cells))
+    return entries
+
+
+def load_memory() -> List[MemoryEntry]:
+    path = get_wolf_dir() / "memory.md"
+    return parse_memory(path.read_text(encoding="utf-8"))
+
+
+@app.get("/memory", response_model=List[MemoryEntry], operation_id="recent_memory")
+def recent_memory(limit: int = 20) -> List[MemoryEntry]:
+    """Return the `limit` most recent OpenWolf memory-log action rows, most
+    recent first. Empty "Consolidated session" blocks (no action rows) are
+    skipped entirely."""
+    entries = load_memory()
+    return list(reversed(entries[-limit:]))

@@ -50,3 +50,21 @@ def test_get_bug_by_id_found():
 def test_get_bug_by_id_not_found():
     response = client.get("/bugs/bug-999")
     assert response.status_code == 404
+
+
+def test_recent_memory_returns_action_rows_most_recent_first():
+    response = client.get("/memory", params={"limit": 2})
+    assert response.status_code == 200
+    body = response.json()
+    assert len(body) == 2
+    assert body[0]["session"] == "2026-08-10 22:45"
+    assert body[0]["cells"][1] == "Created docs/spec.md"
+    assert body[1]["session"] == "2026-08-10 22:32"
+
+
+def test_recent_memory_skips_empty_consolidated_sessions():
+    response = client.get("/memory", params={"limit": 100})
+    body = response.json()
+    assert len(body) == 3
+    sessions = {entry["session"] for entry in body}
+    assert "2026-07-15 21:14" not in sessions
