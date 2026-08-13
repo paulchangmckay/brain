@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "bugs": [
+    {
+      "id": "bug-001",
+      "timestamp": "2026-06-24T05:58:45.245Z",
+      "error_message": "Missing error handling in unknown",
+      "file": "hooks/pre-read-check.js",
+      "root_cause": "Code path had no error handling",
+      "fix": "Added try/catch block",
+      "tags": ["auto-detected", "error-handling", "js"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-24T05:58:45.245Z"
+    },
+    {
+      "id": "bug-002",
+      "timestamp": "2026-06-25T10:00:00.000Z",
+      "error_message": "gitleaks config rejected",
+      "file": ".gitleaks.toml",
+      "root_cause": "placeholder allowlist table missing check field",
+      "fix": "Removed empty allowlist table",
+      "tags": ["gitleaks", "toml", "config"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-25T10:00:00.000Z"
+    }
+  ]
+}
