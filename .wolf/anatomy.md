@@ -1,7 +1,16 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-08-10T01:48:54.958Z
-> Files: 529 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-08-12T03:48:05.607Z
+> Files: 551 tracked | Anatomy hits: 0 | Misses: 0
+
+## ../Desktop/NHL Stats Project/.worktrees/fix-111-turso-connection/src/
+
+- `database.py` — _TursoRow: keys, fetchone, fetchall, execute + 9 more (~12079 tok)
+
+## ../Desktop/NHL Stats Project/.worktrees/fix-111-turso-connection/tests/
+
+- `test_database_get_connection.py` — _FakeSession: test_get_connection_uses_sqlite_when_turso_url_not_set, test_get_connection_uses_turso (~570 tok)
+- `test_database_turso_http_client.py` — _FakeSession: post, raise_for_status, json, close + 15 more (~2063 tok)
 
 ## ./
 
@@ -905,6 +914,49 @@
 - `verify-js.test.sh` — Test suite for verify-js.sh. Run: bash verify-js.test.sh (~1027 tok)
 - `verify-python.sh` (~954 tok)
 - `verify-python.test.sh` — Test suite for verify-python.sh. Run: bash verify-python.test.sh (~972 tok)
+
+## .claude/worktrees/feature+37-openwolf-mcp-api/.superpowers/sdd/
+
+- `final-review-fix-report.md` — Final Review Findings — Fix Report (~883 tok)
+- `task-1-report.md` — Task 1 Implementation Report: Scaffolding + `/bugs` Endpoint (~1277 tok)
+- `task-2-report.md` — Task 2 Report: `/bugs/{bug_id}` endpoint (~770 tok)
+- `task-3-report.md` — Task 3: `/memory` endpoint — Implementation Report (~1461 tok)
+- `task-4-report.md` — Task 4 Report: `/cerebrum` endpoint (~970 tok)
+- `task-5-report.md` — Task 5 Report: /anatomy Endpoint (~1387 tok)
+- `task-6-report.md` — Task 6 Report: Mount fastapi_mcp (~1186 tok)
+
+## .claude/worktrees/feature+37-openwolf-mcp-api/docs/superpowers/plans/
+
+- `2026-08-09-openwolf-mcp-api.md` — OpenWolf MCP API Implementation Plan (~7407 tok)
+
+## .claude/worktrees/feature+37-openwolf-mcp-api/mcp-services/openwolf-api/
+
+- `.gitignore` — Git ignore rules (~7 tok)
+- `app.py` — API: 5 endpoints (~2181 tok)
+- `requirements.txt` — Python dependencies (~42 tok)
+
+## .claude/worktrees/feature+37-openwolf-mcp-api/mcp-services/openwolf-api/.venv/lib/python3.14/site-packages/fastapi_mcp/
+
+- `server.py` — API: 2 endpoints (~7572 tok)
+
+## .claude/worktrees/feature+37-openwolf-mcp-api/mcp-services/openwolf-api/tests/
+
+- `test_app.py` — fixture_data_dir, test_search_bugs_no_filter_returns_all, test_search_bugs_filters_by_q, test_search (~1049 tok)
+
+## .claude/worktrees/feature+37-openwolf-mcp-api/mcp-services/openwolf-api/tests/fixtures/
+
+- `anatomy.md` — anatomy.md (~69 tok)
+- `buglog.json` (~255 tok)
+- `cerebrum.md` — Cerebrum (~126 tok)
+- `memory.md` — Memory (~129 tok)
+
+## docs/superpowers/plans/
+
+- `2026-08-09-openwolf-mcp-api.md` — OpenWolf MCP API Implementation Plan (~7402 tok)
+
+## docs/superpowers/specs/
+
+- `2026-08-09-openwolf-mcp-api-design.md` — OpenWolf MCP API — Design (~3208 tok)
 
 ## skills/grilling/
 
