@@ -21,9 +21,9 @@ Every project goes through this process. A todo list, a single-function utility,
 
 You MUST create a task for each of these items and complete them in order:
 
-1. **Explore project context** — spawn 1–2 `code-explorer` subagents in parallel, each targeting a different aspect (similar features, architecture, relevant patterns). Read the key files they return before asking clarifying questions. Supplement with direct file/commit checks for project state.
+1. **Explore project context** — spawn 1–2 `code-explorer` subagents in parallel, each targeting a different aspect (similar features, architecture, relevant patterns). Read the key files they return before asking clarifying questions. Supplement with direct file/commit checks for project state. If the design will act on an external/remote resource destructively (push, overwrite, delete) or will be published/exposed publicly, verify its exact current state with a direct query — don't infer it from a similarly-named or adjacent resource — and check any auto-generating/content-sweeping pipeline plus deploy-target defaults (base paths, site URLs) against the real target.
 2. **Offer the visual companion just-in-time** — NOT upfront. The first time a question would genuinely be clearer shown than described, offer it then (its own message); on approval its browser tab opens for you. If no visual question ever arises, never offer it. See the Visual Companion section below.
-3. **Ask clarifying questions** — one at a time, understand purpose/constraints/success criteria
+3. **Ask clarifying questions** — one at a time, understand purpose/constraints/success criteria. If the design involves AI/content generation and the work is happening inside a Claude Code session, ask whether Claude should author the content directly during implementation rather than defaulting to a separate API-calling script — only build a separate pipeline if there's a stated need to generate outside a Claude Code session (e.g. a cron job).
 4. **Propose 2-3 approaches** — with trade-offs and your recommendation
 5. **Present design** — in sections scaled to their complexity, get user approval after each section
 6. **Write design doc** — save to `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md` and commit

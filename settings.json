@@ -396,7 +396,8 @@
     "document-skills@anthropic-agent-skills": true,
     "context-mode@context-mode": true,
     "i-have-adhd@i-have-adhd": true,
-    "superpowers@superpowers-dev": true
+    "superpowers@superpowers-dev": true,
+    "neuroarxiv@neuroarxiv": true
   },
   "extraKnownMarketplaces": {
     "understand-anything": {
