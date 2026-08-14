@@ -3683,6 +3683,22 @@
         "session-id",
         "workaround-not-fixed"
       ]
+    },
+    {
+      "id": "bug-229",
+      "timestamp": "2026-08-12T03:08:15.677Z",
+      "error_message": "Wrong return value",
+      "file": ".claude/worktrees/feature+37-openwolf-mcp-api/docs/superpowers/plans/2026-08-09-openwolf-mcp-api.md",
+      "root_cause": "Was returning: list(reversed(blocks[-limit:]))",
+      "fix": "Now returns: list(reversed(blocks[-limit:])) if limit > 0 else ",
+      "tags": [
+        "auto-detected",
+        "return-value",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-08-12T03:08:15.677Z"
     }
   ]
 }
