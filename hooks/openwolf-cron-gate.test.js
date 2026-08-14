@@ -169,6 +169,51 @@ test('cerebrum: does not re-invoke openwolf on the next call when still oversize
   });
 });
 
+test('cerebrum: retries once the cooldown window has elapsed and the file is still oversized', () => {
+  withTmpProject((cwd) => {
+    const big = '# Cerebrum\n\n' + '- learning entry filler text\n'.repeat(2000);
+    writeFileSync(join(cwd, '.wolf', 'cerebrum.md'), big);
+    const staleAttempt = new Date(Date.now() - 31 * 60 * 1000).toISOString(); // just past the 30-minute cooldown
+    writeFileSync(join(cwd, '.wolf', '_gate-cerebrum-reflection.json'), JSON.stringify({ lastAttempt: staleAttempt }));
+    const { fakePath, counterPath } = makeCountingNoopCron(cwd);
+    run('cerebrum-reflection', cwd, { WOLF_CRON_CMD: fakePath });
+    const count = parseInt(readFileSync(counterPath, 'utf8'), 10);
+    assert.equal(count, 1, 'expected the gate to retry once the cooldown window has passed, not stay blocked forever');
+  });
+});
+
+test('cerebrum: a failed run writes lastAttempt and blocks an immediate retry', () => {
+  withTmpProject((cwd) => {
+    const big = '# Cerebrum\n\n' + '- learning entry filler text\n'.repeat(2000);
+    writeFileSync(join(cwd, '.wolf', 'cerebrum.md'), big);
+    const failingCron = makeFakeCron(cwd, 1);
+    run('cerebrum-reflection', cwd, { WOLF_CRON_CMD: failingCron });
+    const markerPath = join(cwd, '.wolf', '_gate-cerebrum-reflection.json');
+    assert.equal(existsSync(markerPath), true, 'expected lastAttempt to be recorded even on failure');
+    const marker = JSON.parse(readFileSync(markerPath, 'utf8'));
+    assert.ok(Date.parse(marker.lastAttempt) > 0);
+    assert.equal(marker.lastRun, undefined, 'a failed run must not be recorded as a successful lastRun');
+
+    const { fakePath, counterPath } = makeCountingNoopCron(cwd);
+    run('cerebrum-reflection', cwd, { WOLF_CRON_CMD: fakePath });
+    const count = parseInt(readFileSync(counterPath, 'utf8'), 10);
+    assert.equal(count, 0, 'the immediate retry should be blocked by the cooldown, not invoke openwolf again');
+  });
+});
+
+test('cerebrum: cooldown also blocks a retry triggered by staleness alone (not just oversize)', () => {
+  withTmpProject((cwd) => {
+    writeFileSync(join(cwd, '.wolf', 'cerebrum.md'), '# Cerebrum\n\nshort\n');
+    const oldRun = new Date(Date.now() - 9 * 24 * 60 * 60 * 1000).toISOString(); // >8 days: stale
+    const recentAttempt = new Date().toISOString(); // within the 30-minute cooldown
+    writeFileSync(join(cwd, '.wolf', '_gate-cerebrum-reflection.json'), JSON.stringify({ lastRun: oldRun, lastAttempt: recentAttempt }));
+    const { fakePath, counterPath } = makeCountingNoopCron(cwd);
+    run('cerebrum-reflection', cwd, { WOLF_CRON_CMD: fakePath });
+    const count = parseInt(readFileSync(counterPath, 'utf8'), 10);
+    assert.equal(count, 0, 'a stale-but-cooling-down marker should not trigger another attempt yet');
+  });
+});
+
 test('memory and cerebrum checks do not interfere with each other in the same invocation', () => {
   withTmpProject((cwd) => {
     writeFileSync(join(cwd, '.wolf', 'memory.md'), 'tiny\n');
