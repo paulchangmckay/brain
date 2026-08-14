@@ -13,12 +13,12 @@ export function writeMarker(markerPath, data) {
   writeFileSync(markerPath, JSON.stringify(data));
 }
 
-export function isStale(markerPath, thresholdMs, now = Date.now()) {
+export function isStale(markerPath, thresholdMs, now = Date.now(), field = 'lastRun') {
   const marker = readMarker(markerPath);
-  if (!marker || !marker.lastRun) return true;
-  const lastRunMs = Date.parse(marker.lastRun);
-  if (Number.isNaN(lastRunMs)) return true;
-  return now - lastRunMs > thresholdMs;
+  if (!marker || !marker[field]) return true;
+  const tsMs = Date.parse(marker[field]);
+  if (Number.isNaN(tsMs)) return true;
+  return now - tsMs > thresholdMs;
 }
 
 export function acquireLock(lockPath) {

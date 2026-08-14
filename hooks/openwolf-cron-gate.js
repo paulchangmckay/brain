@@ -3,12 +3,17 @@ import path from 'node:path';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { estimateTokens } from './lib/token-count.js';
-import { isStale, writeMarker, acquireLock, releaseLock, reapStaleLock } from './lib/gate-marker.js';
+import { isStale, readMarker, writeMarker, acquireLock, releaseLock, reapStaleLock } from './lib/gate-marker.js';
 
 const MEMORY_MAX_AGE_MS = 24 * 60 * 60 * 1000;
 const MEMORY_MAX_TOKENS = 15000;
 const CEREBRUM_MAX_AGE_MS = 8 * 24 * 60 * 60 * 1000;
 const CEREBRUM_MAX_TOKENS = 2200;
+// The AI task is only prompted (not forced) to keep cerebrum.md under its token
+// budget, so a "successful" run can still leave the file oversized. Without this,
+// the oversized check alone re-arms the gate on literally the next Stop event —
+// this cooldown caps how often we retry regardless of why (stale or oversized).
+const CEREBRUM_RETRY_COOLDOWN_MS = 30 * 60 * 1000;
 const LOCK_STALE_MS = 10 * 60 * 1000; // longer than either gate's own openwolf cron run can take — a lock older than this means a crashed/killed prior run, not one still in flight
 const CRON_RUN_TIMEOUT_MS = 125 * 1000;
 
@@ -142,16 +147,24 @@ export function checkCerebrumReflection(wolfDir) {
   const oversized = estimateTokens(cerebrumContent) > CEREBRUM_MAX_TOKENS;
   if (!stale && !oversized) return;
 
+  // Regardless of why we'd run (stale or oversized), don't retry more often
+  // than the cooldown — an oversized-after-"success" file would otherwise
+  // re-trigger on every single Stop event.
+  if (!isStale(markerPath, CEREBRUM_RETRY_COOLDOWN_MS, Date.now(), 'lastAttempt')) return;
+
   reapStaleLock(lockPath, LOCK_STALE_MS);
   if (!acquireLock(lockPath)) return; // another session is already handling a gate
 
   try {
     const ok = runOpenwolfCron('cerebrum-reflection');
+    const nowIso = new Date().toISOString();
+    const prior = readMarker(markerPath) || {};
     if (!ok) {
-      console.error('[openwolf-cron-gate] cerebrum-reflection failed — will retry next session');
-      return; // fail open — retry next session
+      writeMarker(markerPath, { ...prior, lastAttempt: nowIso });
+      console.error('[openwolf-cron-gate] cerebrum-reflection failed — will retry after cooldown');
+      return; // fail open — retry after cooldown
     }
-    writeMarker(markerPath, { lastRun: new Date().toISOString() });
+    writeMarker(markerPath, { ...prior, lastRun: nowIso, lastAttempt: nowIso });
   } finally {
     releaseLock(lockPath);
   }
