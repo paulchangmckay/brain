@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-08-12T03:48:05.607Z
-> Files: 551 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-08-14T03:58:01.944Z
+> Files: 555 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../Desktop/NHL Stats Project/.worktrees/fix-111-turso-connection/src/
 
@@ -11,6 +11,10 @@
 
 - `test_database_get_connection.py` — _FakeSession: test_get_connection_uses_sqlite_when_turso_url_not_set, test_get_connection_uses_turso (~570 tok)
 - `test_database_turso_http_client.py` — _FakeSession: post, raise_for_status, json, close + 15 more (~2063 tok)
+
+## ../Desktop/NHL Stats Project/docs/superpowers/specs/
+
+- `2026-08-13-header-nav-and-hero-image-design.md` — Header Navigation + Homepage Hero — Design (~1092 tok)
 
 ## ./
 
@@ -949,6 +953,15 @@
 - `buglog.json` (~255 tok)
 - `cerebrum.md` — Cerebrum (~126 tok)
 - `memory.md` — Memory (~129 tok)
+
+## .claude/worktrees/fix-43-cron-gate-retrigger/hooks/
+
+- `openwolf-cron-gate.js` — Exports runOpenwolfCron, archiveOldMemoryEntries, checkMemoryConsolidation, checkCerebrumReflection (~1958 tok)
+- `openwolf-cron-gate.test.js` — SCRIPT: withTmpProject, makeFakeCron, makeCountingNoopCron, run (~3535 tok)
+
+## .claude/worktrees/fix-43-cron-gate-retrigger/hooks/lib/
+
+- `gate-marker.js` — Exports readMarker, writeMarker, isStale, acquireLock + 2 more (~359 tok)
 
 ## docs/superpowers/plans/
 
