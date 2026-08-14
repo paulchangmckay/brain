@@ -25,6 +25,23 @@ function makeFakeCron(cwd, exitCode) {
   return fakePath;
 }
 
+// Simulates the real-world case where the AI task "succeeds" but doesn't
+// shrink the file below the token cap (the actual observed behavior —
+// cerebrum.md measured 2886 tokens after a logged "success"). Counts
+// invocations via a companion file instead of exiting non-zero, so the gate
+// sees `ok === true` and would (pre-fix) re-arm on oversized alone.
+function makeCountingNoopCron(cwd) {
+  const fakePath = join(cwd, 'fake-openwolf-counting.js');
+  const counterPath = join(cwd, 'invocation-count.txt');
+  writeFileSync(counterPath, '0');
+  writeFileSync(
+    fakePath,
+    `#!/usr/bin/env node\nconst fs = require('node:fs');\nconst p = ${JSON.stringify(counterPath)};\nconst n = parseInt(fs.readFileSync(p, 'utf8'), 10) + 1;\nfs.writeFileSync(p, String(n));\nprocess.exit(0);\n`
+  );
+  chmodSync(fakePath, 0o755);
+  return { fakePath, counterPath };
+}
+
 function run(mode, cwd, env = {}) {
   return spawnSync('node', [SCRIPT, mode, cwd], {
     input: '{}',
@@ -137,6 +154,18 @@ test('cerebrum: does not trigger when fresh and under the token cap', () => {
     run('cerebrum-reflection', cwd, { WOLF_CRON_CMD: makeFakeCron(cwd, 0) });
     const after = readFileSync(join(cwd, '.wolf', '_gate-cerebrum-reflection.json'), 'utf8');
     assert.equal(before, after);
+  });
+});
+
+test('cerebrum: does not re-invoke openwolf on the next call when still oversized after a successful run', () => {
+  withTmpProject((cwd) => {
+    const big = '# Cerebrum\n\n' + '- learning entry filler text\n'.repeat(2000);
+    writeFileSync(join(cwd, '.wolf', 'cerebrum.md'), big);
+    const { fakePath, counterPath } = makeCountingNoopCron(cwd);
+    run('cerebrum-reflection', cwd, { WOLF_CRON_CMD: fakePath });
+    run('cerebrum-reflection', cwd, { WOLF_CRON_CMD: fakePath });
+    const count = parseInt(readFileSync(counterPath, 'utf8'), 10);
+    assert.equal(count, 1, 'expected only the first call to invoke openwolf cron run; the second should be blocked by a retry cooldown');
   });
 });
 
