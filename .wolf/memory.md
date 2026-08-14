@@ -584,3 +584,11 @@
 | Time | Action | File(s) | Outcome | ~Tokens |
 |------|--------|---------|---------|--------|
 | 23:59 | Session end: 7 writes across 3 files (openwolf-cron-gate.test.js, gate-marker.js, openwolf-cron-gate.js) | 8 reads | ~11154 tok |
+| 00:06 | Edited ../Desktop/NHL Stats Project/docs/superpowers/specs/2026-08-13-header-nav-and-hero-image-design.md | 1→3 lines | ~257 |
+| 00:06 | Edited ../Desktop/NHL Stats Project/docs/superpowers/specs/2026-08-13-header-nav-and-hero-image-design.md | unmodified() → render() | ~257 |
+| 00:06 | Edited ../Desktop/NHL Stats Project/docs/superpowers/specs/2026-08-13-header-nav-and-hero-image-design.md | 1→4 lines | ~307 |
+
+## Session: 2026-08-14 00:08
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|

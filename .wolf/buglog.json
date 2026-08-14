@@ -3715,6 +3715,38 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-08-14T03:46:42.731Z"
+    },
+    {
+      "id": "bug-231",
+      "timestamp": "2026-08-14T04:06:16.037Z",
+      "error_message": "Missing error handling in unknown",
+      "file": "../Desktop/NHL Stats Project/docs/superpowers/specs/2026-08-13-header-nav-and-hero-image-design.md",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block | Also: - **`components/Header.tsx`** — nav links (Home, Players, Te; - **`Players.tsx`'s table-height calc updated:** `height: ma",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-08-14T04:06:29.965Z"
+    },
+    {
+      "id": "bug-232",
+      "timestamp": "2026-08-14T04:06:40.649Z",
+      "error_message": "Significant refactor of ",
+      "file": "../Desktop/NHL Stats Project/docs/superpowers/specs/2026-08-13-header-nav-and-hero-image-design.md",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 6→8 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-08-14T04:06:40.649Z"
     }
   ]
 }

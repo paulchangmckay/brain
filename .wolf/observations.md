@@ -162,3 +162,14 @@ DECLINED (YYYY-MM-DD) = reviewed, not pursued
 **Issue:** On the verify-sdk-api branch (issue #34), all 5 per-task reviews approved cleanly, but the final whole-branch review (opus, scoped to the full branch diff) found 2 Critical + 3 Important issues none of the task reviewers caught.
 **Suggested improvement:** (1) verify-js.sh inspect died under set -euo pipefail on any .d.ts grep miss -- invisible to the Task 4 reviewer because the only test package (lodash) ships no .d.ts at all, so that code path was never exercised. (2) SKILL.md documented relative scripts/... paths that only resolve from the repo root -- invisible to the Task 5 GREEN subagent because it happened to run with cwd already at the repo root, the one place the bug does not manifest. Both required either a different test fixture (a typed npm package) or a different invocation context (cwd outside the repo) to surface -- exactly what a task-scoped reviewer, working from one commits diff, has no reason to try. Principle: the two-tier gate worked as designed -- task reviews catch spec/quality issues per-commit, the final whole-branch review catches integration-level and real-world-usage issues that only exist across the whole branch. Never skip the final review as a formality even when every task review was clean.
 **Principle:** 
+
+### Observation 20: Add a git merge driver for append-only .wolf/* logs
+
+**Status:** OPEN
+**Date:** 2026-08-14
+**Type:** skill-improvement
+**Session:** 0dcd66bf-f697-4bde-97f4-cbaaa66990f8
+**Skill:** using-git-worktrees
+**Issue:** Pushing routine .wolf/anatomy.md, buglog.json, memory.md changes to main hit hand-resolved merge conflicts across 5+ cycles in a single session, because concurrent sessions/daemon hooks keep appending to the same files between fetch and push. anatomy.md/cerebrum.md are wholesale-regenerated (take-newest-plus-rescan, already documented in CLAUDE.md), but memory.md (append-only session log) and buglog.json (auto-incrementing ID array) required hand-splicing conflict markers back together each time, including manually renumbering colliding buglog IDs from uncoordinated concurrent sessions.
+**Suggested improvement:** Add a git merge driver (.gitattributes + a small script) for these specific .wolf/*.md/json files: union/concat-in-order for memory.md's session blocks, and a concat-plus-ID-renumber step for buglog.json's array. Would make `git pull`/`git merge` resolve these automatically instead of requiring manual conflict resolution every time routine log commits race a push.
+**Principle:** 

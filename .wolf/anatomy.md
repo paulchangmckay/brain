@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-08-14T03:58:01.944Z
-> Files: 555 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-08-14T04:06:40.634Z
+> Files: 552 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../Desktop/NHL Stats Project/.worktrees/fix-111-turso-connection/src/
 
@@ -14,7 +14,7 @@
 
 ## ../Desktop/NHL Stats Project/docs/superpowers/specs/
 
-- `2026-08-13-header-nav-and-hero-image-design.md` — Header Navigation + Homepage Hero — Design (~1092 tok)
+- `2026-08-13-header-nav-and-hero-image-design.md` — Header Navigation + Homepage Hero — Design (~1570 tok)
 
 ## ./
 
