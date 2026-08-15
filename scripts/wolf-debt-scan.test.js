@@ -147,6 +147,20 @@ test('excludes .jsonl conversation transcripts by extension anywhere in the tree
   });
 });
 
+test('excludes non-jsonl files under projects/ (session tool-output caches)', () => {
+  withTmpRepo((cwd) => {
+    mkdirSync(join(cwd, 'projects', 'some-session', 'tool-results'), { recursive: true });
+    writeFileSync(
+      join(cwd, 'projects', 'some-session', 'tool-results', 'cached-output.txt'),
+      `// ${MARKER} noise from a cached tool result, never\n`,
+    );
+    writeFileSync(join(cwd, 'app.js'), `// ${MARKER} real one, real trigger\n`);
+    const markers = scanDebtMarkers(cwd);
+    assert.equal(markers.length, 1);
+    assert.match(markers[0].file, /app\.js$/);
+  });
+});
+
 test('formatReport reports a clean ledger when nothing found', () => {
   assert.equal(formatReport([]), `No ${MARKER} markers. Clean ledger.`);
 });
