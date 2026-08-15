@@ -194,11 +194,11 @@ export function hasOpenEntry(logPath, { type, session }) {
   });
 }
 
-export function resolveObservation(logPath, number, status, note = '') {
+export function resolveObservation(logPath, number, status, note = '', evidence = '') {
   if (status !== 'ACTIONED' && status !== 'DECLINED') {
     throw new Error(`resolve status must be ACTIONED or DECLINED, got: ${status}`);
   }
-  assertNoHeaderInjection({ note });
+  assertNoHeaderInjection({ note, evidence });
   return withLock(logPath, () => {
     backup(logPath);
     const content = readLog(logPath);
@@ -219,7 +219,12 @@ export function resolveObservation(logPath, number, status, note = '') {
       throw new Error(`observation ${number} has no Status line`);
     }
     const suffix = note ? ` — ${note}` : '';
-    const newBlock = entryBlock.replace(statusLineRe, `$1 ${status} (${todayISO()})${suffix}`);
+    let newBlock = entryBlock.replace(statusLineRe, `$1 ${status} (${todayISO()})${suffix}`);
+
+    if (evidence) {
+      const principleLineRe = /^(\*\*Principle:\*\*.*)$/m;
+      newBlock = newBlock.replace(principleLineRe, `$1\n**Evidence:** ${evidence}`);
+    }
 
     const newContent = content.slice(0, start) + newBlock + content.slice(end);
 
@@ -312,8 +317,15 @@ if (isMain) {
       const number = appendObservation(logPath, payload);
       process.stdout.write(`${JSON.stringify({ number })}\n`);
     } else if (subcommand === 'resolve') {
-      const [numberArg, status, ...noteParts] = rest;
-      resolveObservation(logPath, Number(numberArg), status, noteParts.join(' '));
+      const [numberArg, status, ...noteAndEvidenceParts] = rest;
+      const evidenceFlagIdx = noteAndEvidenceParts.indexOf('--evidence');
+      const noteParts = evidenceFlagIdx === -1
+        ? noteAndEvidenceParts
+        : noteAndEvidenceParts.slice(0, evidenceFlagIdx);
+      const evidence = evidenceFlagIdx === -1
+        ? ''
+        : noteAndEvidenceParts.slice(evidenceFlagIdx + 1).join(' ');
+      resolveObservation(logPath, Number(numberArg), status, noteParts.join(' '), evidence);
       process.stdout.write(`${JSON.stringify({ resolved: Number(numberArg), status })}\n`);
     } else if (subcommand === 'archive') {
       const archiveDir = resolve(process.cwd(), '.wolf/observations-archive');

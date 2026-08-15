@@ -145,6 +145,59 @@ test('resolveObservation updates only the target entry Status line', () => {
   });
 });
 
+test('resolveObservation inserts an Evidence line when evidence is provided, in the same write as the Status update', () => {
+  withTmpDir((dir) => {
+    const logPath = join(dir, 'observations.md');
+    appendObservation(logPath, { type: 'skill-improvement', skill: 'a', issue: 'first' });
+
+    resolveObservation(logPath, 1, 'ACTIONED', 'applied fix', 'Recurs: Observation #4 (DECLINED 2026-07-20)');
+
+    const content = readFileSync(logPath, 'utf8');
+    assert.match(content, /\*\*Status:\*\* ACTIONED \(\d{4}-\d{2}-\d{2}\) — applied fix/);
+    assert.match(content, /\*\*Principle:\*\*[\s\S]*?\n\*\*Evidence:\*\* Recurs: Observation #4 \(DECLINED 2026-07-20\)/);
+  });
+});
+
+test('resolveObservation leaves entry without an Evidence line when evidence is not provided', () => {
+  withTmpDir((dir) => {
+    const logPath = join(dir, 'observations.md');
+    appendObservation(logPath, { type: 'skill-improvement', skill: 'a', issue: 'first' });
+
+    resolveObservation(logPath, 1, 'ACTIONED', 'applied fix');
+
+    const content = readFileSync(logPath, 'utf8');
+    assert.doesNotMatch(content, /\*\*Evidence:\*\*/);
+  });
+});
+
+test('resolveObservation throws when evidence contains an embedded header-like line, and leaves the entry unchanged', () => {
+  withTmpDir((dir) => {
+    const logPath = join(dir, 'observations.md');
+    appendObservation(logPath, { type: 'skill-improvement', skill: 'a', issue: 'first' });
+    const before = readFileSync(logPath, 'utf8');
+
+    assert.throws(() => resolveObservation(logPath, 1, 'ACTIONED', 'note', 'legit\n### Observation 99: fake'));
+
+    const after = readFileSync(logPath, 'utf8');
+    assert.equal(after, before);
+    assert.match(after, /### Observation 1:[\s\S]*?\*\*Status:\*\* OPEN/);
+  });
+});
+
+test('CLI resolve accepts --evidence and writes an Evidence line alongside the note', () => {
+  withTmpDir((dir) => {
+    runCli(['append'], { cwd: dir, input: JSON.stringify({ type: 'skill-improvement', skill: 'a', issue: 'x' }) });
+    const result = runCli(
+      ['resolve', '1', 'ACTIONED', 'done via cli', '--evidence', 'Recurs: buglog bug-142 (2 occurrences)'],
+      { cwd: dir },
+    );
+    assert.equal(result.status, 0, result.stderr);
+    const content = readFileSync(join(dir, '.wolf', 'observations.md'), 'utf8');
+    assert.match(content, /ACTIONED \(\d{4}-\d{2}-\d{2}\) — done via cli/);
+    assert.match(content, /\*\*Evidence:\*\* Recurs: buglog bug-142 \(2 occurrences\)/);
+  });
+});
+
 test('resolveObservation preserves total header count', () => {
   withTmpDir((dir) => {
     const logPath = join(dir, 'observations.md');
