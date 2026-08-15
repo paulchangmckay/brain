@@ -3747,6 +3747,70 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-08-14T04:06:40.649Z"
+    },
+    {
+      "id": "bug-233",
+      "timestamp": "2026-08-14T08:06:01.719Z",
+      "error_message": "Missing error handling in spa_fallback",
+      "file": "../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/.superpowers/sdd/task-1-report.md",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-08-14T08:06:01.719Z"
+    },
+    {
+      "id": "bug-234",
+      "timestamp": "2026-08-15T02:06:20.705Z",
+      "error_message": "Significant refactor of ",
+      "file": "docs/superpowers/specs/2026-08-14-cross-session-recurring-pattern-detection-design.md",
+      "root_cause": "6 lines replaced/restructured",
+      "fix": "Rewrote 23→29 lines (6 removed) | Also: for the small-additive tier, not the gate mechanis; - a cerebrum.md Do-Not-Repeat append, using the sa | Also: `scripts/wolf-observation-log.js`'s `append` comma; optional stdin field:",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 3,
+      "last_seen": "2026-08-15T02:09:27.097Z"
+    },
+    {
+      "id": "bug-235",
+      "timestamp": "2026-08-15T02:17:12.992Z",
+      "error_message": "Significant refactor of ",
+      "file": "docs/superpowers/plans/2026-08-14-cross-session-recurring-pattern-detection.md",
+      "root_cause": "19 lines replaced/restructured",
+      "fix": "Rewrote 24→42 lines (19 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-08-15T02:17:12.992Z"
+    },
+    {
+      "id": "bug-236",
+      "timestamp": "2026-08-15T02:19:38.209Z",
+      "error_message": "Missing error handling in test_compute_zscores_computes_ca_and_hdca_per60_z",
+      "file": "../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/tests/test_compute_advanced_stats.py",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "py"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-08-15T02:19:38.209Z"
     }
   ]
 }

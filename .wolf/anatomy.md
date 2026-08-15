@@ -1,7 +1,71 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-08-14T04:06:40.634Z
-> Files: 552 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-08-15T02:19:58.889Z
+> Files: 585 tracked | Anatomy hits: 0 | Misses: 0
+
+## ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/.wolf/
+
+- `cerebrum.md` — Cerebrum (~11303 tok)
+
+## ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/docs/superpowers/plans/
+
+- `2026-08-14-team-pages-and-top-players.md` — Team Pages + Top Players Page Implementation Plan (~14045 tok)
+
+## ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/docs/superpowers/specs/
+
+- `2026-08-14-team-pages-and-top-players-design.md` — Team Pages + Top Players Page — Design (~2668 tok)
+
+## ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/src/
+
+- `database.py` — _TursoRow: keys, fetchone, fetchall, execute + 9 more (~12117 tok)
+
+## ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/tests/
+
+- `test_compute_advanced_stats.py` — test_run_invokes_season_aggregation_and_percentiles_automatically, test_run_processes_pending_game_a (~7566 tok)
+
+## ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/
+
+- `app.py` — API router (~5856 tok)
+
+## ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/.superpowers/sdd/
+
+- `task-1-report.md` — Task 1 Report: Flask SPA-fallback route (~1300 tok)
+- `task-2-report.md` — Task 2: Install react-router-dom — Report (~542 tok)
+- `task-3-report.md` — Task 3: PlaceholderPage Component — TDD Report (~571 tok)
+- `task-4-report.md` — Task 4 Report: Hero Gradient Helper + Home Page (~988 tok)
+- `task-5-report.md` — Task 5 Report: Relocate the stats table view into Players.tsx (~946 tok)
+- `task-5b-fix-report.md` — Task 5b — Fix: re-measure toolbar height once data finishes loading (~807 tok)
+- `task-6-report.md` — Task 6 Report: Header component (~1014 tok)
+- `task-7-report.md` — Task 7 Report: Wire up routing — App shell + main.tsx (~1293 tok)
+
+## ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/frontend/src/
+
+- `App.test.tsx` — renderApp (~281 tok)
+- `App.tsx` — App (~72 tok)
+- `main.tsx` (~274 tok)
+
+## ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/frontend/src/components/
+
+- `Header.test.tsx` — renderHeader (~334 tok)
+- `Header.tsx` — NAV_LINKS — renders modal (~724 tok)
+
+## ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/frontend/src/lib/
+
+- `heroGradient.test.ts` — Declares gradient (~162 tok)
+- `heroGradient.ts` — Exports buildHeroGradient (~84 tok)
+
+## ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/frontend/src/pages/
+
+- `Home.test.tsx` — hero (~205 tok)
+- `Home.tsx` — Home (~203 tok)
+- `PlaceholderPage.test.tsx` (~132 tok)
+- `PlaceholderPage.tsx` — PlaceholderPage (~106 tok)
+- `Players.test.tsx` — mockFetchOnce (~1862 tok)
+- `Players.tsx` — seasonsKey (~2408 tok)
+
+## ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/tests/
+
+- `test_app_spa_fallback.py` — test_direct_hit_on_client_route_returns_index_html, test_unknown_client_route_also_returns_index_htm (~228 tok)
 
 ## ../Desktop/NHL Stats Project/.worktrees/fix-111-turso-connection/src/
 
@@ -966,10 +1030,12 @@
 ## docs/superpowers/plans/
 
 - `2026-08-09-openwolf-mcp-api.md` — OpenWolf MCP API Implementation Plan (~7402 tok)
+- `2026-08-14-cross-session-recurring-pattern-detection.md` — Cross-Session Recurring-Pattern Detection Implementation Plan (~5421 tok)
 
 ## docs/superpowers/specs/
 
 - `2026-08-09-openwolf-mcp-api-design.md` — OpenWolf MCP API — Design (~3208 tok)
+- `2026-08-14-cross-session-recurring-pattern-detection-design.md` — Cross-Session Recurring-Pattern Detection (~2979 tok)
 
 ## skills/grilling/
 
