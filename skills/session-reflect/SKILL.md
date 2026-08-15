@@ -124,20 +124,87 @@ End-of-session audit with three phases. Phase 1 (cerebrum) always runs automatic
        ```bash
        node scripts/wolf-observation-log.js archive
        ```
-    b. Enumerate the remaining OPEN entries and cross-check each against the
-       skill(s) it names.
-    c. For each entry:
-       - **Small additive** (new rule, clarification, factual fix): show an
-         inline diff of the proposed SKILL.md change, apply on approval,
-         write live — same shape as the Phase 2 CLAUDE.md pattern above.
-       - **Substantial** (restructuring, new capability, or any
-         new-skill-candidate the user wants to build): hand off to the
-         `github-issue-first` skill to file the issue, then the normal
-         `using-git-worktrees → test-driven-development →
+    b. **Scan for cross-session recurrence — delegate this to a dispatched
+       subagent**, rather than reading the sources directly. This keeps 90
+       days of archive text, buglog.json, and cerebrum.md out of this
+       session's context, matching how this repo already routes
+       multi-file research to a subagent. The task requires judgment
+       (matching "substantially the same friction," not locating a known
+       string), so dispatch it as a general-purpose research subagent, not
+       the narrower Explore type — Explore's own description excludes
+       "open-ended analysis" and "cross-file consistency checks," which is
+       exactly this scan.
+
+       List the remaining OPEN entries first (title, type, skill, issue
+       text for each — including any logged this session by step 7), then
+       dispatch one subagent with:
+       - that list of OPEN entries to check for recurrence
+       - instructions to read `.wolf/observations-archive/*.md` (files
+         dated within the last 90 days only — a match found only in an
+         older file counts as not found), `.wolf/buglog.json`, and current
+         `.wolf/cerebrum.md` (Do-Not-Repeat, Key Learnings, Decision Log
+         sections, read as a live snapshot — `cerebrum.md` is rewritten
+         wholesale weekly by the `cerebrum-reflection` cron, so there's no
+         stable history to diff against)
+       - instructions to report back, per OPEN entry: whether a match was
+         found; if so, a one-line citation (e.g. "Observation #4 (DECLINED
+         2026-07-20)", "buglog bug-142 (2 occurrences)", "cerebrum
+         Do-Not-Repeat line 12"); and whether the match was itself a prior
+         **resolution** (an ACTIONED archive entry or an existing cerebrum
+         bullet) as opposed to a DECLINED entry or a bare occurrence count
+         — this distinction drives the escalation rule in step (d)
+
+       The subagent only reports findings — it never writes to any file or
+       makes the tier/routing decision. Those stay here, in this session,
+       where the approval gates live.
+    c. Enumerate the remaining OPEN entries. For each one, use the
+       subagent's report from (b) to see whether it matched something
+       already seen: another observation (archived or still open), a
+       recurring buglog bug, or an existing cerebrum bullet. Its citation
+       is what you'll record as evidence in step (e).
+    d. For each entry, decide how to act on it:
+       - **Escalation rule (check this first):** if the entry matches
+         something already **resolved** — an ACTIONED entry in the archive,
+         or a pattern already present in cerebrum's Do-Not-Repeat — treat it
+         as **Substantial** below, regardless of how small the pattern would
+         otherwise look. A fix that already exists and didn't stop the
+         recurrence needs a stronger intervention, not a second copy of the
+         same small fix. (A match against only a DECLINED entry, or only a
+         buglog `occurrences` count with no prior fix attached, does *not*
+         trigger this rule — that's repetition without a prior remedy, not a
+         fix that failed.)
+       - **Small additive** (new rule, clarification, factual fix — and the
+         escalation rule above doesn't apply): route by what the pattern is
+         about, not open judgment:
+         - tied to a specific named skill's behavior → show an inline diff
+           of the proposed SKILL.md change, apply on approval, write live
+         - a general mistake or preference not tied to any one skill →
+           append to cerebrum.md's Do-Not-Repeat section, using the same
+           append method as Phase 1 step 4
+         - a project-wide fact, convention, or environment gotcha → a
+           CLAUDE.md addition, using the same diff-and-approve pattern as
+           Phase 2 step 10
+       - **Substantial** (restructuring, new capability, any
+         new-skill-candidate the user wants to build, or anything the
+         escalation rule forced here): hand off to the `github-issue-first`
+         skill to file the issue — if this entry has recurrence evidence
+         from (c), include it in the issue body as the "why now" citation —
+         then the normal `using-git-worktrees → test-driven-development →
          verification-before-completion → requesting-code-review` pipeline.
-       - Mark the entry via `node scripts/wolf-observation-log.js resolve <N> ACTIONED "<what was applied>"`
-         or `... DECLINED "<why not>"`.
-    d. Write today's date to `.wolf/observations-last-review.txt`.
+    e. Mark the entry:
+       ```bash
+       node scripts/wolf-observation-log.js resolve <N> ACTIONED "<what was applied>"
+       ```
+       or
+       ```bash
+       node scripts/wolf-observation-log.js resolve <N> DECLINED "<why not>"
+       ```
+       If this entry had a recurrence match from step (c), add it as a
+       citation with `--evidence`:
+       ```bash
+       node scripts/wolf-observation-log.js resolve <N> ACTIONED "<what was applied>" --evidence "Recurs: Observation #4 (DECLINED 2026-07-20), buglog bug-142 (2 occurrences), cerebrum Do-Not-Repeat line 12"
+       ```
+    f. Write today's date to `.wolf/observations-last-review.txt`.
 
 ## Step 13: Report
 
