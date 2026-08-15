@@ -3895,6 +3895,39 @@
       "related_bugs": [],
       "occurrences": 2,
       "last_seen": "2026-08-15T21:38:18.161Z"
+    },
+    {
+      "id": "bug-242",
+      "timestamp": "2026-08-15T17:38:00.000Z",
+      "error_message": "Free-text values interpolated into String.replace()'s replacement-string argument get pattern-expanded",
+      "file": "scripts/wolf-observation-log.js",
+      "root_cause": "resolveObservation() built its Status-line and Evidence-line replacements as template strings passed directly as the second argument to String.prototype.replace(). JS treats $1, $&, $`, $' as special replacement patterns in that position, so any note/evidence text containing a literal $ followed by a digit or one of those characters silently mangled the written line instead of being written verbatim.",
+      "fix": "Switched both .replace() calls to use a function replacer instead of a template string — a function's return value is used verbatim, with no pattern expansion. Caught by a whole-branch code review, not the original implementer or task-scoped reviewer; regression test added asserting a literal $1/$& string survives unmangled.",
+      "tags": [
+        "js",
+        "string-replace",
+        "pattern-expansion",
+        "code-review-catch"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-08-15T17:38:00.000Z"
+    },
+    {
+      "id": "bug-243",
+      "timestamp": "2026-08-15T23:13:22.727Z",
+      "error_message": "Incorrect value in code",
+      "file": "CLAUDE.md",
+      "root_cause": "Had `CLAUDE_CWD`",
+      "fix": "Changed to 't republish `",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-08-15T23:13:22.727Z"
     }
   ]
 }

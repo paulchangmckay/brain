@@ -1,16 +1,27 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-08-15T21:52:46.655Z
-> Files: 524 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-08-15T23:13:22.705Z
+> Files: 532 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/.superpowers/sdd/
 
+- `task-10-report.md` — Task 10 Report: `pages/TopPlayers.tsx` (~848 tok)
+- `task-11-report.md` — Task 11 Report: Wire routes into `main.tsx` (~1642 tok)
 - `task-8-report.md` — Task 8 Report: `pages/TeamPage.tsx` (~1102 tok)
+- `task-9-report.md` — Task 9: Frontend — `pages/Teams.tsx` (picker grid) — Report (~818 tok)
+
+## ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/frontend/src/
+
+- `main.tsx` (~313 tok)
 
 ## ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/frontend/src/pages/
 
 - `TeamPage.test.tsx` — TEAMS (~751 tok)
 - `TeamPage.tsx` — fetchJson (~822 tok)
+- `Teams.test.tsx` — TEAMS (~290 tok)
+- `Teams.tsx` — Teams (~324 tok)
+- `TopPlayers.test.tsx` — PLAYERS (~653 tok)
+- `TopPlayers.tsx` — fetchJson (~619 tok)
 
 ## ./
 
@@ -23,7 +34,7 @@
 - `.last-update-result.json` (~46 tok)
 - `.mcp.json` (~34 tok)
 - `.shellcheckrc` — Companion enforcement for skills/senior-engineering-partner SKILL.md: (~81 tok)
-- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~5915 tok)
+- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~6040 tok)
 - `eslint.config.js` — ESLint flat configuration (~365 tok)
 - `history.jsonl` (~201 tok)
 - `mcp_servers.example.json` (~65 tok)

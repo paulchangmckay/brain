@@ -184,3 +184,14 @@ DECLINED (YYYY-MM-DD) = reviewed, not pursued
 **Issue:** The grilled and approved cross-session-recurring-pattern-detection spec specified adding an evidence field to wolf-observation-log.js's append command. During writing-plans, mapping the spec to actual code revealed append never fires in the Phase 3 flow that needed evidence — Phase 3 only scans and resolves already-existing OPEN entries, it never creates new ones. The correct attach point was resolve, not append. Grilling asked hard questions about decision branches (escalation rules, routing criteria, corpus bounds) but did not verify that the proposed schema change actually attaches at a point the described data flow exercises.
 **Suggested improvement:** When grilling a spec that names a specific function/operation as the change point for a schema/data addition, add one verification question: walk the actual call sequence the spec describes and confirm the named operation is the one that fires at that point in the flow. Mechanical verification, not just architectural soundness.
 **Principle:** A schema change can be self-consistent and grilled thoroughly while still attaching to the wrong operation if nobody re-traces the literal call sequence the design assumes.
+
+### Observation 22: skill-improvement: using-git-worktrees
+
+**Status:** OPEN
+**Date:** 2026-08-15
+**Type:** skill-improvement
+**Session:** 
+**Skill:** using-git-worktrees
+**Issue:** Resolving a .wolf/buglog.json merge conflict required hand-rolling a one-off node script (require both git stages as JSON, dedup by timestamp+error_message+file content-key, verify one side is a strict superset) because no documented procedure or reusable script exists for ID-numbered append-only logs specifically — the existing cerebrum.md guidance only covers plain concatenation (memory.md) and --ours+rescan (anatomy.md), neither of which fits an ID-collision case. Happened twice in one session (once merging the feature branch into origin/main, once syncing local main afterward).
+**Suggested improvement:** Add a small reusable script (e.g. scripts/resolve-numbered-log-conflict.js) that takes two git-stage refs for a JSON array-of-objects file, a content-key field list, and dedupes/verifies supersets automatically — or at minimum, document the git-stage-extraction + content-key-dedup technique as a named step in using-git-worktrees or the cerebrum Git/Worktree pattern, so it is followed by procedure next time instead of re-derived under time pressure.
+**Principle:** Auto-numbered append-only logs (sequential IDs assigned by a project-wide hook, not scoped to the checked-out branch) collide differently than plain append-only logs — the general worktree-merge guidance silently does not cover this case, and that gap was only caught because the resulting JSON was manually diffed rather than trusted.
