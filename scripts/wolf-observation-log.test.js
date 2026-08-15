@@ -158,6 +158,19 @@ test('resolveObservation inserts an Evidence line when evidence is provided, in 
   });
 });
 
+test('resolveObservation writes literal $-patterns in note/evidence unmangled', () => {
+  withTmpDir((dir) => {
+    const logPath = join(dir, 'observations.md');
+    appendObservation(logPath, { type: 'skill-improvement', skill: 'a', issue: 'first' });
+
+    resolveObservation(logPath, 1, 'ACTIONED', 'costs $1 and $& per run', 'costs $1 and $& per run');
+
+    const content = readFileSync(logPath, 'utf8');
+    const occurrences = content.split('costs $1 and $& per run').length - 1;
+    assert.equal(occurrences, 2);
+  });
+});
+
 test('resolveObservation leaves entry without an Evidence line when evidence is not provided', () => {
   withTmpDir((dir) => {
     const logPath = join(dir, 'observations.md');

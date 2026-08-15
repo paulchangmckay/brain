@@ -219,11 +219,11 @@ export function resolveObservation(logPath, number, status, note = '', evidence 
       throw new Error(`observation ${number} has no Status line`);
     }
     const suffix = note ? ` — ${note}` : '';
-    let newBlock = entryBlock.replace(statusLineRe, `$1 ${status} (${todayISO()})${suffix}`);
+    let newBlock = entryBlock.replace(statusLineRe, (_m, g1) => `${g1} ${status} (${todayISO()})${suffix}`);
 
     if (evidence) {
       const principleLineRe = /^(\*\*Principle:\*\*.*)$/m;
-      newBlock = newBlock.replace(principleLineRe, `$1\n**Evidence:** ${evidence}`);
+      newBlock = newBlock.replace(principleLineRe, (_m, g1) => `${g1}\n**Evidence:** ${evidence}`);
     }
 
     const newContent = content.slice(0, start) + newBlock + content.slice(end);

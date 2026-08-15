@@ -157,11 +157,12 @@ End-of-session audit with three phases. Phase 1 (cerebrum) always runs automatic
        The subagent only reports findings — it never writes to any file or
        makes the tier/routing decision. Those stay here, in this session,
        where the approval gates live.
-    c. Enumerate the remaining OPEN entries. For each one, use the
-       subagent's report from (b) to see whether it matched something
-       already seen: another observation (archived or still open), a
-       recurring buglog bug, or an existing cerebrum bullet. Its citation
-       is what you'll record as evidence in step (e).
+    c. Enumerate the remaining OPEN entries and cross-check each against
+       the skill(s) it names. For each one, also use the subagent's report
+       from (b) to see whether it matched something already seen: another
+       observation (archived or still open), a recurring buglog bug, or an
+       existing cerebrum bullet. Its citation is what you'll record as
+       evidence in step (e).
     d. For each entry, decide how to act on it:
        - **Escalation rule (check this first):** if the entry matches
          something already **resolved** — an ACTIONED entry in the archive,
