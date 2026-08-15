@@ -80,19 +80,38 @@ entry under review is substantially the same friction/pattern as
 something already present in this corpus. This reuses Phase 3's existing
 agent-driven review; it does not add a new automated pass.
 
+**Delegation, not a new architecture.** The corpus read (and the semantic
+matching judgment against it) is delegated to a dispatched subagent rather
+than done inline by the orchestrating session — this keeps 90 days of
+archive text, buglog.json, and cerebrum.md out of the main session's
+context window, consistent with this repo's existing subagent-routing
+convention for research spanning multiple files. This is scan-only
+delegation: the subagent reports matches and citations back; it never
+writes anything or makes the tier/routing decision. Those stay with the
+orchestrating session, where the approval gates already live. The task
+needs judgment (comparing entries for substantially-the-same friction, not
+locating a known string), so it's dispatched as a general-purpose research
+subagent, not the narrower Explore type — Explore is documented as
+excluding "open-ended analysis" and "cross-file consistency checks," which
+is exactly what this scan requires.
+
 ## Data / schema change
 
-`scripts/wolf-observation-log.js`'s `append` command gains one new
-optional stdin field:
+**Correction from the originally grilled draft:** evidence attaches to an
+entry when Phase 3 *reviews* it, not when it's first created — Phase 3
+never appends new entries, it only scans and resolves existing OPEN ones.
+So the schema change belongs on `resolveObservation` / the CLI `resolve`
+command, not `append`. `append`'s signature is unchanged.
 
-```js
-{ type, skill, issue, improvement, principle, evidence, status, session, title }
-```
+`resolveObservation(logPath, number, status, note, evidence)` gains one
+new optional parameter (CLI: an `--evidence "<text>"` flag on `resolve`,
+after the existing positional `note` argument). `evidence` is free-text,
+subject to the same header-injection guard already applied to
+`note`/`issue`/`improvement`/`principle` (rejects any value containing a
+line matching `### Observation N:`).
 
-`evidence` is free-text, subject to the same header-injection guard
-already applied to `issue`/`improvement`/`principle` (rejects any field
-containing a line matching `### Observation N:`). It renders as a new
-line in the observation block, after `**Principle:**`:
+When present, it inserts a new line into the entry block, after
+`**Principle:**`, in the same write that updates `**Status:**`:
 
 ```
 **Evidence:** <free text>
@@ -101,14 +120,14 @@ line in the observation block, after `**Principle:**`:
 Example: `**Evidence:** Recurs: Observation #4 (DECLINED 2026-07-20),
 buglog bug-142 (2 occurrences), cerebrum Do-Not-Repeat line 12`.
 
-`evidence` is populated only when the Phase 3 recurrence scan finds a
-match. It is absent (rendered as before, no new blank line) for
-first-time observations — this keeps the change purely additive for the
-common case.
+When absent (the common case — most resolutions aren't recurrence-driven),
+nothing changes: no `**Evidence:**` line is added, and existing callers of
+`resolve` are unaffected.
 
-`wolf-observation-log.test.js` gets new cases: append with `evidence`
-present, append without it (unchanged rendering), and the header-injection
-guard applied to the new field.
+`wolf-observation-log.test.js` gets new cases: resolve with `evidence`
+present (line inserted, Status line updated in the same call), resolve
+without it (unchanged rendering, matching current behavior), and the
+header-injection guard applied to the new parameter.
 
 The cerebrum.md Do-Not-Repeat append mechanism itself is written **once**
 in the SKILL.md as a shared step, referenced by both Phase 1's existing
