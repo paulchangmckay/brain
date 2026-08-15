@@ -46,6 +46,7 @@ function grepMarkers(cwd) {
     '--exclude-dir=.wolf',
     '--exclude-dir=.superpowers',
     '--exclude-dir=file-history',
+    '--exclude-dir=projects',
     '--exclude=*.jsonl',
     '.',
   ];
