@@ -1,6 +1,6 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-08-15T02:19:58.889Z
+> Auto-maintained by OpenWolf. Last scanned: 2026-08-15T02:20:11.337Z
 > Files: 585 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/.wolf/
@@ -17,7 +17,7 @@
 
 ## ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/src/
 
-- `database.py` — _TursoRow: keys, fetchone, fetchall, execute + 9 more (~12117 tok)
+- `database.py` — _TursoRow: keys, fetchone, fetchall, execute + 9 more (~12138 tok)
 
 ## ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/tests/
 
