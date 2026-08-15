@@ -719,3 +719,13 @@
 | 22:19 | Edited ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/tests/test_compute_advanced_stats.py | modified test_compute_zscores_computes_ca_and_hdca_per60_z() | ~805 |
 | 22:19 | Edited ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/src/database.py | 2→4 lines | ~64 |
 | 22:20 | Edited ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/src/database.py | 2→4 lines | ~48 |
+
+## Session: 2026-08-15 22:22
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-08-15 17:34
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
