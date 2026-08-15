@@ -1,11 +1,27 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-08-15T02:20:11.337Z
-> Files: 585 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-08-15T21:48:53.948Z
+> Files: 609 tracked | Anatomy hits: 0 | Misses: 0
+
+## ../../../private/tmp/claude-501/-Users-paulmckay--claude/1613f301-a561-4b97-88a9-53d1240a751b/scratchpad/verify/old/
+
+- `wolf-observation-log.js` — /*.js is eslint-banned from child_process. (~3187 tok)
+
+## ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/
+
+- `app.py` — API router (~6492 tok)
+
+## ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/.superpowers/sdd/
+
+- `task-1-report.md` — Task 1 Report: ETL — add CA/60 and HDCA/60 z-scores to `compute_zscores()` (~1117 tok)
+- `task-2-report.md` — Task 2 Report: ETL — goalie z-scores (new table + function) (~1181 tok)
+- `task-3-report.md` — Task 3 Report: Backend — `/api/players/rankings` endpoint (~794 tok)
+- `task-5-report.md` — Task 5: Frontend — `lib/leaderboards.ts` Report (~967 tok)
+- `task-7-report.md` — Task 7 Report: Frontend — shared latest-season constant (~175 tok)
 
 ## ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/.wolf/
 
-- `cerebrum.md` — Cerebrum (~11303 tok)
+- `cerebrum.md` — Cerebrum (~11701 tok)
 
 ## ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/docs/superpowers/plans/
 
@@ -15,13 +31,25 @@
 
 - `2026-08-14-team-pages-and-top-players-design.md` — Team Pages + Top Players Page — Design (~2668 tok)
 
+## ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/etl/
+
+- `compute_advanced_stats.py` — run, compute_season_aggregates, compute_percentiles, compute_zscores (~3734 tok)
+
+## ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/frontend/src/lib/
+
+- `leaderboards.test.ts` — RankingRow: skater, goalie (~770 tok)
+- `leaderboards.ts` — Exports RankingRow, RankedPlayer, computeLeaderboards (~645 tok)
+- `season.ts` — Matches the hardcoded default season used elsewhere in the app (~114 tok)
+
 ## ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/src/
 
-- `database.py` — _TursoRow: keys, fetchone, fetchall, execute + 9 more (~12138 tok)
+- `database.py` — _TursoRow: keys, fetchone, fetchall, execute + 9 more (~12400 tok)
 
 ## ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/tests/
 
-- `test_compute_advanced_stats.py` — test_run_invokes_season_aggregation_and_percentiles_automatically, test_run_processes_pending_game_a (~7566 tok)
+- `test_app_advanced_stats.py` — test_fetch_player_advanced_returns_per_strength_state_breakdown, test_fetch_player_advanced_includes (~5319 tok)
+- `test_app_rankings.py` — test_rankings_returns_skaters_and_goalies, test_rankings_team_filter_narrows_to_one_team (~852 tok)
+- `test_compute_advanced_stats.py` — test_run_invokes_season_aggregation_and_percentiles_automatically, test_run_processes_pending_game_a (~8499 tok)
 
 ## ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/
 
@@ -79,6 +107,10 @@
 ## ../Desktop/NHL Stats Project/docs/superpowers/specs/
 
 - `2026-08-13-header-nav-and-hero-image-design.md` — Header Navigation + Homepage Hero — Design (~1570 tok)
+
+## ../Desktop/NHL/ Stats/ Project/.worktrees/feature-116-117-team-pages-top-players/frontend/src/components/
+
+- `Leaderboard.test.tsx` — PLAYERS (~349 tok)
 
 ## ./
 
@@ -1017,6 +1049,31 @@
 - `buglog.json` (~255 tok)
 - `cerebrum.md` — Cerebrum (~126 tok)
 - `memory.md` — Memory (~129 tok)
+
+## .claude/worktrees/feature+48-cross-session-recurring-pattern-detection/.superpowers/sdd/
+
+- `progress.md` — Declares call (~74 tok)
+- `task-1-report.md` — Task 1: Add `evidence` Support to `resolveObservation` (~1618 tok)
+- `task-2-report.md` — Task 2 Completion Report: session-reflect Phase 3 Rewrite (~1596 tok)
+- `task-fix-1-report.md` — Task Fix Report: Two Important Findings from Whole-Branch Code Review (~1860 tok)
+
+## .claude/worktrees/feature+48-cross-session-recurring-pattern-detection/.wolf/
+
+- `buglog.json` (~42356 tok)
+
+## .claude/worktrees/feature+48-cross-session-recurring-pattern-detection/scripts/
+
+- `wolf-observation-log.js` — /*.js is eslint-banned from child_process. (~3196 tok)
+- `wolf-observation-log.test.js` — SCRIPT: runCli, withTmpDir (~4526 tok)
+
+## .claude/worktrees/feature+48-cross-session-recurring-pattern-detection/skills/session-reflect/
+
+- `SKILL.md` — Session Reflect Skill (~2642 tok)
+
+## .claude/worktrees/fix+49-wolf-debt-scan-projects-exclude/scripts/
+
+- `wolf-debt-scan.js` — Deterministic scanner for wolf-debt: markers, used by the debt-ledger skill. (~1078 tok)
+- `wolf-debt-scan.test.js` — Split so this test file's own source never contains the literal, (~1897 tok)
 
 ## .claude/worktrees/fix-43-cron-gate-retrigger/hooks/
 
