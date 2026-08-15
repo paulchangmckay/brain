@@ -173,3 +173,14 @@ DECLINED (YYYY-MM-DD) = reviewed, not pursued
 **Issue:** Pushing routine .wolf/anatomy.md, buglog.json, memory.md changes to main hit hand-resolved merge conflicts across 5+ cycles in a single session, because concurrent sessions/daemon hooks keep appending to the same files between fetch and push. anatomy.md/cerebrum.md are wholesale-regenerated (take-newest-plus-rescan, already documented in CLAUDE.md), but memory.md (append-only session log) and buglog.json (auto-incrementing ID array) required hand-splicing conflict markers back together each time, including manually renumbering colliding buglog IDs from uncoordinated concurrent sessions.
 **Suggested improvement:** Add a git merge driver (.gitattributes + a small script) for these specific .wolf/*.md/json files: union/concat-in-order for memory.md's session blocks, and a concat-plus-ID-renumber step for buglog.json's array. Would make `git pull`/`git merge` resolve these automatically instead of requiring manual conflict resolution every time routine log commits race a push.
 **Principle:** 
+
+### Observation 21: cross-cutting-principle: grilling, writing-plans
+
+**Status:** OPEN
+**Date:** 2026-08-15
+**Type:** cross-cutting-principle
+**Session:** 
+**Skill:** grilling, writing-plans
+**Issue:** The grilled and approved cross-session-recurring-pattern-detection spec specified adding an evidence field to wolf-observation-log.js's append command. During writing-plans, mapping the spec to actual code revealed append never fires in the Phase 3 flow that needed evidence — Phase 3 only scans and resolves already-existing OPEN entries, it never creates new ones. The correct attach point was resolve, not append. Grilling asked hard questions about decision branches (escalation rules, routing criteria, corpus bounds) but did not verify that the proposed schema change actually attaches at a point the described data flow exercises.
+**Suggested improvement:** When grilling a spec that names a specific function/operation as the change point for a schema/data addition, add one verification question: walk the actual call sequence the spec describes and confirm the named operation is the one that fires at that point in the flow. Mechanical verification, not just architectural soundness.
+**Principle:** A schema change can be self-consistent and grilled thoroughly while still attaching to the wrong operation if nobody re-traces the literal call sequence the design assumes.

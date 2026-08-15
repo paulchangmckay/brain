@@ -593,3 +593,139 @@
 | Time | Action | File(s) | Outcome | ~Tokens |
 |------|--------|---------|---------|--------|
 | 00:14 | Session end: 7 writes across 3 files (openwolf-cron-gate.test.js, gate-marker.js, openwolf-cron-gate.js) | 9 reads | ~11154 tok |
+| 00:21 | Session end: 7 writes across 3 files (openwolf-cron-gate.test.js, gate-marker.js, openwolf-cron-gate.js) | 9 reads | ~11154 tok |
+| 00:29 | Created ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/tests/test_app_spa_fallback.py | — | ~228 |
+| 00:29 | Session end: 6 writes across 3 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py) | 11 reads | ~13753 tok |
+| 00:30 | Edited ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/app.py | inline fix | ~19 |
+| 00:30 | Edited ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/app.py | modified index() | ~78 |
+| 00:46 | Created ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/.superpowers/sdd/task-1-report.md | — | ~837 |
+| 00:48 | Session end: 9 writes across 5 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 13 reads | ~14747 tok |
+
+## Session: 2026-08-14 00:48
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 04:04 | Session end: 9 writes across 5 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 15 reads | ~14747 tok |
+
+## Session: 2026-08-14 04:04
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 04:05 | Edited ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/app.py | modified spa_fallback() | ~41 |
+| 04:06 | Edited ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/.superpowers/sdd/task-1-report.md | modified spa_fallback() | ~587 |
+| 04:08 | Session end: 11 writes across 5 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 15 reads | ~15417 tok |
+| 04:08 | Session end: 11 writes across 5 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 16 reads | ~15417 tok |
+| 04:10 | Created ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/.superpowers/sdd/task-2-report.md | — | ~578 |
+| 04:10 | Session end: 12 writes across 6 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 17 reads | ~16036 tok |
+| 04:11 | Session end: 12 writes across 6 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 19 reads | ~16036 tok |
+| 04:11 | Created ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/frontend/src/pages/PlaceholderPage.test.tsx | — | ~132 |
+| 04:12 | Created ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/frontend/src/pages/PlaceholderPage.tsx | — | ~106 |
+| 04:12 | Created ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/.superpowers/sdd/task-3-report.md | — | ~610 |
+| 04:13 | Session end: 15 writes across 9 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 20 reads | ~16927 tok |
+| 04:14 | Session end: 15 writes across 9 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 22 reads | ~16927 tok |
+| 04:14 | Created ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/frontend/src/lib/heroGradient.test.ts | — | ~162 |
+| 04:14 | Created ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/frontend/src/lib/heroGradient.ts | — | ~84 |
+| 04:14 | Created ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/frontend/src/pages/Home.test.tsx | — | ~205 |
+| 04:15 | Created ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/frontend/src/pages/Home.tsx | — | ~203 |
+| 04:15 | Created ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/.superpowers/sdd/task-4-report.md | — | ~1054 |
+| 04:16 | Session end: 20 writes across 14 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 24 reads | ~18711 tok |
+| 04:17 | Session end: 20 writes across 14 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 26 reads | ~18711 tok |
+| 04:18 | Created ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/frontend/src/pages/Players.tsx | — | ~2396 |
+| 04:18 | Created ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/frontend/src/pages/Players.test.tsx | — | ~1862 |
+| 04:20 | Created ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/.superpowers/sdd/task-5-report.md | — | ~1010 |
+| 04:20 | Session end: 23 writes across 17 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 27 reads | ~24051 tok |
+| 04:22 | Session end: 23 writes across 17 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 30 reads | ~24051 tok |
+| 04:22 | Created ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/frontend/src/components/Header.test.tsx | — | ~334 |
+| 04:22 | Created ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/frontend/src/components/Header.tsx | — | ~724 |
+| 04:23 | Created ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/.superpowers/sdd/task-6-report.md | — | ~1082 |
+| 04:24 | Session end: 26 writes across 20 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 33 reads | ~26268 tok |
+| 04:25 | Session end: 26 writes across 20 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 36 reads | ~26268 tok |
+| 04:26 | Created ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/frontend/src/App.test.tsx | — | ~281 |
+| 04:26 | Created ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/frontend/src/App.tsx | — | ~72 |
+| 04:26 | Created ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/frontend/src/main.tsx | — | ~274 |
+| 04:28 | Created ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/.superpowers/sdd/task-7-report.md | — | ~1379 |
+| 04:29 | Session end: 30 writes across 24 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 37 reads | ~28373 tok |
+| 04:39 | Session end: 30 writes across 24 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 44 reads | ~28373 tok |
+
+## Session: 2026-08-14 04:39
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 04:39 | Edited ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/frontend/src/pages/Players.tsx | inline fix | ~19 |
+| 04:40 | Created ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/.superpowers/sdd/task-5b-fix-report.md | — | ~861 |
+| 06:29 | Session end: 32 writes across 25 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 46 reads | ~29314 tok |
+
+## Session: 2026-08-14 06:29
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 08:01 | Session end: 32 writes across 25 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 49 reads | ~29314 tok |
+
+## Session: 2026-08-14 08:01
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 10:49 | Session end: 32 writes across 25 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 51 reads | ~29314 tok |
+
+## Session: 2026-08-14 10:49
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 14:53 | Session end: 32 writes across 25 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 52 reads | ~29314 tok |
+
+## Session: 2026-08-14 14:53
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 21:19 | Session end: 32 writes across 25 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 52 reads | ~29314 tok |
+
+## Session: 2026-08-15 21:19
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-08-15 21:35
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-08-15 21:55
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 21:58 | Created docs/superpowers/specs/2026-08-14-cross-session-recurring-pattern-detection-design.md | — | ~2215 |
+| 21:58 | Session end: 32 writes across 25 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 52 reads | ~29314 tok |
+| 21:58 | Session end: 1 writes across 1 files (2026-08-14-cross-session-recurring-pattern-detection-design.md) | 4 reads | ~2373 tok |
+| 22:00 | Created ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/docs/superpowers/specs/2026-08-14-team-pages-and-top-players-design.md | — | ~1927 |
+| 22:00 | Session end: 33 writes across 26 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 52 reads | ~31378 tok |
+| 22:05 | Session end: 33 writes across 26 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 54 reads | ~31378 tok |
+| 22:06 | Edited docs/superpowers/specs/2026-08-14-cross-session-recurring-pattern-detection-design.md | expanded (+6 lines) | ~440 |
+| 22:06 | Edited docs/superpowers/specs/2026-08-14-cross-session-recurring-pattern-detection-design.md | modified rule() | ~761 |
+| 22:06 | Edited docs/superpowers/specs/2026-08-14-cross-session-recurring-pattern-detection-design.md | expanded (+8 lines) | ~217 |
+| 22:06 | Edited docs/superpowers/specs/2026-08-14-cross-session-recurring-pattern-detection-design.md | inline fix | ~16 |
+| 22:09 | Created ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/docs/superpowers/specs/2026-08-14-team-pages-and-top-players-design.md | — | ~2846 |
+| 22:09 | Edited docs/superpowers/specs/2026-08-14-cross-session-recurring-pattern-detection-design.md | 29→33 lines | ~402 |
+| 22:10 | Edited ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/.wolf/cerebrum.md | modified is() | ~325 |
+| 22:11 | Created docs/superpowers/plans/2026-08-14-cross-session-recurring-pattern-detection.md | — | ~5427 |
+| 22:11 | Session end: 7 writes across 2 files (2026-08-14-cross-session-recurring-pattern-detection-design.md, 2026-08-14-cross-session-recurring-pattern-detection.md) | 6 reads | ~12775 tok |
+| 22:14 | Session end: 7 writes across 2 files (2026-08-14-cross-session-recurring-pattern-detection-design.md, 2026-08-14-cross-session-recurring-pattern-detection.md) | 6 reads | ~12775 tok |
+| 22:16 | Edited docs/superpowers/specs/2026-08-14-cross-session-recurring-pattern-detection-design.md | expanded (+15 lines) | ~330 |
+| 22:17 | Edited docs/superpowers/plans/2026-08-14-cross-session-recurring-pattern-detection.md | expanded (+18 lines) | ~694 |
+| 22:17 | Edited docs/superpowers/plans/2026-08-14-cross-session-recurring-pattern-detection.md | 1→2 lines | ~126 |
+| 22:17 | Created ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/docs/superpowers/plans/2026-08-14-team-pages-and-top-players.md | — | ~14981 |
+| 22:17 | Session end: 10 writes across 2 files (2026-08-14-cross-session-recurring-pattern-detection-design.md, 2026-08-14-cross-session-recurring-pattern-detection.md) | 6 reads | ~14007 tok |
+| 22:17 | Session end: 36 writes across 28 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 57 reads | ~50826 tok |
+| 22:19 | Session end: 36 writes across 28 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 57 reads | ~50826 tok |
+| 22:19 | Edited ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/tests/test_compute_advanced_stats.py | modified test_compute_zscores_computes_ca_and_hdca_per60_z() | ~805 |
+| 22:19 | Edited ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/src/database.py | 2→4 lines | ~64 |
+| 22:20 | Edited ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/src/database.py | 2→4 lines | ~48 |
+
+## Session: 2026-08-15 22:22
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-08-15 17:34
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
