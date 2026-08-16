@@ -147,9 +147,29 @@ routing table (updated with three new rows — see below) to decide which
 skill(s) apply, and to preserve the existing "never stack more than one
 frontend-aesthetic skill on the same task" constraint. Tool access mirrors
 what frontend work actually needs: `Skill`, `Read`, `Edit`, `Write`, `Bash`,
-`TodoWrite`, plus the `playwright` MCP tools for visual verification (per the
-existing house rule that frontend changes should be checked in a real
-browser before being reported done).
+`TodoWrite`, plus the specific `mcp__playwright__*` tool names (not a
+blanket MCP grant — plugin agents can't declare their own `mcpServers:`, but
+can list specific already-globally-registered MCP tools by name in `tools:`)
+for visual verification, per the existing house rule that frontend changes
+should be checked in a real browser before being reported done.
+
+**Frontmatter correction (caught by a second-opinion review, then verified
+against official docs — `code.claude.com/docs/en/sub-agents.md` and
+`plugins-reference.md` — before accepting): 4 of that review's 5 claims were
+right, 1 was wrong.** Confirmed true: a real `skills:` frontmatter field
+exists (preloads listed skills into context at session start — used here
+only for `claude-infra-reference`, since Step 1 of the routing logic always
+reads it; the other 16 owned skills stay Skill-tool-invoked on demand rather
+than all preloaded, which would be wasteful given several of those
+`SKILL.md` files run 1000+ lines); plugin agents genuinely cannot use
+`hooks`, `mcpServers`, or `permissionMode` (not used here regardless); a
+real subagent nesting cap exists (default 3 layers) — moot here, since a
+grep across all 13+ owned skills found none of them spawn subagents
+themselves, and `frontend-design` doesn't need `Agent` tool access. Found
+wrong: the review claimed `color` is undocumented/should be dropped —
+it's actually a real documented field; kept, using a distinct color from
+`ba-agent`'s `green` to visually distinguish them in tooling that renders
+agent color.
 
 ## Wiring Changes
 
@@ -210,17 +230,35 @@ Skills are markdown, not executable code — "testing" here means:
   `references/validation-checklist.md`) even though that skill isn't used to
   scaffold it — the criteria (description triggers correctly and not on a
   near-miss; dry-run dispatch succeeds) are construction-mechanism-agnostic.
+- **Registration check first** (lighter than a full dispatch): in the
+  session *after* implementation, type `@frontend-design:` and confirm
+  `frontend-design:frontend-design` appears in the typeahead — the actual
+  documented signal that plugin registration succeeded (there is no `claude
+  plugins list` command). The `/plugin` in-session manager is a secondary
+  way to check plugin status.
+- **Description-as-routing-rules check**: before considering the agent
+  definition done, test its `description` field against 5-10 realistic
+  sample requests spanning different owned skills (e.g. "build a landing
+  page" → `design-taste-frontend`; "this app needs a Notion-like look" →
+  `minimalist-ui`; "audit my existing dashboard's UI" →
+  `redesign-existing-projects`; "polish the hover states on this button" →
+  `make-interfaces-feel-better`; "why is this React page slow" →
+  `react-performance-patterns`) and confirm each would plausibly trigger
+  dispatch, since at 16+ owned skills a vague description produces
+  unreliable routing.
 - A smoke-test dispatch: run one real frontend task through
   `Agent(subagent_type: "frontend-design:frontend-design")` and confirm it
   picks a sensible skill combination (e.g. a greenfield landing page task
   should select `design-taste-frontend` + `web-interface-guidelines`, not
-  stack a second aesthetic-locked skill). **This cannot happen in the same
-  session that creates the plugin** — per this repo's own documented
-  learning, the Agent tool's available-subagent-types list (like the Skill
-  tool's available-skills list) is computed once at session start, so a
-  newly-registered plugin agent throws `Unknown agent type` until the next
-  session. The smoke test is the first thing to run in the session *after*
-  implementation.
+  stack a second aesthetic-locked skill), and that it routes to the
+  *correct* skill specifically, not just *a plausible* one — this is the
+  real risk area at this skill count, more so than context budget. **This
+  cannot happen in the same session that creates the plugin** — per this
+  repo's own documented learning, the Agent tool's available-subagent-types
+  list (like the Skill tool's available-skills list) is computed once at
+  session start, so a newly-registered plugin agent throws `Unknown agent
+  type` until the next session. The smoke test is the first thing to run in
+  the session *after* implementation.
 
 ## Risks / Open Questions Resolved During Brainstorming
 
