@@ -15,11 +15,10 @@ try {
 
   if (!fs.existsSync(flagPath)) process.exit(0);
 
-  const projectDir = process.env.CLAUDE_PROJECT_DIR || process.cwd();
   const skillPath =
     process.env.ADHD_CAVEMAN_SKILL_PATH_OVERRIDE ||
     path.join(
-      projectDir,
+      claudeDir,
       "plugins",
       "marketplaces",
       "i-have-adhd",

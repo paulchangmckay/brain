@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
+import { mkdtempSync, writeFileSync, rmSync, mkdirSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -85,5 +85,19 @@ test('mentions all three toggle phrases in the wrapper text', () => {
     assert.match(ctx, /stop adhd mode/);
     assert.match(ctx, /stop caveman mode/);
     assert.match(ctx, /normal mode/);
+  });
+});
+
+test('resolves the default (non-override) skill path from CLAUDE_CONFIG_DIR with correct nested structure', () => {
+  withTmpConfigDir((configDir) => {
+    writeFileSync(join(configDir, '.i-have-adhd-always'), '');
+    const skillDir = join(configDir, 'plugins', 'marketplaces', 'i-have-adhd', 'skills', 'i-have-adhd');
+    mkdirSync(skillDir, { recursive: true });
+    writeFileSync(join(skillDir, 'SKILL.md'), '---\ntitle: real plugin\n---\nREAL PLUGIN BODY TEXT\n');
+    const { stdout } = runWithEnv({ CLAUDE_CONFIG_DIR: configDir });
+    const parsed = JSON.parse(stdout);
+    const ctx = parsed.hookSpecificOutput.additionalContext;
+    assert.match(ctx, /REAL PLUGIN BODY TEXT/);
+    assert.doesNotMatch(ctx, /title: real plugin/);
   });
 });

@@ -93,7 +93,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node $CLAUDE_PROJECT_DIR/hooks/adhd-caveman.js",
+            "command": "node \"$HOME/.claude/hooks/adhd-caveman.js\"",
             "timeout": 5
           }
         ]
