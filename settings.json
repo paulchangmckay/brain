@@ -88,6 +88,15 @@
             "command": "\"/Users/paulmckay/.claude/hooks/context-mode-cache-heal.mjs\""
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/adhd-caveman.js\"",
+            "timeout": 5
+          }
+        ]
       }
     ],
     "UserPromptSubmit": [
@@ -395,7 +404,7 @@
     "claude-plugins-official@ba-agent": true,
     "document-skills@anthropic-agent-skills": true,
     "context-mode@context-mode": true,
-    "i-have-adhd@i-have-adhd": true,
+    "i-have-adhd@i-have-adhd": false,
     "superpowers@superpowers-dev": true,
     "neuroarxiv@neuroarxiv": true
   },
