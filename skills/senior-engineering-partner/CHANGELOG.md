@@ -8,7 +8,7 @@ Releases are automated with [release-please](https://github.com/googleapis/relea
 reads the [Conventional Commits](https://www.conventionalcommits.org/) on `main`, opens a release
 PR that bumps the `Version` in [`SKILL.md`](SKILL.md) and prepends the section below, and a
 maintainer enriches that section's narrative before cutting the **signed** tag + GitHub Release
-(see [`MAINTAINERS.md`](MAINTAINERS.md) → *Cutting a release*). The earlier entries were curated by
+(see `MAINTAINERS.md` upstream → *Cutting a release*; not vendored in this local copy). The earlier entries were curated by
 hand; the same "what changed and **why**" narrative is the goal going forward.
 
 This skill was developed and battle-tested in real production work across many internal
