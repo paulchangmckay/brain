@@ -248,7 +248,7 @@ environment-specific claim**, so the more complete it is, the more grounded the 
   and prepends the entry to [`CHANGELOG.md`](CHANGELOG.md). A maintainer enriches that entry's
   narrative, then cuts the **signed** tag + GitHub Release — the repo's `tag-protection` ruleset
   requires signed tags, so that final step is a deliberate manual one (see
-  [`MAINTAINERS.md`](MAINTAINERS.md) → *Cutting a release*). The skill's own documentation
+  `MAINTAINERS.md` upstream → *Cutting a release*; not vendored in this local copy). The skill's own documentation
   discipline, applied to itself.
 - **Diagrams are render-checked before commit:** a Mermaid block that fails to render is a
   broken deliverable. Validate with GitHub/VS Code preview, mermaid.live, or
