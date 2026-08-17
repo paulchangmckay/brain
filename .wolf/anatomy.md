@@ -1,96 +1,42 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-08-15T02:20:11.337Z
-> Files: 585 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-08-15T23:13:22.705Z
+> Files: 532 tracked | Anatomy hits: 0 | Misses: 0
 
-## ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/.wolf/
+## ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/.superpowers/sdd/
 
-- `cerebrum.md` — Cerebrum (~11303 tok)
+- `task-10-report.md` — Task 10 Report: `pages/TopPlayers.tsx` (~848 tok)
+- `task-11-report.md` — Task 11 Report: Wire routes into `main.tsx` (~1642 tok)
+- `task-8-report.md` — Task 8 Report: `pages/TeamPage.tsx` (~1102 tok)
+- `task-9-report.md` — Task 9: Frontend — `pages/Teams.tsx` (picker grid) — Report (~818 tok)
 
-## ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/docs/superpowers/plans/
+## ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/frontend/src/
 
-- `2026-08-14-team-pages-and-top-players.md` — Team Pages + Top Players Page Implementation Plan (~14045 tok)
+- `main.tsx` (~313 tok)
 
-## ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/docs/superpowers/specs/
+## ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/frontend/src/pages/
 
-- `2026-08-14-team-pages-and-top-players-design.md` — Team Pages + Top Players Page — Design (~2668 tok)
-
-## ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/src/
-
-- `database.py` — _TursoRow: keys, fetchone, fetchall, execute + 9 more (~12138 tok)
-
-## ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/tests/
-
-- `test_compute_advanced_stats.py` — test_run_invokes_season_aggregation_and_percentiles_automatically, test_run_processes_pending_game_a (~7566 tok)
-
-## ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/
-
-- `app.py` — API router (~5856 tok)
-
-## ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/.superpowers/sdd/
-
-- `task-1-report.md` — Task 1 Report: Flask SPA-fallback route (~1300 tok)
-- `task-2-report.md` — Task 2: Install react-router-dom — Report (~542 tok)
-- `task-3-report.md` — Task 3: PlaceholderPage Component — TDD Report (~571 tok)
-- `task-4-report.md` — Task 4 Report: Hero Gradient Helper + Home Page (~988 tok)
-- `task-5-report.md` — Task 5 Report: Relocate the stats table view into Players.tsx (~946 tok)
-- `task-5b-fix-report.md` — Task 5b — Fix: re-measure toolbar height once data finishes loading (~807 tok)
-- `task-6-report.md` — Task 6 Report: Header component (~1014 tok)
-- `task-7-report.md` — Task 7 Report: Wire up routing — App shell + main.tsx (~1293 tok)
-
-## ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/frontend/src/
-
-- `App.test.tsx` — renderApp (~281 tok)
-- `App.tsx` — App (~72 tok)
-- `main.tsx` (~274 tok)
-
-## ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/frontend/src/components/
-
-- `Header.test.tsx` — renderHeader (~334 tok)
-- `Header.tsx` — NAV_LINKS — renders modal (~724 tok)
-
-## ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/frontend/src/lib/
-
-- `heroGradient.test.ts` — Declares gradient (~162 tok)
-- `heroGradient.ts` — Exports buildHeroGradient (~84 tok)
-
-## ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/frontend/src/pages/
-
-- `Home.test.tsx` — hero (~205 tok)
-- `Home.tsx` — Home (~203 tok)
-- `PlaceholderPage.test.tsx` (~132 tok)
-- `PlaceholderPage.tsx` — PlaceholderPage (~106 tok)
-- `Players.test.tsx` — mockFetchOnce (~1862 tok)
-- `Players.tsx` — seasonsKey (~2408 tok)
-
-## ../Desktop/NHL Stats Project/.worktrees/feature-119-120-header-nav-hero-image/tests/
-
-- `test_app_spa_fallback.py` — test_direct_hit_on_client_route_returns_index_html, test_unknown_client_route_also_returns_index_htm (~228 tok)
-
-## ../Desktop/NHL Stats Project/.worktrees/fix-111-turso-connection/src/
-
-- `database.py` — _TursoRow: keys, fetchone, fetchall, execute + 9 more (~12079 tok)
-
-## ../Desktop/NHL Stats Project/.worktrees/fix-111-turso-connection/tests/
-
-- `test_database_get_connection.py` — _FakeSession: test_get_connection_uses_sqlite_when_turso_url_not_set, test_get_connection_uses_turso (~570 tok)
-- `test_database_turso_http_client.py` — _FakeSession: post, raise_for_status, json, close + 15 more (~2063 tok)
-
-## ../Desktop/NHL Stats Project/docs/superpowers/specs/
-
-- `2026-08-13-header-nav-and-hero-image-design.md` — Header Navigation + Homepage Hero — Design (~1570 tok)
+- `TeamPage.test.tsx` — TEAMS (~751 tok)
+- `TeamPage.tsx` — fetchJson (~822 tok)
+- `Teams.test.tsx` — TEAMS (~290 tok)
+- `Teams.tsx` — Teams (~324 tok)
+- `TopPlayers.test.tsx` — PLAYERS (~653 tok)
+- `TopPlayers.tsx` — fetchJson (~619 tok)
 
 ## ./
 
-- `.DS_Store` (~3275 tok)
+- `.DS_Store` (~2729 tok)
 - `.gitignore` — Git ignore rules (~447 tok)
 - `.gitleaks.toml` (~232 tok)
 - `.gitmodules` (~34 tok)
+- `.i-have-adhd-always` (~0 tok)
 - `.last-cleanup` (~7 tok)
 - `.last-update-result.json` (~46 tok)
+- `.mcp.json` (~34 tok)
 - `.shellcheckrc` — Companion enforcement for skills/senior-engineering-partner SKILL.md: (~81 tok)
-- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~5915 tok)
+- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~6040 tok)
 - `eslint.config.js` — ESLint flat configuration (~365 tok)
+- `history.jsonl` (~201 tok)
 - `mcp_servers.example.json` (~65 tok)
 - `mcp-needs-auth-cache.json` (~25 tok)
 - `package-lock.json` — npm lock file (~9547 tok)
@@ -109,83 +55,53 @@
 - `openwolf.md` (~435 tok)
 - `portable-repo.md` — Portable-Repo & Generated-File Hygiene (~496 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/
+## .claude/worktrees/enable-plugins-settings/
 
 - `.gitignore` — Git ignore rules (~447 tok)
 - `.gitleaks.toml` (~232 tok)
 - `.gitmodules` (~34 tok)
 - `.shellcheckrc` — Companion enforcement for skills/senior-engineering-partner SKILL.md: (~81 tok)
-- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~5422 tok)
+- `CLAUDE.md` — System Instructions: Thin Harness, Fat Skills Environment (~5610 tok)
 - `eslint.config.js` — ESLint flat configuration (~365 tok)
 - `mcp_servers.example.json` (~65 tok)
 - `package-lock.json` — npm lock file (~9547 tok)
 - `package.json` — Node.js package manifest (~121 tok)
 - `README.md` — Project documentation (~120 tok)
-- `settings.json` (~3684 tok)
+- `settings.json` (~3805 tok)
 - `settings.local.json.example` (~72 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/.claude/
+## .claude/worktrees/enable-plugins-settings/.claude/
 
 - `settings.json` (~504 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/.claude/rules/
+## .claude/worktrees/enable-plugins-settings/.claude/rules/
 
-- `openwolf.md` (~375 tok)
+- `openwolf.md` (~435 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/.githooks/
+## .claude/worktrees/enable-plugins-settings/.githooks/
 
 - `pre-commit` — Local pre-commit lint/secret-scan gate — enforcement counterpart to (~553 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/.github/workflows/
+## .claude/worktrees/enable-plugins-settings/.github/workflows/
 
 - `deploy-docs.yml` — CI: Deploy docs site (~299 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/.superpowers/sdd/
-
-- `.gitignore` — Git ignore rules (~1 tok)
-- `progress.md` (~216 tok)
-- `review-0470b5c..1fe0960.diff` — Review package: 0470b5c036bd5e0cd585e1d6b6f37b1c1cf14c9b..1fe0960 (~631 tok)
-- `review-11e5e5b..e41fbd0.diff` — Review package: 11e5e5be3baad0d61daf2b84c7d85c737c2997a3..e41fbd0 (~1123 tok)
-- `review-1fe0960..8536822.diff` — Review package: 1fe0960927701a3bbe087e74f2474a9fd7e62f12..8536822 (~2317 tok)
-- `review-1fe0960..cafb274.diff` — Review package: 1fe0960927701a3bbe087e74f2474a9fd7e62f12..cafb274 (~2341 tok)
-- `review-55b6023..0470b5c.diff` — Review package: 55b60230806434df422340890eddc1312e603141..0470b5c (~1490 tok)
-- `review-cafb274..0532a0a.diff` — Review package: cafb274be4dc2b05202c9afe2b26bf4b5a1b12ba..0532a0a (~1314 tok)
-- `review-e41fbd0..55b6023.diff` — Review package: e41fbd09d950f1c0c34dbcca1769595d31ea726c..55b6023 (~2779 tok)
-- `review-e41fbd0..d77b517.diff` — Review package: e41fbd09d950f1c0c34dbcca1769595d31ea726c..d77b517 (~2620 tok)
-- `review-e8bfce9..0532a0a.diff` — Review package: e8bfce9bec5c1fe08b2ff73b78fa8197f0b508ae..HEAD (~10259 tok)
-- `review-e8bfce9..11e5e5b.diff` — Review package: e8bfce9bec5c1fe08b2ff73b78fa8197f0b508ae..11e5e5b (~1572 tok)
-- `task-1-brief.md` — ## Task 1: Token counting utility (~699 tok)
-- `task-1-report.md` — Task 1 Report: Token Counting Utility (~542 tok)
-- `task-2-brief.md` — ## Task 2: Gate marker + cross-session lock utility (~1214 tok)
-- `task-2-report.md` — Task 2 Report: Gate Marker + Cross-Session Lock Utility (~751 tok)
-- `task-3-brief.md` — ## Task 3: Memory-consolidation gate check + automatic archival (SessionStart leg) (~2586 tok)
-- `task-3-report.md` — Task 3 Report: Memory-consolidation gate check + automatic archival (~2561 tok)
-- `task-4-brief.md` — ## Task 4: Cerebrum-reflection gate check (Stop leg, extends the same file) (~1261 tok)
-- `task-4-report.md` — Task 4 Report: Cerebrum-reflection gate check (~1095 tok)
-- `task-5-brief.md` — ## Task 5: Register both gate checks in settings.json (~529 tok)
-- `task-5-report.md` — Task 5: Register Cron-Reliability Gate Hooks — Report (~668 tok)
-- `task-6-brief.md` — ## Task 6: Token-ledger pruning script (~2109 tok)
-- `task-6-report.md` — Task 6 Report: Token-ledger pruning script (~2163 tok)
-- `task-7-brief.md` — 5. Personal Knowledge Layer (brain MCP) (~901 tok)
-- `task-7-report.md` — Task 7: Correct CLAUDE.md §5 — Report (~865 tok)
-- `task-8-report.md` — Task 8: gbrain connection fix — outcome (~570 tok)
-
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/.understand-anything/
+## .claude/worktrees/enable-plugins-settings/.understand-anything/
 
 - `.understandignore` — # **/*Test.java (~256 tok)
 - `fingerprints.json` (~116279 tok)
 - `knowledge-graph.json` (~127512 tok)
 - `meta.json` (~45 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/.understand-anything/intermediate/
+## .claude/worktrees/enable-plugins-settings/.understand-anything/intermediate/
 
 - `scan-result.json` (~18834 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/brand/
+## .claude/worktrees/enable-plugins-settings/brand/
 
 - `brand-guide.md` — Paul McKay — Personal Brand Guide (~4040 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/docs-site/
+## .claude/worktrees/enable-plugins-settings/docs-site/
 
 - `.gitignore` — Git ignore rules (~8 tok)
 - `blume.config.ts` (~179 tok)
@@ -193,13 +109,13 @@
 - `package.json` — Node.js package manifest (~105 tok)
 - `README.md` — Project documentation (~804 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/docs-site/content/
+## .claude/worktrees/enable-plugins-settings/docs-site/content/
 
 - `architecture.mdx` (~471 tok)
 - `index.mdx` — ~/.claude Reference (~235 tok)
 - `openwolf.md` (~713 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/docs-site/content/overview/
+## .claude/worktrees/enable-plugins-settings/docs-site/content/overview/
 
 - `core-philosophy.md` (~273 tok)
 - `index.md` — Overview (~137 tok)
@@ -210,7 +126,7 @@
 - `process-layer.md` — Declares with (~793 tok)
 - `reference-pointers.md` (~239 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/docs-site/content/skills/
+## .claude/worktrees/enable-plugins-settings/docs-site/content/skills/
 
 - `architecture-diagram.md` — Architecture Diagram Skill (~2478 tok)
 - `ba.md` — ba (~6228 tok)
@@ -235,43 +151,43 @@
 - `verification-before-completion.md` — Verification Before Completion (~1166 tok)
 - `wolf-init.md` — Wolf Init Skill (~765 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/docs-site/content/skills/brainstorming/
+## .claude/worktrees/enable-plugins-settings/docs-site/content/skills/brainstorming/
 
 - `index.md` — Brainstorming Ideas Into Designs (~3045 tok)
 - `spec-document-reviewer-prompt.md` — Spec Document Reviewer Prompt Template (~448 tok)
 - `visual-companion.md` — Visual Companion Guide (~3314 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/docs-site/content/skills/codebase-design/
+## .claude/worktrees/enable-plugins-settings/docs-site/content/skills/codebase-design/
 
 - `DEEPENING.md` — Deepening (~645 tok)
 - `DESIGN-IT-TWICE.md` — Design It Twice (~682 tok)
 - `index.md` — Codebase Design (~1522 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/docs-site/content/skills/domain-modeling/
+## .claude/worktrees/enable-plugins-settings/docs-site/content/skills/domain-modeling/
 
 - `ADR-FORMAT.md` — ADR Format (~694 tok)
 - `CONTEXT-FORMAT.md` — CONTEXT.md Format (~580 tok)
 - `index.md` — Domain Modeling (~822 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/docs-site/content/skills/requesting-code-review/
+## .claude/worktrees/enable-plugins-settings/docs-site/content/skills/requesting-code-review/
 
 - `code-reviewer.md` — Code Reviewer Prompt Template (~1309 tok)
 - `index.md` — Requesting Code Review (~731 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/docs-site/content/skills/senior-engineering-partner/
+## .claude/worktrees/enable-plugins-settings/docs-site/content/skills/senior-engineering-partner/
 
 - `index.md` — ROLE AND CONTEXT (~21942 tok)
 - `README.md` — Project documentation (~4499 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/docs-site/content/skills/senior-engineering-partner/.github/
+## .claude/worktrees/enable-plugins-settings/docs-site/content/skills/senior-engineering-partner/.github/
 
 - `pull_request_template.md` — What changed (~331 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/docs-site/content/skills/senior-engineering-partner/evals/
+## .claude/worktrees/enable-plugins-settings/docs-site/content/skills/senior-engineering-partner/evals/
 
 - `README.md` — Project documentation (~836 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/docs-site/content/skills/senior-engineering-partner/references/
+## .claude/worktrees/enable-plugins-settings/docs-site/content/skills/senior-engineering-partner/references/
 
 - `audit-report-format.md` — Audit Report Format (the `AUDIT:` mode deliverable) (~1287 tok)
 - `business-continuity.md` — Business Continuity (BC) (~1625 tok)
@@ -313,11 +229,11 @@
 - `threat-modeling-and-api-design.md` — Threat Modeling & API Design (~3564 tok)
 - `ui-design-and-accessibility.md` — UI Design & Accessibility (~3322 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/docs-site/content/skills/senior-engineering-partner/scripts/
+## .claude/worktrees/enable-plugins-settings/docs-site/content/skills/senior-engineering-partner/scripts/
 
 - `self-review.md` — Self-Review Checklist (verify before done) (~753 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/docs-site/content/skills/systematic-debugging/
+## .claude/worktrees/enable-plugins-settings/docs-site/content/skills/systematic-debugging/
 
 - `condition-based-waiting.md` — Condition-Based Waiting (~885 tok)
 - `CREATION-LOG.md` — Creation Log: Systematic Debugging Skill (~1066 tok)
@@ -329,7 +245,7 @@
 - `test-pressure-2.md` — Pressure Test 2: Sunk Cost + Exhaustion (~580 tok)
 - `test-pressure-3.md` — Pressure Test 3: Authority + Social Pressure (~682 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/docs-site/content/skills/teach/
+## .claude/worktrees/enable-plugins-settings/docs-site/content/skills/teach/
 
 - `GLOSSARY-FORMAT.md` — GLOSSARY.md Format (~540 tok)
 - `index.md` — Teaching Workspace (~2421 tok)
@@ -337,26 +253,22 @@
 - `MISSION-FORMAT.md` — MISSION.md Format (~394 tok)
 - `RESOURCES-FORMAT.md` — RESOURCES.md Format (~489 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/docs-site/content/skills/test-driven-development/
+## .claude/worktrees/enable-plugins-settings/docs-site/content/skills/test-driven-development/
 
 - `index.md` — Test-Driven Development (TDD) (~2473 tok)
 - `testing-anti-patterns.md` — Testing Anti-Patterns (~2066 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/docs-site/content/skills/writing-plans/
+## .claude/worktrees/enable-plugins-settings/docs-site/content/skills/writing-plans/
 
 - `index.md` — Writing Plans (~1815 tok)
 - `plan-document-reviewer-prompt.md` — Plan Document Reviewer Prompt Template (~440 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/docs-site/scripts/
+## .claude/worktrees/enable-plugins-settings/docs-site/scripts/
 
 - `pull-skills.mjs` — is entirely generated output (see docs-site/README.md) — (~1971 tok)
 - `pull-skills.test.mjs` — content: makeTempDir (~5128 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/docs/superpowers/plans/
-
-- `2026-07-28-harness-efficiency-hardening.md` — Harness Efficiency Hardening Implementation Plan (~10935 tok)
-
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/docs/superpowers/specs/
+## .claude/worktrees/enable-plugins-settings/docs/superpowers/specs/
 
 - `2026-07-14-issue-backlog-cycle-design.md` — Issue Backlog Cycle — Design (~2685 tok)
 - `2026-07-14-token-optimization-design.md` — Token Optimization Pass — Design (~1979 tok)
@@ -373,7 +285,7 @@
 - `2026-07-27-context-mode-integration-design.md` — context-mode Integration — Design (~2308 tok)
 - `2026-07-28-harness-efficiency-hardening-design.md` — Harness Efficiency Hardening — Design (~3372 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/hooks/
+## .claude/worktrees/enable-plugins-settings/hooks/
 
 - `cerebrum-write-guard-post.js` — PostToolUse hook (matcher: Edit|Write): records cerebrum.md's mtime (~463 tok)
 - `cerebrum-write-guard-post.test.js` — SCRIPT: run, withTmpRepo (~573 tok)
@@ -411,14 +323,14 @@
 - `worktree-repo-guard.js` — PreToolUse hook (matcher: EnterWorktree): blocks EnterWorktree unless the (~288 tok)
 - `worktree-repo-guard.test.js` — SCRIPT: run (~323 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/hooks/lib/
+## .claude/worktrees/enable-plugins-settings/hooks/lib/
 
 - `gate-marker.js` — Exports readMarker, writeMarker, isStale, acquireLock + 2 more (~359 tok)
 - `gate-marker.test.js` — Declares withTmpDir (~998 tok)
 - `token-count.js` — Exports estimateTokens (~86 tok)
 - `token-count.test.js` — Declares count (~196 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/scripts/
+## .claude/worktrees/enable-plugins-settings/scripts/
 
 - `plugin-health-check.js` — Deterministic check for plugin/submodule registration drift: compares (~840 tok)
 - `plugin-health-check.test.js` — git: setupFakeClaudeHome (~1292 tok)
@@ -431,11 +343,11 @@
 - `wolf-observation-log.js` — /*.js is eslint-banned from child_process. (~3029 tok)
 - `wolf-observation-log.test.js` — SCRIPT: runCli, withTmpDir (~3672 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/agent-team-architect/
+## .claude/worktrees/enable-plugins-settings/skills/agent-team-architect/
 
 - `SKILL.md` — Agent Team Architect (~2085 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/agent-team-architect/references/
+## .claude/worktrees/enable-plugins-settings/skills/agent-team-architect/references/
 
 - `agent-design-patterns.md` — Agent Team Design Patterns (~1115 tok)
 - `dispatch-sequencing.md` — Dispatch Sequencing Template (~396 tok)
@@ -444,148 +356,148 @@
 - `team-examples.md` — Worked Examples (~675 tok)
 - `validation-checklist.md` — Validation Checklist (Phase 6) (~489 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/architecture-diagram/
+## .claude/worktrees/enable-plugins-settings/skills/architecture-diagram/
 
 - `LICENSE` — Project license (~285 tok)
 - `SKILL.md` — Architecture Diagram Skill (~2477 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/architecture-diagram/examples/
+## .claude/worktrees/enable-plugins-settings/skills/architecture-diagram/examples/
 
 - `web-app-example.html` — Web App Architecture Diagram (~3488 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/architecture-diagram/resources/
+## .claude/worktrees/enable-plugins-settings/skills/architecture-diagram/resources/
 
 - `template.html` — [PROJECT NAME] Architecture Diagram (~4976 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/ba-agent/.claude-plugin/
+## .claude/worktrees/enable-plugins-settings/skills/ba-agent/.claude-plugin/
 
 - `plugin.json` (~109 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/ba-agent/agents/
+## .claude/worktrees/enable-plugins-settings/skills/ba-agent/agents/
 
 - `ba.md` — Invocation (~1249 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/ba/
+## .claude/worktrees/enable-plugins-settings/skills/ba/
 
 - `SKILL.md` — ba (~6233 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/bloat-audit/
+## .claude/worktrees/enable-plugins-settings/skills/bloat-audit/
 
 - `SKILL.md` — Tags (~553 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/brand/
+## .claude/worktrees/enable-plugins-settings/skills/brand/
 
 - `SKILL.md` — Brand Skill — Paul McKay Personal Brand (~1167 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/brand/.claude-plugin/
+## .claude/worktrees/enable-plugins-settings/skills/brand/.claude-plugin/
 
 - `plugin.json` (~108 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/brandkit/
+## .claude/worktrees/enable-plugins-settings/skills/brandkit/
 
 - `SKILL.md` — BRANDKIT IMAGE GENERATION SKILL (~3992 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/claude-infra-reference/
+## .claude/worktrees/enable-plugins-settings/skills/claude-infra-reference/
 
 - `SKILL.md` — Claude Infra Reference (~3335 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/codebase-design/
+## .claude/worktrees/enable-plugins-settings/skills/codebase-design/
 
 - `DEEPENING.md` — Deepening (~638 tok)
 - `DESIGN-IT-TWICE.md` — Design It Twice (~673 tok)
 - `SKILL.md` — Codebase Design (~1520 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/context-tools/
+## .claude/worktrees/enable-plugins-settings/skills/context-tools/
 
 - `SKILL.md` — context-tools — Sandboxed Execution & Fetch (~857 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/dataviz/
+## .claude/worktrees/enable-plugins-settings/skills/dataviz/
 
 - `SKILL.md` — DataViz Skill — Executive Data Visualization (~1996 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/debt-ledger/
+## .claude/worktrees/enable-plugins-settings/skills/debt-ledger/
 
 - `SKILL.md` — Scan (~294 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/design-taste-frontend-v1/
+## .claude/worktrees/enable-plugins-settings/skills/design-taste-frontend-v1/
 
 - `SKILL.md` — High-Agency Frontend Skill (~5298 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/design-taste-frontend/
+## .claude/worktrees/enable-plugins-settings/skills/design-taste-frontend/
 
 - `SKILL.md` — tasteskill: Anti-Slop Frontend Skill (~21782 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/divergent-ideation/
+## .claude/worktrees/enable-plugins-settings/skills/divergent-ideation/
 
 - `SKILL.md` — Divergent Ideation (~729 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/domain-modeling/
+## .claude/worktrees/enable-plugins-settings/skills/domain-modeling/
 
 - `ADR-FORMAT.md` — ADR Format (~686 tok)
 - `CONTEXT-FORMAT.md` — CONTEXT.md Format (~572 tok)
 - `SKILL.md` — Domain Modeling (~821 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/exec-dashboard/
+## .claude/worktrees/enable-plugins-settings/skills/exec-dashboard/
 
 - `SKILL.md` — Executive Dashboard Skill (~5489 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/full-output-enforcement/
+## .claude/worktrees/enable-plugins-settings/skills/full-output-enforcement/
 
 - `SKILL.md` — Full-Output Enforcement (~646 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/github-issue-first/
+## .claude/worktrees/enable-plugins-settings/skills/github-issue-first/
 
 - `SKILL.md` — GitHub Issue First (~1072 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/gpt-taste/
+## .claude/worktrees/enable-plugins-settings/skills/gpt-taste/
 
 - `SKILL.md` — CORE DIRECTIVE: AWWWARDS-LEVEL DESIGN ENGINEERING (~1965 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/grill-me/
+## .claude/worktrees/enable-plugins-settings/skills/grill-me/
 
 - `SKILL.md` (~37 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/grilling/
+## .claude/worktrees/enable-plugins-settings/skills/grilling/
 
 - `SKILL.md` (~167 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/handoff/
+## .claude/worktrees/enable-plugins-settings/skills/handoff/
 
 - `SKILL.md` (~262 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/high-end-visual-design/
+## .claude/worktrees/enable-plugins-settings/skills/high-end-visual-design/
 
 - `SKILL.md` — Agent Skill: Principal UI/UX Architect & Motion Choreographer (Awwwards-Tier) (~2637 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/html-export/
+## .claude/worktrees/enable-plugins-settings/skills/html-export/
 
 - `SKILL.md` — HTML Export Skill — Playwright Screenshot & PDF (~725 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/html-export/scripts/
+## .claude/worktrees/enable-plugins-settings/skills/html-export/scripts/
 
 - `html-export.js` — Usage: node html-export.js <input.html|url> [output-dir] [--wait <ms>] (~652 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/image-to-code/
+## .claude/worktrees/enable-plugins-settings/skills/image-to-code/
 
 - `SKILL.md` — CORE DIRECTIVE: IMAGE-FIRST WEBSITE DESIGN TO CODE (~9091 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/imagegen-frontend-mobile/
+## .claude/worktrees/enable-plugins-settings/skills/imagegen-frontend-mobile/
 
 - `SKILL.md` — CORE DIRECTIVE: PREMIUM MOBILE APP IMAGE DIRECTION (~10072 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/imagegen-frontend-web/
+## .claude/worktrees/enable-plugins-settings/skills/imagegen-frontend-web/
 
 - `SKILL.md` — HARD OUTPUT RULE — READ FIRST (~9195 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/industrial-brutalist-ui/
+## .claude/worktrees/enable-plugins-settings/skills/industrial-brutalist-ui/
 
 - `SKILL.md` — SKILL: Industrial Brutalism & Tactical Telemetry UI (~2113 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/issue-backlog-cycle/
+## .claude/worktrees/enable-plugins-settings/skills/issue-backlog-cycle/
 
 - `SKILL.md` — Issue Backlog Cycle (~1729 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/make-interfaces-feel-better/
+## .claude/worktrees/enable-plugins-settings/skills/make-interfaces-feel-better/
 
 - `animations.md` — Animations (~3163 tok)
 - `icons.md` — Icons (~568 tok)
@@ -594,27 +506,27 @@
 - `surfaces.md` — Surfaces (~1801 tok)
 - `typography.md` — Typography (~1164 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/make-interfaces-feel-better/agents/
+## .claude/worktrees/enable-plugins-settings/skills/make-interfaces-feel-better/agents/
 
 - `openai.yaml` (~38 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/markitdown/
+## .claude/worktrees/enable-plugins-settings/skills/markitdown/
 
 - `SKILL.md` — markitdown Skill — Convert Files & URLs to Markdown (~1033 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/minimalist-ui/
+## .claude/worktrees/enable-plugins-settings/skills/minimalist-ui/
 
 - `SKILL.md` — Protocol: Premium Utilitarian Minimalism UI Architect (~1974 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/model-routing/
+## .claude/worktrees/enable-plugins-settings/skills/model-routing/
 
 - `SKILL.md` — Model Routing (~515 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/redesign-existing-projects/
+## .claude/worktrees/enable-plugins-settings/skills/redesign-existing-projects/
 
 - `SKILL.md` — Redesign Skill (~3758 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/senior-engineering-partner/
+## .claude/worktrees/enable-plugins-settings/skills/senior-engineering-partner/
 
 - `.gitignore` — Git ignore rules (~110 tok)
 - `.release-please-manifest.json` (~6 tok)
@@ -629,28 +541,28 @@
 - `SECURITY.md` — Security Policy (~367 tok)
 - `SKILL.md` — ROLE AND CONTEXT (~21949 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/senior-engineering-partner/.github/
+## .claude/worktrees/enable-plugins-settings/skills/senior-engineering-partner/.github/
 
 - `CODEOWNERS` — CODEOWNERS — documents who owns each part of the skill, and (when branch protection's (~243 tok)
 - `dependabot.yml` (~109 tok)
 - `pull_request_template.md` — What changed (~318 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/senior-engineering-partner/.github/ISSUE_TEMPLATE/
+## .claude/worktrees/enable-plugins-settings/skills/senior-engineering-partner/.github/ISSUE_TEMPLATE/
 
 - `bug_report.yml` (~495 tok)
 - `config.yml` (~149 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/senior-engineering-partner/.github/workflows/
+## .claude/worktrees/enable-plugins-settings/skills/senior-engineering-partner/.github/workflows/
 
 - `docs-render.yml` — CI: docs-render (~237 tok)
 - `leakage-guard.yml` — CI: leakage-guard (~167 tok)
 - `release-please.yml` — CI: release-please (~423 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/senior-engineering-partner/evals/
+## .claude/worktrees/enable-plugins-settings/skills/senior-engineering-partner/evals/
 
 - `README.md` — Project documentation (~828 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/senior-engineering-partner/evals/scenarios/
+## .claude/worktrees/enable-plugins-settings/skills/senior-engineering-partner/evals/scenarios/
 
 - `adr-must-name-overridden-discipline.json` (~393 tok)
 - `adversarial-review-green-but-insufficient.json` (~778 tok)
@@ -680,7 +592,7 @@
 - `typecheck-gate-required.json` — Declares checking (~340 tok)
 - `yagni-no-speculative-abstraction.json` (~364 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/senior-engineering-partner/references/
+## .claude/worktrees/enable-plugins-settings/skills/senior-engineering-partner/references/
 
 - `audit-report-format.md` — Audit Report Format (the `AUDIT:` mode deliverable) (~1274 tok)
 - `business-continuity.md` — Business Continuity (BC) (~1612 tok)
@@ -723,23 +635,23 @@
 - `threat-modeling-and-api-design.md` — Threat Modeling & API Design (~3548 tok)
 - `ui-design-and-accessibility.md` — UI Design & Accessibility (~3308 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/senior-engineering-partner/scripts/
+## .claude/worktrees/enable-plugins-settings/skills/senior-engineering-partner/scripts/
 
 - `audit.sh` — audit.sh — manifest-level dependency audit gate (the SKILL.md "Dependency-audit gate"). (~659 tok)
 - `leakage-guard.sh` — leakage-guard.sh — fail if any environment-specific / personal identifier leaks into the (~1308 tok)
 - `render-diagrams.sh` — render-diagrams.sh — render-check every ```mermaid block in the given Markdown files. (~741 tok)
 - `self-review.md` — Self-Review Checklist (verify before done) (~743 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/session-reflect/
+## .claude/worktrees/enable-plugins-settings/skills/session-reflect/
 
 - `SKILL.md` — Session Reflect Skill (~1596 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/stitch-design-taste/
+## .claude/worktrees/enable-plugins-settings/skills/stitch-design-taste/
 
 - `DESIGN.md` — Design System: Taste Standard (~2991 tok)
 - `SKILL.md` — Stitch Design Taste — Semantic Design System Skill (~2933 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/teach/
+## .claude/worktrees/enable-plugins-settings/skills/teach/
 
 - `GLOSSARY-FORMAT.md` — GLOSSARY.md Format (~531 tok)
 - `LEARNING-RECORD-FORMAT.md` — Learning Record Format (~690 tok)
@@ -747,11 +659,11 @@
 - `RESOURCES-FORMAT.md` — RESOURCES.md Format (~481 tok)
 - `SKILL.md` — Teaching Workspace (~2441 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/skills/wolf-init/
+## .claude/worktrees/enable-plugins-settings/skills/wolf-init/
 
 - `SKILL.md` — Wolf Init Skill (~763 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/
+## .claude/worktrees/enable-plugins-settings/superpowers/
 
 - `.gitattributes` — Git attributes (~100 tok)
 - `.gitignore` — Git ignore rules (~101 tok)
@@ -766,51 +678,51 @@
 - `README.md` — Project documentation (~2740 tok)
 - `RELEASE-NOTES.md` — Superpowers Release Notes (~20043 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/.claude-plugin/
+## .claude/worktrees/enable-plugins-settings/superpowers/.claude-plugin/
 
 - `marketplace.json` (~147 tok)
 - `plugin.json` (~142 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/.codex-plugin/
+## .claude/worktrees/enable-plugins-settings/superpowers/.codex-plugin/
 
 - `plugin.json` (~499 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/.cursor-plugin/
+## .claude/worktrees/enable-plugins-settings/superpowers/.cursor-plugin/
 
 - `plugin.json` (~166 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/.github/
+## .claude/worktrees/enable-plugins-settings/superpowers/.github/
 
 - `FUNDING.yml` — These are supported funding model platforms (~18 tok)
 - `PULL_REQUEST_TEMPLATE.md` — Who is submitting this PR? (required) (~1451 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/.github/ISSUE_TEMPLATE/
+## .claude/worktrees/enable-plugins-settings/superpowers/.github/ISSUE_TEMPLATE/
 
 - `bug_report.md` — Environment (required) (~398 tok)
 - `config.yml` (~69 tok)
 - `feature_request.md` — What problem does this solve? (~400 tok)
 - `platform_support.md` — Which IDE or platform? (~244 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/.kimi-plugin/
+## .claude/worktrees/enable-plugins-settings/superpowers/.kimi-plugin/
 
 - `plugin.json` (~883 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/.opencode/
+## .claude/worktrees/enable-plugins-settings/superpowers/.opencode/
 
 - `INSTALL.md` — Installing Superpowers for OpenCode (~832 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/.pi/extensions/
+## .claude/worktrees/enable-plugins-settings/superpowers/.pi/extensions/
 
 - `superpowers.ts` — Exports superpowersPiExtension (~1224 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/docs/
+## .claude/worktrees/enable-plugins-settings/superpowers/docs/
 
 - `porting-to-a-new-harness.md` — Porting Superpowers to a New Harness (~12580 tok)
 - `README.kimi.md` — Superpowers for Kimi Code (~673 tok)
 - `README.opencode.md` — Superpowers for OpenCode (~1141 tok)
 - `testing.md` — Testing Superpowers (~549 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/docs/superpowers/specs/
+## .claude/worktrees/enable-plugins-settings/superpowers/docs/superpowers/specs/
 
 - `2026-01-22-document-review-system-design.md` — Document Review System Design (~1181 tok)
 - `2026-02-19-visual-brainstorming-refactor-design.md` — Visual Brainstorming Refactor: Browser Displays, Terminal Commands (~2347 tok)
@@ -827,11 +739,11 @@
 - `2026-06-10-visual-companion-auth-hardening-design.md` — Visual Companion Auth Hardening Design (~2079 tok)
 - `2026-06-11-visual-companion-final-hardening-fixup-design.md` — Visual Companion Final Hardening Fixup Design (~3239 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/docs/windows/
+## .claude/worktrees/enable-plugins-settings/superpowers/docs/windows/
 
 - `polyglot-hooks.md` — Cross-Platform Polyglot Hooks for Claude Code (~1479 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/hooks/
+## .claude/worktrees/enable-plugins-settings/superpowers/hooks/
 
 - `hooks-codex.json` (~87 tok)
 - `hooks-cursor.json` (~40 tok)
@@ -840,19 +752,19 @@
 - `session-start` — SessionStart hook for superpowers plugin (~606 tok)
 - `session-start-codex` — Codex SessionStart hook for superpowers plugin (~277 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/scripts/
+## .claude/worktrees/enable-plugins-settings/superpowers/scripts/
 
 - `bump-version.sh` — bump-version.sh — bump version numbers across all declared files, (~1750 tok)
 - `lint-shell.sh` — Lint shell scripts in this repository. (~1168 tok)
 - `sync-to-codex-plugin.sh` — sync-to-codex-plugin.sh (~4271 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/skills/brainstorming/
+## .claude/worktrees/enable-plugins-settings/superpowers/skills/brainstorming/
 
 - `SKILL.md` — Brainstorming Ideas Into Designs (~3044 tok)
 - `spec-document-reviewer-prompt.md` — Spec Document Reviewer Prompt Template (~436 tok)
 - `visual-companion.md` — Visual Companion Guide (~3305 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/skills/brainstorming/scripts/
+## .claude/worktrees/enable-plugins-settings/superpowers/skills/brainstorming/scripts/
 
 - `frame-template.html` — Superpowers Brainstorming (~2158 tok)
 - `helper.js` — MIN_RECONNECT_MS: nextReconnectDelay, sessionKey, websocketUrl + 5 more (~1602 tok)
@@ -860,40 +772,40 @@
 - `start-server.sh` — Start the brainstorm server and output connection info (~1973 tok)
 - `stop-server.sh` — Stop the brainstorm server and clean up (~933 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/skills/dispatching-parallel-agents/
+## .claude/worktrees/enable-plugins-settings/superpowers/skills/dispatching-parallel-agents/
 
 - `SKILL.md` — Dispatching Parallel Agents (~1655 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/skills/executing-plans/
+## .claude/worktrees/enable-plugins-settings/superpowers/skills/executing-plans/
 
 - `SKILL.md` — Executing Plans (~650 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/skills/finishing-a-development-branch/
+## .claude/worktrees/enable-plugins-settings/superpowers/skills/finishing-a-development-branch/
 
 - `SKILL.md` — Finishing a Development Branch (~1806 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/skills/receiving-code-review/
+## .claude/worktrees/enable-plugins-settings/superpowers/skills/receiving-code-review/
 
 - `SKILL.md` — Code Review Reception (~1586 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/skills/requesting-code-review/
+## .claude/worktrees/enable-plugins-settings/superpowers/skills/requesting-code-review/
 
 - `code-reviewer.md` — Code Reviewer Prompt Template (~1301 tok)
 - `SKILL.md` — Requesting Code Review (~730 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/skills/subagent-driven-development/
+## .claude/worktrees/enable-plugins-settings/superpowers/skills/subagent-driven-development/
 
 - `implementer-prompt.md` — Implementer Subagent Prompt Template (~1378 tok)
 - `SKILL.md` — Subagent-Driven Development (~5385 tok)
 - `task-reviewer-prompt.md` — Task Reviewer Prompt Template (~1963 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/skills/subagent-driven-development/scripts/
+## .claude/worktrees/enable-plugins-settings/superpowers/skills/subagent-driven-development/scripts/
 
 - `review-package` — Generate a review package: commit list, stat summary, and the net (~360 tok)
 - `sdd-workspace` — Resolve and ensure the working-tree directory SDD uses for its short-lived (~237 tok)
 - `task-brief` — Extract one task's full text from an implementation plan into a file the (~294 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/skills/systematic-debugging/
+## .claude/worktrees/enable-plugins-settings/superpowers/skills/systematic-debugging/
 
 - `condition-based-waiting-example.ts` — Wait for a specific event type to appear in thread (~1444 tok)
 - `condition-based-waiting.md` — Condition-Based Waiting (~875 tok)
@@ -907,20 +819,20 @@
 - `test-pressure-2.md` — Pressure Test 2: Sunk Cost + Exhaustion (~571 tok)
 - `test-pressure-3.md` — Pressure Test 3: Authority + Social Pressure (~673 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/skills/test-driven-development/
+## .claude/worktrees/enable-plugins-settings/superpowers/skills/test-driven-development/
 
 - `SKILL.md` — Test-Driven Development (TDD) (~2471 tok)
 - `testing-anti-patterns.md` — Testing Anti-Patterns (~2056 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/skills/using-git-worktrees/
+## .claude/worktrees/enable-plugins-settings/superpowers/skills/using-git-worktrees/
 
 - `SKILL.md` — Using Git Worktrees (~1867 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/skills/using-superpowers/
+## .claude/worktrees/enable-plugins-settings/superpowers/skills/using-superpowers/
 
 - `SKILL.md` — Instruction Priority (~1471 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/skills/using-superpowers/references/
+## .claude/worktrees/enable-plugins-settings/superpowers/skills/using-superpowers/references/
 
 - `antigravity-tools.md` — Antigravity CLI (`agy`) Tool Mapping (~1416 tok)
 - `claude-code-tools.md` — Claude Code Tool Mapping (~738 tok)
@@ -929,16 +841,16 @@
 - `gemini-tools.md` — Gemini CLI Tool Mapping (~1149 tok)
 - `pi-tools.md` — Pi Tool Mapping (~509 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/skills/verification-before-completion/
+## .claude/worktrees/enable-plugins-settings/superpowers/skills/verification-before-completion/
 
 - `SKILL.md` — Verification Before Completion (~1165 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/skills/writing-plans/
+## .claude/worktrees/enable-plugins-settings/superpowers/skills/writing-plans/
 
 - `plan-document-reviewer-prompt.md` — Plan Document Reviewer Prompt Template (~428 tok)
 - `SKILL.md` — Writing Plans (~1814 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/skills/writing-skills/
+## .claude/worktrees/enable-plugins-settings/superpowers/skills/writing-skills/
 
 - `anthropic-best-practices.md` — Skill authoring best practices (~11514 tok)
 - `graphviz-conventions.dot` — Declares examples (~1592 tok)
@@ -947,16 +859,16 @@
 - `SKILL.md` — Writing Skills (~6931 tok)
 - `testing-skills-with-subagents.md` — Testing Skills With Subagents (~3133 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/skills/writing-skills/examples/
+## .claude/worktrees/enable-plugins-settings/superpowers/skills/writing-skills/examples/
 
 - `CLAUDE_MD_TESTING.md` — Testing CLAUDE.md Skills Documentation (~1356 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/tests/antigravity/
+## .claude/worktrees/enable-plugins-settings/superpowers/tests/antigravity/
 
 - `run-tests.sh` — Run all Antigravity (agy) integration tests. (~92 tok)
 - `test-antigravity-tools.sh` — Validate the Antigravity (agy) integration. agy installs the existing plugin (~732 tok)
 
-## .claude/worktrees/feature+29-plus-2-more-harness-efficiency-hardening/superpowers/tests/brainstorm-server/
+## .claude/worktrees/enable-plugins-settings/superpowers/tests/brainstorm-server/
 
 - `auth.test.js` — Security tests for the brainstorm server's per-session key. (~3453 tok)
 - `branding.test.js` — Tests for the visual companion's Superpowers/Prime Radiant branding. (~3489 tok)
@@ -965,90 +877,44 @@
 - `lifecycle.test.js` — Tests for the brainstorm server's lifecycle (idle timeout + shutdown). (~6595 tok)
 - `package-lock.json` — npm lock file (~246 tok)
 - `package.json` — Node.js package manifest (~107 tok)
+- `server.test.js` — Integration tests for the brainstorm server. (~6816 tok)
+- `start-server.test.sh` — Fast tests for start-server.sh shell-only platform decisions. (~886 tok)
+- `stop-server.test.sh` — Tests for stop-server.sh PID-ownership safety. (~1814 tok)
+- `windows-lifecycle.test.sh` — Windows lifecycle tests for the brainstorm server. (~3441 tok)
+- `ws-protocol.test.js` — Unit tests for the zero-dependency WebSocket protocol implementation. (~4285 tok)
 
-## .claude/worktrees/feature+34-verify-sdk-api-skill/.superpowers/sdd/
+## .claude/worktrees/enable-plugins-settings/superpowers/tests/claude-code/
 
-- `progress.md` (~383 tok)
-- `task-4-report.md` — Task 4 Implementation Report: `verify-js.sh` inspect subcommand (~1383 tok)
-- `task-5-report.md` — Task 5 Report: Author SKILL.md for verify-sdk-api (~1641 tok)
+- `analyze-token-usage.py` — analyze_main_session, format_tokens, calculate_cost, main (~1924 tok)
+- `README.md` — Project documentation (~1180 tok)
+- `run-skill-tests.sh` — Test runner for Claude Code skills (~1486 tok)
+- `test-helpers.sh` — Helper functions for Claude Code skill tests (~1473 tok)
+- `test-sdd-workspace.sh` — Tests for the SDD workspace: scripts/sdd-workspace resolves a self-ignoring (~1284 tok)
+- `test-subagent-driven-development-integration.sh` — Integration Test: subagent-driven-development workflow (~3076 tok)
+- `test-subagent-driven-development.sh` — Test: subagent-driven-development skill (~1568 tok)
+- `test-worktree-native-preference.sh` — Test: Does the agent prefer native worktree tools (EnterWorktree) over git worktree add? (~1907 tok)
+- `test-worktree-path-policy.sh` — Regression check: Superpowers should not route new worktrees through the old (~728 tok)
 
-## .claude/worktrees/feature+34-verify-sdk-api-skill/skills/verify-sdk-api/
+## .claude/worktrees/enable-plugins-settings/superpowers/tests/codex-plugin-sync/
 
-- `SKILL.md` — Verify SDK/API Behavior (~1365 tok)
+- `test-sync-to-codex-plugin.sh` (~6863 tok)
 
-## .claude/worktrees/feature+34-verify-sdk-api-skill/skills/verify-sdk-api/scripts/
+## .claude/worktrees/enable-plugins-settings/superpowers/tests/explicit-skill-requests/
 
-- `verify-js.sh` — Declares spec (~961 tok)
-- `verify-js.test.sh` — Test suite for verify-js.sh. Run: bash verify-js.test.sh (~1027 tok)
-- `verify-python.sh` (~954 tok)
-- `verify-python.test.sh` — Test suite for verify-python.sh. Run: bash verify-python.test.sh (~972 tok)
+- `run-all.sh` — Run all explicit skill request tests (~565 tok)
+- `run-extended-multiturn-test.sh` — Extended multi-turn test with more conversation history (~974 tok)
+- `run-haiku-test.sh` — Test with haiku model and user's CLAUDE.md (~1155 tok)
+- `run-multiturn-test.sh` — Test explicit skill requests in multi-turn conversations (~1304 tok)
+- `run-test.sh` — Test explicit skill requests (user names a skill directly) (~1237 tok)
 
-## .claude/worktrees/feature+37-openwolf-mcp-api/.superpowers/sdd/
+## .claude/worktrees/enable-plugins-settings/superpowers/tests/explicit-skill-requests/prompts/
 
-- `final-review-fix-report.md` — Final Review Findings — Fix Report (~883 tok)
-- `task-1-report.md` — Task 1 Implementation Report: Scaffolding + `/bugs` Endpoint (~1277 tok)
-- `task-2-report.md` — Task 2 Report: `/bugs/{bug_id}` endpoint (~770 tok)
-- `task-3-report.md` — Task 3: `/memory` endpoint — Implementation Report (~1461 tok)
-- `task-4-report.md` — Task 4 Report: `/cerebrum` endpoint (~970 tok)
-- `task-5-report.md` — Task 5 Report: /anatomy Endpoint (~1387 tok)
-- `task-6-report.md` — Task 6 Report: Mount fastapi_mcp (~1186 tok)
-
-## .claude/worktrees/feature+37-openwolf-mcp-api/docs/superpowers/plans/
-
-- `2026-08-09-openwolf-mcp-api.md` — OpenWolf MCP API Implementation Plan (~7407 tok)
-
-## .claude/worktrees/feature+37-openwolf-mcp-api/mcp-services/openwolf-api/
-
-- `.gitignore` — Git ignore rules (~7 tok)
-- `app.py` — API: 5 endpoints (~2181 tok)
-- `requirements.txt` — Python dependencies (~42 tok)
-
-## .claude/worktrees/feature+37-openwolf-mcp-api/mcp-services/openwolf-api/.venv/lib/python3.14/site-packages/fastapi_mcp/
-
-- `server.py` — API: 2 endpoints (~7572 tok)
-
-## .claude/worktrees/feature+37-openwolf-mcp-api/mcp-services/openwolf-api/tests/
-
-- `test_app.py` — fixture_data_dir, test_search_bugs_no_filter_returns_all, test_search_bugs_filters_by_q, test_search (~1049 tok)
-
-## .claude/worktrees/feature+37-openwolf-mcp-api/mcp-services/openwolf-api/tests/fixtures/
-
-- `anatomy.md` — anatomy.md (~69 tok)
-- `buglog.json` (~255 tok)
-- `cerebrum.md` — Cerebrum (~126 tok)
-- `memory.md` — Memory (~129 tok)
-
-## .claude/worktrees/fix-43-cron-gate-retrigger/hooks/
-
-- `openwolf-cron-gate.js` — Exports runOpenwolfCron, archiveOldMemoryEntries, checkMemoryConsolidation, checkCerebrumReflection (~1958 tok)
-- `openwolf-cron-gate.test.js` — SCRIPT: withTmpProject, makeFakeCron, makeCountingNoopCron, run (~3535 tok)
-
-## .claude/worktrees/fix-43-cron-gate-retrigger/hooks/lib/
-
-- `gate-marker.js` — Exports readMarker, writeMarker, isStale, acquireLock + 2 more (~359 tok)
-
-## docs/superpowers/plans/
-
-- `2026-08-09-openwolf-mcp-api.md` — OpenWolf MCP API Implementation Plan (~7402 tok)
-- `2026-08-14-cross-session-recurring-pattern-detection.md` — Cross-Session Recurring-Pattern Detection Implementation Plan (~5421 tok)
-
-## docs/superpowers/specs/
-
-- `2026-08-09-openwolf-mcp-api-design.md` — OpenWolf MCP API — Design (~3208 tok)
-- `2026-08-14-cross-session-recurring-pattern-detection-design.md` — Cross-Session Recurring-Pattern Detection (~2979 tok)
-
-## skills/grilling/
-
-- `SKILL.md` — Declares values (~292 tok)
-
-## superpowers/skills/brainstorming/
-
-- `SKILL.md` — Brainstorming Ideas Into Designs (~3228 tok)
-
-## superpowers/skills/test-driven-development/
-
-- `testing-anti-patterns.md` — Testing Anti-Patterns (~2788 tok)
-
-## superpowers/skills/writing-plans/
-
-- `SKILL.md` — Writing Plans (~1902 tok)
+- `action-oriented.txt` (~44 tok)
+- `after-planning-flow.txt` (~138 tok)
+- `claude-suggested-it.txt` (~125 tok)
+- `i-know-what-sdd-means.txt` (~92 tok)
+- `mid-conversation-execute-plan.txt` (~30 tok)
+- `please-use-brainstorming.txt` (~19 tok)
+- `skip-formalities.txt` (~43 tok)
+- `subagent-driven-development-please.txt` (~9 tok)
+- `use-systematic-debugging.txt` (~13 tok)

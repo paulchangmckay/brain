@@ -607,3 +607,199 @@
 > Consolidated session (74 actions)
 
 
+## Session: 2026-07-15 22:11 (docs-site scaffold, worktree blume-docs-site)
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-15 21:14
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-15 21:14
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-15 21:19
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-15 21:57
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-16 21:19
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-16 21:49
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-17 (resumed docs-site build-out, worktree blume-docs-site)
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-17 22:12
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-17 22:12
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-17 22:13
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-17 22:57
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-17 22:57
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-17 22:57
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-17 22:57
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-17 00:41
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-17 00:46
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-17 00:46
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-18 23:03
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-18 23:05
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-18 23:36
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-18 15:15
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-18 15:15
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-18 15:16
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-20 00:31
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-21 20:59
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-21 21:03
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-21 21:15
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-21 21:17
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-21 21:28
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-21 21:32
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-21 22:28
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-21 22:54
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-21 23:37
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-21 00:45
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-22 20:26
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-22 20:33
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-22 19:52
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-24 22:33
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-24 22:33
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-24 22:33
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-24 22:34
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-24 22:34
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-24 22:34
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-24 22:34
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-24 22:34
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-24 23:50
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-25 21:38
+> Consolidated session (0 actions)
+
+
+## Session: 2026-07-25 21:52
+> Consolidated session (0 actions)
+
+

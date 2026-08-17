@@ -373,4 +373,4 @@ The changelog lives in [`CHANGELOG.md`](CHANGELOG.md) (Keep a Changelog format).
 automated with [release-please](https://github.com/googleapis/release-please): the version bump
 and changelog entry are prepared from the [Conventional Commits](https://www.conventionalcommits.org/)
 on `main`, then a maintainer cuts the **signed** tag + GitHub Release
-(see [`MAINTAINERS.md`](MAINTAINERS.md) -> *Cutting a release*).
+(see `MAINTAINERS.md` upstream -> *Cutting a release*; not vendored in this local copy).

@@ -4,153 +4,6 @@
 > Old sessions are consolidated by the daemon weekly.
 > Sessions before 2026-07-02 archived to `.wolf/memory-archive.md`.
 
-## Session: 2026-07-15 22:11 (docs-site scaffold, worktree blume-docs-site)
-> Consolidated session (0 actions)
-
-## Session: 2026-07-17 (resumed docs-site build-out, worktree blume-docs-site)
-> Consolidated session (0 actions)
-
-## Session: 2026-07-15 21:14
-> Consolidated session (0 actions)
-
-## Session: 2026-07-15 21:14
-> Consolidated session (0 actions)
-
-## Session: 2026-07-15 21:19
-> Consolidated session (0 actions)
-
-## Session: 2026-07-15 21:57
-> Consolidated session (0 actions)
-
-## Session: 2026-07-16 21:19
-> Consolidated session (0 actions)
-
-## Session: 2026-07-16 21:49
-> Consolidated session (0 actions)
-
-## Session: 2026-07-17 22:12
-> Consolidated session (0 actions)
-
-## Session: 2026-07-17 22:12
-> Consolidated session (0 actions)
-
-## Session: 2026-07-17 22:13
-> Consolidated session (0 actions)
-
-## Session: 2026-07-17 22:57
-> Consolidated session (0 actions)
-
-## Session: 2026-07-17 22:57
-> Consolidated session (0 actions)
-
-## Session: 2026-07-17 22:57
-> Consolidated session (0 actions)
-
-## Session: 2026-07-17 22:57
-> Consolidated session (0 actions)
-
-## Session: 2026-07-17 00:41
-> Consolidated session (0 actions)
-
-## Session: 2026-07-17 00:46
-> Consolidated session (0 actions)
-
-## Session: 2026-07-17 00:46
-> Consolidated session (0 actions)
-
-## Session: 2026-07-18 23:03
-> Consolidated session (0 actions)
-
-## Session: 2026-07-18 23:05
-> Consolidated session (0 actions)
-
-## Session: 2026-07-18 23:36
-> Consolidated session (0 actions)
-
-## Session: 2026-07-18 15:15
-> Consolidated session (0 actions)
-
-## Session: 2026-07-18 15:15
-> Consolidated session (0 actions)
-
-## Session: 2026-07-18 15:16
-> Consolidated session (0 actions)
-
-## Session: 2026-07-20 00:31
-> Consolidated session (0 actions)
-
-## Session: 2026-07-21 20:59
-> Consolidated session (0 actions)
-
-## Session: 2026-07-21 21:03
-> Consolidated session (0 actions)
-
-## Session: 2026-07-21 21:15
-> Consolidated session (0 actions)
-
-## Session: 2026-07-21 21:17
-> Consolidated session (0 actions)
-
-## Session: 2026-07-21 21:28
-> Consolidated session (0 actions)
-
-## Session: 2026-07-21 21:32
-> Consolidated session (0 actions)
-
-## Session: 2026-07-21 22:28
-> Consolidated session (0 actions)
-
-## Session: 2026-07-21 22:54
-> Consolidated session (0 actions)
-
-## Session: 2026-07-21 23:37
-> Consolidated session (0 actions)
-
-## Session: 2026-07-21 00:45
-> Consolidated session (0 actions)
-
-## Session: 2026-07-22 20:26
-> Consolidated session (0 actions)
-
-## Session: 2026-07-22 20:33
-> Consolidated session (0 actions)
-
-## Session: 2026-07-22 19:52
-> Consolidated session (0 actions)
-
-## Session: 2026-07-24 22:33
-> Consolidated session (0 actions)
-
-## Session: 2026-07-24 22:33
-> Consolidated session (0 actions)
-
-## Session: 2026-07-24 22:33
-> Consolidated session (0 actions)
-
-## Session: 2026-07-24 22:34
-> Consolidated session (0 actions)
-
-## Session: 2026-07-24 22:34
-> Consolidated session (0 actions)
-
-## Session: 2026-07-24 22:34
-> Consolidated session (0 actions)
-
-## Session: 2026-07-24 22:34
-> Consolidated session (0 actions)
-
-## Session: 2026-07-24 22:34
-> Consolidated session (0 actions)
-
-## Session: 2026-07-24 23:50
-> Consolidated session (0 actions)
-
-## Session: 2026-07-25 21:38
-> Consolidated session (0 actions)
-
-## Session: 2026-07-25 21:52
-> Consolidated session (0 actions)
-
 ## Session: 2026-07-25 02:21
 > Consolidated session (0 actions)
 
@@ -719,6 +572,56 @@
 | 22:19 | Edited ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/tests/test_compute_advanced_stats.py | modified test_compute_zscores_computes_ca_and_hdca_per60_z() | ~805 |
 | 22:19 | Edited ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/src/database.py | 2→4 lines | ~64 |
 | 22:20 | Edited ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/src/database.py | 2→4 lines | ~48 |
+| 22:20 | Edited ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/src/database.py | modified upsert_player_rate_zscores() | ~339 |
+| 22:20 | Edited ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/etl/compute_advanced_stats.py | 16→18 lines | ~330 |
+| 22:21 | Edited ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/tests/test_app_advanced_stats.py | 5→6 lines | ~102 |
+| 22:22 | Session end: 10 writes across 2 files (2026-08-14-cross-session-recurring-pattern-detection-design.md, 2026-08-14-cross-session-recurring-pattern-detection.md) | 8 reads | ~14007 tok |
+| 22:22 | Created ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/.superpowers/sdd/task-1-report.md | — | ~1192 |
+| 22:22 | Edited .claude/worktrees/feature+48-cross-session-recurring-pattern-detection/scripts/wolf-observation-log.test.js | expanded (+53 lines) | ~815 |
+| 22:23 | Edited .claude/worktrees/feature+48-cross-session-recurring-pattern-detection/scripts/wolf-observation-log.js | added 1 condition(s) | ~460 |
+| 22:23 | Session end: 43 writes across 32 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 61 reads | ~53791 tok |
+| 22:23 | Edited .claude/worktrees/feature+48-cross-session-recurring-pattern-detection/scripts/wolf-observation-log.js | modified if() | ~180 |
+| 22:24 | Created .claude/worktrees/feature+48-cross-session-recurring-pattern-detection/.superpowers/sdd/task-1-report.md | — | ~1726 |
+| 22:24 | Session end: 43 writes across 32 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 63 reads | ~53791 tok |
+| 22:24 | Session end: 14 writes across 5 files (2026-08-14-cross-session-recurring-pattern-detection-design.md, 2026-08-14-cross-session-recurring-pattern-detection.md, wolf-observation-log.test.js, wolf-observation-log.js, task-1-report.md) | 12 reads | ~17311 tok |
+| 22:25 | Edited ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/tests/test_compute_advanced_stats.py | modified test_compute_goalie_zscores_computes_sv_pct_and_gaa_z() | ~991 |
+| 22:26 | Edited ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/src/database.py | expanded (+12 lines) | ~113 |
+| 22:26 | Edited ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/src/database.py | inline fix | ~21 |
+| 22:26 | Edited ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/src/database.py | modified upsert_goalie_rate_zscores() | ~116 |
+| 22:26 | Created .claude/worktrees/feature+48-cross-session-recurring-pattern-detection/.superpowers/sdd/progress.md | — | ~79 |
+| 22:26 | Edited ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/etl/compute_advanced_stats.py | 2→3 lines | ~22 |
+| 22:26 | Edited ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/etl/compute_advanced_stats.py | modified _load_shifts_for_sweep() | ~51 |
+| 22:26 | Edited ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/etl/compute_advanced_stats.py | modified compute_goalie_zscores() | ~219 |
+| 22:26 | Session end: 15 writes across 6 files (2026-08-14-cross-session-recurring-pattern-detection-design.md, 2026-08-14-cross-session-recurring-pattern-detection.md, wolf-observation-log.test.js, wolf-observation-log.js, task-1-report.md) | 14 reads | ~19013 tok |
+| 22:27 | Created ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/.superpowers/sdd/task-2-report.md | — | ~1259 |
+| 22:27 | Edited .claude/worktrees/feature+48-cross-session-recurring-pattern-detection/skills/session-reflect/SKILL.md | modified DECLINED() | ~1660 |
+| 22:27 | Session end: 51 writes across 32 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 64 reads | ~56673 tok |
+
+## Session: 2026-08-15 22:27
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 22:28 | Created .claude/worktrees/feature+48-cross-session-recurring-pattern-detection/.superpowers/sdd/task-2-report.md | — | ~1702 |
+| 22:28 | Session end: 17 writes across 8 files (2026-08-14-cross-session-recurring-pattern-detection-design.md, 2026-08-14-cross-session-recurring-pattern-detection.md, wolf-observation-log.test.js, wolf-observation-log.js, task-1-report.md) | 16 reads | ~25241 tok |
+
+## Session: 2026-08-15 22:30
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 22:30 | Session end: 51 writes across 32 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 64 reads | ~56673 tok |
+| 22:30 | Created ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/tests/test_app_rankings.py | — | ~852 |
+| 22:31 | Edited ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/app.py | modified api_players_rankings() | ~651 |
+| 22:31 | Session end: 17 writes across 8 files (2026-08-14-cross-session-recurring-pattern-detection-design.md, 2026-08-14-cross-session-recurring-pattern-detection.md, wolf-observation-log.test.js, wolf-observation-log.js, task-1-report.md) | 19 reads | ~26837 tok |
+| 22:31 | Created ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/.superpowers/sdd/task-3-report.md | — | ~847 |
+
+## Session: 2026-08-15 22:32
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 22:32 | Session end: 54 writes across 33 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 66 reads | ~59084 tok |
+| 22:34 | Edited .claude/worktrees/fix+49-wolf-debt-scan-projects-exclude/scripts/wolf-debt-scan.test.js | expanded (+14 lines) | ~189 |
+| 22:34 | Edited .claude/worktrees/fix+49-wolf-debt-scan-projects-exclude/scripts/wolf-debt-scan.js | 3→4 lines | ~36 |
+| 22:36 | Session end: 2 writes across 2 files (wolf-debt-scan.test.js, wolf-debt-scan.js) | 4 reads | ~225 tok |
 
 ## Session: 2026-08-15 22:22
 
@@ -726,6 +629,80 @@
 |------|--------|---------|---------|--------|
 
 ## Session: 2026-08-15 17:34
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 17:34 | Session end: 17 writes across 8 files (2026-08-14-cross-session-recurring-pattern-detection-design.md, 2026-08-14-cross-session-recurring-pattern-detection.md, wolf-observation-log.test.js, wolf-observation-log.js, task-1-report.md) | 22 reads | ~38424 tok |
+| 17:35 | Edited .claude/worktrees/feature+48-cross-session-recurring-pattern-detection/skills/session-reflect/SKILL.md | added 1 import(s) | ~106 |
+| 17:35 | Edited .claude/worktrees/feature+48-cross-session-recurring-pattern-detection/scripts/wolf-observation-log.js | modified if() | ~97 |
+| 17:35 | Session end: 54 writes across 33 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 68 reads | ~59084 tok |
+| 17:35 | Edited .claude/worktrees/feature+48-cross-session-recurring-pattern-detection/scripts/wolf-observation-log.test.js | expanded (+13 lines) | ~181 |
+| 17:36 | Created .claude/worktrees/feature+48-cross-session-recurring-pattern-detection/.superpowers/sdd/task-fix-1-report.md | — | ~1984 |
+| 17:37 | Session end: 21 writes across 9 files (2026-08-14-cross-session-recurring-pattern-detection-design.md, 2026-08-14-cross-session-recurring-pattern-detection.md, wolf-observation-log.test.js, wolf-observation-log.js, task-1-report.md) | 22 reads | ~45332 tok |
+| 17:38 | Edited ../../../private/tmp/claude-501/-Users-paulmckay--claude/1613f301-a561-4b97-88a9-53d1240a751b/scratchpad/verify/old/wolf-observation-log.js | "${g1} ${status} (${todayI" → "$1 ${status} (${todayISO(" | ~27 |
+| 17:38 | Session end: 2 writes across 2 files (wolf-debt-scan.test.js, wolf-debt-scan.js) | 4 reads | ~225 tok |
+| 17:38 | Edited ../../../private/tmp/claude-501/-Users-paulmckay--claude/1613f301-a561-4b97-88a9-53d1240a751b/scratchpad/verify/old/wolf-observation-log.js | "${g1}\n**Evidence:** ${ev" → "$1\n**Evidence:** ${evide" | ~24 |
+| 17:40 | Edited ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/.wolf/cerebrum.md | 1→4 lines | ~433 |
+| 17:40 | Session end: 55 writes across 33 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 68 reads | ~59548 tok |
+| 17:40 | Created ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/frontend/src/lib/leaderboards.test.ts | — | ~770 |
+| 17:41 | Session end: 23 writes across 9 files (2026-08-14-cross-session-recurring-pattern-detection-design.md, 2026-08-14-cross-session-recurring-pattern-detection.md, wolf-observation-log.test.js, wolf-observation-log.js, task-1-report.md) | 25 reads | ~47404 tok |
+| 17:41 | Created ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/frontend/src/lib/leaderboards.ts | — | ~645 |
+| 17:41 | Created ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/.superpowers/sdd/task-5-report.md | — | ~1032 |
+
+## Session: 2026-08-15 17:41
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 17:42 | Session end: 58 writes across 35 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 69 reads | ~62068 tok |
+| 17:43 | Session end: 58 writes across 35 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 70 reads | ~62068 tok |
+| 17:44 | Created ../Desktop/NHL/ Stats/ Project/.worktrees/feature-116-117-team-pages-top-players/frontend/src/components/Leaderboard.test.tsx | — | ~349 |
+| 17:46 | Edited .claude/worktrees/feature+48-cross-session-recurring-pattern-detection/.wolf/buglog.json | 86→86 lines | ~1043 |
+| 17:47 | Session end: 59 writes across 36 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 72 reads | ~62417 tok |
+| 17:48 | Session end: 59 writes across 36 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 75 reads | ~62417 tok |
+| 17:48 | Created ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/frontend/src/lib/season.ts | — | ~114 |
+| 17:48 | Created ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/.superpowers/sdd/task-7-report.md | — | ~187 |
+| 17:49 | Session end: 61 writes across 37 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 76 reads | ~62731 tok |
+| 17:50 | Session end: 61 writes across 37 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 77 reads | ~62731 tok |
+| 17:50 | Created ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/frontend/src/pages/TeamPage.test.tsx | — | ~684 |
+| 17:51 | Created ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/frontend/src/pages/TeamPage.tsx | — | ~822 |
+| 17:52 | Edited ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/frontend/src/pages/TeamPage.test.tsx | 1→4 lines | ~88 |
+| 17:52 | Created ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/.superpowers/sdd/task-8-report.md | — | ~1176 |
+| 17:53 | Session end: 24 writes across 10 files (2026-08-14-cross-session-recurring-pattern-detection-design.md, 2026-08-14-cross-session-recurring-pattern-detection.md, wolf-observation-log.test.js, wolf-observation-log.js, task-1-report.md) | 26 reads | ~48447 tok |
+| 17:53 | Session end: 65 writes across 40 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 78 reads | ~65585 tok |
+| 17:55 | Session end: 65 writes across 40 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 85 reads | ~65585 tok |
+| 17:55 | Created ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/frontend/src/pages/Teams.test.tsx | — | ~290 |
+| 17:55 | Created ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/frontend/src/pages/Teams.tsx | — | ~324 |
+| 17:56 | Created ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/.superpowers/sdd/task-9-report.md | — | ~873 |
+| 17:56 | Session end: 68 writes across 43 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 86 reads | ~67134 tok |
+| 17:58 | Session end: 68 writes across 43 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 88 reads | ~67134 tok |
+| 17:58 | Created ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/frontend/src/pages/TopPlayers.test.tsx | — | ~653 |
+| 17:58 | Created ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/frontend/src/pages/TopPlayers.tsx | — | ~619 |
+| 17:59 | Created ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/.superpowers/sdd/task-10-report.md | — | ~904 |
+| 18:21 | Session end: 71 writes across 46 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 89 reads | ~69375 tok |
+
+## Session: 2026-08-15 18:21
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 19:06 | Session end: 71 writes across 46 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 93 reads | ~69375 tok |
+
+## Session: 2026-08-15 19:06
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 19:06 | Session end: 24 writes across 10 files (2026-08-14-cross-session-recurring-pattern-detection-design.md, 2026-08-14-cross-session-recurring-pattern-detection.md, wolf-observation-log.test.js, wolf-observation-log.js, task-1-report.md) | 26 reads | ~48447 tok |
+| 19:06 | Edited ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/frontend/src/main.tsx | added 3 import(s) | ~221 |
+| 19:08 | Created ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/.superpowers/sdd/task-11-report.md | — | ~1751 |
+| 19:09 | Session end: 73 writes across 47 files (2026-08-13-header-nav-and-hero-image-design.md, 2026-08-14-header-nav-and-hero-image.md, test_app_spa_fallback.py, app.py, task-1-report.md) | 95 reads | ~71472 tok |
+| 19:10 | Session end: 24 writes across 10 files (2026-08-14-cross-session-recurring-pattern-detection-design.md, 2026-08-14-cross-session-recurring-pattern-detection.md, wolf-observation-log.test.js, wolf-observation-log.js, task-1-report.md) | 26 reads | ~48447 tok |
+| 19:13 | Edited CLAUDE.md | 1→2 lines | ~144 |
+
+## Session: 2026-08-16 20:21
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-08-16 16:53
 
 | Time | Action | File(s) | Outcome | ~Tokens |
 |------|--------|---------|---------|--------|
