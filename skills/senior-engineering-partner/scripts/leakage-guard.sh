@@ -13,7 +13,8 @@
 #            leakage-denylist.local.template and sourced here if present. So your fingerprints
 #            guard the tree LOCALLY without ever being written into the public repo or its
 #            history. (CI, which has no .local file, enforces only the generic Tier-1 patterns;
-#            the local pre-PR run is the primary gate — see CONTRIBUTING.md.)
+#            the local pre-PR run is the primary gate — see CONTRIBUTING.md upstream;
+#            not vendored in this local copy.)
 #
 # Run locally before a PR (Tier 1 + Tier 2) and as a CI check (Tier 1 only). Exits non-zero
 # (printing every hit) if a denylisted identifier appears anywhere in the tracked tree.
