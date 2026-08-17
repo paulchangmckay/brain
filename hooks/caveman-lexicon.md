@@ -21,6 +21,3 @@ require — they never change what gets included, ordered, or restated.
    i-have-adhd's structure requires -- a numbered step, the restated-state
    line, the one concrete next action, a time estimate -- stop. Structure
    wins. Only cut word-level slack, never a required structural element.
-
-Independent of i-have-adhd's own toggle -- either can be on without the
-other.
