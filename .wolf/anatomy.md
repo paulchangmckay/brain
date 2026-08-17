@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-08-15T23:13:22.705Z
-> Files: 532 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-08-17T02:24:52.555Z
+> Files: 533 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../Desktop/NHL Stats Project/.worktrees/feature-116-117-team-pages-top-players/.superpowers/sdd/
 
@@ -918,3 +918,7 @@
 - `skip-formalities.txt` (~43 tok)
 - `subagent-driven-development-please.txt` (~9 tok)
 - `use-systematic-debugging.txt` (~13 tok)
+
+## .claude/worktrees/feature+56-adhd-caveman-hook/
+
+- `settings.json` (~3872 tok)
