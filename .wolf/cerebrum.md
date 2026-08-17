@@ -60,6 +60,7 @@
 - Do NOT retry `Write` (full-file replace) against a file another live session is actively appending to — use targeted `Edit` scoped to untouched lines instead.
 - Do NOT build agents/tooling under `~/` — always under `~/.claude/`.
 - Do NOT skip test/sample files mentioned in a spec — create them during the build.
+- Do NOT use `$CLAUDE_PROJECT_DIR` to resolve a script's own path inside a hook registered in `~/.claude/settings.json` — that config is user-scope and the hook fires for every project's sessions, not just `~/.claude`'s. `CLAUDE_PROJECT_DIR` resolves to whatever project is currently active, breaking the hook everywhere else. Use `$HOME/.claude/...` (settings.json command) and resolve any sibling paths from `CLAUDE_CONFIG_DIR`/`os.homedir()` inside the script instead — matches existing precedent in `hooks/session-start.sh`. Caught by a final-review subagent on the adhd-caveman hook (PR toward issue #56), not by planning or task review.
 
 ## Decision Log (condensed)
 
