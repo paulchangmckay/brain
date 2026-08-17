@@ -62,6 +62,7 @@ docs-site/.wolf/
 .understand-anything/intermediate/tour.json
 .understand-anything/intermediate/layers.json
 .understand-anything/intermediate/fingerprint-input.json
+.understand-anything/intermediate/scan-result.json
 .understand-anything/tmp/
 .understand-anything/.trash-*/
 
