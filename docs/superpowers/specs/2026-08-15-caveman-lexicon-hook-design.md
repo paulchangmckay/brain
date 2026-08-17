@@ -149,13 +149,16 @@ this design introduces or is in scope to relocate.
    subcommand exists (`claude plugin disable --help`) and is the
    documented-correct mechanism per this repo's own CLAUDE.md ("Always use
    `claude plugin enable/disable <name>` rather than hand-editing either
-   file"). This stops the plugin's own `hooks/hooks.json` from being
-   loaded, so its `SessionStart` hook no longer fires — the only way to
-   silence one hook inside an enabled plugin without editing that plugin's
-   files. The plugin's directory, `SKILL.md`, and marketplace-update path
-   are otherwise untouched; `claude plugin enable i-have-adhd@i-have-adhd`
-   reverts this instantly and independently of anything else in this
-   design.
+   file"). Disabling drops all of the plugin's contributions, not just its
+   `SessionStart` hook — including its entry in the Skill-tool listing —
+   confirmed against the real `.claude-plugin/plugin.json` during final
+   review. Harmless here: the combined hook injects the skill body
+   directly via `additionalContext`, and the plugin's bundled `agents/`
+   are `gemini.toml`/`openai.yaml` profiles for other tools, not Claude
+   Code subagents, so nothing else is lost. The plugin's directory,
+   `SKILL.md`, and marketplace-update path are otherwise untouched;
+   `claude plugin enable i-have-adhd@i-have-adhd` reverts this instantly
+   and independently of anything else in this design.
 2. Add one new `SessionStart` entry to the `hooks.SessionStart` array.
    Unlike step 1, there is no CLI for registering a hook — it requires a
    direct `settings.json` edit, and this repo's auto-mode classifier is
