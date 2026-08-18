@@ -68,14 +68,18 @@ test('correctly escapes a literal backslash the old 5-character allowlist would 
 test('falls back to escape_for_json when jq is not on PATH', () => {
   const emptyHomeDir = mkdtempSync(join(tmpdir(), 'pca-empty-home-'));
   const cwdDir = makeFakeProjectCwd('# Fallback test\nsome content');
-  // Build a PATH containing only `cat` (which the script needs) with no jq
+  // Build a PATH containing only `bash` and `cat` (which the script needs) with no jq
   // anywhere on it. Confirmed jq lives at /usr/bin/jq on the dev machine, so
   // a plain '/usr/bin:/bin' PATH would still find it there — this
   // constructs a minimal bin dir instead, guaranteeing jq is absent
   // regardless of where it's installed on the machine running the test.
+  // Both bash and cat are needed on the restricted PATH because spawnSync resolves
+  // the 'bash' command itself against the PATH we pass in env, not the parent process's real PATH.
   const fakeBinDir = mkdtempSync(join(tmpdir(), 'pca-fakebin-'));
   const catPath = spawnSync('command', ['-v', 'cat'], { shell: true, encoding: 'utf8' }).stdout.trim();
   symlinkSync(catPath, join(fakeBinDir, 'cat'));
+  const bashPath = spawnSync('command', ['-v', 'bash'], { shell: true, encoding: 'utf8' }).stdout.trim();
+  symlinkSync(bashPath, join(fakeBinDir, 'bash'));
   const result = run({ HOME: emptyHomeDir, CLAUDE_CWD: cwdDir, PATH: fakeBinDir });
   const parsed = JSON.parse(result.stdout);
   assert.match(parsed.hookSpecificOutput.additionalContext, /<PROJECT_ANATOMY>/);
