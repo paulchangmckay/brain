@@ -22,7 +22,7 @@ estimate.
 
 Three components, no shared architecture between them:
 
-1. `hooks/lib/hook-input.js` — dedup `readStdin()` + `SAFE_NAME`
+1. `scripts/hook-input.js` — dedup `readStdin()` + `SAFE_NAME`
 2. `skills/shared-references/anti-slop-tells.md` — narrow anti-slop overlap
 3. `hooks/post-compact-anatomy.sh` — replace hand-rolled JSON escaping
 
@@ -30,7 +30,7 @@ Out of scope (deferred, per the earlier B/C review): Bucket C items
 (`gpt-taste`/`image-to-code` skill registration, `context-mode/sessions/`
 disk housekeeping) — not part of this spec.
 
-## Component 1: `hooks/lib/hook-input.js`
+## Component 1: `scripts/hook-input.js`
 
 ### Problem
 
@@ -74,12 +74,23 @@ untouched.
 
 ### Design
 
-New file, matching the existing `hooks/lib/` convention (`gate-marker.js`,
-`token-count.js` — both small, single-purpose, with a paired
-`*.test.js`):
+**Location — `scripts/hook-input.js`, not `hooks/lib/`.** Checked existing
+cross-directory import precedent before assuming `hooks/lib/`: two hooks
+(`post-compact-observation.js`, `post-write-batch-nudge.js`) already import
+from `../scripts/wolf-observation-log.js`. The established direction in
+this repo is hooks depending on scripts, not the reverse. Putting the new
+file in `hooks/lib/` would have created a dependency running the other way
+(`scripts/wolf-observation-log.js` → `hooks/lib/`), so the two directories
+would end up depending on each other in different files. `scripts/hook-input.js`
+matches the existing direction exactly: the 12 hook files add one more
+`../scripts/` import, and `scripts/wolf-observation-log.js`'s import
+becomes same-directory (`./hook-input.js`), no cross-directory dependency
+at all for that file. Still gets a paired `scripts/hook-input.test.js`,
+matching `scripts/`'s own existing convention (`plugin-health-check.js` +
+`.test.js`, `setup-branch-protection.sh` + `.test.js`).
 
 ```js
-// hooks/lib/hook-input.js
+// scripts/hook-input.js
 import { readFileSync } from 'node:fs';
 
 export function readStdin() {
@@ -93,15 +104,15 @@ export function readStdin() {
 export const SAFE_NAME = /^[A-Za-z0-9._-]+$/;
 ```
 
-`hooks/lib/hook-input.test.js` covers: `readStdin()` returns file content
+`scripts/hook-input.test.js` covers: `readStdin()` returns file content
 when fd 0 is readable, returns `''` on read failure (e.g. no stdin
 attached); `SAFE_NAME` matches valid identifiers and rejects path
 traversal attempts (`../`, `/`, null bytes, empty string).
 
-Each of the 13 call sites drops its local `function readStdin() {...}`
-definition and adds `import { readStdin } from './lib/hook-input.js';`
-(relative path adjusted for `scripts/wolf-observation-log.js`, which sits
-one level differently). The 6 files using `SAFE_NAME` add it to the same
+Each of the 12 hook call sites drops its local `function readStdin() {...}`
+definition and adds `import { readStdin } from '../scripts/hook-input.js';`.
+`scripts/wolf-observation-log.js` adds `import { readStdin } from './hook-input.js';`.
+The 6 files using `SAFE_NAME` add it to the same
 import line. No other line in any of the 13 files changes.
 
 ### Expected impact
@@ -127,16 +138,30 @@ one-line problem/fix pairs suited to auditing an existing, unknown stack.
 These are different jobs wearing similar-sounding headings, not the same
 content twice.
 
-The real duplication is narrower and lives in `design-taste-frontend`'s
-**Section 9 ("AI Tells / Forbidden Patterns")**, which is structurally the
-same kind of flat banned-pattern list as `redesign-existing-projects`'s
-audit. Confirmed genuine copy-paste-level overlap, not just similar taste,
-by finding *identical concrete examples* in both files: the same fake
-percentages (`99.99%`, `47.2%`), the same invented brand names (`Acme`,
-`Nexus`, `SmartFlow`), the same copywriting-cliché list
-(Elevate/Seamless/Unleash/Next-Gen), the same 3-column-card-row ban, the
-same pure-`#000000` ban, the same purple/blue AI-gradient ban, the same
-shadow-tinting rule, and the same `min-h-[100dvh]` over `h-screen` rule.
+The real duplication is narrower than the original audit implied, and —
+verified directly, bullet by bullet, not assumed from the earlier pass —
+it is *not* contained in one section. It's scattered across four separate
+subsections of `design-taste-frontend/SKILL.md`: **3.E** (`min-h-[100dvh]`
+over `h-screen`, CSS Grid over flexbox percentage math), **4.2** (max one
+accent color / sub-80% saturation, the purple/blue "AI gradient" ban),
+**4.4** (shadow tinted to background hue), and **9.A-9.D** ("AI Tells" —
+pure-`#000000` ban, Inter-avoidance, the 3-column-card-row ban, generic
+names, fake-precision numbers, placeholder brand names, copywriting
+clichés). Confirmed genuine copy-paste-level overlap, not just similar
+taste, by finding *identical concrete examples* in both files: the same
+fake percentages (`99.99%`, `47.2%`), the same invented brand names
+(`Acme`, `Nexus`, `SmartFlow`), the same copywriting-cliché list
+(Elevate/Seamless/Unleash/Next-Gen), and matching phrasing on the
+`100dvh`/CSS-Grid rules.
+
+Two of these bullets are not clean one-liners: the purple/blue-gradient
+ban (4.2, "THE LILA RULE") and the Inter-avoidance rule (9.B) each carry
+an extra "Override:" clause tied to `design-taste-frontend`'s own dial
+system ("acceptable when the brief explicitly asks for purple...",
+"acceptable when the brief calls for a neutral/standard/Linear-style
+feel..."). Only the base ban moves to the shared file for these two —
+the override clause stays local, now reading as an addition on top of the
+shared pointer rather than a self-contained paragraph.
 
 ### Design decision: shared location, not one-skill-owns-it
 
@@ -222,14 +247,40 @@ proposed doesn't fully close the gap.
 
 ### Design
 
-Replace both pieces with a single `jq -n` invocation that constructs the
-entire JSON object in one step, letting jq handle all escaping (including
-the wrapper markup) rather than mixing jq-escaped fragments with
-bash-typed literal `\n` sequences via string concatenation:
+Replace both fragile pieces with a single `jq -n` invocation that
+constructs the entire JSON object in one step, letting jq handle all
+escaping (including the wrapper markup) rather than mixing jq-escaped
+fragments with bash-typed literal `\n` sequences via string concatenation.
+
+Grilled soft spot: the current script has zero external dependencies
+(pure bash builtins). Making it depend on `jq` is a real behavior change
+for anyone whose environment doesn't have it — this repo is public, per
+the portable-repo notes, so "works for me" isn't a safe assumption. Per
+the grilling decision: guard with `command -v jq` (the same pattern
+`.githooks/pre-commit` already uses for `shellcheck`/`gitleaks`) and fall
+back to the *old* `escape_for_json` + hand-built template if `jq` is
+missing — degraded (5-character escaping, same as today) but still
+functional, rather than silently going from "always injects" to "never
+injects" for anyone without `jq`.
 
 ```bash
 #!/usr/bin/env bash
+# PostCompact hook: re-injects OpenWolf anatomy after context compaction.
+# Anatomy injected at SessionStart is lost after compaction — this restores it.
+
 set -euo pipefail
+
+# Fallback only — used when jq isn't available. Keep in sync with the
+# jq path below if the wrapper markup ever changes.
+escape_for_json() {
+    local s="$1"
+    s="${s//\\/\\\\}"
+    s="${s//\"/\\\"}"
+    s="${s//$'\n'/\\n}"
+    s="${s//$'\r'/\\r}"
+    s="${s//$'\t'/\\t}"
+    printf '%s' "$s"
+}
 
 GLOBAL_ANATOMY_FILE="$HOME/.claude/.wolf/anatomy.md"
 global_anatomy_raw=""
@@ -247,26 +298,41 @@ if [ -z "$global_anatomy_raw" ] && [ -z "$anatomy_raw" ]; then
   exit 0
 fi
 
-jq -n \
-  --arg global "$global_anatomy_raw" \
-  --arg local "$anatomy_raw" \
-  '
-  (if $global != "" then
-    "\n\n<GLOBAL_CLAUDE_ANATOMY>\nContext was compacted — anatomy re-injected. This is the map of your ~/.claude config directory:\n\n" + $global + "\n</GLOBAL_CLAUDE_ANATOMY>"
-   else "" end)
-  +
-  (if $local != "" then
-    "\n\n<PROJECT_ANATOMY>\nContext was compacted — project anatomy re-injected from .wolf/anatomy.md:\n\n" + $local + "\n\nCross-reference .wolf/buglog.json before fixing bugs. Update .wolf/cerebrum.md with new learnings at session end.\n</PROJECT_ANATOMY>"
-   else "" end)
-  as $ctx
-  | {hookSpecificOutput: {hookEventName: "PostCompact", additionalContext: $ctx}}
-  '
+if command -v jq >/dev/null 2>&1; then
+  jq -n \
+    --arg global "$global_anatomy_raw" \
+    --arg local "$anatomy_raw" \
+    '
+    (if $global != "" then
+      "\n\n<GLOBAL_CLAUDE_ANATOMY>\nContext was compacted — anatomy re-injected. This is the map of your ~/.claude config directory:\n\n" + $global + "\n</GLOBAL_CLAUDE_ANATOMY>"
+     else "" end)
+    +
+    (if $local != "" then
+      "\n\n<PROJECT_ANATOMY>\nContext was compacted — project anatomy re-injected from .wolf/anatomy.md:\n\n" + $local + "\n\nCross-reference .wolf/buglog.json before fixing bugs. Update .wolf/cerebrum.md with new learnings at session end.\n</PROJECT_ANATOMY>"
+     else "" end)
+    as $ctx
+    | {hookSpecificOutput: {hookEventName: "PostCompact", additionalContext: $ctx}}
+    '
+else
+  # jq not installed — fall back to the original hand-rolled escaping.
+  combined_context=""
+  if [ -n "$global_anatomy_raw" ]; then
+    global_escaped=$(escape_for_json "$global_anatomy_raw")
+    combined_context="${combined_context}\n\n<GLOBAL_CLAUDE_ANATOMY>\nContext was compacted — anatomy re-injected. This is the map of your ~/.claude config directory:\n\n${global_escaped}\n</GLOBAL_CLAUDE_ANATOMY>"
+  fi
+  if [ -n "$anatomy_raw" ]; then
+    anatomy_escaped=$(escape_for_json "$anatomy_raw")
+    combined_context="${combined_context}\n\n<PROJECT_ANATOMY>\nContext was compacted — project anatomy re-injected from .wolf/anatomy.md:\n\n${anatomy_escaped}\n\nCross-reference .wolf/buglog.json before fixing bugs. Update .wolf/cerebrum.md with new learnings at session end.\n</PROJECT_ANATOMY>"
+  fi
+  printf '{\n  "hookSpecificOutput": {\n    "hookEventName": "PostCompact",\n    "additionalContext": "%s"\n  }\n}\n' "$combined_context"
+fi
 ```
 
 Note the `\n\n<TAG>...` markup strings inside the jq filter are jq string
 literals — jq itself interprets `\n` as a real newline and emits it
 correctly escaped (`\n` two-char sequence) in its JSON output, so this is
-no longer a manual escaping exercise anywhere in the pipeline.
+no longer a manual escaping exercise on the jq path. The fallback path is
+byte-for-byte the original script's logic, unchanged.
 
 ### Testing
 
@@ -279,18 +345,22 @@ confirm valid JSON, and assert the `additionalContext` field contains the
 expected wrapper tags and content. Cases: both files present, only global
 present, only local present, neither present (exits 0, no output),
 content containing characters `escape_for_json()`'s old allowlist didn't
-cover (e.g. a literal backslash followed by a non-escaped character) to
-prove the correctness fix.
+cover (e.g. a literal backslash followed by a non-escaped character) on
+the jq path to prove the correctness fix, and — with `jq` temporarily
+hidden from `PATH` in the test (e.g. `PATH=/usr/bin:/bin` minus jq's
+directory, or a stubbed `command -v`) — confirm the fallback path still
+produces valid JSON matching the pre-change script's behavior.
 
 ### Expected impact
 
-~15-20 lines removed net, plus a genuine correctness fix (guaranteed valid
-JSON regardless of anatomy-file content, vs. the old version's silent
-failure mode on unhandled characters).
+~5-10 lines removed net (smaller than the original estimate now that the
+fallback keeps `escape_for_json()` around), plus a genuine correctness fix
+on the jq path (guaranteed valid JSON regardless of anatomy-file content)
+with no regression for anyone missing `jq`.
 
 ## Verification Plan
 
-- Component 1: new `hooks/lib/hook-input.test.js`, run via `node --test`. Existing hook `*.test.js` files (`pre-skill-gate.test.js`, `cerebrum-write-guard.test.js`, etc., wherever they exist) must still pass unchanged after the import swap — proves no behavior change.
+- Component 1: new `scripts/hook-input.test.js`, run via `node --test`. Existing hook `*.test.js` files (`pre-skill-gate.test.js`, `cerebrum-write-guard.test.js`, etc., wherever they exist) must still pass unchanged after the import swap — proves no behavior change.
 - Component 2: no code, no test — a documentation/reference-content change. Verify both `SKILL.md` files still render sensibly (no broken cross-reference, no orphaned heading) after the bullets are replaced with pointer lines.
 - Component 3: new `hooks/post-compact-anatomy.test.js` per the cases above.
 - All three: `.githooks/pre-commit` (shellcheck + eslint-security + gitleaks) must pass clean, matching the Bucket A PR's precedent.
