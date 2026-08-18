@@ -2,17 +2,10 @@
 import path from 'node:path';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { isStale, writeMarker } from './lib/gate-marker.js';
+import { readStdin } from '../scripts/hook-input.js';
 
 const LEDGER_MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000;
 const SESSION_RETENTION_MS = 30 * 24 * 60 * 60 * 1000;
-
-function readStdin() {
-  try {
-    return readFileSync(0, 'utf8');
-  } catch (_) {
-    return '';
-  }
-}
 
 function sumSessionTokens(session) {
   const reads = session.reads || [];

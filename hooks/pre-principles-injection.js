@@ -9,14 +9,7 @@
 
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
-
-function readStdin() {
-  try {
-    return readFileSync(0, 'utf8');
-  } catch (_) {
-    return '';
-  }
-}
+import { readStdin } from '../scripts/hook-input.js';
 
 let input = {};
 try {

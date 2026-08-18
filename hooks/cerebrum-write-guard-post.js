@@ -8,18 +8,9 @@
 // own edit look like a foreign write on its very next touch.
 // See docs/superpowers/specs/2026-07-20-tooling-friction-hardening-design.md §2.
 
-import { readFileSync, writeFileSync, statSync, mkdirSync } from 'fs';
+import { writeFileSync, statSync, mkdirSync } from 'fs';
 import { resolve, dirname } from 'path';
-
-const SAFE_NAME = /^[A-Za-z0-9._-]+$/;
-
-function readStdin() {
-  try {
-    return readFileSync(0, 'utf8');
-  } catch (_) {
-    return '';
-  }
-}
+import { readStdin, SAFE_NAME } from '../scripts/hook-input.js';
 
 let input = {};
 try {
