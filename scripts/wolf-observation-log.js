@@ -18,6 +18,7 @@ import {
 } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { readStdin } from './hook-input.js';
 
 const HEADER_RE = /^### Observation (\d+):.*$/gm;
 const VALID_TYPES = new Set([
@@ -294,14 +295,6 @@ export function archiveObservations(logPath, archiveDir, today = todayISO()) {
 
     return { archivedCount };
   });
-}
-
-function readStdin() {
-  try {
-    return readFileSync(0, 'utf8');
-  } catch (_) {
-    return '';
-  }
 }
 
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1]);
