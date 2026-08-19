@@ -3,19 +3,11 @@
 // session's cwd matches the primary repo it always targets. See
 // docs/superpowers/specs/2026-07-20-tooling-friction-hardening-design.md §1.
 
-import { readFileSync } from 'fs';
 import { resolve } from 'path';
 import { homedir } from 'os';
+import { readStdin } from '../scripts/hook-input.js';
 
 const PRIMARY_REPO = resolve(homedir(), '.claude');
-
-function readStdin() {
-  try {
-    return readFileSync(0, 'utf8');
-  } catch (_) {
-    return '';
-  }
-}
 
 let input = {};
 try {

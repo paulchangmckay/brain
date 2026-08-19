@@ -3,19 +3,11 @@
 // unless grilling (or its /grill-me wrapper) already ran earlier in this
 // session. See CLAUDE.md gate table / brainstorming.md step 9.
 
-import { readFileSync, existsSync } from 'fs';
+import { existsSync } from 'fs';
 import { resolve } from 'path';
+import { readStdin, SAFE_NAME } from '../scripts/hook-input.js';
 
 const SATISFYING_SKILLS = ['grilling', 'grill-me'];
-const SAFE_NAME = /^[A-Za-z0-9._-]+$/;
-
-function readStdin() {
-  try {
-    return readFileSync(0, 'utf8');
-  } catch (_) {
-    return '';
-  }
-}
 
 let input = {};
 try {

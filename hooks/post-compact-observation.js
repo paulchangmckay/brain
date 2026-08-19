@@ -6,19 +6,9 @@
 // per session: only the first compaction in a session creates an entry.
 // See docs/superpowers/specs/2026-07-20-skill-observation-system-design.md
 
-import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { appendObservation, hasOpenEntry } from '../scripts/wolf-observation-log.js';
-
-const SAFE_NAME = /^[A-Za-z0-9._-]+$/;
-
-function readStdin() {
-  try {
-    return readFileSync(0, 'utf8');
-  } catch (_) {
-    return '';
-  }
-}
+import { readStdin, SAFE_NAME } from '../scripts/hook-input.js';
 
 let input = {};
 try {

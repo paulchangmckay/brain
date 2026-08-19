@@ -9,17 +9,9 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { countHeaders } from '../scripts/wolf-observation-log.js';
+import { readStdin, SAFE_NAME } from '../scripts/hook-input.js';
 
-const SAFE_NAME = /^[A-Za-z0-9._-]+$/;
 const THRESHOLD = 5;
-
-function readStdin() {
-  try {
-    return readFileSync(0, 'utf8');
-  } catch (_) {
-    return '';
-  }
-}
 
 let input = {};
 try {

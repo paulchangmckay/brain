@@ -150,8 +150,7 @@ Discouraged by default in code, markup, and visible text. Replace symbols with i
 ### 3.E Responsiveness & Layout Mechanics
 * Standardize breakpoints (`sm 640`, `md 768`, `lg 1024`, `xl 1280`, `2xl 1536`).
 * Contain page layouts using `max-w-[1400px] mx-auto` or `max-w-7xl`.
-* **Viewport Stability:** NEVER use `h-screen` for full-height Hero sections. ALWAYS use `min-h-[100dvh]` to prevent layout jumping on mobile (iOS Safari address bar).
-* **Grid over Flex-Math:** NEVER use complex flexbox percentage math (`w-[calc(33%-1rem)]`). ALWAYS use CSS Grid (`grid grid-cols-1 md:grid-cols-3 gap-6`).
+* **Viewport Stability & Grid over Flex-Math:** see [`shared-references/anti-slop-tells.md`](../shared-references/anti-slop-tells.md) — `min-h-[100dvh]` over `h-screen`, CSS Grid over flexbox percentage math.
 
 ### 3.F Dependency Verification (mandatory)
 Before importing ANY 3rd-party library, check `package.json`. If the package is missing, output the install command first. **Never** assume a library exists.
@@ -183,8 +182,8 @@ LLMs default to clichés. Override these defaults proactively. Each rule has a c
 * **ITALIC DESCENDER CLEARANCE (mandatory):** When italic is used in display type and the word contains a descender letter (`y g j p q`), `leading-[1]` or `leading-none` will clip the descender. Use `leading-[1.1]` minimum and add `pb-1` or `mb-1` reserve on the wrapping element. Audit every italic word in display headlines before shipping.
 
 ### 4.2 Color Calibration
-* Max 1 accent color. Saturation < 80% by default.
-* **THE LILA RULE:** The "AI Purple / Blue glow" aesthetic is discouraged as a default. No automatic purple button glows, no random neon gradients. Use neutral bases (Zinc / Slate / Stone) with high-contrast singular accents (Emerald, Electric Blue, Deep Rose, Burnt Orange, etc.).
+* **Max 1 accent color, saturation < 80% by default:** see [`shared-references/anti-slop-tells.md`](../shared-references/anti-slop-tells.md).
+* **THE LILA RULE:** base ban in [`shared-references/anti-slop-tells.md`](../shared-references/anti-slop-tells.md) ("Purple/blue AI gradient aesthetic"). Use neutral bases (Zinc / Slate / Stone) with high-contrast singular accents (Emerald, Electric Blue, Deep Rose, Burnt Orange, etc.).
 * **Override:** if the brand or brief explicitly asks for purple / violet / lila, embrace it. But execute with intent: consistent palette, harmonised neutrals, restrained gradients. Not generic AI gradient slop.
 * **One palette per project.** Do not fluctuate between warm and cool grays within the same project.
 * **COLOR CONSISTENCY LOCK (mandatory):** Once an accent color is chosen for a page, it is used on the WHOLE page. A warm-grey site does not suddenly get a blue CTA in section 7. A rose-accented site does not get a teal status badge in the footer. Pick one accent, lock it, audit every component before shipping.
@@ -212,7 +211,7 @@ LLMs default to clichés. Override these defaults proactively. Each rule has a c
 
 ### 4.4 Materiality, Shadows, Cards
 * Use cards ONLY when elevation communicates real hierarchy. Otherwise group with `border-t`, `divide-y`, or negative space.
-* When a shadow is used, tint it to the background hue. No pure-black drop shadows on light backgrounds.
+* Shadow tinting: see [`shared-references/anti-slop-tells.md`](../shared-references/anti-slop-tells.md) ("Generic flat box-shadow").
 * For `VISUAL_DENSITY > 7`: generic card containers are banned. Data metrics breathe in plain layout.
 * **SHAPE CONSISTENCY LOCK (mandatory):** Pick ONE corner-radius scale for the page and stick to it. Options: all-sharp (radius 0), all-soft (radius 12-16px), all-pill (full radius for interactive). Mixed systems are allowed only when there is a documented rule (e.g. "buttons are full-pill, cards are 16px, inputs are 8px") and that rule is followed everywhere. Round buttons in a square layout, or square cards on a pill-button page, is broken design.
 
@@ -598,26 +597,23 @@ Avoid these signatures unless the brief explicitly asks for them.
 
 ### 9.A Visual & CSS
 * **NO neon / outer glows** by default. Use inner borders or subtle tinted shadows.
-* **NO pure black (`#000000`).** Off-black, zinc-950, or charcoal.
+* **NO pure black.** See [`shared-references/anti-slop-tells.md`](../shared-references/anti-slop-tells.md).
 * **NO oversaturated accents.** Desaturate to blend with neutrals.
 * **NO excessive gradient text** for large headers.
 * **NO custom mouse cursors.** Outdated, accessibility-hostile, perf-hostile.
 
 ### 9.B Typography
-* **AVOID Inter as default.** See Section 4.1. Override path exists.
+* **AVOID Inter as default.** Base rule: see [`shared-references/anti-slop-tells.md`](../shared-references/anti-slop-tells.md). Section 4.1 above has this skill's full override conditions.
 * **NO oversized H1s** that just scream. Control hierarchy with weight + color, not raw scale.
 * **Serif constraints:** Serif for editorial / luxury / publication. Not for dashboards.
 
 ### 9.C Layout & Spacing
 * **Mathematically perfect** padding and margins. No floating elements with awkward gaps.
-* **NO 3-column equal feature cards.** The generic "three identical cards horizontally" feature row is banned. Use 2-column zig-zag, asymmetric grid, scroll-pinned, or horizontal-scroll alternative.
+* **NO 3-column equal feature cards.** See [`shared-references/anti-slop-tells.md`](../shared-references/anti-slop-tells.md) for the ban; this skill's alternatives: 2-column zig-zag, asymmetric grid, scroll-pinned, or horizontal-scroll.
 
 ### 9.D Content & Data ("Jane Doe" Effect)
-* **NO generic names.** "John Doe", "Sarah Chan", "Jack Su" → use creative, realistic, locale-appropriate names.
+* **Fake-precision numbers, generic names, placeholder brand names, filler-verb copy:** see [`shared-references/anti-slop-tells.md`](../shared-references/anti-slop-tells.md). (This section's other bullets — generic avatars — are specific to this skill and stay here.)
 * **NO generic avatars.** No SVG "egg" or Lucide user icons → use believable photo placeholders or specific styling.
-* **NO fake-perfect numbers.** Avoid `99.99%`, `50%`, `1234567`. Use organic, messy data (`47.2%`, `+1 (312) 847-1928`).
-* **NO startup-slop brand names.** "Acme", "Nexus", "SmartFlow", "Cloudly" → invent contextual, premium names that sound real.
-* **NO filler verbs.** "Elevate", "Seamless", "Unleash", "Next-Gen", "Revolutionize" → concrete verbs only.
 
 ### 9.E External Resources & Components
 * **NO hand-rolled SVG icons.** Use Phosphor / HugeIcons / Radix / Tabler. Lucide on explicit request only.
