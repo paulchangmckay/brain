@@ -55,12 +55,25 @@ test('emits nothing when neither anatomy file exists', () => {
   rmSync(emptyCwdDir, { recursive: true, force: true });
 });
 
-test('correctly escapes a literal backslash the old 5-character allowlist would mishandle', () => {
+test('correctly escapes a raw control character the old 5-character allowlist did not cover (proves the correctness fix)', () => {
+  // CORRECTION (found while verifying Task 8): this test originally
+  // targeted a literal backslash, but the old escape_for_json()'s first
+  // substitution (s="${s//\\/\\\\}") already handled backslash correctly
+  // -- it was never actually an uncovered gap, and the original assertion
+  // additionally expected a double backslash to survive JSON.parse, which
+  // is wrong for correct round-tripping (a raw single backslash, properly
+  // JSON-escaped and then parsed back, should yield a single backslash
+  // again -- expecting two would mean over-escaping). The real gap is a
+  // raw control character the 5-character allowlist doesn't name at all,
+  // e.g. a vertical tab (0x0B). Verified directly: piping this exact
+  // content through the OLD script (pre-Task-8, commit 786792f) produces
+  // output that JSON.parse rejects with "Bad control character in string
+  // literal in JSON" -- genuinely invalid JSON, not a hypothetical.
   const emptyHomeDir = mkdtempSync(join(tmpdir(), 'pca-empty-home-'));
-  const cwdDir = makeFakeProjectCwd('path is C:\\Users\\test and a "quoted" value');
+  const cwdDir = makeFakeProjectCwd('vtab:[\v]end');
   const result = run({ HOME: emptyHomeDir, CLAUDE_CWD: cwdDir });
-  const parsed = JSON.parse(result.stdout); // throws if invalid JSON
-  assert.match(parsed.hookSpecificOutput.additionalContext, /C:\\\\Users\\\\test/);
+  const parsed = JSON.parse(result.stdout); // throws if invalid JSON -- this IS the assertion
+  assert.match(parsed.hookSpecificOutput.additionalContext, /vtab:\[\v\]end/);
   rmSync(emptyHomeDir, { recursive: true, force: true });
   rmSync(cwdDir, { recursive: true, force: true });
 });
@@ -76,9 +89,13 @@ test('falls back to escape_for_json when jq is not on PATH', () => {
   // Both bash and cat are needed on the restricted PATH because spawnSync resolves
   // the 'bash' command itself against the PATH we pass in env, not the parent process's real PATH.
   const fakeBinDir = mkdtempSync(join(tmpdir(), 'pca-fakebin-'));
-  const catPath = spawnSync('command', ['-v', 'cat'], { shell: true, encoding: 'utf8' }).stdout.trim();
+  // No shell:true here -- Node's spawnSync already resolves 'which' via
+  // PATH lookup directly (it doesn't consult shell builtins/aliases at
+  // all, so it finds the real /usr/bin/which binary), avoiding both a
+  // shell dependency and Node's DEP0190 warning for args + shell:true.
+  const catPath = spawnSync('which', ['cat'], { encoding: 'utf8' }).stdout.trim();
   symlinkSync(catPath, join(fakeBinDir, 'cat'));
-  const bashPath = spawnSync('command', ['-v', 'bash'], { shell: true, encoding: 'utf8' }).stdout.trim();
+  const bashPath = spawnSync('which', ['bash'], { encoding: 'utf8' }).stdout.trim();
   symlinkSync(bashPath, join(fakeBinDir, 'bash'));
   const result = run({ HOME: emptyHomeDir, CLAUDE_CWD: cwdDir, PATH: fakeBinDir });
   const parsed = JSON.parse(result.stdout);
