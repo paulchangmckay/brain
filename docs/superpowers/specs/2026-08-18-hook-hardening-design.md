@@ -17,6 +17,20 @@ Two existing pieces of `~/.claude`'s hook system are in scope:
   per-path `{path, ts, mtime}` records in `.wolf/_session.json`. It also
   does unrelated token-budget warnings using `.wolf/anatomy.md` entries —
   that logic is untouched by this spec.
+  **Post-implementation correction:** the final whole-branch review found,
+  and this was independently confirmed against the installed CLI binary
+  (`strings`) plus empirically in a live session (reading the same
+  unchanged file 3 times produced zero blocks), that this hook's
+  `settings.json` wiring (`"${TOOL_INPUT_PATH:-}"`) references an
+  environment variable that does not exist anywhere in Claude Code — it
+  always expands empty, so `filePath` was always `''` and the hook exited
+  immediately on line 1, every time, since long before this branch. Every
+  other hook in this repo reads its input from stdin JSON; this was the
+  only one using an argv/env-var scheme. Folded into this spec's scope
+  (user-approved scope expansion) rather than deferred: the hook is
+  rewired to read `tool_input.file_path` from stdin JSON like its
+  siblings, and the broken argv substitution is removed from
+  `settings.json`.
 - No existing hook handles a failed Read/Edit on a wrong or stale path.
   `PostToolUseFailure` exists as a distinct Claude Code hook event
   (separate from `PostToolUse`, confirmed against current hooks docs) and is
