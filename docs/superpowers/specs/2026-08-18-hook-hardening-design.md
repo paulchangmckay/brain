@@ -89,12 +89,17 @@ clobbering the other's override.
      blocked read is never blocked twice in a row.
    - Otherwise → block, set `blockedLastAttempt: true`.
 
-**Write path:** switch from the hook's current plain `writeFileSync` to the
-atomic tmp-write-then-rename pattern already established in
-`.wolf/hooks/shared.js`'s `writeJSON` (write to `<path>.<random>.tmp`, then
-`renameSync`). The existing plain write is a latent race under concurrent
-sessions, which CLAUDE.md documents as a real occurrence in this repo — no
-reason to carry that gap forward into a file already being rewritten.
+**Write path:** switch from the hook's current plain `writeFileSync` to an
+atomic tmp-write-then-rename write (write to `<path>.<random>.tmp`, then
+`renameSync`) — the same *pattern* `.wolf/hooks/shared.js`'s `writeJSON`
+already uses, but implemented as a new local `hooks/lib/atomic-write.js`
+rather than importing across into `.wolf/hooks/` (a separate,
+daemon-owned tree that `openwolf init` can regenerate — top-level `hooks/`
+already has its own shared-lib convention in `hooks/lib/`, e.g.
+`token-count.js`, `gate-marker.js`). The existing plain write is a latent
+race under concurrent sessions, which CLAUDE.md documents as a real
+occurrence in this repo — no reason to carry that gap forward into a file
+already being rewritten.
 
 ## 1a. SessionStart Reset (new, small addition to close the unbounded-growth gap)
 
@@ -139,7 +144,16 @@ to the agent.
 matcher `Read|Edit`, invoking `node hooks/post-read-failure-rescue.js` with
 the standard hook stdin payload.
 
-## Testing (manual — hooks have no automated test harness in this repo)
+## Testing
+
+**Correction:** the repo *does* have an automated test harness for
+top-level `hooks/` — `node:test` + `node:assert/strict`, spawning each
+hook script via `spawnSync` in a temp dir with `CLAUDE_PROJECT_DIR` set
+(see `hooks/session-start.test.js`, `hooks/pre-skill-gate.test.js`, etc.,
+run via `node --test hooks/<name>.test.js`). `hooks/pre-read-check.js`
+currently has no test file — the plan adds one, following this existing
+convention, for all three touched/new hooks below rather than relying on
+manual verification only.
 
 Re-read gate:
 - Read a file, immediately re-read the same content → second read blocked.
@@ -168,10 +182,11 @@ Wrong-path rescue:
 
 ## Scope
 
-1 modified file (`hooks/pre-read-check.js`), 2 new files
-(`hooks/post-read-failure-rescue.js`, `hooks/session-start-reset-read-state.js`),
-2 new `settings.json` hook registrations (`PostToolUseFailure` and an
-additional `SessionStart` entry). No new dependencies (Node's built-in
-`crypto` module covers SHA-256). No schema migration required — the
-SessionStart reset means every session starts from a clean, current-schema
-state.
+1 modified file (`hooks/pre-read-check.js`), 3 new files
+(`hooks/post-read-failure-rescue.js`, `hooks/session-start-reset-read-state.js`,
+`hooks/lib/atomic-write.js`), 3 new test files (one per new/modified hook,
+following the `node:test` convention), 2 new `settings.json` hook
+registrations (`PostToolUseFailure` and an additional `SessionStart` entry).
+No new dependencies (Node's built-in `crypto` module covers SHA-256). No
+schema migration required — the SessionStart reset means every session
+starts from a clean, current-schema state.
