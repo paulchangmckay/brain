@@ -1,0 +1,13 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "frontend-design",
+  "version": "0.1.0",
+  "description": "Frontend/UI/UX routing subagent — dispatches to the correct taste-skill, correctness/performance/pattern passes, and polish review across the frontend skill family",
+  "author": {
+    "name": "paulmckay",
+    "email": "paulchangmckay@gmail.com"
+  },
+  "skills": [
+    "./"
+  ]
+}
