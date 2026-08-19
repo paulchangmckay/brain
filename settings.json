@@ -273,6 +273,17 @@
         ]
       }
     ],
+    "PostToolUseFailure": [
+      {
+        "matcher": "Read|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node $CLAUDE_PROJECT_DIR/hooks/post-read-failure-rescue.js"
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "hooks": [
