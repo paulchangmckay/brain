@@ -18,9 +18,22 @@ import { readFileSync, existsSync, statSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { resolve, relative } from 'node:path';
 import { writeJSONAtomic } from './lib/atomic-write.js';
+import { readStdin } from '../scripts/hook-input.js';
 
-const filePath = process.argv[2] || '';
-const cwd = process.argv[3] || process.cwd();
+let input = {};
+try {
+  input = JSON.parse(readStdin() || '{}');
+} catch (_) {
+  process.exit(0);
+}
+
+// Real Claude Code PreToolUse contract delivers the tool's arguments via
+// stdin JSON (tool_input.file_path), not an env var — the prior
+// "${TOOL_INPUT_PATH:-}" argv wiring referenced a variable that does not
+// exist anywhere in the CLI, so this hook never received a real path
+// before this fix, regardless of any of this branch's own hardening work.
+const filePath = (input.tool_input && input.tool_input.file_path) || '';
+const cwd = input.cwd || process.cwd();
 
 if (!filePath) process.exit(0);
 

@@ -19,7 +19,17 @@ function withProject(fn) {
 }
 
 function runRead(cwd, filePath) {
-  const result = spawnSync('node', [SCRIPT, filePath, cwd], { cwd, encoding: 'utf8' });
+  const result = spawnSync('node', [SCRIPT], {
+    cwd,
+    env: { ...process.env, CLAUDE_PROJECT_DIR: cwd },
+    input: JSON.stringify({
+      session_id: 'test-session',
+      cwd,
+      tool_name: 'Read',
+      tool_input: { file_path: filePath },
+    }),
+    encoding: 'utf8',
+  });
   const out = result.stdout.trim();
   return out ? JSON.parse(out) : {};
 }
