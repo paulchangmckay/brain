@@ -51,15 +51,27 @@ Two existing pieces of `~/.claude`'s hook system are in scope:
 
 ## 1. Re-Read Gate Upgrade (`hooks/pre-read-check.js`)
 
-**State shape** (in `.wolf/_session.json`, session-scoped, no migration
-needed since the file is ephemeral):
+**Grilling correction:** `.wolf/_session.json` (the file this hook actually
+reads/writes) is a *different* file from `.wolf/hooks/_session-<id>.json`
+(which `hooks/session-start.js` already resets fresh every session). Nothing
+currently clears `.wolf/_session.json` — it has accumulated read records
+across every session ever run, unbounded, since the hook was introduced.
+This spec now includes a fix (§1a) rather than inheriting that gap.
+
+**State shape** (in `.wolf/_session.json`, array of per-path records,
+matching the existing hook's convention):
 
 ```json
 {
-  "reads": { "<path>": { "hash": "<sha256>" } },
-  "lastBlockedPath": "<path or null>"
+  "reads": [
+    { "path": "<relPath>", "hash": "<sha256>", "blockedLastAttempt": false }
+  ]
 }
 ```
+
+`blockedLastAttempt` is tracked **per path**, not as one global slot — two
+different files can each be mid-block/retry independently without one
+clobbering the other's override.
 
 **Logic on a `Read` call for `<path>`:**
 
@@ -67,14 +79,32 @@ needed since the file is ephemeral):
    current mtime-based check for this file only (avoids a costly double
    read of very large files before the Read tool itself reads them).
 2. Otherwise, read the file and compute its SHA-256 hash.
-3. If `<path>` has no prior record → allow, record `{hash}`.
+3. If `<path>` has no prior record → allow, record `{path, hash,
+   blockedLastAttempt: false}`.
 4. If `<path>` has a prior record with a **different** hash → allow (file
-   changed since last read), update the record.
+   changed since last read), update the record, `blockedLastAttempt: false`.
 5. If `<path>` has a prior record with the **same** hash:
-   - If `lastBlockedPath === <path>` → allow this one time, clear
-     `lastBlockedPath`. This is the retry-override: the same blocked read
-     is never blocked twice in a row.
-   - Otherwise → block, set `lastBlockedPath = <path>`.
+   - If `record.blockedLastAttempt === true` → allow this one time, set
+     `blockedLastAttempt: false`. This is the retry-override: the same
+     blocked read is never blocked twice in a row.
+   - Otherwise → block, set `blockedLastAttempt: true`.
+
+**Write path:** switch from the hook's current plain `writeFileSync` to the
+atomic tmp-write-then-rename pattern already established in
+`.wolf/hooks/shared.js`'s `writeJSON` (write to `<path>.<random>.tmp`, then
+`renameSync`). The existing plain write is a latent race under concurrent
+sessions, which CLAUDE.md documents as a real occurrence in this repo — no
+reason to carry that gap forward into a file already being rewritten.
+
+## 1a. SessionStart Reset (new, small addition to close the unbounded-growth gap)
+
+A new `hooks/session-start-reset-read-state.js`, registered under
+`SessionStart` alongside the repo's other SessionStart hooks, resets
+`.wolf/_session.json` to `{ "reads": [] }` at the start of every session —
+mirroring exactly how `hooks/session-start.js` already resets its own
+(differently-named) session file. This keeps read/hash state scoped to a
+single session, matching the design's original intent, instead of growing
+forever.
 
 **Why hash instead of mtime+window:** mtime-based blocking has two failure
 modes — a file edited by an external process without changing content
@@ -95,9 +125,13 @@ to the agent.
    read-only edits, or a directory given instead of a file all fail
    differently and are out of scope here).
 2. Extract the basename of the failed `tool_input.file_path`.
-3. Grep `.wolf/anatomy.md` for entries whose basename matches.
-4. Exactly one match → emit that file's full path as `additionalContext`
-   (informational suggestion only, no forced action).
+3. Parse each `.wolf/anatomy.md` entry (format: `path/to/file.ts -
+   Description (~N tok)`) to pull out its full path, then compare
+   `path.basename()` of that path against the failed basename for **exact
+   string equality** — not a substring/grep match, which would false-match
+   e.g. `check.js` inside `recheck.js`.
+4. Exactly one exact-basename match → emit that file's full path as
+   `additionalContext` (informational suggestion only, no forced action).
 5. Zero or multiple matches → exit silently. Ambiguity is not a case this
    hook resolves — a wrong suggestion is worse than no suggestion.
 
@@ -111,11 +145,15 @@ Re-read gate:
 - Read a file, immediately re-read the same content → second read blocked.
 - Edit the file, re-read → allowed (hash changed, record updated).
 - Immediately re-attempt the exact same blocked read a second time →
-  allowed (retry-override fires, `lastBlockedPath` cleared).
+  allowed (retry-override fires, that path's `blockedLastAttempt` cleared).
 - Repeat the blocked case a third time after the override consumed →
-  blocked again (override is single-use per path).
+  blocked again (override is single-use per path per block).
+- Interleave: block file A, then read+block file B before retrying A →
+  retry A → still allowed (per-path flag, unaffected by B).
 - Read a file >5MB twice within the block window → mtime-based fallback
   behaves as today's hook does.
+- Start a new session after read/block state exists → `.wolf/_session.json`
+  reads to `{"reads": []}`, prior state gone.
 
 Wrong-path rescue:
 - `Read` a path with a typo'd directory but a basename that exists exactly
@@ -130,7 +168,10 @@ Wrong-path rescue:
 
 ## Scope
 
-1 modified file (`hooks/pre-read-check.js`), 1 new file
-(`hooks/post-read-failure-rescue.js`), 1 new `settings.json` hook
-registration. No new dependencies (Node's built-in `crypto` module covers
-SHA-256). No schema migration required.
+1 modified file (`hooks/pre-read-check.js`), 2 new files
+(`hooks/post-read-failure-rescue.js`, `hooks/session-start-reset-read-state.js`),
+2 new `settings.json` hook registrations (`PostToolUseFailure` and an
+additional `SessionStart` entry). No new dependencies (Node's built-in
+`crypto` module covers SHA-256). No schema migration required — the
+SessionStart reset means every session starts from a clean, current-schema
+state.
