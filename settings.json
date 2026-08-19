@@ -97,6 +97,14 @@
             "timeout": 5
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node $CLAUDE_PROJECT_DIR/hooks/session-start-reset-read-state.js \"${CLAUDE_CWD:-.}\""
+          }
+        ]
       }
     ],
     "UserPromptSubmit": [
@@ -124,7 +132,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node $CLAUDE_PROJECT_DIR/hooks/pre-read-check.js \"${TOOL_INPUT_PATH:-}\" \"${CLAUDE_CWD:-.}\""
+            "command": "node $CLAUDE_PROJECT_DIR/hooks/pre-read-check.js"
           }
         ]
       },
@@ -261,6 +269,17 @@
             "command": "node \"$CLAUDE_PROJECT_DIR/langsmith-plugin/bundle/post-tool-use.js\"",
             "timeout": 30,
             "async": true
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "matcher": "Read|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node $CLAUDE_PROJECT_DIR/hooks/post-read-failure-rescue.js"
           }
         ]
       }
