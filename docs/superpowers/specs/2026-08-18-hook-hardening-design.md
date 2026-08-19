@@ -17,6 +17,20 @@ Two existing pieces of `~/.claude`'s hook system are in scope:
   per-path `{path, ts, mtime}` records in `.wolf/_session.json`. It also
   does unrelated token-budget warnings using `.wolf/anatomy.md` entries —
   that logic is untouched by this spec.
+  **Post-implementation correction:** the final whole-branch review found,
+  and this was independently confirmed against the installed CLI binary
+  (`strings`) plus empirically in a live session (reading the same
+  unchanged file 3 times produced zero blocks), that this hook's
+  `settings.json` wiring (`"${TOOL_INPUT_PATH:-}"`) references an
+  environment variable that does not exist anywhere in Claude Code — it
+  always expands empty, so `filePath` was always `''` and the hook exited
+  immediately on line 1, every time, since long before this branch. Every
+  other hook in this repo reads its input from stdin JSON; this was the
+  only one using an argv/env-var scheme. Folded into this spec's scope
+  (user-approved scope expansion) rather than deferred: the hook is
+  rewired to read `tool_input.file_path` from stdin JSON like its
+  siblings, and the broken argv substitution is removed from
+  `settings.json`.
 - No existing hook handles a failed Read/Edit on a wrong or stale path.
   `PostToolUseFailure` exists as a distinct Claude Code hook event
   (separate from `PostToolUse`, confirmed against current hooks docs) and is
@@ -130,11 +144,19 @@ to the agent.
    read-only edits, or a directory given instead of a file all fail
    differently and are out of scope here).
 2. Extract the basename of the failed `tool_input.file_path`.
-3. Parse each `.wolf/anatomy.md` entry (format: `path/to/file.ts -
-   Description (~N tok)`) to pull out its full path, then compare
-   `path.basename()` of that path against the failed basename for **exact
-   string equality** — not a substring/grep match, which would false-match
-   e.g. `check.js` inside `recheck.js`.
+3. Parse `.wolf/anatomy.md` in its real, grouped format: entries are bullets
+   (`` - `filename` — description (~N tok) `` or `` - `filename`
+   (~N tok) `` with no description) nested under `## <dir>/` markdown
+   headers — the bullet holds a bare filename, not a full path; the
+   directory comes only from the most recent header above it. Track the
+   current header while scanning and join it with each bullet's filename to
+   reconstruct a full path, then compare that filename against the failed
+   basename for **exact string equality** — not a substring/grep match,
+   which would false-match e.g. `check.js` inside `recheck.js`.
+   (**Correction:** an earlier draft of this spec assumed a flat
+   `path/to/file.ts - Description (~N tok)` line format, which does not
+   match the real file — caught by task review during implementation,
+   verified directly against this repo's live `.wolf/anatomy.md`.)
 4. Exactly one exact-basename match → emit that file's full path as
    `additionalContext` (informational suggestion only, no forced action).
 5. Zero or multiple matches → exit silently. Ambiguity is not a case this
