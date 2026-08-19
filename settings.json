@@ -97,6 +97,14 @@
             "timeout": 5
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node $CLAUDE_PROJECT_DIR/hooks/session-start-reset-read-state.js \"${CLAUDE_CWD:-.}\""
+          }
+        ]
       }
     ],
     "UserPromptSubmit": [
