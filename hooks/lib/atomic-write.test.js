@@ -42,3 +42,12 @@ test('leaves no leftover .tmp files after a successful write', () => {
     assert.equal(existsSync(filePath), true);
   });
 });
+
+test('creates the parent directory if it does not exist yet', () => {
+  withTmpDir((dir) => {
+    const filePath = join(dir, 'nested', 'deep', 'state.json');
+    writeJSONAtomic(filePath, { reads: [] });
+    const parsed = JSON.parse(readFileSync(filePath, 'utf8'));
+    assert.deepEqual(parsed, { reads: [] });
+  });
+});

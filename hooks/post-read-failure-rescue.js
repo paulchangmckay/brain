@@ -44,7 +44,12 @@ function main() {
   const toolName = input.tool_name;
   if (toolName !== 'Read' && toolName !== 'Edit') process.exit(0);
 
-  const toolError = input.tool_error || '';
+  // Real field per Claude Code's PostToolUseFailure contract is `error`,
+  // not `tool_error` — verified directly against the installed CLI binary
+  // (`strings` on the app bundle: "Input to command is JSON with
+  // tool_name, tool_input, tool_use_id, error, error_type, is_interrupt,
+  // and is_timeout").
+  const toolError = input.error || '';
   if (!MISSING_PATH_PATTERN.test(toolError)) process.exit(0);
 
   const failedPath = input.tool_input && input.tool_input.file_path;
@@ -62,16 +67,18 @@ function main() {
   }
 
   const rescuePath = findRescuePath(anatomyContent, failedPath);
-  if (!rescuePath) process.exit(0);
+  // A stale or foreign-project anatomy.md entry can be the only basename
+  // match yet not exist on disk here — only suggest a path that's real,
+  // right now, in this project.
+  if (!rescuePath || !existsSync(path.resolve(cwd, rescuePath))) process.exit(0);
 
-  process.stdout.write(JSON.stringify({
-    hookSpecificOutput: {
-      hookEventName: 'PostToolUseFailure',
-      additionalContext: `[OpenWolf] Did you mean: ${rescuePath}?`
-    }
-  }) + '\n');
-
-  process.exit(0);
+  // Claude Code's documented PostToolUseFailure contract: exit 0 shows
+  // stdout only in transcript mode (not to the model); exit 2 shows
+  // stderr to the model immediately. Use stderr + exit 2 to guarantee
+  // delivery, per the CLI's own per-event exit-code table (verified
+  // against the installed binary).
+  process.stderr.write(`[OpenWolf] Did you mean: ${rescuePath}?\n`);
+  process.exit(2);
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {

@@ -50,10 +50,17 @@ test('unit: basename exists under two different headers returns null', () => {
   assert.equal(result, null);
 });
 
-function withProject(fn) {
+function withProject(fn, { createTargetFiles = true } = {}) {
   const cwd = mkdtempSync(join(tmpdir(), 'rescue-hook-test-'));
   mkdirSync(join(cwd, '.wolf'), { recursive: true });
   writeFileSync(join(cwd, '.wolf', 'anatomy.md'), ANATOMY);
+  if (createTargetFiles) {
+    mkdirSync(join(cwd, 'src', 'auth'), { recursive: true });
+    mkdirSync(join(cwd, 'src', 'utils'), { recursive: true });
+    writeFileSync(join(cwd, 'src', 'auth', 'login.ts'), '// login\n');
+    writeFileSync(join(cwd, 'src', 'auth', 'logout.ts'), '// logout\n');
+    writeFileSync(join(cwd, 'src', 'utils', 'recheck.js'), '// recheck\n');
+  }
   try {
     fn(cwd);
   } finally {
@@ -62,67 +69,81 @@ function withProject(fn) {
 }
 
 function runFailure(cwd, payload) {
-  const result = spawnSync('node', [SCRIPT], {
+  return spawnSync('node', [SCRIPT], {
     cwd,
     env: { ...process.env, CLAUDE_PROJECT_DIR: cwd },
     input: JSON.stringify(payload),
     encoding: 'utf8',
   });
-  const out = result.stdout.trim();
-  return out ? JSON.parse(out) : null;
 }
 
-test('integration: ENOENT-style failure with a unique basename match emits additionalContext', () => {
+test('integration: ENOENT-style failure with a unique, existing basename match writes to stderr and exits 2', () => {
   withProject((cwd) => {
-    const output = runFailure(cwd, {
+    const result = runFailure(cwd, {
       session_id: 'test-session',
       cwd,
       tool_name: 'Read',
       tool_input: { file_path: '/wrong/dir/login.ts' },
-      tool_error: 'ENOENT: no such file or directory',
+      error: 'ENOENT: no such file or directory',
     });
-    assert.ok(output);
-    assert.equal(output.hookSpecificOutput.hookEventName, 'PostToolUseFailure');
-    assert.match(output.hookSpecificOutput.additionalContext, /src\/auth\/login\.ts/);
+    assert.equal(result.status, 2);
+    assert.match(result.stderr, /src\/auth\/login\.ts/);
+    assert.equal(result.stdout, '');
   });
 });
 
 test('integration: non-missing-path errors produce no output', () => {
   withProject((cwd) => {
-    const output = runFailure(cwd, {
+    const result = runFailure(cwd, {
       session_id: 'test-session',
       cwd,
       tool_name: 'Read',
       tool_input: { file_path: '/some/dir/login.ts' },
-      tool_error: 'EACCES: permission denied',
+      error: 'EACCES: permission denied',
     });
-    assert.equal(output, null);
+    assert.equal(result.status, 0);
+    assert.equal(result.stderr, '');
   });
 });
 
 test('integration: Write tool failures produce no output regardless of error text', () => {
   withProject((cwd) => {
-    const output = runFailure(cwd, {
+    const result = runFailure(cwd, {
       session_id: 'test-session',
       cwd,
       tool_name: 'Write',
       tool_input: { file_path: '/wrong/dir/login.ts' },
-      tool_error: 'ENOENT: no such file or directory',
+      error: 'ENOENT: no such file or directory',
     });
-    assert.equal(output, null);
+    assert.equal(result.status, 0);
+    assert.equal(result.stderr, '');
   });
 });
 
 test('integration: Edit tool failures use the same rescue path as Read', () => {
   withProject((cwd) => {
-    const output = runFailure(cwd, {
+    const result = runFailure(cwd, {
       session_id: 'test-session',
       cwd,
       tool_name: 'Edit',
       tool_input: { file_path: '/wrong/dir/logout.ts' },
-      tool_error: 'ENOENT: no such file or directory',
+      error: 'ENOENT: no such file or directory',
     });
-    assert.ok(output);
-    assert.match(output.hookSpecificOutput.additionalContext, /src\/auth\/logout\.ts/);
+    assert.equal(result.status, 2);
+    assert.match(result.stderr, /src\/auth\/logout\.ts/);
   });
+});
+
+test('integration: a unique basename match that does not exist on disk produces no output', () => {
+  withProject((cwd) => {
+    const result = runFailure(cwd, {
+      session_id: 'test-session',
+      cwd,
+      tool_name: 'Read',
+      tool_input: { file_path: '/wrong/dir/login.ts' },
+      error: 'ENOENT: no such file or directory',
+    });
+    assert.equal(result.status, 0);
+    assert.equal(result.stderr, '');
+  }, { createTargetFiles: false });
 });
