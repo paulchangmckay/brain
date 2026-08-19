@@ -135,6 +135,15 @@ Every step must contain the actual content an engineer needs. These are **plan f
 - Steps that describe what to do without showing how (code blocks required for code steps)
 - References to types, functions, or methods not defined in any task
 
+## Content-Only Task Verification
+
+When a task's deliverable is markdown/config rather than executable code (e.g. authoring SKILL.md files, docs, rules files), the literal red-green TDD cycle doesn't apply. Substitute these checks instead of skipping verification:
+- **Placeholder/forbidden-pattern check:** grep the new content for "TBD", "TODO", "implement later", and other patterns banned under No Placeholders above.
+- **Word/line budget check:** `wc -w`/`wc -l` against any stated size constraint for the deliverable.
+- **Frontmatter-shape spot check:** `head` the file to confirm required frontmatter fields (name, description) are present and well-formed.
+
+These substitute for the red-green cycle, not the "testable deliverable" principle itself — every content task still needs a step that would fail before the content exists and pass after.
+
 ## Remember
 - Exact file paths always
 - Complete code in every step — if a step changes code, show the code
