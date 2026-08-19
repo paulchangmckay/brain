@@ -15,11 +15,13 @@ When applied to an existing project, follow this sequence:
 
 ## Design Audit
 
+Read [`shared-references/anti-slop-tells.md`](../shared-references/anti-slop-tells.md) before starting the audit — those bans (fake-precision, color, layout, and typography anti-patterns shared with `design-taste-frontend`) are part of this checklist, not optional background reading. The categories below cover audit-specific findings on top of that shared list.
+
 ### Typography
 
 Check for these problems and fix them:
 
-- **Browser default fonts or Inter everywhere.** Replace with a font that has character. Good options: `Geist`, `Outfit`, `Cabinet Grotesk`, `Satoshi`. For editorial/creative projects, pair a serif header with a sans-serif body.
+- For editorial/creative projects, pair a serif header with a sans-serif body.
 - **Headlines lack presence.** Increase size for display text, tighten letter-spacing, reduce line-height. Headlines should feel heavy and intentional.
 - **Body text too wide.** Limit paragraph width to roughly 65 characters. Increase line-height for readability.
 - **Only Regular (400) and Bold (700) weights used.** Introduce Medium (500) and SemiBold (600) for more subtle hierarchy.
@@ -30,12 +32,7 @@ Check for these problems and fix them:
 
 ### Color and Surfaces
 
-- **Pure `#000000` background.** Replace with off-black, dark charcoal, or tinted dark (`#0a0a0a`, `#121212`, or a dark navy).
-- **Oversaturated accent colors.** Keep saturation below 80%. Desaturate accents so they blend with neutrals instead of screaming.
-- **More than one accent color.** Pick one. Remove the rest. Consistency beats variety.
 - **Mixing warm and cool grays.** Stick to one gray family. Tint all grays with a consistent hue (warm or cool, not both).
-- **Purple/blue "AI gradient" aesthetic.** This is the most common AI design fingerprint. Replace with neutral bases and a single, considered accent.
-- **Generic `box-shadow`.** Tint shadows to match the background hue. Use colored shadows (e.g., dark blue shadow on a blue background) instead of pure black at low opacity.
 - **Flat design with zero texture.** Add subtle noise, grain, or micro-patterns to backgrounds. Pure flat vectors feel sterile.
 - **Perfectly even gradients.** Break the uniformity with radial gradients, noise overlays, or mesh gradients instead of standard linear 45-degree fades.
 - **Inconsistent lighting direction.** Audit all shadows to ensure they suggest a single, consistent light source.
@@ -45,9 +42,6 @@ Check for these problems and fix them:
 ### Layout
 
 - **Everything centered and symmetrical.** Break symmetry with offset margins, mixed aspect ratios, or left-aligned headers over centered content.
-- **Three equal card columns as feature row.** This is the most generic AI layout. Replace with a 2-column zig-zag, asymmetric grid, horizontal scroll, or masonry layout.
-- **Using `height: 100vh` for full-screen sections.** Replace with `min-height: 100dvh` to prevent layout jumping on mobile browsers (iOS Safari viewport bug).
-- **Complex flexbox percentage math.** Replace with CSS Grid for reliable multi-column structures.
 - **No max-width container.** Add a container constraint (around 1200-1440px) with auto margins so content doesn't stretch edge-to-edge on wide screens.
 - **Cards of equal height forced by flexbox.** Allow variable heights or use masonry when content varies in length.
 - **Uniform border-radius on everything.** Vary the radius: tighter on inner elements, softer on containers.
@@ -76,10 +70,6 @@ Check for these problems and fix them:
 
 ### Content
 
-- **Generic names like "John Doe" or "Jane Smith".** Use diverse, realistic-sounding names.
-- **Fake round numbers like `99.99%`, `50%`, `$100.00`.** Use organic, messy data: `47.2%`, `$99.00`, `+1 (312) 847-1928`.
-- **Placeholder company names like "Acme Corp", "Nexus", "SmartFlow".** Invent contextual, believable brand names.
-- **AI copywriting cliches.** Never use "Elevate", "Seamless", "Unleash", "Next-Gen", "Game-changer", "Delve", "Tapestry", or "In the world of...". Write plain, specific language.
 - **Exclamation marks in success messages.** Remove them. Be confident, not loud.
 - **"Oops!" error messages.** Be direct: "Connection failed. Please try again."
 - **Passive voice.** Use active voice: "We couldn't save your changes" instead of "Mistakes were made."

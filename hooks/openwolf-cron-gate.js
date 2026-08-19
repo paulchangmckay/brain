@@ -4,6 +4,7 @@ import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { estimateTokens } from './lib/token-count.js';
 import { isStale, readMarker, writeMarker, acquireLock, releaseLock, reapStaleLock } from './lib/gate-marker.js';
+import { readStdin } from '../scripts/hook-input.js';
 
 const MEMORY_MAX_AGE_MS = 24 * 60 * 60 * 1000;
 const MEMORY_MAX_TOKENS = 15000;
@@ -19,14 +20,6 @@ const CRON_RUN_TIMEOUT_MS = 125 * 1000;
 
 const SESSION_HEADER_RE = /^## Session: (\S+)/;
 const CONSOLIDATED_RE = /^> Consolidated session \(\d+ actions\)$/;
-
-function readStdin() {
-  try {
-    return readFileSync(0, 'utf8');
-  } catch (_) {
-    return '';
-  }
-}
 
 export function runOpenwolfCron(id) {
   const cmd = process.env.WOLF_CRON_CMD || 'openwolf';

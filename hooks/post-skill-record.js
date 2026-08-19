@@ -5,18 +5,9 @@
 // writing-plans). One marker file per skill avoids any read-modify-write
 // race on shared state between concurrent Skill invocations.
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
+import { writeFileSync, existsSync, mkdirSync } from 'fs';
 import { resolve, dirname } from 'path';
-
-const SAFE_NAME = /^[A-Za-z0-9._-]+$/;
-
-function readStdin() {
-  try {
-    return readFileSync(0, 'utf8');
-  } catch (_) {
-    return '';
-  }
-}
+import { readStdin, SAFE_NAME } from '../scripts/hook-input.js';
 
 let input = {};
 try {

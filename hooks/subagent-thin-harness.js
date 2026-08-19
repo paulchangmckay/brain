@@ -7,6 +7,7 @@
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
+import { readStdin } from '../scripts/hook-input.js';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const DIGEST_PATH = process.env.WOLF_SUBAGENT_DIGEST_PATH
@@ -27,14 +28,6 @@ function readDigest() {
     return readFileSync(DIGEST_PATH, 'utf8');
   } catch (_) {
     return FALLBACK_DIGEST;
-  }
-}
-
-function readStdin() {
-  try {
-    return readFileSync(0, 'utf8');
-  } catch (_) {
-    return '';
   }
 }
 

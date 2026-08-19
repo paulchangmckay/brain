@@ -7,17 +7,10 @@
 // capture wasn't possible here. See
 // docs/superpowers/specs/2026-07-20-tooling-friction-hardening-design.md §1.
 
-import { readFileSync, realpathSync } from 'fs';
+import { realpathSync } from 'fs';
 import { execFileSync } from 'child_process';
 import { resolve, isAbsolute, dirname, basename, join } from 'path';
-
-function readStdin() {
-  try {
-    return readFileSync(0, 'utf8');
-  } catch (_) {
-    return '';
-  }
-}
+import { readStdin } from '../scripts/hook-input.js';
 
 let input = {};
 try {
