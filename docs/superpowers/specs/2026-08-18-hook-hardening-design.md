@@ -130,11 +130,19 @@ to the agent.
    read-only edits, or a directory given instead of a file all fail
    differently and are out of scope here).
 2. Extract the basename of the failed `tool_input.file_path`.
-3. Parse each `.wolf/anatomy.md` entry (format: `path/to/file.ts -
-   Description (~N tok)`) to pull out its full path, then compare
-   `path.basename()` of that path against the failed basename for **exact
-   string equality** — not a substring/grep match, which would false-match
-   e.g. `check.js` inside `recheck.js`.
+3. Parse `.wolf/anatomy.md` in its real, grouped format: entries are bullets
+   (`` - `filename` — description (~N tok) `` or `` - `filename`
+   (~N tok) `` with no description) nested under `## <dir>/` markdown
+   headers — the bullet holds a bare filename, not a full path; the
+   directory comes only from the most recent header above it. Track the
+   current header while scanning and join it with each bullet's filename to
+   reconstruct a full path, then compare that filename against the failed
+   basename for **exact string equality** — not a substring/grep match,
+   which would false-match e.g. `check.js` inside `recheck.js`.
+   (**Correction:** an earlier draft of this spec assumed a flat
+   `path/to/file.ts - Description (~N tok)` line format, which does not
+   match the real file — caught by task review during implementation,
+   verified directly against this repo's live `.wolf/anatomy.md`.)
 4. Exactly one exact-basename match → emit that file's full path as
    `additionalContext` (informational suggestion only, no forced action).
 5. Zero or multiple matches → exit silently. Ambiguity is not a case this
