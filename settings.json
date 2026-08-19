@@ -132,7 +132,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node $CLAUDE_PROJECT_DIR/hooks/pre-read-check.js \"${TOOL_INPUT_PATH:-}\" \"${CLAUDE_CWD:-.}\""
+            "command": "node $CLAUDE_PROJECT_DIR/hooks/pre-read-check.js"
           }
         ]
       },
