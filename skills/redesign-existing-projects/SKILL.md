@@ -15,12 +15,13 @@ When applied to an existing project, follow this sequence:
 
 ## Design Audit
 
-See [`shared-references/anti-slop-tells.md`](../shared-references/anti-slop-tells.md) for fake-precision, color, layout, and typography anti-patterns shared with `design-taste-frontend`. The categories below cover audit-specific findings on top of that shared list.
+Read [`shared-references/anti-slop-tells.md`](../shared-references/anti-slop-tells.md) before starting the audit — those bans (fake-precision, color, layout, and typography anti-patterns shared with `design-taste-frontend`) are part of this checklist, not optional background reading. The categories below cover audit-specific findings on top of that shared list.
 
 ### Typography
 
 Check for these problems and fix them:
 
+- For editorial/creative projects, pair a serif header with a sans-serif body.
 - **Headlines lack presence.** Increase size for display text, tighten letter-spacing, reduce line-height. Headlines should feel heavy and intentional.
 - **Body text too wide.** Limit paragraph width to roughly 65 characters. Increase line-height for readability.
 - **Only Regular (400) and Bold (700) weights used.** Introduce Medium (500) and SemiBold (600) for more subtle hierarchy.

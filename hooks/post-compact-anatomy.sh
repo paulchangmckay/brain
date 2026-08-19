@@ -61,3 +61,5 @@ else
   fi
   printf '{\n  "hookSpecificOutput": {\n    "hookEventName": "PostCompact",\n    "additionalContext": "%s"\n  }\n}\n' "$combined_context"
 fi
+
+exit 0

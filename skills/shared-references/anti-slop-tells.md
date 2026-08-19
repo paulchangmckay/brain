@@ -27,4 +27,4 @@ priority, etc.) locally; only the base bans below are shared.
 
 ## Typography
 
-- **Browser default fonts, or Inter as an unconsidered default.** Pick a font with character (e.g. `Geist`, `Outfit`, `Cabinet Grotesk`, `Satoshi`) unless the brief specifically calls for a neutral/standard feel.
+- **Browser default fonts, or Inter as an unconsidered default.** Pick a font with character (e.g. `Geist`, `Outfit`, `Cabinet Grotesk`, `Satoshi`).

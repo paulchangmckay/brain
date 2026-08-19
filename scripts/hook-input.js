@@ -13,4 +13,8 @@ export function readStdin() {
   }
 }
 
+// Allows bare `.` and `..` (they match this character class) — this regex
+// is only traversal-safe when the caller embeds the matched value inside a
+// filename that has a non-empty literal prefix (e.g. `template-${value}`),
+// never as a bare path segment on its own.
 export const SAFE_NAME = /^[A-Za-z0-9._-]+$/;
