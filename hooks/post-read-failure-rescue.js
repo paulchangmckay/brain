@@ -8,17 +8,26 @@ import { existsSync, readFileSync } from 'node:fs';
 import { readStdin } from '../scripts/hook-input.js';
 
 const MISSING_PATH_PATTERN = /ENOENT|no such file|cannot find|does not exist/i;
-const ANATOMY_LINE_PATH = /^([^\s].*?)\s+-\s+/;
+const ANATOMY_HEADER = /^##\s+(.+?)\s*$/;
+const ANATOMY_BULLET = /^-\s+`([^`]+)`(?:\s+—\s+.*?)?\s+\(~\d+\s*tok\)\s*$/;
 
 export function findRescuePath(anatomyContent, failedPath) {
   const failedBasename = path.basename(failedPath);
   const matches = [];
+  let currentDir = null;
   for (const line of anatomyContent.split('\n')) {
-    const m = line.match(ANATOMY_LINE_PATH);
-    if (!m) continue;
-    const entryPath = m[1].trim();
-    if (path.basename(entryPath) === failedBasename) {
-      matches.push(entryPath);
+    const headerMatch = line.match(ANATOMY_HEADER);
+    if (headerMatch) {
+      currentDir = headerMatch[1];
+      continue;
+    }
+    const bulletMatch = line.match(ANATOMY_BULLET);
+    if (!bulletMatch || currentDir === null) continue;
+    const filename = bulletMatch[1];
+    if (path.basename(filename) === failedBasename) {
+      const dir = currentDir.endsWith('/') ? currentDir : `${currentDir}/`;
+      const fullPath = dir === './' ? filename : `${dir}${filename}`;
+      matches.push(fullPath);
     }
   }
   return matches.length === 1 ? matches[0] : null;

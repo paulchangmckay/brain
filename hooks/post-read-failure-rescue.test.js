@@ -10,9 +10,24 @@ import { findRescuePath } from './post-read-failure-rescue.js';
 const SCRIPT = fileURLToPath(new URL('./post-read-failure-rescue.js', import.meta.url));
 
 const ANATOMY = [
-  'src/auth/login.ts - Handles login (~120 tok)',
-  'src/auth/logout.ts - Handles logout (~80 tok)',
-  'src/utils/recheck.js - Retry helper (~40 tok)',
+  '## src/auth/',
+  '',
+  '- `login.ts` — Handles login (~120 tok)',
+  '- `logout.ts` — Handles logout (~80 tok)',
+  '',
+  '## src/utils/',
+  '',
+  '- `recheck.js` — Retry helper (~40 tok)',
+].join('\n');
+
+const ANATOMY_WITH_DUPES = [
+  '## src/auth/',
+  '',
+  '- `login.ts` — Handles login (~120 tok)',
+  '',
+  '## src/legacy/',
+  '',
+  '- `login.ts` — Old login, kept for reference (~50 tok)',
 ].join('\n');
 
 test('unit: exactly one basename match returns that full path', () => {
@@ -27,6 +42,11 @@ test('unit: zero basename matches returns null', () => {
 
 test('unit: basename substring collision does not false-match (check.js vs recheck.js)', () => {
   const result = findRescuePath(ANATOMY, '/wrong/dir/check.js');
+  assert.equal(result, null);
+});
+
+test('unit: basename exists under two different headers returns null', () => {
+  const result = findRescuePath(ANATOMY_WITH_DUPES, '/wrong/dir/login.ts');
   assert.equal(result, null);
 });
 
